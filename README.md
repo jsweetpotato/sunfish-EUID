@@ -1,3 +1,6 @@
+# 시작하기
+``` npm i vite ```를 설치하시고 ```npm run dev```를 해주세요
+
 # 추가사항
 
 tailwind.css에서 아래 사진과 다르게 오류가 난다면 다음과 같이 진행해주세요
@@ -24,3 +27,16 @@ tailwind.css에서 아래 사진과 다르게 오류가 난다면 다음과 같�
   }
 }
 ```
+
+# package
+- 번들러: [vite](https://ko.vitejs.dev/guide/)
+- CSS: [tailwind](https://tailwindcss.com/)
+- 코드 컨벤션:
+  - [eslint](https://eslint.org/docs/latest/)
+  - [eslint-config-airbnb-base](https://www.npmjs.com/package/eslint-config-airbnb-base)
+  - [eslint-config-prettier](https://www.npmjs.com/package/eslint-config-prettier)
+  - [eslint-plugin-import](https://www.npmjs.com/package/eslint-plugin-import)
+  - [prettier](https://prettier.io/docs/en/)
+  - [autoprefixer](https://github.com/postcss/autoprefixer)
+  - [postcss](https://postcss.org/docs/)
+  - [postcss-nesting](https://www.npmjs.com/package/postcss-nesting)
