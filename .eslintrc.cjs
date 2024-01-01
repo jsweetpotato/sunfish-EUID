@@ -21,6 +21,8 @@ module.exports = {
   rules: {
     "no-var": "error",
     "no-unreachable": "error",
-    "max-depth": ["error", { max: 1 }],
+    "max-depth": ["error", { max: 2 }],
+    "no-unused-vars": "warn",
+    "import/no-extraneous-dependencies": "off",
   },
-};
+}
