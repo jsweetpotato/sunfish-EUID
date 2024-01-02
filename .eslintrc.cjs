@@ -24,5 +24,6 @@ module.exports = {
     "max-depth": ["error", { max: 2 }],
     "no-unused-vars": "warn",
     "import/no-extraneous-dependencies": "off",
+    "no-console": "off",
   },
 }
