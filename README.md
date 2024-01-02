@@ -3,7 +3,7 @@
 
 # 추가사항
 
-tailwind.css에서 아래 사진과 다르게 오류가 난다면 다음과 같이 진행해주세요
+### tailwind.css에서 아래 사진과 다르게 오류가 난다면 다음과 같이 진행해주세요
 
 <img width="167" alt="스크린샷 2024-01-01 19 43 13" src="https://github.com/FRONTENDSCHOOL8/sunfish-EUID/assets/113508075/1555e7d2-0218-408b-a00b-a125f90f6b84">
 
@@ -27,6 +27,10 @@ tailwind.css에서 아래 사진과 다르게 오류가 난다면 다음과 같�
   }
 }
 ```
+
+### 깃 커밋 템플릿을 활용하기 위해서는 다음과 같은 명령어를 입력해주세요
+```git config commit.template .gitmessage.txt```
+
 
 # package
 - 번들러: [vite](https://ko.vitejs.dev/guide/)
