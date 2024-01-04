@@ -5,6 +5,7 @@ export default {
     extend: {
       width: {
         'input-w1': '18.5rem', //296px
+        'profile-temperature-w': '20rem',
       },
       height: {
         'input-h1': '2.0625rem', //33px
