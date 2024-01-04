@@ -8,3 +8,11 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.input1 {
+  @apply w-input-w1 rounded border-contents-content-tertiary border p-2;
+}
+
+.input2 {
+  @apply w-input-w1 h-input-h2 rounded border-contents-content-tertiary border p-2;
+}
