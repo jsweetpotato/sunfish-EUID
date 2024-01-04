@@ -13,7 +13,8 @@
 
 1. .vscode 폴더를 생성해주세요
 2. 다음으로 setting.json 파일을 생성하고, 밑의 코드를 복붙해주시면 오류 해결완료!!🫡
-```{
+```
+{
   "css.validate": false,
   "tailwindCSS.emmetCompletions": true,
   "files.associations": {
