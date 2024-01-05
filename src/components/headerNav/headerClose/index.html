@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/src/styles/tailwind.css" />
+    <title>headerClose</title>
+    <style>
+      .close {
+        background-image: url('/src/assets/headerIcon/close.svg');
+      }
+    </style>
+  </head>
+  <body>
+    <header role="banner" class="min-w-[280px] max-w-[430px] w-full h-10">
+      <div class="flex items-center relative">
+        <a
+          href="/"
+          aria-label="창 닫기"
+          class="close block w-10 h-10 bg-no-repeat bg-center hover:bg-gray-100 hover:rounded transition-all duration-300"
+        ></a>
+        <h1
+          aria-label="선배님 스토리"
+          class="text-label-medium font-semibold absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+        >
+          ⌨️ 선배님 스토리
+        </h1>
+      </div>
+    </header>
+  </body>
+</html>

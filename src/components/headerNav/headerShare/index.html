@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/src/styles/tailwind.css" />
+    <title>headerShare</title>
+    <style>
+      .direction {
+        background-image: url('/src/assets/headerIcon/direction.svg');
+      }
+      .share {
+        background-image: url('/src/assets/headerIcon/share.svg');
+      }
+      .more {
+        background-image: url('/src/assets/headerIcon/more.svg');
+      }
+    </style>
+  </head>
+  <body>
+    <header role="banner" class="min-w-[280px] max-w-[430px] w-full h-10">
+      <div class="flex justify-between items-center">
+        <a
+          href="/"
+          aria-label="돌아가기"
+          class="direction block w-10 h-10 bg-no-repeat bg-center rotate-90 hover:bg-gray-100 hover:rounded transition-all duration-300"
+        ></a>
+        <div class="flex items-center">
+          <button
+            type="button"
+            aria-label="공유하기"
+            class="share w-10 h-10 bg-no-repeat bg-center hover:bg-gray-100 hover:rounded transition-all duration-300"
+          ></button>
+
+          <button
+            type="button"
+            aria-label="더보기"
+            class="more w-10 h-10 bg-no-repeat bg-center hover:bg-gray-100 hover:rounded transition-all duration-300"
+          ></button>
+        </div>
+      </div>
+    </header>
+  </body>
+</html>

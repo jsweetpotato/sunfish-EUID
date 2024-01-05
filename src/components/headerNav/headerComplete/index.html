@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/src/styles/tailwind.css" />
+    <title>headerComplete</title>
+    <style>
+      .close {
+        background-image: url('/src/assets/headerIcon/close.svg');
+      }
+    </style>
+  </head>
+  <body>
+    <header role="banner" class="min-w-[280px] max-w-[430px] w-full h-10">
+      <div class="flex justify-between items-center">
+        <a
+          href="/"
+          aria-label="창 닫기"
+          class="close block w-10 h-10 bg-no-repeat bg-center hover:bg-gray-100 hover:rounded transition-all duration-300"
+        ></a>
+        <h1 class="text-label-medium font-semibold">Q&A 글쓰기</h1>
+        <button
+          type="submit"
+          aria-label="완료하기"
+          class="text-label-medium font-semibold w-11 h-10 text-contents-content-tertiary hover:bg-gray-100 hover:rounded transition-all duration-300"
+        >
+          완료
+        </button>
+      </div>
+    </header>
+  </body>
+</html>
