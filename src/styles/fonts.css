@@ -1,0 +1,50 @@
+:root {
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Heading */
+.heading-large {
+  font-size: 1.125rem;
+  font-weight: bold;
+  line-height: 1.6;
+  letter-spacing: -1px;
+}
+
+/* Laber */
+.label-large {
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.6;
+  letter-spacing: -1px;
+}
+.label-medium {
+  font-size: 0.875rem;
+  font-weight: bold;
+  line-height: 1.6;
+}
+.label-small {
+  font-size: 0.625rem;
+  font-weight: bold;
+  line-height: 1.6;
+}
+
+/* Paragraph */
+.paragraph-large {
+  font-size: 1.125rem;
+  font-weight: normal;
+  line-height: 1.6;
+  letter-spacing: -1px;
+}
+.paragraph-medium {
+  font-size: 0.875rem;
+  font-weight: normal;
+  line-height: 1.6;
+}
+.paragraph-small {
+  font-size: 0.625rem;
+  font-weight: normal;
+  line-height: 1.6;
+}
