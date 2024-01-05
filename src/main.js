@@ -2,7 +2,7 @@ import {
   createPrimaryBtn,
   createSecondaryBtn,
   toggleValid,
-} from './main_button';
+} from './components/main_button';
 
 const $app = document.querySelector('#app');
 const $alram = document.querySelector('#alram');
