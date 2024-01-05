@@ -8,16 +8,5 @@
 /* @import './custom-utilities.css'; */
 
 /* 아래에 css파일 import문 작성해주세요. */
-
-:root {
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-@layer utilities {
-  .invalid {
-    @apply bg-gray-600;
-  }
-}
+@import './fonts.css';
+@import './utils.css';
