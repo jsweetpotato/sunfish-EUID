@@ -1,6 +1,5 @@
 # 시작하기
-
-`npm i vite`를 설치하시고 `npm run dev`를 해주세요
+``` npm i vite ```를 설치하시고 ```npm run dev```를 해주세요
 
 # 추가사항
 
@@ -11,9 +10,9 @@
 <br/>
 <br/>
 
+
 1. .vscode 폴더를 생성해주세요
 2. 다음으로 setting.json 파일을 생성하고, 밑의 코드를 복붙해주시면 오류 해결완료!!🫡
-
 ```
 {
   "css.validate": false,
@@ -31,11 +30,10 @@
 ```
 
 ### 깃 커밋 템플릿을 활용하기 위해서는 다음과 같은 명령어를 입력해주세요
+```git config commit.template .gitmessage.txt```
 
-`git config commit.template .gitmessage.txt`
 
 # package
-
 - 번들러: [vite](https://ko.vitejs.dev/guide/)
 - CSS: [tailwind](https://tailwindcss.com/)
 - 코드 컨벤션:
