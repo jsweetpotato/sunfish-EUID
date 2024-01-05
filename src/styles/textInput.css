@@ -1,0 +1,7 @@
+.inputMedium {
+  @apply p-2 rounded border self-stretch flex items-start gap-2;
+}
+
+.inputLarge {
+  @apply p-2 h-input-h2 rounded border content-start flex-wrap self-stretch items-start gap-2;
+}
