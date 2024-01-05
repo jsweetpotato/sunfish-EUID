@@ -3,5 +3,5 @@
 }
 
 .inputLarge {
-  @apply p-2 h-input-h2 rounded border content-start flex-wrap self-stretch items-start gap-2;
+  @apply p-2 h-32 rounded border content-start flex-wrap self-stretch items-start gap-2;
 }
