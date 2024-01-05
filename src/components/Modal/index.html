@@ -8,114 +8,61 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" sizes="192x192" href="/android-icon.png" />
     <link rel="stylesheet" href="/src/styles/tailwind.css" />
-    <title>GNB 컴포넌트</title>
-    <style>
-      .home {
-        background-image: url('/src/assets/gnbIcon/home.svg');
-      }
-      .is-select > .home {
-        background-image: url('/src/assets/gnbIcon/home_full.svg');
-      }
-      .board {
-        background-image: url('/src/assets/gnbIcon/board.svg');
-      }
-      .is-select > .board {
-        background-image: url('/src/assets/gnbIcon/board_full.svg');
-      }
-      .near {
-        background-image: url('/src/assets/gnbIcon/near.svg');
-      }
-      .is-select > .near {
-        background-image: url('/src/assets/gnbIcon/near_full.svg');
-      }
-      .chat {
-        background-image: url('/src/assets/gnbIcon/chat.svg');
-      }
-      .is-select > .chat {
-        background-image: url('/src/assets/gnbIcon/chat_full.svg');
-      }
-      .my {
-        background-image: url('/src/assets/gnbIcon/my.svg');
-      }
-      .is-select > .my {
-        background-image: url('/src/assets/gnbIcon/my_full.svg');
-      }
-    </style>
+    <title>모달 컴포넌트</title>
+    <style></style>
   </head>
   <body>
     <div id="app">
-      <nav
-        class="fixed bottom-0 min-w-[280px] max-w-[430px] w-full h-[69px] pr-3 pt-2 pb-5 border-t-[1px] border-gray-200 bg-white"
+      <!-- alert 원버튼 모달 -->
+      <dialog
+        class="bg-white shadow-lg backdrop:bg-black backdrop:bg-opacity-40 rounded-3xl"
       >
-        <ul class="w-full h-full flex justify-between items-center">
-          <li
-            class="is-select h-full w-12 pt-0.5 hover:bg-gray-100 hover:rounded transition-all duration-300"
+        <div class="w-[233px] px-[18px] py-5 flex flex-col items-center gap-5">
+          <p
+            class="text-label-medium font-semibold leading-[150%]"
+            aria-label="모달 제목"
           >
-            <a
-              class="home block relative h-full text-paragraph-small bg-no-repeat bg-top"
-              href=""
-              aria-label="메인 페이지로 이동"
-            >
-              <span
-                class="absolute w-full text-center -tracking-[1px] bottom-0 left-1/2 -translate-x-1/2"
-                >홈</span
-              >
-            </a>
-          </li>
-          <li
-            class="h-full w-12 pt-0.5 hover:bg-gray-100 hover:rounded transition-all duration-300"
+            원버튼 모달 제목
+          </p>
+          <span
+            class="text-paragraph-small text-contents-content-secondary leading-[160%]"
+            aira-label="모달 본문"
+            >모달 본문입니다.</span
           >
-            <a
-              class="board block relative h-full text-paragraph-small bg-no-repeat bg-top"
-              href=""
-              aria-label="게시판 페이지로 이동"
-              ><span
-                class="absolute w-full text-center -tracking-[1px] bottom-0 left-1/2 -translate-x-1/2"
-                >게시판</span
-              ></a
-            >
-          </li>
-          <li
-            class="h-full w-12 pt-0.5 hover:bg-gray-100 hover:rounded transition-all duration-300"
+          <button
+            class="w-full h-9 bg-secondary text-white text-label-medium font-semibold leading-[150%] rounded hover:bg-blue-400 transition-all duration-300"
           >
-            <a
-              class="near block relative h-full text-paragraph-small bg-no-repeat bg-top"
-              href=""
-              aria-label="내 근처 페이지로 이동"
-              ><span
-                class="absolute w-full text-center -tracking-[1px] bottom-0 left-1/2 -translate-x-1/2"
-                >내 근처</span
-              ></a
-            >
-          </li>
-          <li
-            class="h-full w-12 pt-0.5 hover:bg-gray-100 hover:rounded transition-all duration-300"
+            확인
+          </button>
+        </div>
+      </dialog>
+
+      <!-- alert 투버튼 모달 -->
+      <dialog
+        class="bg-white shadow-lg backdrop:bg-black backdrop:bg-opacity-40 rounded-3xl"
+      >
+        <div class="w-[233px] px-[18px] py-5 flex flex-col items-center gap-5">
+          <p class="text-label-medium font-semibold leading-[150%]">
+            투버튼 모달 제목
+          </p>
+          <span
+            class="text-paragraph-small text-contents-content-secondary leading-[160%]"
+            >모달 본문입니다.</span
           >
-            <a
-              class="chat block relative h-full text-paragraph-small bg-no-repeat bg-top"
-              href=""
-              aria-label="채팅 페이지로 이동"
-              ><span
-                class="absolute w-full text-center -tracking-[1px] bottom-0 left-1/2 -translate-x-1/2"
-                >채팅</span
-              ></a
+          <div class="flex w-full justify-between gap-[6px]">
+            <button
+              class="w-full h-9 bg-gray-100 text-black text-label-medium font-semibold leading-[150%] rounded hover:bg-gray-300 transition-all duration-300"
             >
-          </li>
-          <li
-            class="h-full w-12 pt-0.5 hover:bg-gray-100 hover:rounded transition-all duration-300"
-          >
-            <a
-              class="my block relative h-full text-paragraph-small bg-no-repeat bg-top"
-              href=""
-              aria-label="마이 페이지로 이동"
-              ><span
-                class="absolute w-full text-center -tracking-[1px] bottom-0 left-1/2 -translate-x-1/2"
-                >나의 이듬</span
-              ></a
+              이전
+            </button>
+            <button
+              class="w-full h-9 bg-secondary text-white text-label-medium font-semibold leading-[150%] rounded hover:bg-blue-600 transition-all duration-300"
             >
-          </li>
-        </ul>
-      </nav>
+              확인
+            </button>
+          </div>
+        </div>
+      </dialog>
     </div>
     <script type="module" src="/src/main.js"></script>
   </body>
