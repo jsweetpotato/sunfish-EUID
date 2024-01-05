@@ -5,13 +5,13 @@ import {
 } from './main_button';
 
 const $app = document.querySelector('#app');
-
-let isValid = true;
+const $alram = document.querySelector('#alram');
+let isValid = false;
 
 function onClick() {
-  console.log(this);
   isValid = !isValid;
   toggleValid(this, isValid);
+  $alram.classList.toggle('bg-direction-icon');
 }
 
 $app.insertAdjacentElement(
