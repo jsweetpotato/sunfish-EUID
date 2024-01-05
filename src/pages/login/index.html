@@ -18,25 +18,30 @@
     <title>Document</title>
   </head>
   <body>
-    <div class="px-3 min-w-screen max-w-screen h-[100%]">
-      <main class="h-[100%] flex justify-center flex-col text-center">
+    <div class="px-3 min-w-screen max-w-screen h-full">
+      <main class="h-full flex justify-center flex-col text-center">
         <div class="my-auto">
-          <h1 aria-label="이듬" class="flex justify-center">
-            <img src="/src/assets/logo.svg" alt="" />
+          <h1 class="flex justify-center mb-12">
+            <img src="/src/assets/logo.svg" alt="이듬" />
           </h1>
-          <p class="text-primary heading-large">당신 곁에 엔터이듬</p>
-          <p class="label-medium">With EUID’s 함께 성장하기</p>
-          <p>함께 배우고 적용하며 성장해보세요!</p>
+          <p class="text-primary heading-large mb-3">당신 곁에 엔터이듬</p>
+
+          <p class="text-primary text-paragraph-md">
+            With EUID’s 함께 성장하기<br />
+            함께 배우고 적용하며 성장해보세요!
+          </p>
         </div>
-        <div class="my-6">
+        <div class="my-6 flex flex-col gap-3">
           <a
-            href="#"
-            class="block px-6 py-1 text-sm font-medium rounded-sm text-white bg-secondary"
+            href="./category.html"
+            class="block py-2 text-heading-md rounded-sm text-white bg-secondary"
             >시작하기</a
           >
-          <div class="flex justify-center">
-            <p>이미 계정이 있으신가요?</p>
-            <a href="/signin" class="text-primary">로그인</a>
+          <div class="flex justify-center gap-2">
+            <p class="text-paragraph-sm text-contents-content-secondary">
+              이미 계정이 있으신가요?
+            </p>
+            <a href="/signin" class="text-primary text-label-sm">로그인</a>
           </div>
         </div>
       </main>

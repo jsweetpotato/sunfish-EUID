@@ -74,26 +74,33 @@ export default {
           '1.125rem',
           {
             fontWeight: 'bold',
-            letterSpacing: '-1px',
+            letterSpacing: '0px',
             lineHeight: 1.6,
           },
         ],
-        'heading-md': '0.875rem',
+        'heading-md': [
+          '0.875rem',
+          {
+            fontWeight: 'bold',
+            letterSpacing: '0px',
+            lineHeight: 1.6,
+          },
+        ],
         'heading-sm': '0.625rem',
         'label-2xl': '2.0625rem',
         'label-xl': '1.5rem',
         'label-lg': [
           '1.125rem',
           {
-            fontWeight: 500,
-            letterSpacing: '-1px',
+            fontWeight: 600,
+            letterSpacing: '0px',
             lineHeight: 1.6,
           },
         ],
         'label-md': [
           '0.875rem',
           {
-            fontWeight: 500,
+            fontWeight: 600,
             letterSpacing: '0px',
             lineHeight: 1.6,
           },
@@ -101,7 +108,7 @@ export default {
         'label-sm': [
           '0.625rem',
           {
-            fontWeight: 500,
+            fontWeight: 600,
             letterSpacing: '0px',
             lineHeight: 1.6,
           },
