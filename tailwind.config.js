@@ -11,6 +11,25 @@ export default {
       minWidth: {
         screen: '280px',
       },
+      backgroundImage: {
+        // Header Icons
+        'alram-icon': "url('/src/assets/headerIcon/alram.svg')",
+        'direction-icon': "url('/src/assets/headerIcon/direction.svg')",
+        'close-icon': "url('/src/assets/headerIcon/close.svg')",
+        'more-icon': "url('/src/assets/headerIcon/more.svg')",
+        'share-icon': "url('/src/assets/headerIcon/share.svg')",
+        // GNB Icons
+        'board-icon': "url('/src/assets/gnbIcon/board.svg')",
+        'board_full-icon': "url('/src/assets/gnbIcon/board_full.svg')",
+        'chat_full-icon': "url('/src/assets/gnbIcon/chat_full.svg')",
+        'chat-icon': "url('/src/assets/gnbIcon/chat.svg')",
+        'home_full-icon': "url('/src/assets/gnbIcon/home_full.svg')",
+        'home-icon': "url('/src/assets/gnbIcon/home.svg')",
+        'my_full-icon': "url('/src/assets/gnbIcon/my_full.svg')",
+        'my-icon': "url('/src/assets/gnbIcon/my.svg')",
+        near_full: "url('/src/assets/gnbIcon/near_full.svg')",
+        near: "url('/src/assets/gnbIcon/near.svg')",
+      },
       colors: {
         primary: '#373F67',
         secondary: '#5A85EE',
@@ -118,7 +137,7 @@ export default {
         'paragraph-md': [
           '0.875rem',
           {
-            fontWeight: 500,
+            fontWeight: 600,
             letterSpacing: '0px',
             lineHeight: 1.6,
           },
