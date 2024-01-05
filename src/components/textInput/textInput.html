@@ -12,21 +12,22 @@
   </head>
   <body>
     <form action="/" class="min-w-[280px] max-w-[430px] w-full">
-      <div class="flex flex-col w-input-w1 m-auto" role="group">
         <label for="contentName" class="sr-only">컨텐츠 이름</label>
-        <input
-          type="text"
-          id="contentName"
-          class="inputMedium"
-          placeholder="아무 이름적어주세요"
-        />
-        <span
-          aria-label="입력한 문자 수"
-          aria-live="polite"
-          class="text-contents-content-tertiary text-paragraph-small ml-auto leading-4"
-          id="letterCount"
-          >0/24</span
-        >
+        <div class="flex flex-col w-72">
+          <input
+            type="text"
+            id="contentName"
+            class="inputMedium"
+            placeholder="아무 이름적어주세요"
+          />
+          <span
+            aria-label="입력한 문자 수"
+            aria-live="polite"
+            class="text-contents-content-tertiary text-paragraph-small leading-4 flex justify-end"
+            id="letterCount"
+            >0/24</span
+          >
+        </div>
       </div>
     </form>
 
