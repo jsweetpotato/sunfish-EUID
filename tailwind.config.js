@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{html,js}'],
+
   theme: {
     extend: {
       maxWidth: {
@@ -68,18 +69,60 @@ export default {
         'heading-3xl': '2.75rem',
         'heading-2xl': '2.0625rem',
         'heading-xl': '1.5rem',
-        'heading-large': '1.125rem',
-        'heading-medium': '0.875rem',
-        'heading-small': '0.625rem',
+        'heading-lg': [
+          '1.125rem',
+          {
+            fontWeight: 'bold',
+            letterSpacing: '-1px',
+            lineHeight: 1.6,
+          },
+        ],
+        'heading-md': '0.875rem',
+        'heading-sm': '0.625rem',
         'label-2xl': '2.0625rem',
         'label-xl': '1.5rem',
-        'label-large': '1.125rem',
-        'label-medium': '0.875rem',
-        'label-small': '0.625rem',
+        'label-lg': [
+          '1.125rem',
+          {
+            fontWeight: 500,
+            letterSpacing: '-1px',
+            lineHeight: 1.6,
+          },
+        ],
+        'label-md': [
+          '0.875rem',
+          {
+            fontWeight: 500,
+            letterSpacing: '0px',
+            lineHeight: 1.6,
+          },
+        ],
+        'label-sm': [
+          '0.625rem',
+          {
+            fontWeight: 500,
+            letterSpacing: '0px',
+            lineHeight: 1.6,
+          },
+        ],
         'paragraph-xl': '1.5rem',
-        'paragraph-large': '1.125rem',
-        'paragraph-medium': '0.875rem',
-        'paragraph-small': '0.625rem',
+        'paragraph-lg': '1.125rem',
+        'paragraph-md': [
+          '0.875rem',
+          {
+            fontWeight: 500,
+            letterSpacing: '0px',
+            lineHeight: 1.6,
+          },
+        ],
+        'paragraph-sm': [
+          '0.625rem',
+          {
+            fontWeight: 500,
+            letterSpacing: '0px',
+            lineHeight: 1.6,
+          },
+        ],
         'paragraph-underline': '0.625rem',
       },
     },
