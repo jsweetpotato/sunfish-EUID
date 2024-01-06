@@ -4,9 +4,9 @@
 // secondary 버튼
 // 콜백 함수를 전달 받음
 const BTN_CALSS = `px-6 py-1 text-sm font-medium rounded-sm`;
-const PRIMARY_BTN_COLOR = `bg-secondary text-white`;
+const INVALID_CLASS = `bg-contents-content-secondary text-white`;
 const SECONDARY_BTN_COLOR = `bg-gray-100 text-bluegray-800`;
-const INVALID_CLASS = `invalid`;
+const PRIMARY_BTN_COLOR = `bg-secondary`;
 
 const createBtn = ({
   id = crypto.randomUUID(),
@@ -28,11 +28,11 @@ const createBtn = ({
  * @param {boolean} isValid
  */
 export const toggleValid = (primaryBtn, isValid) => {
-  if (!isValid) {
-    primaryBtn.classList.add(INVALID_CLASS);
+  if (isValid) {
+    primaryBtn.classList.add(PRIMARY_BTN_COLOR);
     // primaryBtn.setAttribute('disabled', true);
   } else {
-    primaryBtn.classList.remove(INVALID_CLASS);
+    primaryBtn.classList.remove(PRIMARY_BTN_COLOR);
     // primaryBtn.setAttribute('disabled', false);
   }
 };
@@ -52,7 +52,7 @@ export const createPrimaryBtn = ({
   type = 'button',
 }) => {
   const btn = createBtn({ id, value, onClick, type });
-  btn.className = `${BTN_CALSS} ${PRIMARY_BTN_COLOR}`;
+  btn.className = `${BTN_CALSS} ${INVALID_CLASS}`;
   return btn;
 };
 
