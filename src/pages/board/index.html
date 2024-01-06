@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" sizes="48x48" href="favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+    <link rel="icon" sizes="192x192" href="android-icon.png" />
+    <link rel="stylesheet" href="/src/styles/tailwind.css" />
+    <title>엔터 이듬 - 게시판</title>
+  </head>
+  <body class="min-h-screen">
+    <div class="min-w-screen max-w-screen w-full mx-auto">
+      <header class="w-full">
+        <div class="flex justify-between h-full">
+          <div class="flex h-full items-center">
+            <h1 class="items-center pl-3 text-label-large font-semibold">
+              남가좌제2동
+            </h1>
+            <button
+              type="button"
+              aria-label="내 동네 설정하기"
+              class="direction w-10 h-10 bg-direction-icon bg-no-repeat bg-center hover:bg-gray-100 hover:rounded transition-all duration-300"
+            ></button>
+          </div>
+          <ul class="flex">
+            <li>
+              <a
+                href="/"
+                role="button"
+                aria-label="검색하기"
+                class="search block w-10 h-10 bg-[url('/src/assets/headerIcon/search.svg')] bg-no-repeat bg-center hover:bg-gray-100 hover:rounded transition-all duration-300"
+              ></a>
+            </li>
+            <li>
+              <a
+                href="/"
+                role="button"
+                aria-label="알림"
+                class="alram block w-10 h-10 bg-alram-icon bg-no-repeat bg-center hover:bg-gray-100 hover:rounded transition-all duration-300"
+              ></a>
+            </li>
+          </ul>
+        </div>
+        <nav
+          class="w-full px-3 py-2 border-b border-b-contents-content-secondary"
+        >
+          <ul class="flex items-center gap-1">
+            <li>
+              <a
+                href=""
+                class="pl-8 pr-[10px] py-1.5 text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary bg-[url('/src/assets/boardIcon/hamburger.svg')] bg-[10px_center] bg-no-repeat hover:brightness-95 transition-all duration-300"
+              >
+                관심분야
+              </a>
+            </li>
+            <li>
+              <a
+                href=""
+                id="RoundButton"
+                class="px-2.5 py-1.5 text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 transition-all duration-300"
+              >
+                인기글
+              </a>
+            </li>
+            <li>
+              <a
+                href=""
+                id="RoundButton"
+                class="px-2.5 py-1.5 text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 transition-all duration-300"
+              >
+                같이해요
+              </a>
+            </li>
+            <li>
+              <a
+                href=""
+                id="RoundButton"
+                class="px-2.5 py-1.5 text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 transition-all duration-300"
+              >
+                질의응답
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <main class="pb-[69px]"></main>
+      <footer class="min-w-screen max-w-screen w-full fixed bottom-0 h-[69px]">
+        <nav
+          class="w-full h-[69px] pl-2 pr-3 pt-2 pb-5 border-t-[1px] border-gray-200 bg-white"
+        >
+          <ul class="w-full h-full flex justify-between items-center">
+            <li
+              class="is-select h-full w-12 pt-0.5 hover:bg-gray-100 hover:rounded transition-all duration-300"
+            >
+              <a
+                class="home block relative h-full text-paragraph-sm font-normal bg-home-icon bg-no-repeat bg-top"
+                href=""
+              >
+                <span
+                  class="absolute w-full text-center bottom-0 left-1/2 -translate-x-1/2"
+                  >홈</span
+                >
+              </a>
+            </li>
+            <li
+              class="h-full w-12 pt-0.5 hover:bg-gray-100 hover:rounded transition-all duration-300"
+            >
+              <a
+                class="board block relative h-full text-paragraph-sm font-normal bg-board-icon bg-no-repeat bg-top"
+                href=""
+                ><span
+                  class="absolute w-full text-center bottom-0 left-1/2 -translate-x-1/2"
+                  >게시판</span
+                ></a
+              >
+            </li>
+            <li
+              class="h-full w-12 pt-0.5 hover:bg-gray-100 hover:rounded transition-all duration-300"
+            >
+              <a
+                class="near block relative h-full text-paragraph-sm font-normal bg-near bg-no-repeat bg-top"
+                href=""
+                ><span
+                  class="absolute w-full text-center bottom-0 left-1/2 -translate-x-1/2"
+                  >내 근처</span
+                ></a
+              >
+            </li>
+            <li
+              class="h-full w-12 pt-0.5 hover:bg-gray-100 hover:rounded transition-all duration-300"
+            >
+              <a
+                class="chat block relative h-full text-paragraph-sm font-normal bg-chat-icon bg-no-repeat bg-top"
+                href=""
+                ><span
+                  class="absolute w-full text-center bottom-0 left-1/2 -translate-x-1/2"
+                  >채팅</span
+                ></a
+              >
+            </li>
+            <li
+              class="h-full w-12 pt-0.5 hover:bg-gray-100 hover:rounded transition-all duration-300"
+            >
+              <a
+                class="my block relative h-full text-paragraph-sm font-normal bg-my-icon bg-no-repeat bg-top"
+                href=""
+                ><span
+                  class="absolute w-full text-center bottom-0 left-1/2 -translate-x-1/2"
+                  >나의 이듬</span
+                ></a
+              >
+            </li>
+          </ul>
+        </nav>
+      </footer>
+    </div>
+
+    <script type="module" src="/src/pages/board/board.js"></script>
+  </body>
+</html>
