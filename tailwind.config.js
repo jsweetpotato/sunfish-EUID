@@ -13,9 +13,10 @@ export default {
       backgroundImage: {
         // Header Icons
         'alram-icon': "url('/src/assets/headerIcon/alram.svg')",
-        'direction-icon': "url('/src/assets/headerIcon/direction.svg')",
         'close-icon': "url('/src/assets/headerIcon/close.svg')",
+        'direction-icon': "url('/src/assets/headerIcon/direction.svg')",
         'more-icon': "url('/src/assets/headerIcon/more.svg')",
+        'search-icon': "url('/src/assets/headerIcon/search.svg')",
         'share-icon': "url('/src/assets/headerIcon/share.svg')",
         // GNB Icons
         'board-icon': "url('/src/assets/gnbIcon/board.svg')",
