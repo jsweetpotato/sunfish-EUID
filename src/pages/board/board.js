@@ -1,3 +1,5 @@
+import gsap from 'gsap';
+
 /**
  * @type {{ together: {id:number, title: string, age: string, datetime:string, local: string, createdAt: number, maxMember: number, currentMember: string[] }; qna: {}; }}
  */
@@ -86,7 +88,7 @@ function createTemplate(data) {
     const { title, age, datetime, local, createdAt, maxMember, currentMember } =
       item;
     const template = /* html */ `
-    <li class="hover:bg-gray-100 transition-all">
+    <li  class="hover:bg-gray-100 transition-all">
     <a
       class="p-3 flex flex-col justify-center items-start gap-1 border-b border-contents-content-secondary"
       href=""
@@ -182,3 +184,47 @@ function createTemplate(data) {
 const boardList = document.querySelector('#board-list');
 
 boardList.insertAdjacentHTML('beforeend', createTemplate(dummyData));
+
+const $modalDimmed = document.querySelector('#modalDimmed');
+const $openModalButton = document.querySelector('#openModal');
+const $closeModalButton = document.querySelector('#closeModal');
+
+function showModal() {
+  const tl = gsap.timeline();
+  tl.to('#modalDimmed', {
+    opacity: 1,
+    display: 'block',
+    duration: 0.3,
+  }).to(
+    '#modal',
+    {
+      bottom: 0,
+      duration: 0.3,
+      onComplete() {
+        this.targets()[0].focus();
+      },
+    },
+    '<'
+  );
+}
+
+function closeModal(e) {
+  if (this === e.target) {
+    gsap.to('#modalDimmed', {
+      opacity: 0,
+      duration: 0.3,
+      onComplete() {
+        gsap.set('#modalDimmed', { clearProps: 'all' });
+        gsap.set('#modal', { clearProps: 'all' });
+      },
+    });
+  }
+}
+
+$openModalButton.addEventListener('click', showModal);
+$closeModalButton.addEventListener('click', closeModal);
+$modalDimmed.addEventListener('click', closeModal);
+
+/*
+  TODO : 모달창 focus trap 기능 구현해야함
+*/
