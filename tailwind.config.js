@@ -28,6 +28,10 @@ export default {
         'my-icon': "url('/src/assets/gnbIcon/my.svg')",
         near_full: "url('/src/assets/gnbIcon/near_full.svg')",
         near: "url('/src/assets/gnbIcon/near.svg')",
+        // Board Icons
+        'people_full-icon': "url('/src/assets/boardIcon/people_full.svg')",
+        'people-icon': "url('/src/assets/boardIcon/people.svg')",
+        'calender-icon': "url('/src/assets/boardIcon/calender.svg')",
       },
       colors: {
         primary: '#373F67',
@@ -148,4 +152,3 @@ export default {
   },
   plugins: [],
 };
-
