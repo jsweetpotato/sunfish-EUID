@@ -88,7 +88,7 @@
             </li>
             <li>
               <a
-                href=""
+                href="/src/pages/board/together.html"
                 id="RoundButton"
                 class="px-2.5 py-1.5 text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 transition-all duration-300"
               >
@@ -108,10 +108,20 @@
         </nav>
       </header>
 
-      <main class="h-[calc(100dvh-156px)] overflow-auto">
+      <main class="relative h-[calc(100dvh-156px)] overflow-auto">
         <section>
           <h1 class="sr-only">게시판 메인</h1>
           <ul id="board-list"></ul>
+          <div class="absolute right-16">
+            <div class="fixed bottom-28">
+              <a
+                class="block w-12 h-12 rounded-full bg-plus-icon bg-center bg-no-repeat bg-secondary shadow-lg hover:brightness-90 transition-all duration-300"
+                href=""
+              >
+                <span class="sr-only">글쓰기</span>
+              </a>
+            </div>
+          </div>
         </section>
       </main>
 
