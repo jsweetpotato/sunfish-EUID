@@ -13,9 +13,10 @@ export default {
       backgroundImage: {
         // Header Icons
         'alram-icon': "url('/src/assets/headerIcon/alram.svg')",
-        'direction-icon': "url('/src/assets/headerIcon/direction.svg')",
         'close-icon': "url('/src/assets/headerIcon/close.svg')",
+        'direction-icon': "url('/src/assets/headerIcon/direction.svg')",
         'more-icon': "url('/src/assets/headerIcon/more.svg')",
+        'search-icon': "url('/src/assets/headerIcon/search.svg')",
         'share-icon': "url('/src/assets/headerIcon/share.svg')",
         // GNB Icons
         'board-icon': "url('/src/assets/gnbIcon/board.svg')",
@@ -28,6 +29,10 @@ export default {
         'my-icon': "url('/src/assets/gnbIcon/my.svg')",
         near_full: "url('/src/assets/gnbIcon/near_full.svg')",
         near: "url('/src/assets/gnbIcon/near.svg')",
+        // Board Icons
+        'people_full-icon': "url('/src/assets/boardIcon/people_full.svg')",
+        'people-icon': "url('/src/assets/boardIcon/people.svg')",
+        'calender-icon': "url('/src/assets/boardIcon/calender.svg')",
       },
       colors: {
         primary: '#373F67',
