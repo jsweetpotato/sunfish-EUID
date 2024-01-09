@@ -12,7 +12,7 @@ export default {
         screen: '280px',
       },
       backgroundImage: {
-        'plus-icon': "url('/src/assets/plus.svg')",
+        'plus-icon-full': "url('/src/assets/plus.svg')",
         'check-icon': "url('/src/assets/check.svg')",
         // Header Icons
         'alram-icon': "url('/src/assets/headerIcon/alram.svg')",
@@ -34,6 +34,7 @@ export default {
         near_full: "url('/src/assets/gnbIcon/near_full.svg')",
         near: "url('/src/assets/gnbIcon/near.svg')",
         // Exchange Icons
+        'plus-icon': "url('/src/assets/exchangeIcon/plus.svg')",
         'reservation-icon': "url('/src/assets/exchangeIcon/reservation.svg')",
         'complete-icon': "url('/src/assets/exchangeIcon/complete.svg')",
         'heart-icon': "url('/src/assets/exchangeIcon/heart.svg')",
