@@ -8,10 +8,10 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
-        // myeuid: resolve(__dirname, 'src/pages/myEuid/index.html'),
+        myeuid: resolve(__dirname, 'src/pages/myEuid/index.html'),
         login: resolve(__dirname, 'src/pages/login/index.html'),
-        // board: resolve(__dirname, 'src/pages/board/index.html'),
-        // exchange: resolve(__dirname, 'src/pages/exchange/index.html'),
+        board: resolve(__dirname, 'src/pages/board/index.html'),
+        exchange: resolve(__dirname, 'src/pages/exchange/index.html'),
       },
     },
   },

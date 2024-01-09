@@ -1,4 +1,4 @@
-import { createSecondaryBtn } from './main_button';
+import { createSecondaryBtn } from './components/main_button';
 
 const $app = document.querySelector('#container');
 
