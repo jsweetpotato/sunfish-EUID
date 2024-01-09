@@ -32,6 +32,7 @@ export default {
         near: "url('/src/assets/gnbIcon/near.svg')",
         // MyEuid Icons
         'alram_bell-icon': "url('/src/assets/myPageIcon/alram_bell.svg')",
+        'camera-icon': "url('/src/assets/myPageIcon/camera.svg')",
         'cart-icon': "url('/src/assets/myPageIcon/cart.svg')",
         'heart-icon': "url('/src/assets/myPageIcon/heart.svg')",
         'information-icon': "url('/src/assets/myPageIcon/information.svg')",
