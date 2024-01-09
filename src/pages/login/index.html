@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/src/styles/tailwind.css" />
+    <script type="module" src="/src/pages/login/index.js"></script>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="px-3 min-w-screen max-w-screen h-full">
+      <main class="h-full flex justify-center flex-col text-center">
+        <div class="my-auto">
+          <h1 class="flex justify-center mb-12">
+            <img src="/src/assets/logo.svg" alt="이듬" />
+          </h1>
+          <p class="text-primary heading-large mb-3">당신 곁에 엔터이듬</p>
+
+          <p class="text-primary text-paragraph-md">
+            With EUID’s 함께 성장하기<br />
+            함께 배우고 적용하며 성장해보세요!
+          </p>
+        </div>
+        <div class="my-6 flex flex-col gap-3">
+          <a
+            href="./category.html"
+            class="block py-2 text-heading-md rounded-sm text-white bg-secondary"
+            >시작하기</a
+          >
+          <div class="flex justify-center gap-2">
+            <p class="text-paragraph-sm text-contents-content-secondary">
+              이미 계정이 있으신가요?
+            </p>
+            <a href="/signin" class="text-primary text-label-sm">로그인</a>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
