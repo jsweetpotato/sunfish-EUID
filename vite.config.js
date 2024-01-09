@@ -9,9 +9,9 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, 'index.html'),
         // 마이페이지
-        myeuid: resolve(__dirname, 'src/pages/MyEuid/index.html'),
-        myProfile: resolve(__dirname, 'src/pages/MyEuid/MyProfile.html'),
-        editProfile: resolve(__dirname, 'src/pages/MyEuid/EditProfile.html'),
+        myeuid: resolve(__dirname, 'src/pages/myEuid/index.html'),
+        myProfile: resolve(__dirname, 'src/pages/myEuid/MyProfile.html'),
+        editProfile: resolve(__dirname, 'src/pages/myEuid/EditProfile.html'),
         // 로그인
         login: resolve(__dirname, 'src/pages/login/index.html'),
         category: resolve(__dirname, 'src/pages/login/category.html'),
