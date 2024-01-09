@@ -13,11 +13,12 @@ export default {
       backgroundImage: {
         // Header Icons
         'alram-icon': "url('/src/assets/headerIcon/alram.svg')",
-        'direction-icon': "url('/src/assets/headerIcon/direction.svg')",
         'close-icon': "url('/src/assets/headerIcon/close.svg')",
+        'direction-icon': "url('/src/assets/headerIcon/direction.svg')",
         'more-icon': "url('/src/assets/headerIcon/more.svg')",
-        'share-icon': "url('/src/assets/headerIcon/share.svg')",
+        'setting-icon': "url('/src/assets/headerIcon/setting.svg')",
         'search-icon': "url('/src/assets/headerIcon/search.svg')",
+        'share-icon': "url('/src/assets/headerIcon/share.svg')",
         // GNB Icons
         'board-icon': "url('/src/assets/gnbIcon/board.svg')",
         'board_full-icon': "url('/src/assets/gnbIcon/board_full.svg')",
@@ -29,7 +30,7 @@ export default {
         'my-icon': "url('/src/assets/gnbIcon/my.svg')",
         near_full: "url('/src/assets/gnbIcon/near_full.svg')",
         near: "url('/src/assets/gnbIcon/near.svg')",
-        //Exchange Icons
+        // Exchange Icons
         'reservation-icon': "url('/src/assets/exchangeIcon/reservation.svg')",
         'complete-icon': "url('/src/assets/exchangeIcon/complete.svg')",
         'heart-icon': "url('/src/assets/exchangeIcon/heart.svg')",
@@ -38,6 +39,22 @@ export default {
         'project-icon': "url('/src/assets/exchangeIcon/project.svg')",
         'study-icon': "url('/src/assets/exchangeIcon/study.svg')",
         'exchange-close-icon': "url('/src/assets/exchangeIcon/close.svg')",
+        // MyEuid Icons
+        'alram_bell-icon': "url('/src/assets/myPageIcon/alram_bell.svg')",
+        'camera-icon': "url('/src/assets/myPageIcon/camera.svg')",
+        'cart-icon': "url('/src/assets/myPageIcon/cart.svg')",
+        'information-icon': "url('/src/assets/myPageIcon/information.svg')",
+        'note-icon': "url('/src/assets/myPageIcon/note.svg')",
+        'people_black-icon': "url('/src/assets/myPageIcon/people.svg')",
+        'profile-icon': "url('/src/assets/myPageIcon/profile.svg')",
+        'qna-icon': "url('/src/assets/myPageIcon/qna.svg')",
+        'right-icon': "url('/src/assets/myPageIcon/right.svg')",
+        'sell-icon': "url('/src/assets/myPageIcon/sell.svg')",
+        'speech-icon': "url('/src/assets/myPageIcon/speech.svg')",
+        // Board Icons
+        'people_full-icon': "url('/src/assets/boardIcon/people_full.svg')",
+        'people-icon': "url('/src/assets/boardIcon/people.svg')",
+        'calender-icon': "url('/src/assets/boardIcon/calender.svg')",
       },
       colors: {
         primary: '#373F67',

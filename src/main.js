@@ -1,34 +1,25 @@
-import {
-  createPrimaryBtn,
-  createSecondaryBtn,
-  toggleValid,
-} from './main_button';
+import { createSecondaryBtn } from './main_button';
 
-const $app = document.querySelector('#app');
-const $alram = document.querySelector('#alram');
-let isValid = false;
+const $app = document.querySelector('#container');
 
-function onClick() {
-  isValid = !isValid;
-  toggleValid(this, isValid);
-  $alram.classList.toggle('bg-direction-icon');
-}
+const path = [
+  '/src/pages/login/',
+  '/src/pages/board/',
+  '/src/pages/myeuid/',
+  '/src/pages/exchange/',
+];
 
-$app.insertAdjacentElement(
-  'beforeend',
-  createPrimaryBtn({
-    id: 'hello-button',
-    value: '안녕',
-    onClick,
-    type: 'submit',
-  })
-);
+const value = ['로그인', '게시판', '마이페이지', '기기거래'];
 
-$app.insertAdjacentElement(
-  'beforeend',
-  createSecondaryBtn({
-    id: 'bye-button',
-    value: '잘가',
-    onClick: () => console.log('bye'),
-  })
+path.forEach((item, idx) =>
+  $app.insertAdjacentElement(
+    'beforeend',
+    createSecondaryBtn({
+      id: 'bye-button',
+      value: `${value[idx]} 페이지 바로가기`,
+      onClick: () => {
+        window.location.href = item;
+      },
+    })
+  )
 );

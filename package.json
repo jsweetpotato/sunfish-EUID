@@ -26,5 +26,10 @@
   "lint-staged": {
     "*.js": "eslint --cache --fix",
     "*.{js,css,md}": "prettier --write"
+  },
+  "dependencies": {
+    "gsap": "^3.12.4",
+    "pocketbase": "^0.20.1",
+    "swiper": "^11.0.5"
   }
 }
