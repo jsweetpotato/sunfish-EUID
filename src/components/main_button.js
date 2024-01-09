@@ -3,7 +3,7 @@
 // primary 버튼
 // secondary 버튼
 // 콜백 함수를 전달 받음
-const BTN_CALSS = `px-6 py-1 text-sm font-medium rounded-sm`;
+const BTN_CALSS = `px-6 h-9 text-sm font-medium rounded-sm w-full`;
 const INVALID_CLASS = `bg-contents-content-secondary text-white`;
 const SECONDARY_BTN_COLOR = `bg-gray-100 text-bluegray-800`;
 const PRIMARY_BTN_COLOR = `bg-secondary`;
@@ -19,6 +19,7 @@ const createBtn = ({
   btn.textContent = value;
   btn.setAttribute('id', id);
   btn.setAttribute('type', type);
+  if (type === 'submit') btn.disabled = true;
   return btn;
 };
 
@@ -30,10 +31,12 @@ const createBtn = ({
 export const toggleValid = (primaryBtn, isValid) => {
   if (isValid) {
     primaryBtn.classList.add(PRIMARY_BTN_COLOR);
-    // primaryBtn.setAttribute('disabled', true);
+    // eslint-disable-next-line no-param-reassign
+    primaryBtn.disabled = false;
   } else {
     primaryBtn.classList.remove(PRIMARY_BTN_COLOR);
-    // primaryBtn.setAttribute('disabled', false);
+    // eslint-disable-next-line no-param-reassign
+    primaryBtn.disabled = true;
   }
 };
 /**

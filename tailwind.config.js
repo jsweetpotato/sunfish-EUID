@@ -12,15 +12,18 @@ export default {
         screen: '280px',
       },
       backgroundImage: {
+        'plus-icon': "url('/src/assets/plus.svg')",
+        'check-icon': "url('/src/assets/check.svg')",
         // Header Icons
         'alram-icon': "url('/src/assets/headerIcon/alram.svg')",
         'direction-icon': "url('/src/assets/headerIcon/direction.svg')",
         'close-icon': "url('/src/assets/headerIcon/close.svg')",
         'more-icon': "url('/src/assets/headerIcon/more.svg')",
+        'search-icon': "url('/src/assets/headerIcon/search.svg')",
         'share-icon': "url('/src/assets/headerIcon/share.svg')",
         // GNB Icons
-        'board-icon': "url('/src/assets/gnbIcon/board.svg')",
         'board_full-icon': "url('/src/assets/gnbIcon/board_full.svg')",
+        'board-icon': "url('/src/assets/gnbIcon/board.svg')",
         'chat_full-icon': "url('/src/assets/gnbIcon/chat_full.svg')",
         'chat-icon': "url('/src/assets/gnbIcon/chat.svg')",
         'home_full-icon': "url('/src/assets/gnbIcon/home_full.svg')",
@@ -94,7 +97,7 @@ export default {
           {
             fontWeight: 'bold',
             letterSpacing: '0px',
-            lineHeight: 1.6,
+            lineHeight: 1.5,
           },
         ],
         'heading-md': [
@@ -102,7 +105,7 @@ export default {
           {
             fontWeight: 'bold',
             letterSpacing: '0px',
-            lineHeight: 1.6,
+            lineHeight: 1.5,
           },
         ],
         'heading-sm': '0.625rem',
@@ -113,7 +116,7 @@ export default {
           {
             fontWeight: 600,
             letterSpacing: '0px',
-            lineHeight: 1.6,
+            lineHeight: 1.5,
           },
         ],
         'label-md': [
@@ -121,7 +124,7 @@ export default {
           {
             fontWeight: 600,
             letterSpacing: '0px',
-            lineHeight: 1.6,
+            lineHeight: 1.5,
           },
         ],
         'label-sm': [
@@ -129,7 +132,7 @@ export default {
           {
             fontWeight: 600,
             letterSpacing: '0px',
-            lineHeight: 1.6,
+            lineHeight: 1.5,
           },
         ],
         'paragraph-xl': '1.5rem',
@@ -139,7 +142,7 @@ export default {
           {
             fontWeight: 600,
             letterSpacing: '0px',
-            lineHeight: 1.6,
+            lineHeight: 1.5,
           },
         ],
         'paragraph-sm': [
@@ -147,7 +150,7 @@ export default {
           {
             fontWeight: 500,
             letterSpacing: '0px',
-            lineHeight: 1.6,
+            lineHeight: 1.5,
           },
         ],
         'paragraph-underline': '0.625rem',
