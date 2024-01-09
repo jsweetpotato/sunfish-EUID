@@ -5,29 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/src/styles/tailwind.css" />
     <title>headerAddress</title>
-    <style>
-      .direction {
-        background-image: url('/src/assets/headerIcon/direction.svg');
-      }
-      .search {
-        background-image: url('/src/assets/headerIcon/search.svg');
-      }
-      .alram {
-        background-image: url('/src/assets/headerIcon/alram.svg');
-      }
-    </style>
   </head>
   <body>
-    <header class="min-w-[280px] max-w-[430px] w-full h-10">
+    <header class="min-w-screen max-w-screen w-full h-10">
       <div class="flex justify-between h-full">
         <div class="flex h-full items-center">
-          <h1 class="items-center pl-3 text-label-large font-semibold">
+          <h1 class="items-center pl-3 text-label-lg font-semibold">
             남가좌제2동
           </h1>
           <button
             type="button"
             aria-label="내 동네 설정하기"
-            class="direction w-10 h-10 bg-no-repeat bg-center hover:bg-gray-100 hover:rounded transition-all duration-300"
+            class="bg-direction-icon w-10 h-10 bg-no-repeat bg-center hover:bg-gray-100 hover:rounded transition-all duration-300"
           ></button>
         </div>
 
@@ -37,7 +26,7 @@
               href="/"
               role="button"
               aria-label="검색하기"
-              class="search block w-10 h-10 bg-no-repeat bg-center hover:bg-gray-100 hover:rounded transition-all duration-300"
+              class="bg-search-icon block w-10 h-10 bg-no-repeat bg-center hover:bg-gray-100 hover:rounded transition-all duration-300"
             ></a>
           </li>
           <li>
@@ -45,7 +34,7 @@
               href="/"
               role="button"
               aria-label="알림"
-              class="alram block w-10 h-10 bg-no-repeat bg-center hover:bg-gray-100 hover:rounded transition-all duration-300"
+              class="bg-alram-icon block w-10 h-10 bg-no-repeat bg-center hover:bg-gray-100 hover:rounded transition-all duration-300"
             ></a>
           </li>
         </ul>

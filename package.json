@@ -28,6 +28,8 @@
     "*.{js,css,md}": "prettier --write"
   },
   "dependencies": {
-    "pocketbase": "^0.20.1"
+    "gsap": "^3.12.4",
+    "pocketbase": "^0.20.1",
+    "swiper": "^11.0.5"
   }
 }

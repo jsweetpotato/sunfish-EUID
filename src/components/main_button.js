@@ -3,6 +3,7 @@
 // primary 버튼
 // secondary 버튼
 // 콜백 함수를 전달 받음
+
 const BTN_CALSS = `px-6 h-9 text-sm font-medium rounded-sm w-full`;
 const INVALID_CLASS = `bg-contents-content-secondary text-white`;
 const SECONDARY_BTN_COLOR = `bg-gray-100 text-bluegray-800`;

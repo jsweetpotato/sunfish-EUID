@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" sizes="48x48" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" sizes="192x192" href="/android-icon.png" />
+    <link rel="stylesheet" href="/src/styles/tailwind.css" />
+    <title>BoardList 컴포넌트</title>
+  </head>
+  <body>
+    <!-- BoardList Container -->
+    <ul class="w-full max-w-screen bg-white">
+      <!-- 같이해요 List Item -->
+      <li class="hover:bg-gray-100 transition-all">
+        <a
+          class="p-3 flex flex-col justify-center items-start gap-1 border-b border-contents-content-secondary"
+          href=""
+        >
+          <span class="text-label-sm px-1 bg-bluegray-600 text-white rounded"
+            >같이해요</span
+          >
+          <p
+            class="w-full flex-auto text-paragraph-md font-normal text-contents-content-primary overflow-hidden whitespace-nowrap text-ellipsis"
+          >
+            youtube 클론 프젝 같이 하실분~!
+          </p>
+          <span
+            class="pl-4 text-paragraph-sm font-normal text-gray-600 bg-people_full-icon bg-no-repeat bg-left"
+            >누구나 참여가능</span
+          >
+          <span
+            class="pl-4 text-paragraph-sm font-normal text-gray-600 bg-calender-icon bg-no-repeat bg-left"
+            >내일, 오후 7:00</span
+          >
+          <div class="w-full flex justify-between">
+            <span class="text-paragraph-sm font-normal text-gray-600"
+              >응암제 3동 · 9분 전</span
+            >
+            <span
+              class="pl-4 text-paragraph-sm font-normal text-gray-600 bg-people-icon bg-no-repeat bg-left"
+              >1/3명</span
+            >
+          </div>
+        </a>
+      </li>
+
+      <!-- 질의응답 List Item -->
+      <li class="hover:bg-gray-100 transition-all">
+        <a
+          class="p-3 border-b flex flex-row justify-between gap-1 border-contents-content-secondary"
+          href=""
+        >
+          <div
+            class="w-[calc(100%-70px)] flex flex-col flex-shrink-1 justify-center items-start gap-1"
+          >
+            <div class="flex items-center gap-1">
+              <span
+                class="text-label-sm px-1 bg-bluegray-600 text-white rounded"
+                >질의응답</span
+              >
+              <span class="text-label-sm px-1 bg-tertiary text-white rounded"
+                >인기</span
+              >
+            </div>
+            <p
+              class="w-full flex-auto text-paragraph-md font-normal text-contents-content-primary overflow-hidden whitespace-nowrap text-ellipsis"
+            >
+              깊은 복사와 얕은 복사의 차이를 모르겠어요.
+            </p>
+            <span
+              class="w-full text-paragraph-sm font-normal text-gray-600 overflow-hidden whitespace-nowrap text-ellipsis"
+              >제가 이해한 내용은 얕은 복사는 메모리를 공유한다는거잖아요 그런데
+              깊은복사는</span
+            >
+            <span class="text-paragraph-sm font-normal text-gray-600"
+              >응암제 3동 · 9분 전 · 조회 4</span
+            >
+          </div>
+          <div class="w-[70px] min-w-[70px] flex justify-center items-center">
+            <div
+              class="w-[60px] h-[60px] overflow-hidden border border-gray-300 rounded"
+            >
+              <img src="/src/assets/boardIcon/sampleImg.png" alt="이미지" />
+            </div>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </body>
+</html>

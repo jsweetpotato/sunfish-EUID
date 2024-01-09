@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" sizes="48x48" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" sizes="192x192" href="/android-icon.png" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <title>엔터 이듬 - 글쓰기(같이해요)</title>
+    <style>
+      .bg-calender_black-icon {
+        background-image: url("data:image/svg+xml,%3csvg%20width='21'%20height='20'%20viewBox='0%200%2021%2020'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon/calender'%3e%3cg%20id='Vector'%3e%3cpath%20d='M2.16663%2015.8334C2.16663%2017.2501%203.24996%2018.3334%204.66663%2018.3334H16.3333C17.75%2018.3334%2018.8333%2017.2501%2018.8333%2015.8334V9.16675H2.16663V15.8334ZM16.3333%203.33341H14.6666V2.50008C14.6666%202.00008%2014.3333%201.66675%2013.8333%201.66675C13.3333%201.66675%2013%202.00008%2013%202.50008V3.33341H7.99996V2.50008C7.99996%202.00008%207.66663%201.66675%207.16663%201.66675C6.66663%201.66675%206.33329%202.00008%206.33329%202.50008V3.33341H4.66663C3.24996%203.33341%202.16663%204.41675%202.16663%205.83341V7.50008H18.8333V5.83341C18.8333%204.41675%2017.75%203.33341%2016.3333%203.33341Z'%20fill='black'/%3e%3cpath%20d='M2.16663%2015.8334C2.16663%2017.2501%203.24996%2018.3334%204.66663%2018.3334H16.3333C17.75%2018.3334%2018.8333%2017.2501%2018.8333%2015.8334V9.16675H2.16663V15.8334ZM16.3333%203.33341H14.6666V2.50008C14.6666%202.00008%2014.3333%201.66675%2013.8333%201.66675C13.3333%201.66675%2013%202.00008%2013%202.50008V3.33341H7.99996V2.50008C7.99996%202.00008%207.66663%201.66675%207.16663%201.66675C6.66663%201.66675%206.33329%202.00008%206.33329%202.50008V3.33341H4.66663C3.24996%203.33341%202.16663%204.41675%202.16663%205.83341V7.50008H18.8333V5.83341C18.8333%204.41675%2017.75%203.33341%2016.3333%203.33341Z'%20fill='black'%20fill-opacity='0.2'/%3e%3cpath%20d='M2.16663%2015.8334C2.16663%2017.2501%203.24996%2018.3334%204.66663%2018.3334H16.3333C17.75%2018.3334%2018.8333%2017.2501%2018.8333%2015.8334V9.16675H2.16663V15.8334ZM16.3333%203.33341H14.6666V2.50008C14.6666%202.00008%2014.3333%201.66675%2013.8333%201.66675C13.3333%201.66675%2013%202.00008%2013%202.50008V3.33341H7.99996V2.50008C7.99996%202.00008%207.66663%201.66675%207.16663%201.66675C6.66663%201.66675%206.33329%202.00008%206.33329%202.50008V3.33341H4.66663C3.24996%203.33341%202.16663%204.41675%202.16663%205.83341V7.50008H18.8333V5.83341C18.8333%204.41675%2017.75%203.33341%2016.3333%203.33341Z'%20fill='black'%20fill-opacity='0.2'/%3e%3cpath%20d='M2.16663%2015.8334C2.16663%2017.2501%203.24996%2018.3334%204.66663%2018.3334H16.3333C17.75%2018.3334%2018.8333%2017.2501%2018.8333%2015.8334V9.16675H2.16663V15.8334ZM16.3333%203.33341H14.6666V2.50008C14.6666%202.00008%2014.3333%201.66675%2013.8333%201.66675C13.3333%201.66675%2013%202.00008%2013%202.50008V3.33341H7.99996V2.50008C7.99996%202.00008%207.66663%201.66675%207.16663%201.66675C6.66663%201.66675%206.33329%202.00008%206.33329%202.50008V3.33341H4.66663C3.24996%203.33341%202.16663%204.41675%202.16663%205.83341V7.50008H18.8333V5.83341C18.8333%204.41675%2017.75%203.33341%2016.3333%203.33341Z'%20fill='black'%20fill-opacity='0.2'/%3e%3cpath%20d='M2.16663%2015.8334C2.16663%2017.2501%203.24996%2018.3334%204.66663%2018.3334H16.3333C17.75%2018.3334%2018.8333%2017.2501%2018.8333%2015.8334V9.16675H2.16663V15.8334ZM16.3333%203.33341H14.6666V2.50008C14.6666%202.00008%2014.3333%201.66675%2013.8333%201.66675C13.3333%201.66675%2013%202.00008%2013%202.50008V3.33341H7.99996V2.50008C7.99996%202.00008%207.66663%201.66675%207.16663%201.66675C6.66663%201.66675%206.33329%202.00008%206.33329%202.50008V3.33341H4.66663C3.24996%203.33341%202.16663%204.41675%202.16663%205.83341V7.50008H18.8333V5.83341C18.8333%204.41675%2017.75%203.33341%2016.3333%203.33341Z'%20fill='black'%20fill-opacity='0.2'/%3e%3c/g%3e%3c/g%3e%3c/svg%3e");
+      }
+      .bg-time_black-icon {
+        background-image: url("data:image/svg+xml,%3csvg%20width='21'%20height='20'%20viewBox='0%200%2021%2020'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Group'%3e%3cg%20id='Vector'%3e%3cpath%20d='M10.4999%2019.2858C15.6283%2019.2858%2019.7857%2015.1284%2019.7857%2010.0001C19.7857%204.87171%2015.6283%200.714355%2010.4999%200.714355C5.37159%200.714355%201.21423%204.87171%201.21423%2010.0001C1.21423%2015.1284%205.37159%2019.2858%2010.4999%2019.2858Z'%20stroke='black'%20stroke-width='1.42857'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3cpath%20d='M10.4999%2019.2858C15.6283%2019.2858%2019.7857%2015.1284%2019.7857%2010.0001C19.7857%204.87171%2015.6283%200.714355%2010.4999%200.714355C5.37159%200.714355%201.21423%204.87171%201.21423%2010.0001C1.21423%2015.1284%205.37159%2019.2858%2010.4999%2019.2858Z'%20stroke='black'%20stroke-opacity='0.2'%20stroke-width='1.42857'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3cpath%20d='M10.4999%2019.2858C15.6283%2019.2858%2019.7857%2015.1284%2019.7857%2010.0001C19.7857%204.87171%2015.6283%200.714355%2010.4999%200.714355C5.37159%200.714355%201.21423%204.87171%201.21423%2010.0001C1.21423%2015.1284%205.37159%2019.2858%2010.4999%2019.2858Z'%20stroke='black'%20stroke-opacity='0.2'%20stroke-width='1.42857'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3cpath%20d='M10.4999%2019.2858C15.6283%2019.2858%2019.7857%2015.1284%2019.7857%2010.0001C19.7857%204.87171%2015.6283%200.714355%2010.4999%200.714355C5.37159%200.714355%201.21423%204.87171%201.21423%2010.0001C1.21423%2015.1284%205.37159%2019.2858%2010.4999%2019.2858Z'%20stroke='black'%20stroke-opacity='0.2'%20stroke-width='1.42857'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3cpath%20d='M10.4999%2019.2858C15.6283%2019.2858%2019.7857%2015.1284%2019.7857%2010.0001C19.7857%204.87171%2015.6283%200.714355%2010.4999%200.714355C5.37159%200.714355%201.21423%204.87171%201.21423%2010.0001C1.21423%2015.1284%205.37159%2019.2858%2010.4999%2019.2858Z'%20stroke='black'%20stroke-opacity='0.2'%20stroke-width='1.42857'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3c/g%3e%3cg%20id='Vector_2'%3e%3cpath%20d='M10.5%206.42871V10.0001L14.1286%2014.2287'%20stroke='black'%20stroke-width='1.42857'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3cpath%20d='M10.5%206.42871V10.0001L14.1286%2014.2287'%20stroke='black'%20stroke-opacity='0.2'%20stroke-width='1.42857'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3cpath%20d='M10.5%206.42871V10.0001L14.1286%2014.2287'%20stroke='black'%20stroke-opacity='0.2'%20stroke-width='1.42857'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3cpath%20d='M10.5%206.42871V10.0001L14.1286%2014.2287'%20stroke='black'%20stroke-opacity='0.2'%20stroke-width='1.42857'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3cpath%20d='M10.5%206.42871V10.0001L14.1286%2014.2287'%20stroke='black'%20stroke-opacity='0.2'%20stroke-width='1.42857'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3c/g%3e%3c/g%3e%3c/svg%3e");
+      }
+      .bg-map_black-icon {
+        background-image: url('/assets/map_black-G5TQPFKk.svg');
+      }
+      .bg-lock_black-icon {
+        background-image: url('/assets/lock_black-VZMEnQoz.svg');
+      }
+    </style>
+    <script type="module" crossorigin src="/assets/writeTogether-CQrvu4oq.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-9p4a8sJU.js">
+    <link rel="modulepreload" crossorigin href="/assets/index-LZz_RBWS.js">
+    <link rel="stylesheet" crossorigin href="/assets/tailwind-i_82ISra.css">
+  </head>
+  <body class="min-h-screen">
+    <div class="relative min-w-screen max-w-screen w-full mx-auto">
+      <header class="w-full">
+        <div class="flex items-center relative">
+          <a
+            href="/src/pages/board/together.html"
+            role="button"
+            aria-label="창 닫기"
+            class="bg-close-icon block w-10 h-10 bg-no-repeat bg-center hover:bg-gray-100 hover:rounded transition-all duration-300"
+          ></a>
+        </div>
+      </header>
+
+      <main class="relative h-[calc(100dvh-40px)] overflow-auto">
+        <section class="h-full">
+          <h1 class="sr-only">같이해요 글쓰기</h1>
+          <div id="writeContainer" class="h-full">
+            <div id="step1" class="h-full flex flex-col justify-between">
+              <div>
+                <h2 class="p-3 text-label-lg">어떤 모임을 만들까요?</h2>
+                <div
+                  id="ageContainer"
+                  class="px-3 py-4 flex flex-wrap justify-start items-center gap-1"
+                >
+                  <input
+                    id="project"
+                    class="peer/project w-0 h-0"
+                    type="radio"
+                    name="category"
+                    value="project"
+                    checked="checked"
+                  />
+
+                  <label
+                    for="project"
+                    class="peer-focus/project:border-primary peer-focus/project:border-2 peer-checked/project:bg-primary peer-checked/project:text-white px-2.5 py-1.5 text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 cursor-pointer"
+                  >
+                    💻 프로젝트
+                  </label>
+
+                  <input
+                    id="study"
+                    class="peer/study w-0 h-0"
+                    type="radio"
+                    name="category"
+                    value="study"
+                  />
+
+                  <label
+                    for="study"
+                    class="peer-focus/study:border-primary peer-focus/study:border-2 peer-checked/study:bg-primary peer-checked/study:text-white px-2.5 py-1.5 text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 cursor-pointer"
+                  >
+                    📑 스터디
+                  </label>
+
+                  <input
+                    id="food"
+                    class="peer/food w-0 h-0"
+                    type="radio"
+                    name="category"
+                    value="food"
+                  />
+
+                  <label
+                    for="food"
+                    class="peer-focus/food:border-primary peer-focus/food:border-2 peer-checked/food:bg-primary peer-checked/food:text-white px-2.5 py-1.5 text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 cursor-pointer"
+                  >
+                    🍝 음식
+                  </label>
+
+                  <input
+                    id="hobby"
+                    class="peer/hobby w-0 h-0"
+                    type="radio"
+                    name="category"
+                    value="hobby"
+                  />
+
+                  <label
+                    for="hobby"
+                    class="peer-focus/hobby:border-primary peer-focus/hobby:border-2 peer-checked/hobby:bg-primary peer-checked/hobby:text-white px-2.5 py-1.5 text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 cursor-pointer"
+                  >
+                    🎧 취미/여가
+                  </label>
+
+                  <input
+                    id="sports"
+                    class="peer/sports w-0 h-0"
+                    type="radio"
+                    name="category"
+                    value="sports"
+                  />
+
+                  <label
+                    for="sports"
+                    class="peer-focus/sports:border-primary peer-focus/sports:border-2 peer-checked/sports:bg-primary peer-checked/sports:text-white px-2.5 py-1.5 text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 cursor-pointer"
+                  >
+                    ⚽ 운동
+                  </label>
+
+                  <input
+                    id="reading"
+                    class="peer/reading w-0 h-0"
+                    type="radio"
+                    name="category"
+                    value="reading"
+                  />
+
+                  <label
+                    for="reading"
+                    class="peer-focus/reading:border-primary peer-focus/reading:border-2 peer-checked/reading:bg-primary peer-checked/reading:text-white px-2.5 py-1.5 text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 cursor-pointer"
+                  >
+                    📚 독서
+                  </label>
+                </div>
+              </div>
+              <div class="w-full px-3 pt-6 pb-[34px]">
+                <button
+                  id="step1Next"
+                  class="w-full h-[45px] text-label-md text-white bg-secondary rounded hover:brightness-90 transition-all duration-300"
+                >
+                  다음
+                </button>
+              </div>
+            </div>
+            <div id="step2" class="h-full flex flex-col justify-between hidden">
+              <div>
+                <h2 class="p-3 text-label-lg">모임을 소개해주세요.</h2>
+                <form class="w-full" action="">
+                  <div class="p-3">
+                    <label for="title" class="text-label-sm">모임명</label>
+                    <div class="flex flex-col w-full">
+                      <input
+                        type="text"
+                        id="title"
+                        class="p-2 text-paragraph-sm font-normal w-full border border-contents-content-tertiary rounded"
+                        placeholder="모임명이 짧을수록 이해하기 쉬워요."
+                      />
+                      <span
+                        aria-label="입력한 문자 수"
+                        aria-live="polite"
+                        class="text-contents-content-tertiary text-paragraph-sm font-normal text-right"
+                        id="letterCount"
+                        >0/24</span
+                      >
+                    </div>
+                  </div>
+                  <div class="p-3">
+                    <label for="description" class="text-label-sm"
+                      >모임 소개</label
+                    >
+                    <div class="flex flex-col w-full">
+                      <textarea
+                        id="description"
+                        class="p-2 text-paragraph-sm font-normal w-full border border-contents-content-tertiary rounded resize-none"
+                        cols="44"
+                        rows="6"
+                        placeholder="활동 중심으로 모임을 소개해주세요. 모임 설정에서 언제든지 바꿀 수 있어요."
+                      ></textarea>
+
+                      <span
+                        aria-label="입력한 문자 수"
+                        aria-live="polite"
+                        class="text-contents-content-tertiary text-paragraph-sm font-normal text-right"
+                        id="letterCount"
+                        >0/500</span
+                      >
+                    </div>
+                  </div>
+                  <div class="flex flex-col *:text-paragraph-md *:font-normal">
+                    <div class="px-3 py-[14px] flex justify-between">
+                      <span
+                        class="pl-7 bg-calender_black-icon bg-no-repeat bg-left"
+                        >날짜</span
+                      >
+                      <span>오늘</span>
+                    </div>
+                    <div class="px-3 py-[14px] flex justify-between">
+                      <span class="pl-7 bg-time_black-icon bg-no-repeat bg-left"
+                        >시간</span
+                      >
+                      <span>오후 8:00</span>
+                    </div>
+                    <div class="px-3 py-[14px] flex justify-between">
+                      <span class="pl-7 bg-map_black-icon bg-no-repeat bg-left"
+                        >장소</span
+                      >
+                      <span
+                        class="text-contents-content-tertiary cursor-not-allowed"
+                        >준비중입니다.</span
+                      >
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="w-full px-3 pt-6 pb-[34px] flex gap-1.5">
+                <button
+                  id="step2Prev"
+                  class="w-[28%] h-[45px] text-label-md text-black bg-gray-100 rounded hover:brightness-90 transition-all duration-300"
+                >
+                  이전
+                </button>
+                <button
+                  id="step2Next"
+                  class="w-[72%] h-[45px] text-label-md text-white bg-secondary rounded hover:brightness-90 transition-all duration-300"
+                >
+                  다음
+                </button>
+              </div>
+            </div>
+            <div id="step3" class="h-full flex flex-col justify-between hidden">
+              <div class="flex flex-col">
+                <h2 class="p-3 text-label-lg">어떤 모임을 만들까요?</h2>
+                <div class="p-3">
+                  <span class="text-label-sm">성별</span>
+                  <div
+                    id="genderContainer"
+                    class="flex flex-wrap items-center gap-1"
+                  >
+                    <input
+                      id="genderAnyone"
+                      class="peer/genderAnyone w-0 h-0"
+                      type="radio"
+                      name="gender"
+                      value="genderAnyone"
+                      checked="checked"
+                    />
+
+                    <label
+                      for="genderAnyone"
+                      class="peer-focus/genderAnyone:border-primary peer-focus/genderAnyone:border-2 peer-checked/genderAnyone:bg-primary peer-checked/genderAnyone:text-white px-2.5 py-1.5 text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 cursor-pointer"
+                    >
+                      누구나
+                    </label>
+                    <input
+                      id="male"
+                      class="peer/male w-0 h-0"
+                      type="radio"
+                      name="gender"
+                      value="male"
+                    />
+
+                    <label
+                      for="male"
+                      class="peer-focus/male:border-primary peer-focus/male:border-2 peer-checked/male:bg-primary peer-checked/male:text-white px-2.5 py-1.5 text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 cursor-pointer"
+                    >
+                      남자
+                    </label>
+                    <input
+                      id="female"
+                      class="peer/female w-0 h-0"
+                      type="radio"
+                      name="gender"
+                      value="female"
+                    />
+
+                    <label
+                      for="female"
+                      class="peer-focus/female:border-primary peer-focus/female:border-2 peer-checked/female:bg-primary peer-checked/female:text-white px-2.5 py-1.5 text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 cursor-pointer"
+                    >
+                      여자
+                    </label>
+                  </div>
+                </div>
+                <div class="p-3">
+                  <span class="text-label-sm">연령대</span>
+                  <div
+                    id="ageContainer"
+                    class="flex flex-wrap items-center gap-1"
+                  >
+                    <input
+                      id="ageAnyone"
+                      class="peer/ageAnyone w-0 h-0"
+                      type="radio"
+                      name="age"
+                      value="ageAnyone"
+                      checked="checked"
+                    />
+                    <label
+                      for="ageAnyone"
+                      class="peer-focus/ageAnyone:border-primary peer-focus/ageAnyone:border-2 peer-checked/ageAnyone:bg-primary peer-checked/ageAnyone:text-white px-2.5 py-1.5 text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 cursor-pointer"
+                    >
+                      누구나
+                    </label>
+
+                    <input
+                      id="age20"
+                      class="peer/age20 w-0 h-0"
+                      type="radio"
+                      name="age"
+                      value="age20"
+                    />
+                    <label
+                      for="age20"
+                      class="peer-focus/age20:border-primary peer-focus/age20:border-2 peer-checked/age20:bg-primary peer-checked/age20:text-white px-2.5 py-1.5 text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 cursor-pointer"
+                    >
+                      20대
+                    </label>
+
+                    <input
+                      id="age30"
+                      class="peer/age30 w-0 h-0"
+                      type="radio"
+                      name="age"
+                      value="age30"
+                    />
+                    <label
+                      for="age30"
+                      class="peer-focus/age30:border-primary peer-focus/age30:border-2 peer-checked/age30:bg-primary peer-checked/age30:text-white px-2.5 py-1.5 text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 cursor-pointer"
+                    >
+                      30대
+                    </label>
+
+                    <input
+                      id="age40"
+                      class="peer/age40 w-0 h-0"
+                      type="radio"
+                      name="age"
+                      value="age40"
+                    />
+                    <label
+                      for="age40"
+                      class="peer-focus/age40:border-primary peer-focus/age40:border-2 peer-checked/age40:bg-primary peer-checked/age40:text-white px-2.5 py-1.5 text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 cursor-pointer"
+                    >
+                      40대
+                    </label>
+
+                    <input
+                      id="age50"
+                      class="peer/age50 w-0 h-0"
+                      type="radio"
+                      name="age"
+                      value="age50"
+                    />
+                    <label
+                      for="age50"
+                      class="peer-focus/age50:border-primary peer-focus/age50:border-2 peer-checked/age50:bg-primary peer-checked/age50:text-white px-2.5 py-1.5 text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 cursor-pointer"
+                    >
+                      50대
+                    </label>
+
+                    <input
+                      id="age60"
+                      class="peer/age60 w-0 h-0"
+                      type="radio"
+                      name="age"
+                      value="age60"
+                    />
+                    <label
+                      for="age60"
+                      class="peer-focus/age60:border-primary peer-focus/age60:border-2 peer-checked/age60:bg-primary peer-checked/age60:text-white px-2.5 py-1.5 text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 cursor-pointer"
+                    >
+                      60대 이상
+                    </label>
+                  </div>
+                </div>
+                <div class="p-3">
+                  <span class="text-label-sm">최대인원</span>
+                  <div
+                    id="maxMemberContainer"
+                    class="flex flex-wrap items-center gap-1"
+                  >
+                    <input
+                      id="noLimited"
+                      class="peer/noLimited w-0 h-0"
+                      type="radio"
+                      name="maxMember"
+                      value="noLimited"
+                      checked="checked"
+                    />
+                    <label
+                      for="noLimited"
+                      class="peer-focus/noLimited:border-primary peer-focus/noLimited:border-2 peer-checked/noLimited:bg-primary peer-checked/noLimited:text-white px-2.5 py-1.5 text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 cursor-pointer"
+                    >
+                      제한 없음
+                    </label>
+
+                    <input
+                      id="maxMember10"
+                      class="peer/maxMember10 w-0 h-0"
+                      type="radio"
+                      name="maxMember"
+                      value="maxMember10"
+                    />
+                    <label
+                      for="maxMember10"
+                      class="peer-focus/maxMember10:border-primary peer-focus/maxMember10:border-2 peer-checked/maxMember10:bg-primary peer-checked/maxMember10:text-white px-2.5 py-1.5 text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 cursor-pointer"
+                    >
+                      10명
+                    </label>
+
+                    <input
+                      id="maxMember20"
+                      class="peer/maxMember20 w-0 h-0"
+                      type="radio"
+                      name="maxMember"
+                      value="maxMember20"
+                    />
+                    <label
+                      for="maxMember20"
+                      class="peer-focus/maxMember20:border-primary peer-focus/maxMember20:border-2 peer-checked/maxMember20:bg-primary peer-checked/maxMember20:text-white px-2.5 py-1.5 text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 cursor-pointer"
+                    >
+                      20명
+                    </label>
+
+                    <input
+                      id="maxMember30"
+                      class="peer/maxMember30 w-0 h-0"
+                      type="radio"
+                      name="maxMember"
+                      value="maxMember30"
+                    />
+                    <label
+                      for="maxMember30"
+                      class="peer-focus/maxMember30:border-primary peer-focus/maxMember30:border-2 peer-checked/maxMember30:bg-primary peer-checked/maxMember30:text-white px-2.5 py-1.5 text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 cursor-pointer"
+                    >
+                      30명
+                    </label>
+
+                    <input
+                      id="maxMember40"
+                      class="peer/maxMember40 w-0 h-0"
+                      type="radio"
+                      name="maxMember"
+                      value="maxMember40"
+                    />
+                    <label
+                      for="maxMember40"
+                      class="peer-focus/maxMember40:border-primary peer-focus/maxMember40:border-2 peer-checked/maxMember40:bg-primary peer-checked/maxMember40:text-white px-2.5 py-1.5 text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 cursor-pointer"
+                    >
+                      40명
+                    </label>
+
+                    <input
+                      id="maxMember50"
+                      class="peer/maxMember50 w-0 h-0"
+                      type="radio"
+                      name="maxMember"
+                      value="maxMember50"
+                    />
+                    <label
+                      for="maxMember50"
+                      class="peer-focus/maxMember50:border-primary peer-focus/maxMember50:border-2 peer-checked/maxMember50:bg-primary peer-checked/maxMember50:text-white px-2.5 py-1.5 text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 cursor-pointer"
+                    >
+                      50명
+                    </label>
+                  </div>
+                </div>
+                <div class="p-3 flex justify-between items-center">
+                  <span
+                    class="p-7 text-paragraph-md font-normal bg-lock_black-icon bg-no-repeat bg-left"
+                    >승인 후 참여</span
+                  >
+                  <div>
+                    <input
+                      id="approve"
+                      class="peer/approveInput w-0 h-0"
+                      type="checkbox"
+                    />
+                    <label
+                      for="approve"
+                      class="peer-focus/approveInput:border-primary block w-11 h-6 box-content rounded-full bg-contents-content-tertiary border-2 border-transparent cursor-pointer hover:brightness-90"
+                    >
+                      <span
+                        id="approveHandle"
+                        class="block w-6 h-6 rounded-full bg-white border border-contents-content-tertiary"
+                      ></span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="w-full px-3 pt-6 pb-[34px] flex gap-1.5">
+                <button
+                  id="step3Prev"
+                  class="w-[28%] h-[45px] text-label-md text-black bg-gray-100 rounded hover:brightness-90 transition-all duration-300"
+                >
+                  이전
+                </button>
+                <button
+                  id="done"
+                  class="w-[72%] h-[45px] text-label-md text-white bg-secondary rounded hover:brightness-90 transition-all duration-300"
+                >
+                  완료
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+  </body>
+</html>

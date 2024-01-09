@@ -50,7 +50,7 @@ const drawTemplate = () => {
     <button id=${item} type="button" class="group">
       <div class="group-[.selected]:bg-secondary flex justify-between items-center bg-bluegray-200 max-w-50 px-3 py-6 rounded-lg text-start hover:brightness-95">
         <p class="group-[.selected]:text-white text-label-md leading-tight">${item}</p>
-        <div class="group-[.selected]:bg-check-icon row-span-2 w-5 h-5 bg-no-repeat bg-center bg-contain bg-plus-icon"></div>
+        <div class="group-[.selected]:bg-check-icon row-span-2 w-5 h-5 bg-no-repeat bg-center bg-contain bg-plus-icon-full"></div>
       </div>
     </button>`
     )
