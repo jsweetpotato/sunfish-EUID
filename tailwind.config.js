@@ -13,10 +13,11 @@ export default {
       backgroundImage: {
         // Header Icons
         'alram-icon': "url('/src/assets/headerIcon/alram.svg')",
-        'direction-icon': "url('/src/assets/headerIcon/direction.svg')",
         'close-icon': "url('/src/assets/headerIcon/close.svg')",
+        'direction-icon': "url('/src/assets/headerIcon/direction.svg')",
         'more-icon': "url('/src/assets/headerIcon/more.svg')",
         'setting-icon': "url('/src/assets/headerIcon/setting.svg')",
+        'search-icon': "url('/src/assets/headerIcon/search.svg')",
         'share-icon': "url('/src/assets/headerIcon/share.svg')",
         // GNB Icons
         'board-icon': "url('/src/assets/gnbIcon/board.svg')",
@@ -33,12 +34,18 @@ export default {
         'alram_bell-icon': "url('/src/assets/myPageIcon/alram_bell.svg')",
         'cart-icon': "url('/src/assets/myPageIcon/cart.svg')",
         'heart-icon': "url('/src/assets/myPageIcon/heart.svg')",
+        'information-icon': "url('/src/assets/myPageIcon/information.svg')",
         'note-icon': "url('/src/assets/myPageIcon/note.svg')",
-        'people-icon': "url('/src/assets/myPageIcon/people.svg')",
+        'people_black-icon': "url('/src/assets/myPageIcon/people.svg')",
         'profile-icon': "url('/src/assets/myPageIcon/profile.svg')",
         'qna-icon': "url('/src/assets/myPageIcon/qna.svg')",
+        'right-icon': "url('/src/assets/myPageIcon/right.svg')",
         'sell-icon': "url('/src/assets/myPageIcon/sell.svg')",
         'speech-icon': "url('/src/assets/myPageIcon/speech.svg')",
+        // Board Icons
+        'people_full-icon': "url('/src/assets/boardIcon/people_full.svg')",
+        'people-icon': "url('/src/assets/boardIcon/people.svg')",
+        'calender-icon': "url('/src/assets/boardIcon/calender.svg')",
       },
       colors: {
         primary: '#373F67',
