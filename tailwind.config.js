@@ -17,6 +17,7 @@ export default {
         'close-icon': "url('/src/assets/headerIcon/close.svg')",
         'more-icon': "url('/src/assets/headerIcon/more.svg')",
         'share-icon': "url('/src/assets/headerIcon/share.svg')",
+        'search-icon': "url('/src/assets/headerIcon/search.svg')",
         // GNB Icons
         'board-icon': "url('/src/assets/gnbIcon/board.svg')",
         'board_full-icon': "url('/src/assets/gnbIcon/board_full.svg')",
@@ -28,6 +29,15 @@ export default {
         'my-icon': "url('/src/assets/gnbIcon/my.svg')",
         near_full: "url('/src/assets/gnbIcon/near_full.svg')",
         near: "url('/src/assets/gnbIcon/near.svg')",
+        //Exchange Icons
+        'reservation-icon': "url('/src/assets/exchangeIcon/reservation.svg')",
+        'complete-icon': "url('/src/assets/exchangeIcon/complete.svg')",
+        'heart-icon': "url('/src/assets/exchangeIcon/heart.svg')",
+        'plus-icon': "url('/src/assets/exchangeIcon/plus.svg')",
+        'exchange-icon': "url('/src/assets/exchangeIcon/exchange.svg')",
+        'project-icon': "url('/src/assets/exchangeIcon/project.svg')",
+        'study-icon': "url('/src/assets/exchangeIcon/study.svg')",
+        'exchange-close-icon': "url('/src/assets/exchangeIcon/close.svg')",
       },
       colors: {
         primary: '#373F67',
