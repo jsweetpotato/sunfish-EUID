@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" sizes="48x48" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" sizes="192x192" href="/android-icon.png" />
+    <link rel="stylesheet" href="/src/styles/tailwind.css" />
+    <title>GNB 컴포넌트</title>
+    <style>
+      .home {
+        background-image: url('/src/assets/gnbIcon/home.svg');
+      }
+      .is-select > .home {
+        background-image: url('/src/assets/gnbIcon/home_full.svg');
+      }
+      .board {
+        background-image: url('/src/assets/gnbIcon/board.svg');
+      }
+      .is-select > .board {
+        background-image: url('/src/assets/gnbIcon/board_full.svg');
+      }
+      .near {
+        background-image: url('/src/assets/gnbIcon/near.svg');
+      }
+      .is-select > .near {
+        background-image: url('/src/assets/gnbIcon/near_full.svg');
+      }
+      .chat {
+        background-image: url('/src/assets/gnbIcon/chat.svg');
+      }
+      .is-select > .chat {
+        background-image: url('/src/assets/gnbIcon/chat_full.svg');
+      }
+      .my {
+        background-image: url('/src/assets/gnbIcon/my.svg');
+      }
+      .is-select > .my {
+        background-image: url('/src/assets/gnbIcon/my_full.svg');
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <nav
+        class="fixed bottom-0 min-w-[280px] max-w-[430px] w-full h-[69px] pr-3 pt-2 pb-5 border-t-[1px] border-gray-200 bg-white"
+      >
+        <ul class="w-full h-full flex justify-between items-center">
+          <li
+            class="is-select h-full w-12 pt-0.5 hover:bg-gray-100 hover:rounded transition-all duration-300"
+          >
+            <a
+              class="home block relative h-full text-paragraph-small bg-no-repeat bg-top"
+              href=""
+              aria-label="메인 페이지로 이동"
+            >
+              <span
+                class="absolute w-full text-center -tracking-[1px] bottom-0 left-1/2 -translate-x-1/2"
+                >홈</span
+              >
+            </a>
+          </li>
+          <li
+            class="h-full w-12 pt-0.5 hover:bg-gray-100 hover:rounded transition-all duration-300"
+          >
+            <a
+              class="board block relative h-full text-paragraph-small bg-no-repeat bg-top"
+              href=""
+              aria-label="게시판 페이지로 이동"
+              ><span
+                class="absolute w-full text-center -tracking-[1px] bottom-0 left-1/2 -translate-x-1/2"
+                >게시판</span
+              ></a
+            >
+          </li>
+          <li
+            class="h-full w-12 pt-0.5 hover:bg-gray-100 hover:rounded transition-all duration-300"
+          >
+            <a
+              class="near block relative h-full text-paragraph-small bg-no-repeat bg-top"
+              href=""
+              aria-label="내 근처 페이지로 이동"
+              ><span
+                class="absolute w-full text-center -tracking-[1px] bottom-0 left-1/2 -translate-x-1/2"
+                >내 근처</span
+              ></a
+            >
+          </li>
+          <li
+            class="h-full w-12 pt-0.5 hover:bg-gray-100 hover:rounded transition-all duration-300"
+          >
+            <a
+              class="chat block relative h-full text-paragraph-small bg-no-repeat bg-top"
+              href=""
+              aria-label="채팅 페이지로 이동"
+              ><span
+                class="absolute w-full text-center -tracking-[1px] bottom-0 left-1/2 -translate-x-1/2"
+                >채팅</span
+              ></a
+            >
+          </li>
+          <li
+            class="h-full w-12 pt-0.5 hover:bg-gray-100 hover:rounded transition-all duration-300"
+          >
+            <a
+              class="my block relative h-full text-paragraph-small bg-no-repeat bg-top"
+              href=""
+              aria-label="마이 페이지로 이동"
+              ><span
+                class="absolute w-full text-center -tracking-[1px] bottom-0 left-1/2 -translate-x-1/2"
+                >나의 이듬</span
+              ></a
+            >
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
