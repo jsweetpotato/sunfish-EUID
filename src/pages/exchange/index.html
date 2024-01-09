@@ -53,7 +53,7 @@
       </ul>
     </nav>
     <main class=" flex flex-col sticky top-0">
-      <div class="flex p-3 gap-3 justify-center items-center border-b boder-[0.3px]" role="listitem">
+      <div class="flex p-3 gap-3 justify-center items-center border-b boder-[0.3px]" role="listitem" id="exchangeList">
         <figure>
           <img src="/src/assets/image.jpeg" alt="2017 Mac Pro의 이미지" class="w-[5.625rem] h-[5.625rem] grow rounded-lg">
           <figcaption class="sr-only"></figcaption>
@@ -195,8 +195,13 @@
         </div>
       </div>
     </main>
-    <div id="plusButton-container" class=" inline-flex p-3 justify-center items-center gap-1 rounded-full bg-secondary fixed bottom-20 left-[58%] max-md:left-[85%] hover:bg-white ">
-      <button id="plusButton" type="button" class="w-7 h-7 bg-plus-icon hover:bg-exchange-close-icon bg-no-repeat" aria-label="더보기 버튼"></button>
+    <div class="absolute right-16">
+      <div class="fixed bottom-28" id="plusButton-container">
+        <button
+          id="plusButton" type="button" active="bg-exchange-close-icon bg-white" class="bg-plus-icon block w-12 h-12 rounded-full bg-center bg-no-repeat bg-secondary shadow-lg hover:brightness-90 transition-all duration-300" 
+        >
+        </button>
+      </div>
     </div>
   </div>
   <footer class="min-w-screen max-w-screen h-[69px] w-full sticky bottom-0">
