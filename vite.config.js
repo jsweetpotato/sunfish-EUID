@@ -15,7 +15,7 @@ export default defineConfig({
         // 로그인
         login: resolve(__dirname, 'src/pages/login/index.html'),
         category: resolve(__dirname, 'src/pages/login/category.html'),
-        ouath: resolve(__dirname, 'src/pages/login/ouath.html'),
+        oauth: resolve(__dirname, 'src/pages/login/oauth.html'),
         // 게시판
         board: resolve(__dirname, 'src/pages/board/index.html'),
         together: resolve(__dirname, 'src/pages/board/together.html'),
