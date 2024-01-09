@@ -3,7 +3,7 @@
 // primary 버튼
 // secondary 버튼
 // 콜백 함수를 전달 받음
-const BTN_CALSS = `px-6 py-1 text-sm font-medium rounded-sm`;
+const BTN_CALSS = `px-6 py-2 text-sm font-medium rounded-sm`;
 const INVALID_CLASS = `bg-contents-content-secondary text-white`;
 const SECONDARY_BTN_COLOR = `bg-gray-100 text-bluegray-800`;
 const PRIMARY_BTN_COLOR = `bg-secondary`;
