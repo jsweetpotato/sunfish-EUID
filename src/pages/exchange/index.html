@@ -6,14 +6,10 @@
   <link rel="stylesheet" href="/src/styles/tailwind.css">
   <title>엔터 이듬</title>
 </head>
-<body>
-  <style>
-  </style>
-</head>
 <body class="min-h-screen min-w-screen max-w-screen m-auto">
-  <header class="min-w-screen max-w-screen w-full h-10 ">
-    <div class="flex justify-between h-full">
-      <div class="flex h-full items-center">
+  <header class="w-full ">
+    <div class="flex justify-between ">
+      <div class="flex items-center">
         <h1 class="items-center pl-3 text-label-lg font-semibold">
           남가좌제2동
         </h1>
@@ -44,162 +40,78 @@
       </ul>
     </div>
   </header>
-  <div class="overflow-auto min-w-screen max-w-screen  h-[calc(100vh-40px-69px)] relative" role="mainList">
-    <nav class="w-full flex h-[2.875rem] flex-col justify-center items-center gap-[0.625rem] self-stretch">
+  <main class="overflow-auto  h-[calc(100vh-40px-69px)] relative">
+    <nav class="w-full flex flex-col justify-center items-center gap-2 self-stretch">
       <ul class="flex text-center gap-2 items-center w-full p-2">
-        <li class="grow hover:border-b-2 border-primary"><a href="/" aria-label="기기거래 페이지로 이동">기기거래</a></li>
-        <li class="grow hover:border-b-2 border-primary"><a href="/" aria-label="프로젝트 구인 페이지로 이동">프로젝트 구인</a></li>
-        <li class="grow hover:border-b-2 border-primary"><a href="/" aria-label="과외 클래스로 페이지로 이동">과외/클래스</a></li>
+        <li class="grow hover:border-b-2 border-primary"><a href="/" aria-label="기기거래 페이지로 이동" tabindex="0">기기거래</a></li>
+        <li class="grow hover:border-b-2 border-primary"><a href="#" aria-label="프로젝트 구인 페이지로 이동" tabindex="0">프로젝트 구인</a></li>
+        <li class="grow hover:border-b-2 border-primary"><a href="#" aria-label="과외 클래스로 페이지로 이동" tabindex="0"  >과외/클래스</a></li>
       </ul>
     </nav>
-    <main class=" flex flex-col sticky top-0">
-      <div class="flex p-3 gap-3 justify-center items-center border-b boder-[0.3px]" role="listitem">
+    <section class="flex flex-col sticky top-0">
+      <div class="flex p-3 gap-3 justify-center items-center border-b boder-[0.3px]" id="exchangeList">
         <figure>
-          <img src="/src/assets/image.jpeg" alt="2017 Mac Pro의 이미지" class="w-[5.625rem] h-[5.625rem] grow rounded-lg">
-          <figcaption class="sr-only"></figcaption>
+          <img src="/src/assets/image.jpeg" alt="2017 Mac Pro의 이미지" class="w-full grow rounded-lg">
         </figure>
-        <div class="flex flex-col grow p-[0.8125rem] relative">
+        <div class="flex flex-col grow p-3 relative">
           <h2 class="text-paragraph-md">2017 mac pro</h2>
           <span class="text-paragraph-sm" aria-label="판매위치 • 작성시간">마포구 신수동 • 44분전</span>
           <div class="flex items-end gap-2">
-            <span class="flex gap-2 bg-reservation-icon bg-no-repeat py-[0.125rem] px-1 h-5 w-9"></span>
+            <span class="flex gap-2 bg-reservation-icon bg-no-repeat py-[2px] px-1 h-5 w-9"></span>
             <span class="text-label-sm" aria-label="판매가격">800,000원</span>
           </div>
-          <div class="flex justify-center items-center gap-[0.125rem] absolute right-1 bottom-[-1rem] pb-1">
-            <span class="bg-heart-icon w-[0.875rem] h-[0.875rem]"></span>
+          <div class="flex gap-[2px] absolute right-1  bottom-[-1rem] pb-1 ">
+            <button type="button" class="heartContainer bg-heart-icon p-2 bg-no-repeat" aria-label="좋아요 표시하기"></button>
             <span class="text-paragraph-sm">4</span>
           </div>
         </div>
       </div>
-      <div class="flex p-3 gap-3 justify-center items-center border-b boder-[0.3px]" role="listitem">
+      <div class="flex p-3 gap-3 justify-center items-center border-b boder-[0.3px]">
         <figure>
-          <img src="/" alt="text의 이미지" class="w-[5.625rem] h-[5.625rem] grow  rounded-lg">
-          <figcaption class="sr-only"></figcaption>
+          <img src="/src/assets/image.jpeg" alt="2017 Mac Pro의 이미지" class="w-full grow rounded-lg">
         </figure>
-        <div class="flex flex-col grow p-[0.8125rem] relative">
-          <h2 class="text-paragraph-md">text</h2>
-          <span class="text-paragraph-sm" aria-label="판매위치 • 작성시간">text • time</span>
-          <div class="flex items-end gap-2">
-            <span class="text-label-sm" aria-label="판매가격">150,000원</span>
-          </div>
-          <div class="flex justify-center items-center gap-[0.125rem] absolute right-1 bottom-[-1rem] pb-1">
-            <span class="bg-heart-icon w-[0.875rem] h-[0.875rem]"></span>
-            <span class="text-paragraph-sm">4</span>
-          </div>
-        </div>
-      </div>
-      <div class="flex p-3 gap-3 justify-center items-center border-b boder-[0.3px]" role="listitem">
-        <figure>
-          <img src="/" alt="ipad 2세대 애플펜슬의 이미지" class="w-[5.625rem] h-[5.625rem] grow  rounded-lg">
-          <figcaption class="sr-only"></figcaption>
-        </figure>
-        <div class="flex flex-col grow p-[0.8125rem] relative">
-          <h2 class="text-paragraph-md">ipad 2세대 애플펜슬</h2>
-          <span class="text-paragraph-sm" aria-label="판매위치 작성시간">남가좌제2동 • 1일전</span>
-          <div class="flex items-end gap-2">
-            <span class="flex gap-2 bg-complete-icon bg-no-repeat py-[0.125rem] px-1 h-5 w-12"></span>
-            <span class="text-label-sm" aria-label="판매가격">50,000원</span>
-          </div>
-          <div class="flex justify-center items-center gap-[0.125rem] absolute right-1 bottom-[-1rem] pb-1">
-            <span class="bg-heart-icon w-[0.875rem] h-[0.875rem]"></span>
-            <span class="text-paragraph-sm">4</span>
-          </div>
-        </div>
-      </div>
-      <div class="flex p-3 gap-3 justify-center items-center border-b boder-[0.3px]" role="listitem">
-        <figure>
-          <img src="/" alt="2017 Mac Pro의 이미지" class="w-[5.625rem] h-[5.625rem] grow  rounded-lg">
-          <figcaption class="sr-only"></figcaption>
-        </figure>
-        <div class="flex flex-col grow p-[0.8125rem] relative">
+        <div class="flex flex-col grow p-3 relative">
           <h2 class="text-paragraph-md">2017 mac pro</h2>
           <span class="text-paragraph-sm" aria-label="판매위치 • 작성시간">마포구 신수동 • 44분전</span>
           <div class="flex items-end gap-2">
+            <span class="flex gap-2 bg-reservation-icon bg-no-repeat py-[2px] px-1 h-5 w-9"></span>
             <span class="text-label-sm" aria-label="판매가격">800,000원</span>
           </div>
-          <div class="flex justify-center items-center gap-[0.125rem] absolute right-1 bottom-[-1rem] pb-1">
-            <span class="bg-heart-icon w-[0.875rem] h-[0.875rem]"></span>
+          <div class="flex gap-[2px] absolute right-1  bottom-[-1rem] pb-1">
+            <button type="button" class="heartContainer bg-heart-icon p-2 bg-no-repeat" aria-label="좋아요 표시하기"></button>
             <span class="text-paragraph-sm">4</span>
           </div>
         </div>
       </div>
-      <div class="flex p-3 gap-3 justify-center items-center border-b boder-[0.3px]" role="listitem">
+      <div class="flex p-3 gap-3 justify-center items-center border-b boder-[0.3px]">
         <figure>
-          <img src="/" alt="2017 Mac Pro의 이미지" class="w-[5.625rem] h-[5.625rem] grow  rounded-lg">
-          <figcaption class="sr-only"></figcaption>
+          <img src="/src/assets/image.jpeg" alt="2017 Mac Pro의 이미지" class="w-full grow rounded-lg">
         </figure>
-        <div class="flex flex-col grow p-[0.8125rem] relative">
+        <div class="flex flex-col grow p-3 relative">
           <h2 class="text-paragraph-md">2017 mac pro</h2>
           <span class="text-paragraph-sm" aria-label="판매위치 • 작성시간">마포구 신수동 • 44분전</span>
           <div class="flex items-end gap-2">
+            <span class="flex gap-2 bg-reservation-icon bg-no-repeat py-[2px] px-1 h-5 w-9"></span>
             <span class="text-label-sm" aria-label="판매가격">800,000원</span>
           </div>
-          <div class="flex justify-center items-center gap-[0.125rem] absolute right-1 bottom-[-1rem] pb-1">
-            <span class="bg-heart-icon w-[0.875rem] h-[0.875rem]"></span>
+          <div class="flex gap-[2px] absolute right-1  bottom-[-1rem] pb-1">
+            <button type="button" class="heartContainer bg-heart-icon p-2 bg-no-repeat" aria-label="좋아요 표시하기"></button>
             <span class="text-paragraph-sm">4</span>
           </div>
         </div>
       </div>
-      <div class="flex p-3 gap-3 justify-center items-center border-b boder-[0.3px]" role="listitem">
-        <figure>
-          <img src="/" alt="2017 Mac Pro의 이미지" class="w-[5.625rem] h-[5.625rem] grow  rounded-lg">
-          <figcaption class="sr-only"></figcaption>
-        </figure>
-        <div class="flex flex-col grow p-[0.8125rem] relative">
-          <h2 class="text-paragraph-md">2017 mac pro</h2>
-          <span class="text-paragraph-sm" aria-label="판매위치 • 작성시간">마포구 신수동 • 44분전</span>
-          <div class="flex items-end gap-2">
-            <span class="flex gap-2 bg-reservation-icon bg-no-repeat py-[0.125rem] px-1 h-5 w-9"></span>
-            <span class="text-label-sm" aria-label="판매가격">800,000원</span>
-          </div>
-          <div class="flex justify-center items-center gap-[0.125rem] absolute right-1 bottom-[-1rem] pb-1">
-            <span class="bg-heart-icon w-[0.875rem] h-[0.875rem]"></span>
-            <span class="text-paragraph-sm">4</span>
-          </div>
-        </div>
+      
+    </section>
+    <div class="absolute right-14">
+      <div class="fixed bottom-20" id="plusButton-container">
+        <button
+          id="plusButton" type="button" class="bg-plus-icon block w-12 h-12 rounded-full bg-center bg-no-repeat bg-secondary shadow-lg hover:brightness-90 transition-all duration-300" 
+        >
+        </button>
       </div>
-      <div class="flex p-3 gap-3 justify-center items-center border-b boder-[0.3px]" role="listitem">
-        <figure>
-          <img src="/" alt="2017 Mac Pro의 이미지" class="w-[5.625rem] h-[5.625rem] grow  rounded-lg">
-          <figcaption class="sr-only"></figcaption>
-        </figure>
-        <div class="flex flex-col grow p-[0.8125rem] relative">
-          <h2 class="text-paragraph-md">2017 mac pro</h2>
-          <span class="text-paragraph-sm" aria-label="판매위치 • 작성시간">마포구 신수동 • 44분전</span>
-          <div class="flex items-end gap-2">
-            <span class="flex gap-2 bg-complete-icon bg-no-repeat py-[0.125rem] px-1 h-5 w-12"></span>
-            <span class="text-label-sm" aria-label="판매가격">800,000원</span>
-          </div>
-          <div class="flex justify-center items-center gap-[0.125rem] absolute right-1 bottom-[-1rem] pb-1">
-            <span class="bg-heart-icon w-[0.875rem] h-[0.875rem]"></span>
-            <span class="text-paragraph-sm">4</span>
-          </div>
-        </div>
-      </div>
-      <div class="flex p-3 gap-3 justify-center items-center border-b boder-[0.3px]" role="listitem">
-        <figure>
-          <img src="/" alt="2017 Mac Pro의 이미지" class="w-[5.625rem] h-[5.625rem] grow  rounded-lg">
-          <figcaption class="sr-only"></figcaption>
-        </figure>
-        <div class="flex flex-col grow p-[0.8125rem] relative">
-          <h2 class="text-paragraph-md">2017 mac pro</h2>
-          <span class="text-paragraph-sm" aria-label="판매위치 • 작성시간">마포구 신수동 • 44분전</span>
-          <div class="flex items-end gap-2">
-            <span class="flex gap-2 bg-complete-icon bg-no-repeat py-[0.125rem] px-1 h-5 w-12"></span>
-            <span class="text-label-sm" aria-label="판매가격">800,000원</span>
-          </div>
-          <div class="flex justify-center items-center gap-[0.125rem] absolute right-1 bottom-[-1rem] pb-1">
-            <span class="bg-heart-icon w-[0.875rem] h-[0.875rem]"></span>
-            <span class="text-paragraph-sm">4</span>
-          </div>
-        </div>
-      </div>
-    </main>
-    <div id="plusButton-container" class=" inline-flex p-3 justify-center items-center gap-1 rounded-full bg-secondary fixed bottom-20 left-[58%] max-md:left-[85%] hover:bg-white ">
-      <button id="plusButton" type="button" class="w-7 h-7 bg-plus-icon hover:bg-exchange-close-icon bg-no-repeat" aria-label="더보기 버튼"></button>
     </div>
-  </div>
-  <footer class="min-w-screen max-w-screen h-[69px] w-full sticky bottom-0">
+  </main>
+  <footer class=" h-[69px] w-full sticky bottom-0">
     <nav
         class="h-[69px] pr-3 pt-2 pb-5 border-t-[1px] border-gray-200"
       >
