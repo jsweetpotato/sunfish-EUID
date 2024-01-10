@@ -21,16 +21,9 @@ const state = {
 
 const pb = new PocketBase(import.meta.env.VITE_POCKETBASE_API);
 
-const test = async () => {
-  const isEmail = await pb
-    .collection('user')
-    .collectionIdOrName('test@gmail.com');
-  console.log(isEmail);
-};
-test();
 const emailPattern = /^[\w-]+@([a-z]+\.)+[\w]{2,4}/g;
 // const pwPattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;
-const pwPattern = /^(?=[0-9]).{8,15}$/;
+const pwPattern = /^(?=[a-z]).{8,15}$/;
 
 const $submitButton = createPrimaryBtn({
   id: 'formbutton',
@@ -42,8 +35,10 @@ const $submitButton = createPrimaryBtn({
 
 async function handleSubmit(e) {
   e.preventDefault();
-  const isEmail = await pb.collection('user').getOne($inputEmail.value);
-  console.log(isEmail);
+  const resultList = await pb
+    .collection('users')
+    .authWithPassword($inputEmail.value, $inputPW.value);
+  console.log(resultList);
 }
 
 const checkInput = (target, regex, parent) => {
@@ -61,18 +56,24 @@ const checkInput = (target, regex, parent) => {
   parent.classList.remove(INVALID_CLASS);
   state[target.id] = true;
 
-  if (state.email && state.pw && state.pwConfirm)
+  if (
+    state.email &&
+    state.pw &&
+    state.pwConfirm &&
+    $inputPW.value === $inputPWConfirm.value
+  )
     toggleValid($submitButton, true);
 };
 
-const checkConfirm = ({ target }) => {
-  if (target.value === '') {
-    $pwConfirmBox.classList.remove(INVALID_CLASS);
-    return;
-  }
+// 비밀번호 confirm 오류 해결!!
 
+const checkConfirm = ({ target }) => {
   if (!(target.value === $inputPW.value)) {
     state.pwConfirm = false;
+    if (target.value === '') {
+      $pwConfirmBox.classList.remove(INVALID_CLASS);
+      return;
+    }
     $pwConfirmBox.classList.add(INVALID_CLASS);
     return;
   }
@@ -80,7 +81,12 @@ const checkConfirm = ({ target }) => {
   state.pwConfirm = true;
   $pwConfirmBox.classList.remove(INVALID_CLASS);
 
-  if (state.email && state.pw && state.pwConfirm)
+  if (
+    state.email &&
+    state.pw &&
+    state.pwConfirm &&
+    $inputPW.value === $inputPWConfirm.value
+  )
     toggleValid($submitButton, true);
 };
 
