@@ -7,7 +7,7 @@ const $form = getNode('form');
 const storage = window.localStorage;
 
 const emailPattern = /^[\w-]+@([a-z]+\.)+[\w]{2,4}/g;
-const pwPattern = 
+const pwPattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;
 
 const $formButton = createPrimaryBtn({
   id: 'formbutton',
