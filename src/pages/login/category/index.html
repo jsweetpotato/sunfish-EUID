@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/src/styles/tailwind.css" />
+    <script type="module" src="/src/pages/login/category/category.js"></script>
+    <style></style>
+    <title>이듬 회원가입 - 카테고리 선택</title>
+    <style></style>
+  </head>
+  <body>
+    <div
+      class="flex flex-col px-3 min-w-screen max-w-screen min-h-screen mx-auto"
+    >
+      <header class="sticky top-0 bg-white w-full h-10 pe-3">
+        <div class="flex justify-between items-center">
+          <a
+            href="javascript:window.history.back();"
+            role="button"
+            aria-label="돌아가기"
+            class="bg-direction-icon block w-10 h-10 bg-no-repeat bg-center rotate-90 hover:bg-gray-100"
+          ></a>
+        </div>
+      </header>
+      <main class="flex flex-col flex-grow">
+        <p class="text-heading-lg text-prima my-[1.125rem]">
+          관심분야를 선택해주세요!
+        </p>
+        <form action="" class="flex-grow flex flex-col justify-between">
+          <div id="category-list" class="grid gap-2 grid-cols-2"></div>
+          <div id="button-wrapper" class="pb-[2.125rem]"></div>
+        </form>
+      </main>
+    </div>
+  </body>
+</html>
