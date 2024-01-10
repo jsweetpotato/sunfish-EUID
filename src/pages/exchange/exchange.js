@@ -2,7 +2,7 @@ const plusButton = document.querySelector('#plusButton-container');
 const plusButtonIcon = document.querySelector('#plusButton');
 const body = document.querySelector('body');
 const exchangeList = document.querySelector('#exchangeList');
-const heartContainer = document.querySelector('#heartContainer');
+const heartContainer = document.querySelectorAll('.heartContainer');
 let clickCount = 0;
 let isClick = false;
 let createCategory;
@@ -46,9 +46,18 @@ function move(){
 
 function stop(e){
   e.stopPropagation();
+  isClick = !isClick; 
+  if(!isClick){
+    e.currentTarget.style.backgroundColor=''; 
+  } else {
+    e.currentTarget.style.backgroundColor='pink';
+  }
 }
 
-heartContainer.addEventListener('click', stop)
+
+heartContainer.forEach((item) => {
+  item.addEventListener('click', stop);
+})
 plusButton.addEventListener('click', onClick);
 plusButtonIcon.addEventListener('click', toggle);
 exchangeList.addEventListener('click', move)
