@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/src/styles/tailwind.css" />
+    <title>edit-profile</title>
+  </head>
+  <body class="min-w-screen max-w-screen w-full m-auto">
+    <header class="bg-white min-w-screen max-w-screen w-full h-10">
+      <div class="flex items-center relative">
+        <a
+          href="/src/pages/myEuid/myProfile.html"
+          role="button"
+          aria-label="창 닫기"
+          class="bg-close-icon block w-10 h-10 bg-no-repeat bg-center hover:bg-gray-100 hover:rounded transition-all duration-300"
+        ></a>
+        <h1
+          aria-label="프로필 수정"
+          class="text-label-md absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+        >
+          프로필 수정
+        </h1>
+      </div>
+    </header>
+
+    <main
+      class="min-w-screen max-w-screen overflow-auto h-[calc(100vh-40px-116px)]"
+    >
+      <section class="border-b-[5px] border-gray-200">
+        <div class="p-3 border-t-[1px] border-gray-200">
+          <h3 class="text-label-sm pb-2">사진</h3>
+          <button
+            type="button"
+            class="bg-camera-icon block w-[50px] h-[50px]"
+          ></button>
+        </div>
+        <div class="p-3">
+          <h3 class="text-label-sm pb-2">이름</h3>
+          <div class="flex flex-col w-full">
+            <input
+              type="text"
+              class="w-full p-2 text-paragraph-sm font-normal border border-contents-content-tertiary rounded"
+              placeholder="별명이나 이름을 입력해주세요."
+            />
+            <span
+              aria-label="입력한 문자 수"
+              aria-live="polite"
+              class="text-contents-content-tertiary text-paragraph-sm font-normal text-end"
+              >0/8</span
+            >
+          </div>
+        </div>
+        <div class="p-3">
+          <h3
+            class="pb-2 text-xs font-normal bg-information-icon bg-no-repeat bg-[22px_1px]"
+          >
+            성별
+          </h3>
+          <div id="genderContainer" class="flex flex-wrap items-center gap-1">
+            <input
+              id="genderAnyone"
+              class="peer/genderAnyone w-0 h-0"
+              type="radio"
+              name="gender"
+              value="genderAnyone"
+              checked="checked"
+            />
+
+            <label
+              for="genderAnyone"
+              class="peer-focus/genderAnyone:border-primary peer-checked/genderAnyone:bg-primary peer-checked/genderAnyone:text-white px-2.5 py-1.5 text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 cursor-pointer"
+            >
+              비공개
+            </label>
+            <input
+              id="male"
+              class="peer/male w-0 h-0"
+              type="radio"
+              name="gender"
+              value="male"
+            />
+
+            <label
+              for="male"
+              class="peer-focus/male:border-primary peer-checked/male:bg-primary peer-checked/male:text-white px-2.5 py-1.5 text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 cursor-pointer"
+            >
+              남자
+            </label>
+            <input
+              id="female"
+              class="peer/female w-0 h-0"
+              type="radio"
+              name="gender"
+              value="female"
+            />
+
+            <label
+              for="female"
+              class="peer-focus/female:border-primary peer-checked/female:bg-primary peer-checked/female:text-white px-2.5 py-1.5 text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 cursor-pointer"
+            >
+              여자
+            </label>
+          </div>
+        </div>
+        <div class="p-3">
+          <h3 class="text-label-sm pb-2">직업</h3>
+          <div class="flex flex-col w-full">
+            <input
+              type="text"
+              class="w-full p-2 text-paragraph-sm font-normal border border-contents-content-tertiary rounded"
+              placeholder="어떤 일을 하는지 알려주세요."
+            />
+            <span
+              aria-label="입력한 문자 수"
+              aria-live="polite"
+              class="text-contents-content-tertiary text-paragraph-sm font-normal text-end"
+              >0/20</span
+            >
+          </div>
+        </div>
+        <div class="p-3">
+          <h3 class="text-label-sm pb-2">직장</h3>
+          <div class="flex flex-col w-full">
+            <input
+              type="text"
+              class="w-full p-2 text-paragraph-sm font-normal border border-contents-content-tertiary rounded"
+              placeholder="일하시는 곳을 알려주세요."
+            />
+            <span
+              aria-label="입력한 문자 수"
+              aria-live="polite"
+              class="text-contents-content-tertiary text-paragraph-sm font-normal text-end"
+              >0/24</span
+            >
+          </div>
+        </div>
+        <div class="px-3 pt-3 pb-14">
+          <h3 class="text-label-sm pb-2">자기소개</h3>
+          <div class="flex flex-col w-full">
+            <textarea
+              id="description"
+              class="p-2 text-paragraph-sm font-normal w-full border border-contents-content-tertiary rounded resize-none"
+              cols="44"
+              rows="6"
+              placeholder="어떤 취미 생활이 있는지, 무엇을 좋아하는지 등 자신있게 소개해주세요(상세하게 적으시면 소통에 도움이 됩니다)."
+            ></textarea>
+
+            <span
+              aria-label="입력한 문자 수"
+              aria-live="polite"
+              class="text-contents-content-tertiary text-paragraph-sm font-normal text-right"
+              id="letterCount"
+              >0/500</span
+            >
+          </div>
+        </div>
+      </section>
+      <section>
+        <div
+          class="px-3 py-4 flex justify-between items-center border-b-[1px] border-gray-200"
+        >
+          <div class="flex items-center gap-4">
+            <input type="checkbox" id="all-agree-checkbox" class="w-4 h-4" />
+            <label for="all-agree-checkbox" class="text-label-md"
+              >아래 내용에 전체 동의합니다.</label
+            >
+          </div>
+          <span class="text-paragraph-sm font-normal text-negative"
+            >필수동의</span
+          >
+        </div>
+
+        <div class="px-3 py-4">
+          <div role="group">
+            <div class="flex gap-4">
+              <input type="checkbox" id="agree-checkbox" />
+              <label for="agree-checkbox" class="text-label-sm"
+                >[ 필수 ] 개인 정보 수집 및 이용 동의
+              </label>
+            </div>
+            <div aria-label="개인 정보 수집 및 이용 약관" class="mt-2 ml-8">
+              <span
+                class="block text-contents-content-secondary text-paragraph-sm font-normal"
+                >입력한 별명, 프로필 사진, 성별, 직업, 직장은 엔터이듬 서비스 내
+                프로필 페이지, 답변자 정보 영역, 엔터이듬 홈 및 서비스 내 프로필
+                공개를 목적으로 합니다.
+              </span>
+              <span class="block text-secondary text-label-sm"
+                >수집된 정보는 언제든지 직접 삭제할 수 있고, 탈퇴 시에는 바로
+                파기됩니다.
+              </span>
+            </div>
+          </div>
+
+          <div class="flex justify-between my-5">
+            <div class="flex gap-4">
+              <input type="checkbox" id="agree-checkbox" />
+              <label for="agree-checkbox" class="text-label-sm"
+                >[ 필수 ] 프로필 정보 노출 영역 확인
+              </label>
+            </div>
+            <span
+              class="bg-right_gray-icon block bg-no-repeat bg-right text-paragraph-sm font-normal pr-[15px] text-contents-content-secondary"
+              >자세히</span
+            >
+          </div>
+
+          <div class="flex gap-4 pr-[17px]">
+            <input type="checkbox" id="agree-checkbox" class="mb-3" />
+            <label for="agree-checkbox" class="text-label-sm"
+              >[ 필수 ] 사실과 다른 정보를 기재하여 발생한 문제에 대해서는
+              본인이 일체의 책임을 부담하겠습니다.
+            </label>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="pt-3 px-4 pb-[34px] flex flex-col gap-[18px]">
+        <div class="flex gap-[9px]">
+          <button
+            type="submit"
+            disabled=""
+            class="h-9 text-center text-label-md rounded-sm w-full bg-gray-100 text-black"
+          >
+            취소
+          </button>
+          <button
+            type="submit"
+            disabled=""
+            class="h-9 text-center text-label-md rounded-sm w-full bg-contents-content-secondary text-white"
+          >
+            저장
+          </button>
+        </div>
+
+        <span
+          class="block text-center text-paragraph-sm font-normal text-contents-content-secondary"
+          >정보 초기화 및 이용 동의 철회</span
+        >
+      </div>
+    </footer>
+  </body>
+</html>
