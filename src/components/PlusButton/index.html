@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" sizes="48x48" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" sizes="192x192" href="/android-icon.png" />
+    <link rel="stylesheet" href="/src/styles/tailwind.css" />
+    <title>플러스 버튼 컴포넌트</title>
+    <style></style>
+  </head>
+  <body>
+    <!-- main 컨테이너에 relative 꼭 주시고 그 바로 밑에 컴포넌트 코드 넣어주시면 되겠습니다. -->
+    <div class="absolute right-16">
+      <div class="fixed bottom-28">
+        <a
+          class="block w-12 h-12 rounded-full bg-plus-icon bg-center bg-no-repeat bg-secondary shadow-lg hover:brightness-90 transition-all duration-300"
+          href=""
+        >
+          <span class="sr-only">글쓰기</span>
+        </a>
+      </div>
+    </div>
+  </body>
+</html>
