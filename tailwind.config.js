@@ -53,6 +53,7 @@ export default {
         'profile-icon': "url('/src/assets/myPageIcon/profile.svg')",
         'qna-icon': "url('/src/assets/myPageIcon/qna.svg')",
         'right-icon': "url('/src/assets/myPageIcon/right.svg')",
+        'right_gray-icon': "url('/src/assets/myPageIcon/right_gray.svg')",
         'sell-icon': "url('/src/assets/myPageIcon/sell.svg')",
         'speech-icon': "url('/src/assets/myPageIcon/speech.svg')",
         // Board Icons
