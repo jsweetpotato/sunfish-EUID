@@ -11,25 +11,25 @@
     <title>엔터 이듬</title>
   </head>
   <body>
-    <form action="/" class="min-w-[280px] max-w-[430px] w-full">
-        <label for="contentName" class="sr-only">컨텐츠 이름</label>
-        <div class="flex flex-col w-72">
-          <input
-            type="text"
-            id="contentName"
-            class="inputMedium"
-            placeholder="아무 이름적어주세요"
-          />
-          <span
-            aria-label="입력한 문자 수"
-            aria-live="polite"
-            class="text-contents-content-tertiary text-paragraph-small leading-4 flex justify-end"
-            id="letterCount"
-            >0/24</span
-          >
-        </div>
+    <form action="/" class="w-full min-w-screen max-w-screen grow">
+      <label for="contentName" class="sr-only">컨텐츠 이름</label>
+      <div class="flex flex-col">
+        <input
+          type="text"
+          id="contentName"
+          class="p-2 border rounded-[4px]"
+          placeholder="아무 이름적어주세요"
+        />
+        <span
+          aria-label="입력한 문자 수"
+          aria-live="polite"
+          class="block text-contents-content-tertiary text-paragraph-sm  self-stretch text-right w-full grow"
+          id="letterCount"
+          >0/24</span
+        >
       </div>
-    </form>
+    </div>
+  </form>
 
     <script type="module" src="/src/components/textInput/textInput.js"></script>
   </body>

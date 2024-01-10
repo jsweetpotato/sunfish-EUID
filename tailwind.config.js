@@ -42,6 +42,7 @@ export default {
         'project-icon': "url('/src/assets/exchangeIcon/project.svg')",
         'study-icon': "url('/src/assets/exchangeIcon/study.svg')",
         'exchange-close-icon': "url('/src/assets/exchangeIcon/close.svg')",
+        'chat-button-icon':  "url('/src/assets/exchangeIcon/chatButton.svg')",
         // MyEuid Icons
         'alram_bell-icon': "url('/src/assets/myPageIcon/alram_bell.svg')",
         'camera-icon': "url('/src/assets/myPageIcon/camera.svg')",
@@ -52,6 +53,7 @@ export default {
         'profile-icon': "url('/src/assets/myPageIcon/profile.svg')",
         'qna-icon': "url('/src/assets/myPageIcon/qna.svg')",
         'right-icon': "url('/src/assets/myPageIcon/right.svg')",
+        'right_gray-icon': "url('/src/assets/myPageIcon/right_gray.svg')",
         'sell-icon': "url('/src/assets/myPageIcon/sell.svg')",
         'speech-icon': "url('/src/assets/myPageIcon/speech.svg')",
         // Board Icons
