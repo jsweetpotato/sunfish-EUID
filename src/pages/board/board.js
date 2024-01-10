@@ -89,19 +89,19 @@ function createTemplate(data) {
       item;
     const template = /* html */ `
     <li  class="hover:bg-gray-100 transition-all">
-    <a
-      class="p-3 flex flex-col justify-center items-start gap-1 border-b border-contents-content-secondary"
-      href=""
+    <div
+      class="relative p-3 flex flex-col justify-center items-start gap-1 border-b border-contents-content-secondary"
+      
     >
       <span
-        class="text-label-sm px-1 bg-bluegray-600 text-white rounded"
+        class="text-label-sm px-1 mb-7 bg-bluegray-600 text-white rounded"
         >같이해요</span
       >
-      <p
-        class="w-full flex-auto text-paragraph-md font-normal text-contents-content-primary overflow-hidden whitespace-nowrap text-ellipsis"
+      <a href="/src/pages/board/togetherView.html"
+        class="absolute top-0 left-0 w-full h-full flex-auto text-paragraph-md font-normal text-contents-content-primary "
       >
-        ${title}
-      </p>
+        <span class="absolute top-8 left-3 w-[90%] overflow-hidden whitespace-nowrap text-ellipsis">${title}</span>
+      </a>
       <span
         class="pl-4 text-paragraph-sm font-normal text-gray-600 bg-people_full-icon bg-no-repeat bg-left"
         >${age}</span
@@ -119,7 +119,7 @@ function createTemplate(data) {
           >${currentMember.length}/${maxMember}명</span
         >
       </div>
-    </a>
+    </div>
     </li>
     `;
     togetherTemplateArray.push(template);
@@ -128,14 +128,14 @@ function createTemplate(data) {
     const { title, description, local, createdAt, views, imgUrl } = item;
     const template = /* html */ `
 <li class="hover:bg-gray-100 transition-all">
-<a
-  class="p-3 border-b flex flex-row justify-between gap-1 border-contents-content-secondary"
-  href=""
+<div
+  class="relative p-3 border-b flex flex-row justify-between gap-1 border-contents-content-secondary"
+  
 >
   <div
     class="w-[calc(100%-70px)] flex flex-col flex-shrink-1 justify-center items-start gap-1"
   >
-    <div class="flex items-center gap-1">
+    <div class="flex items-center gap-1 mb-7">
       <span
         class="text-label-sm px-1 bg-bluegray-600 text-white rounded"
         >질의응답</span
@@ -145,11 +145,11 @@ function createTemplate(data) {
         >인기</span
       >
     </div>
-    <p
-      class="w-full flex-auto text-paragraph-md font-normal text-contents-content-primary overflow-hidden whitespace-nowrap text-ellipsis"
+    <a href=""
+      class="absolute top-0 left-0 w-full h-full flex-auto text-paragraph-md font-normal text-contents-content-primary "
     >
-      ${title}
-    </p>
+      <span class="absolute top-8 left-3 w-[70%] overflow-hidden whitespace-nowrap text-ellipsis">${title}</span>
+    </a>
     <span
       class="w-full text-paragraph-sm font-normal text-gray-600 overflow-hidden whitespace-nowrap text-ellipsis"
       >${description.slice(0, 50)}...</span
@@ -170,7 +170,7 @@ function createTemplate(data) {
       />
     </div>
   </div>
-</a>
+</div>
 </li>
 `;
     qnaTemplateArray.push(template);
