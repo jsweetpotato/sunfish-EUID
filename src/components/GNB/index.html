@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" sizes="48x48" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" sizes="192x192" href="/android-icon.png" />
+    <link rel="stylesheet" href="/src/styles/tailwind.css" />
+    <title>GNB 컴포넌트</title>
+  </head>
+  <body>
+    <nav
+      class="fixed bottom-0 min-w-screen max-w-screen w-full h-[69px] pl-2 pr-3 pt-2 pb-5 border-t-[1px] border-gray-200 bg-white"
+    >
+      <ul class="w-full h-full flex justify-between items-center">
+        <li
+          class="is-select h-full w-12 pt-0.5 hover:bg-gray-100 hover:rounded transition-all duration-300"
+        >
+          <a
+            class="home block relative h-full text-paragraph-sm font-normal bg-home-icon bg-no-repeat bg-top"
+            href=""
+          >
+            <span
+              class="absolute w-full text-center bottom-0 left-1/2 -translate-x-1/2"
+              >홈</span
+            >
+          </a>
+        </li>
+        <li
+          class="h-full w-12 pt-0.5 hover:bg-gray-100 hover:rounded transition-all duration-300"
+        >
+          <a
+            class="board block relative h-full text-paragraph-sm font-normal bg-board-icon bg-no-repeat bg-top"
+            href=""
+            ><span
+              class="absolute w-full text-center bottom-0 left-1/2 -translate-x-1/2"
+              >게시판</span
+            ></a
+          >
+        </li>
+        <li
+          class="h-full w-12 pt-0.5 hover:bg-gray-100 hover:rounded transition-all duration-300"
+        >
+          <a
+            class="near block relative h-full text-paragraph-sm font-normal bg-near bg-no-repeat bg-top"
+            href=""
+            ><span
+              class="absolute w-full text-center bottom-0 left-1/2 -translate-x-1/2"
+              >내 근처</span
+            ></a
+          >
+        </li>
+        <li
+          class="h-full w-12 pt-0.5 hover:bg-gray-100 hover:rounded transition-all duration-300"
+        >
+          <a
+            class="chat block relative h-full text-paragraph-sm font-normal bg-chat-icon bg-no-repeat bg-top"
+            href=""
+            ><span
+              class="absolute w-full text-center bottom-0 left-1/2 -translate-x-1/2"
+              >채팅</span
+            ></a
+          >
+        </li>
+        <li
+          class="h-full w-12 pt-0.5 hover:bg-gray-100 hover:rounded transition-all duration-300"
+        >
+          <a
+            class="my block relative h-full text-paragraph-sm font-normal bg-my-icon bg-no-repeat bg-top"
+            href=""
+            ><span
+              class="absolute w-full text-center bottom-0 left-1/2 -translate-x-1/2"
+              >나의 이듬</span
+            ></a
+          >
+        </li>
+      </ul>
+    </nav>
+  </body>
+</html>
