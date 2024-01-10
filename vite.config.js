@@ -8,6 +8,10 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
+        // 마이페이지
+        myEuid: resolve(__dirname, 'src/pages/myeuid/index.html'),
+        myProfile: resolve(__dirname, 'src/pages/myeuid/MyProfile.html'),
+        editProfile: resolve(__dirname, 'src/pages/myeuid/EditProfile.html'),
       },
     },
   },

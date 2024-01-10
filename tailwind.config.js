@@ -123,7 +123,7 @@ export default {
         'label-lg': [
           '1.125rem',
           {
-            fontWeight: 500,
+            fontWeight: 600,
             letterSpacing: '-1px',
             lineHeight: 1.6,
           },
