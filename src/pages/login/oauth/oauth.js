@@ -13,13 +13,7 @@ const $formButton = createPrimaryBtn({
   // eslint-disable-next-line no-use-before-define
   onClick: handelButton,
 });
-const $testButton = createSecondaryBtn({
-  id: 'formbutton',
-  type: 'submit',
-  value: '인증문자 받기',
-  // eslint-disable-next-line no-use-before-define
-  onClick: testFunc,
-});
+
 const template = /* html */ `
 
 `;
@@ -28,18 +22,14 @@ const INVALID_CLASS = 'invalid';
 const SEND_CLASS = 'send';
 
 $form.insertAdjacentElement('beforeend', $formButton);
-$form.insertAdjacentElement('beforeend', $testButton);
 
 const setTimer = () => {};
 
-function testFunc() {
-  const now = new Date();
-  const timer = now.getTime() - 1000 * 5;
-  const time = now - timer;
-  console.log('now: ', now);
-  console.log('timer: ', timer);
-  console.log('time: ', time);
-}
+const date = new Date();
+const time = new Date(date.getTime() + 5000 * 60);
+
+console.log('date: ', date);
+console.log('time: ', time);
 
 function handelButton(e) {
   const phonePattern = /^[010]+[0-9]{8}$/g;
