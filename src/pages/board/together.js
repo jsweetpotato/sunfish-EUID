@@ -85,19 +85,26 @@ function createTemplate(data) {
       item;
     const template = /* html */ `
     <li  class="hover:bg-gray-100 transition-all">
-    <a
-      class="p-3 flex flex-col justify-center items-start gap-1 border-b border-contents-content-secondary"
-      href=""
+    <div
+      class="relative p-3 flex flex-col justify-center items-start gap-1 border-b border-contents-content-secondary"
+      
     >
+    <div class="flex items-center gap-1 mb-7">
       <span
-        class="text-label-sm px-1 bg-bluegray-600 text-white rounded"
-        >같이해요</span
+      class="text-label-sm px-1 bg-bluegray-600 text-white rounded"
+      >스터디</span
+    >
+    <span
+      class="text-label-sm px-1 bg-tertiary text-white rounded"
+      >인기</span
+    >
+    </div>
+     
+      <a href="/src/pages/board/togetherView.html"
+        class="absolute top-0 left-0 w-full h-full flex-auto text-paragraph-md font-normal text-contents-content-primary "
       >
-      <p
-        class="w-full flex-auto text-paragraph-md font-normal text-contents-content-primary overflow-hidden whitespace-nowrap text-ellipsis"
-      >
-        ${title}
-      </p>
+        <span class="absolute top-8 left-3 w-[90%] overflow-hidden whitespace-nowrap text-ellipsis">${title}</span>
+      </a>
       <span
         class="pl-4 text-paragraph-sm font-normal text-gray-600 bg-people_full-icon bg-no-repeat bg-left"
         >${age}</span
@@ -115,7 +122,7 @@ function createTemplate(data) {
           >${currentMember.length}/${maxMember}명</span
         >
       </div>
-    </a>
+    </div>
     </li>
     `;
     togetherTemplateArray.push(template);
@@ -137,13 +144,12 @@ function removeActiveClass() {
 }
 
 function handleSetActiveClass(e) {
-  const { category } = e.currentTarget.dataset;
   removeActiveClass();
   e.currentTarget.classList.add('border-secondary');
   e.currentTarget.nextElementSibling.classList.add('text-secondary');
 }
 
-const categoryButton = document.querySelectorAll('#categoryButton');
+const categoryButton = document.querySelectorAll('.category-button');
 categoryButton.forEach((button) => {
   button.addEventListener('click', handleSetActiveClass);
 });
