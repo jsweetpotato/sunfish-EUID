@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/src/styles/tailwind.css" />
-    <script type="module" src="/src/pages/login/signup/signup.js"></script>
+    <script type="module" src="/src/pages/login/signin/signin.js"></script>
     <title>이듬</title>
   </head>
   <body>
@@ -24,9 +24,8 @@
       <main>
         <p class="text-label-lg text-prima mt-[1.125rem] mb-[1.125rem]">
           안녕하세요!<br />
-          이메일로 가입해주세요!
+          이메일로 로그인해주세요!
         </p>
-
         <form
           id="oauth-form"
           action="/"
@@ -61,25 +60,11 @@
               >대소문자,특수문자 포함 6자리 이상 입력해주세요</span
             >
           </div>
-          <div
-            id="pw-confirm-box"
-            class="relative group/confirm flex flex-col gap-2"
-          >
-            <label for="contentName" class="text-label-md">비밀번호 확인</label>
-            <input
-              id="pw-confirm"
-              type="password"
-              minlength="6"
-              required
-              class="p-2 rounded border w-full border-contents-content-tertiary"
-              placeholder="비밀번호 재입력"
-            />
-            <span
-              class="group-[.invalid]/confirm:block absolute bottom-[-18px] left-0 hidden text-label-sm text-red-500"
-              >비밀번호가 일치하지 않습니다.</span
-            >
-          </div>
         </form>
+        <p p class="mt-3 text-paragraph-sm text-center">
+          휴대폰 번호가 변경되었나요?
+          <a class="underline underline-offset-2" href="#">이메일로 계정찾기</a>
+        </p>
       </main>
     </div>
   </body>

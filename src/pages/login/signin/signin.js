@@ -1,30 +1,63 @@
-import { createPrimaryBtn } from '../../../components/main_button';
+import PocketBase from 'pocketbase';
+import { createPrimaryBtn, toggleValid } from '../../../components/main_button';
 import { getNode } from '../../../lib/dom/getNode';
 
-const $main = getNode('main');
+const INVALID_CLASS = 'invalid';
 const $form = getNode('form');
 
-const storage = window.localStorage;
+const state = {
+  email: false,
+  pw: false,
+};
+const $submitButton = createPrimaryBtn({
+  id: 'formbutton',
+  type: 'submit',
+  value: '가입 시작하기',
+  // eslint-disable-next-line no-use-before-define
+  onClick: handleSubmit,
+});
+
+const pb = new PocketBase(import.meta.env.VITE_PB_URL);
+
+const $inputEmail = getNode('#email');
+const $inputPW = getNode('#pw');
+
+const $emailBox = getNode('#email-box');
+const $pwBox = getNode('#pw-box');
 
 const emailPattern = /^[\w-]+@([a-z]+\.)+[\w]{2,4}/g;
 const pwPattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;
 
-const $formButton = createPrimaryBtn({
-  id: 'formbutton',
-  type: 'submit',
-  value: '인증문자 받기',
-});
+async function handleSubmit(e) {
+  e.preventDefault();
+  await pb
+    .collection('users')
+    .authWithPassword($inputEmail.value, $inputPW.value);
+  alert('로그인 완료');
+}
 
-const template = /* html */ `
-  <p p class="mt-3 text-paragraph-sm text-center">
-    휴대폰 번호가 변경되었나요?
-    <a class="underline underline-offset-2" href="#">이메일로 계정찾기</a>
-  </p>`;
+const checkInput = (target, regex, parent) => {
+  if (target.value === '') {
+    parent.classList.remove(INVALID_CLASS);
+    return;
+  }
 
-const init = () => {
-  $form.insertAdjacentElement('beforeend', $formButton);
-  if (storage.getItem('type') === 'join') return;
-  $main.insertAdjacentHTML('beforeend', template);
+  if (!target.value.match(regex)) {
+    state[target.id] = false;
+    parent.classList.add(INVALID_CLASS);
+    return;
+  }
+
+  parent.classList.remove(INVALID_CLASS);
+  state[target.id] = true;
+  if (state.email && state.pw) toggleValid($submitButton, true);
 };
 
-init();
+$inputEmail.addEventListener('input', ({ target }) =>
+  checkInput(target, emailPattern, $emailBox)
+);
+$inputPW.addEventListener('input', ({ target }) =>
+  checkInput(target, pwPattern, $pwBox)
+);
+
+$form.insertAdjacentElement('beforeend', $submitButton);
