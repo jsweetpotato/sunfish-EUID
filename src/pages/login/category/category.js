@@ -59,7 +59,7 @@ const drawTemplate = () => {
 
 const handleSubmit = (e) => {
   e.preventDefault();
-  window.location.href = '/src/pages/login/email/';
+  window.location.href = '/src/pages/login/signup/';
 };
 
 const buttonInit = () => {

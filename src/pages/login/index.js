@@ -14,7 +14,7 @@ const handleStart = (e) => {
 const handleLogin = (e) => {
   e.preventDefault();
   storage.setItem('type', 'login');
-  window.location.href = '/src/pages/login/email/';
+  window.location.href = '/src/pages/login/signin/';
 };
 
 loginButton.onclick = handleLogin;
