@@ -2,6 +2,7 @@
 
 export default {
   content: ['./index.html', './src/**/*.{html,js}'],
+
   theme: {
     extend: {
       maxWidth: {
@@ -11,6 +12,8 @@ export default {
         screen: '280px',
       },
       backgroundImage: {
+        'plus-icon-full': "url('/src/assets/plus.svg')",
+        'check-icon': "url('/src/assets/check.svg')",
         // Header Icons
         'alram-icon': "url('/src/assets/headerIcon/alram.svg')",
         'close-icon': "url('/src/assets/headerIcon/close.svg')",
@@ -20,8 +23,8 @@ export default {
         'search-icon': "url('/src/assets/headerIcon/search.svg')",
         'share-icon': "url('/src/assets/headerIcon/share.svg')",
         // GNB Icons
-        'board-icon': "url('/src/assets/gnbIcon/board.svg')",
         'board_full-icon': "url('/src/assets/gnbIcon/board_full.svg')",
+        'board-icon': "url('/src/assets/gnbIcon/board.svg')",
         'chat_full-icon': "url('/src/assets/gnbIcon/chat_full.svg')",
         'chat-icon': "url('/src/assets/gnbIcon/chat.svg')",
         'home_full-icon': "url('/src/assets/gnbIcon/home_full.svg')",
@@ -30,11 +33,20 @@ export default {
         'my-icon': "url('/src/assets/gnbIcon/my.svg')",
         near_full: "url('/src/assets/gnbIcon/near_full.svg')",
         near: "url('/src/assets/gnbIcon/near.svg')",
+        // Exchange Icons
+        'plus-icon': "url('/src/assets/exchangeIcon/plus.svg')",
+        'reservation-icon': "url('/src/assets/exchangeIcon/reservation.svg')",
+        'complete-icon': "url('/src/assets/exchangeIcon/complete.svg')",
+        'heart-icon': "url('/src/assets/exchangeIcon/heart.svg')",
+        'exchange-icon': "url('/src/assets/exchangeIcon/exchange.svg')",
+        'project-icon': "url('/src/assets/exchangeIcon/project.svg')",
+        'study-icon': "url('/src/assets/exchangeIcon/study.svg')",
+        'exchange-close-icon': "url('/src/assets/exchangeIcon/close.svg')",
+        'chat-button-icon':  "url('/src/assets/exchangeIcon/chatButton.svg')",
         // MyEuid Icons
         'alram_bell-icon': "url('/src/assets/myPageIcon/alram_bell.svg')",
         'camera-icon': "url('/src/assets/myPageIcon/camera.svg')",
         'cart-icon': "url('/src/assets/myPageIcon/cart.svg')",
-        'heart-icon': "url('/src/assets/myPageIcon/heart.svg')",
         'information-icon': "url('/src/assets/myPageIcon/information.svg')",
         'note-icon': "url('/src/assets/myPageIcon/note.svg')",
         'people_black-icon': "url('/src/assets/myPageIcon/people.svg')",
@@ -112,11 +124,18 @@ export default {
           '1.125rem',
           {
             fontWeight: 'bold',
-            letterSpacing: '-1px',
-            lineHeight: 1.6,
+            letterSpacing: '0px',
+            lineHeight: 1.5,
           },
         ],
-        'heading-md': '0.875rem',
+        'heading-md': [
+          '0.875rem',
+          {
+            fontWeight: 'bold',
+            letterSpacing: '0px',
+            lineHeight: 1.5,
+          },
+        ],
         'heading-sm': '0.625rem',
         'label-2xl': '2.0625rem',
         'label-xl': '1.5rem',
@@ -124,8 +143,8 @@ export default {
           '1.125rem',
           {
             fontWeight: 600,
-            letterSpacing: '-1px',
-            lineHeight: 1.6,
+            letterSpacing: '0px',
+            lineHeight: 1.5,
           },
         ],
         'label-md': [
@@ -133,7 +152,7 @@ export default {
           {
             fontWeight: 600,
             letterSpacing: '0px',
-            lineHeight: 1.6,
+            lineHeight: 1.5,
           },
         ],
         'label-sm': [
@@ -141,7 +160,7 @@ export default {
           {
             fontWeight: 600,
             letterSpacing: '0px',
-            lineHeight: 1.6,
+            lineHeight: 1.5,
           },
         ],
         'paragraph-xl': '1.5rem',
@@ -151,7 +170,7 @@ export default {
           {
             fontWeight: 600,
             letterSpacing: '0px',
-            lineHeight: 1.6,
+            lineHeight: 1.5,
           },
         ],
         'paragraph-sm': [
@@ -159,7 +178,7 @@ export default {
           {
             fontWeight: 500,
             letterSpacing: '0px',
-            lineHeight: 1.6,
+            lineHeight: 1.5,
           },
         ],
         'paragraph-underline': '0.625rem',

@@ -10,8 +10,18 @@ export default defineConfig({
         main: resolve(__dirname, 'index.html'),
         // 마이페이지
         myEuid: resolve(__dirname, 'src/pages/myeuid/index.html'),
-        myProfile: resolve(__dirname, 'src/pages/myeuid/MyProfile.html'),
-        editProfile: resolve(__dirname, 'src/pages/myeuid/EditProfile.html'),
+        myProfile: resolve(__dirname, 'src/pages/myeuid/myProfile.html'),
+        editProfile: resolve(__dirname, 'src/pages/myeuid/editProfile.html'),
+        // 로그인
+        login: resolve(__dirname, 'src/pages/login/index.html'),
+        category: resolve(__dirname, 'src/pages/login/category.html'),
+        oauth: resolve(__dirname, 'src/pages/login/oauth.html'),
+        // 게시판
+        board: resolve(__dirname, 'src/pages/board/index.html'),
+        together: resolve(__dirname, 'src/pages/board/together.html'),
+        writeTogether: resolve(__dirname, 'src/pages/board/writeTogether.html'),
+        // 기기거래
+        exchange: resolve(__dirname, 'src/pages/exchange/index.html'),
       },
     },
   },
