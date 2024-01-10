@@ -13,9 +13,11 @@ export default defineConfig({
         myProfile: resolve(__dirname, 'src/pages/myeuid/myProfile.html'),
         editProfile: resolve(__dirname, 'src/pages/myeuid/editProfile.html'),
         // 로그인
-        login: resolve(__dirname, 'src/pages/login/index.html'),
-        category: resolve(__dirname, 'src/pages/login/category.html'),
-        oauth: resolve(__dirname, 'src/pages/login/oauth.html'),
+        login: resolve(__dirname, 'src/pages/login/index/'),
+        category: resolve(__dirname, 'src/pages/login/category/'),
+        oauth: resolve(__dirname, 'src/pages/login/oauth/'),
+        signin: resolve(__dirname, 'src/pages/login/signin/'),
+        signup: resolve(__dirname, 'src/pages/login/signup/'),
         // 게시판
         board: resolve(__dirname, 'src/pages/board/index.html'),
         together: resolve(__dirname, 'src/pages/board/together.html'),

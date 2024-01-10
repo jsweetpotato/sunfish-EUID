@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/src/styles/tailwind.css" />
+    <script type="module" src="/src/pages/login/index.js"></script>
     <style>
       * {
         box-sizing: border-box;
@@ -29,8 +30,8 @@
         </div>
         <div class="mt-6 mb-14 flex flex-col gap-3">
           <a
-            href="./category.html"
-            id="start"
+            href="./category"
+            id="join"
             class="block py-2 text-heading-md rounded-sm text-white bg-secondary"
           >
             시작하기
@@ -39,7 +40,9 @@
             <p class="text-paragraph-sm text-contents-content-secondary">
               이미 계정이 있으신가요?
             </p>
-            <a href="./oauth.html" class="text-primary text-label-sm">로그인</a>
+            <a id="login" href="./email" class="text-primary text-label-sm"
+              >로그인</a
+            >
           </div>
         </div>
       </main>
