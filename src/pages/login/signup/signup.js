@@ -19,11 +19,11 @@ const state = {
   pwConfirm: false,
 };
 
-const pb = new PocketBase(import.meta.env.VITE_POCKETBASE_API);
+const pb = new PocketBase(import.meta.env.VITE_PB_URL);
 
 const emailPattern = /^[\w-]+@([a-z]+\.)+[\w]{2,4}/g;
-// const pwPattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;
-const pwPattern = /^(?=[a-z]).{8,15}$/;
+const pwPattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;
+// const pwPattern = /^(?=[a-z]).{8,15}$/;
 
 const $submitButton = createPrimaryBtn({
   id: 'formbutton',
@@ -35,59 +35,55 @@ const $submitButton = createPrimaryBtn({
 
 async function handleSubmit(e) {
   e.preventDefault();
-  const resultList = await pb
-    .collection('users')
-    .authWithPassword($inputEmail.value, $inputPW.value);
-  console.log(resultList);
+  // const data = pb
+  //   .collection('users')
+  //   .authWithPassword($inputEmail.value, $inputPW.value);
+  console.table(state);
 }
 
+const checkState = () => {
+  if (state.email && state.pw && state.pwConfirm) {
+    console.table(state);
+    toggleValid($submitButton, true);
+  } else {
+    toggleValid($submitButton, false);
+    console.table(state);
+  }
+};
+
 const checkInput = (target, regex, parent) => {
+  // console.log(`state.${[target.id]}: ${state[target.id]}`);
   if (target.value === '') {
     parent.classList.remove(INVALID_CLASS);
     return;
   }
 
   if (!target.value.match(regex)) {
-    state[target.id] = false;
     parent.classList.add(INVALID_CLASS);
-    return;
+    state[target.id] = false;
+  } else {
+    parent.classList.remove(INVALID_CLASS);
+    state[target.id] = true;
   }
-
-  parent.classList.remove(INVALID_CLASS);
-  state[target.id] = true;
-
-  if (
-    state.email &&
-    state.pw &&
-    state.pwConfirm &&
-    $inputPW.value === $inputPWConfirm.value
-  )
-    toggleValid($submitButton, true);
+  checkState();
 };
 
 // 비밀번호 confirm 오류 해결!!
 
 const checkConfirm = ({ target }) => {
-  if (!(target.value === $inputPW.value)) {
-    state.pwConfirm = false;
-    if (target.value === '') {
-      $pwConfirmBox.classList.remove(INVALID_CLASS);
-      return;
-    }
-    $pwConfirmBox.classList.add(INVALID_CLASS);
+  if (target.value === '') {
+    $pwConfirmBox.classList.remove(INVALID_CLASS);
     return;
   }
 
-  state.pwConfirm = true;
-  $pwConfirmBox.classList.remove(INVALID_CLASS);
-
-  if (
-    state.email &&
-    state.pw &&
-    state.pwConfirm &&
-    $inputPW.value === $inputPWConfirm.value
-  )
-    toggleValid($submitButton, true);
+  if (!(target.value === $inputPW.value)) {
+    $pwConfirmBox.classList.add(INVALID_CLASS);
+    state.pwConfirm = false;
+  } else {
+    $pwConfirmBox.classList.remove(INVALID_CLASS);
+    state.pwConfirm = true;
+  }
+  checkState();
 };
 
 $inputEmail.addEventListener('input', ({ target }) =>
