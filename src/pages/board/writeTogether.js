@@ -1,4 +1,4 @@
-/* eslint-disable no-alert */
+/* eslint-disable no-alert, no-shadow */
 
 import gsap from 'gsap';
 
@@ -18,6 +18,34 @@ const formObj = {
   age: 'anyone',
   maxMember: 'noLimited',
 };
+
+const validConfig = {
+  title: {
+    min: 0,
+    max: 24,
+    isValid: false,
+  },
+  description: {
+    min: 0,
+    max: 500,
+    isValid: false,
+  },
+};
+
+(function inputInit() {
+  const inputs = document.querySelectorAll('.input');
+  const form = document.querySelector('.form');
+  form.addEventListener('submit', (e) => e.preventDefault());
+  inputs.forEach((input) => {
+    const { min, max } = validConfig[input.id];
+    const letterCount = input.nextElementSibling.querySelector('.letter-count');
+    const errorMsg = input.nextElementSibling.querySelector('.error-msg');
+    letterCount.textContent = `0/${max}`;
+    errorMsg.textContent = `글자 수는 ${
+      min + 1
+    }자 이상 ${max}자 이하로 작성해주세요.`;
+  });
+})();
 
 const approveCheckBox = document.querySelector('#approve');
 function handleToggleCheckBox({ currentTarget }) {
@@ -41,13 +69,79 @@ approveCheckBox.addEventListener('change', handleToggleCheckBox);
 let step = 1;
 const stepButton = document.querySelectorAll('button[id^="step"]');
 
+const inputs = document.querySelectorAll('.input');
+function inputValidation(node) {
+  const MIN = validConfig[node.id].min;
+  const MAX = validConfig[node.id].max;
+  const letterCount = node.value.replace(/\s*/g, '').length;
+  const result = letterCount > MIN && letterCount <= MAX;
+  validConfig[node.id].isValid = result;
+  return result;
+}
+function toggleValidStyle(target) {
+  const { isValid } = validConfig[target.id];
+  const errorMsg = target.nextElementSibling.querySelector('.error-msg');
+  const letterCount = target.nextElementSibling.querySelector('.letter-count');
+
+  if (isValid) {
+    target.classList.replace(
+      'border-red-500',
+      'border-contents-content-tertiary'
+    );
+    errorMsg.classList.replace('opacity-100', 'opacity-0');
+    letterCount.classList.replace(
+      'text-red-500',
+      'text-contents-content-tertiary'
+    );
+  } else {
+    target.classList.replace(
+      'border-contents-content-tertiary',
+      'border-red-500'
+    );
+    errorMsg.classList.replace('opacity-0', 'opacity-100');
+    letterCount.classList.replace(
+      'text-contents-content-tertiary',
+      'text-red-500'
+    );
+  }
+}
+function letterCount(target) {
+  const { value } = target;
+  const letterCount = target.nextElementSibling.querySelector('.letter-count');
+  const countArray = letterCount.textContent.split('/');
+  countArray[0] = value.length;
+  letterCount.textContent = `${countArray[0]}/${countArray[1]}`;
+}
+function handleInput(e) {
+  console.log('handleInput');
+  const step2NextButton = document.querySelector('#step2Next');
+  inputValidation(e.target);
+  toggleValidStyle(e.target);
+  letterCount(e.target);
+  if (validConfig.title.isValid && validConfig.description.isValid) {
+    step2NextButton.removeAttribute('disabled');
+  } else {
+    step2NextButton.setAttribute('disabled', '');
+  }
+}
+inputs.forEach((input) => {
+  input.addEventListener('input', handleInput);
+});
+
 function findCheckedValue(currentStep) {
   const currentNameArray = inputRadioNameArray[currentStep - 1];
   if (currentNameArray === null) return;
   currentNameArray.forEach((name) => {
-    const inputs = document.querySelectorAll(`input[name="${name}"]`);
-    const checkedInput = [...inputs].find((input) => input.checked);
+    const radioInputs = document.querySelectorAll(`input[name="${name}"]`);
+    const checkedInput = [...radioInputs].find((input) => input.checked);
     formObj[name] = checkedInput.value;
+  });
+}
+
+function setInputValue(currentStep) {
+  const inputs = document.querySelectorAll('.input');
+  inputs.forEach(({ id, value }) => {
+    formObj[id] = value;
   });
 }
 
@@ -55,7 +149,6 @@ function toggleHiddenClass(currentStep, direction) {
   const nextStep = direction === 'next' ? currentStep + 1 : currentStep - 1;
   const currentEl = document.querySelector(`#step${currentStep}`);
   const nextEl = document.querySelector(`#step${nextStep}`);
-  findCheckedValue(step);
   currentEl.classList.add('hidden');
   nextEl.classList.remove('hidden');
 }
@@ -63,7 +156,12 @@ function toggleHiddenClass(currentStep, direction) {
 function handleClick({ currentTarget }) {
   const { id } = currentTarget;
   const direction = id.slice(-4).toLowerCase();
-  if (step >= 3) return;
+  if (step === 1 || step === 3) {
+    findCheckedValue(step);
+  } else {
+    setInputValue(step);
+  }
+
   if (direction === 'next') {
     toggleHiddenClass(step, direction);
     step += 1;
@@ -84,7 +182,14 @@ function handleDone(e) {
     const { category, title, description, date, time, age, gender, maxMember } =
       formObj;
     alert(
-      `카테고리: ${category}제목 : ${title}소개 : ${description}날짜 : ${date}시간 : ${time}연령대 : ${age}성별 : ${gender}최대 인원 : ${maxMember}`
+      `카테고리: ${category}
+      제목 : ${title}
+      소개 : ${description}
+      날짜 : ${date}
+      시간 : ${time}
+      연령대 : ${age.replace(/\D/g, '')}
+      성별 : ${gender}
+      최대 인원 : ${maxMember.replace(/\D/g, '')}`
     );
     alert('게시글 등록이 완료되었습니다.');
     window.location.href = '/src/pages/board/together.html';
