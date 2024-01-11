@@ -6,16 +6,6 @@
     <link rel="stylesheet" href="/src/styles/tailwind.css" />
     <script type="module" src="/src/pages/myeuid/editProfile.js"></script>
     <title>edit-profile</title>
-    <style>
-      #saveButton:not([disabled]) {
-        background-color: #396cef;
-        color: white;
-      }
-
-      #saveButton:not([disabled]):hover {
-        filter: brightness(95%);
-      }
-    </style>
   </head>
   <body class="min-w-screen max-w-screen w-full m-auto">
     <header class="bg-white min-w-screen max-w-screen w-full h-10">
@@ -253,7 +243,7 @@
         <div class="flex gap-[9px]">
           <button
             type="submit"
-            class="h-9 text-center text-label-md rounded w-full bg-gray-100 text-black"
+            class="py-3 text-center text-label-md rounded w-full bg-gray-100 text-black"
           >
             취소
           </button>
@@ -262,7 +252,7 @@
             type="submit"
             id="saveButton"
             disabled
-            class="h-9 text-center text-label-md rounded w-full bg-contents-content-secondary text-white"
+            class="disabled:bg-contents-content-secondary hover:[&:not([disabled])]:brightness-95 py-3 text-center text-label-md rounded w-full bg-secondary text-white"
           >
             저장
           </button>
