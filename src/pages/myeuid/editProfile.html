@@ -36,23 +36,7 @@
         </div>
 
         <!-- 이름 Input Box -->
-        <div class="p-3">
-          <h3 class="text-label-sm pb-2">이름</h3>
-          <div class="flex flex-col w-full">
-            <input
-              type="text"
-              id="nicknameInput"
-              class="contentName w-full p-2 text-paragraph-sm font-normal border border-contents-content-tertiary rounded"
-              placeholder="별명이나 이름을 입력해주세요."
-            />
-            <span
-              aria-label="입력한 문자 수"
-              aria-live="polite"
-              class="letterCount text-contents-content-tertiary text-paragraph-sm font-normal text-end"
-              >0/8</span
-            >
-          </div>
-        </div>
+        <div class="valid-input-box p-3"></div>
 
         <!-- 성별 radio button -->
         <div class="p-3">
@@ -108,39 +92,11 @@
           </div>
         </div>
 
-        <!-- 직장 Input Box -->
-        <div class="p-3">
-          <h3 class="text-label-sm pb-2">직업</h3>
-          <div class="flex flex-col w-full">
-            <input
-              type="text"
-              class="contentName w-full p-2 text-paragraph-sm font-normal border border-contents-content-tertiary rounded"
-              placeholder="어떤 일을 하는지 알려주세요."
-            />
-            <span
-              aria-label="입력한 문자 수"
-              aria-live="polite"
-              class="letterCount text-contents-content-tertiary text-paragraph-sm font-normal text-end"
-              >0/20</span
-            >
-          </div>
-        </div>
-        <div class="p-3">
-          <h3 class="text-label-sm pb-2">직장</h3>
-          <div class="flex flex-col w-full">
-            <input
-              type="text"
-              class="contentName w-full p-2 text-paragraph-sm font-normal border border-contents-content-tertiary rounded"
-              placeholder="일하시는 곳을 알려주세요."
-            />
-            <span
-              aria-label="입력한 문자 수"
-              aria-live="polite"
-              class="letterCount text-contents-content-tertiary text-paragraph-sm font-normal text-end"
-              >0/24</span
-            >
-          </div>
-        </div>
+        <!-- 직업 Input Box -->
+        <div class="valid-input-box p-3"></div>
+
+        <!-- 직장 Input box -->
+        <div class="valid-input-box p-3"></div>
 
         <!-- 자기소개 Input Box -->
         <div class="px-3 pt-3 pb-14">
@@ -152,9 +108,11 @@
               cols="44"
               rows="6"
               placeholder="어떤 취미 생활이 있는지, 무엇을 좋아하는지 등 자신있게 소개해주세요(상세하게 적으시면 소통에 도움이 됩니다)."
+              oninput="countCharacters()"
             ></textarea>
 
             <span
+              id="characterCount"
               aria-label="입력한 문자 수"
               aria-live="polite"
               class="letterCount text-contents-content-tertiary text-paragraph-sm font-normal text-right"
@@ -258,8 +216,9 @@
                 😱 나가시겠어요?
               </p>
               <span
-                class="text-paragraph-sm text-contents-content-secondary leading-[160%]"
-                >입력하신 내용이 저장되지 않아요.</span
+                class="text-paragraph-sm text-center text-contents-content-secondary leading-[160%]"
+                >변경사항이 저장되지 않아요. <br />
+                정말로 나가시겠어요?</span
               >
               <div class="flex w-full justify-between gap-[6px]">
                 <button
