@@ -7,7 +7,7 @@
   <title>엔터 이듬</title>
 </head>
 <body class=" m-auto min-w-screen max-w-screen">
-  <header class="w-full sticky top-0">
+  <header class="w-full sticky top-0 bg-white">
     <div class="flex justify-between items-center">
       <a
         href="/"
@@ -30,31 +30,9 @@
       </div>
     </div>
   </header>
-  <main class="w-full overflow-auto h-[calc(100vh-40px)]">
-    <div role="group" class="swiper flex">
-      <!-- Additional required wrapper -->
-      <div class="swiper-wrapper">
-        <!-- Slides -->
-        <div class="swiper-slide"><img src="/src/assets/image.jpeg" alt="상품 이미지" class="w-full"></div>
-        <div class="swiper-slide"><img src="/src/assets/image.jpeg" alt="상품 이미지" class="w-full"></div>
-        <div class="swiper-slide"><img src="/src/assets/image.jpeg" alt="상품 이미지" class="w-full"></div>
-      </div>
-      <!-- If we need pagination -->
-      <div class="swiper-pagination"></div>
-    </div>
-
+  <main id="main" class="w-full overflow-auto h-[calc(100vh-40px)]">
     <!-- Profile Information -->
-    <section class="grow w-full flex px-3 justify-between items-center rounded py-2">
-      <div class="flex justify-center items-center">
-        <figure>
-          <p src="#" alt="" class="w-10 h-10 border rounded-full bg-contents-content-secondary">
-        </figure>
-        <div class="flex flex-col justify-center items-start">
-          <span class="text-label-md" aria-label="프로필 이름">불탄고구마</span>
-          <span class="text-paragraph-sm" aria-label="거주 위치">용암동</span>
-        </div>
-      </div>
-
+    <section id="profileInfo" class="grow w-full flex px-3 justify-between items-center rounded py-2">
       <div role="group" class="flex grow gap-[-8px] items-end flex-col pr-2">
         <div class="flex items-center justify-center gap-1">
           <span class="text-label-md text-secondary" aria-label="매너 온도 41.2도">41.2℃</span>
@@ -65,13 +43,7 @@
     </section>
 
     <!-- Product Information -->
-    <section class="flex pl-3 pb-5 pt-3">
-      <div class="flex flex-col items-start gap-3">
-        <h1 class="text-label-lg">2020 MacBook Air M1</h1>
-        <span class="text-paragraph-sm" aria-label="제품종류와 작성시간">컴퓨터 • 17분전</span>
-        <span class="text-paragraph-md h-24" aria-label="제품 상태 설명">상태 깨끗하고 좋아요. 왜냐하면 맥을 사용할 줄 몰라서 넷플릭스용으로만 봤어요. 집근처에서 거래 희망합니다.</span>
-        <span aria-label="조회수" class="paragraph-small">조회 19</span>
-      </div>
+    <section class="flex pl-3 pb-5 pt-3" id="productInfo">
     </section>
 
     <!-- Report Button -->
@@ -87,19 +59,8 @@
       </div>
     </section>
     <!-- Other Posts Items -->
-    <section class="flex grow  w-full flex-col gap-5">
+    <section class="flex grow  w-full flex-col gap-5" id="togetherWatch">
       <!-- First Item -->
-      <div class="flex gap-4 w-full px-[14px] pt-2">
-        <div class="flex pb-[10px] flex-col gap-[14px] w-full">
-          <figure>
-            <img src="/src/assets/image.jpeg" alt="상품 이미지" class="flex w-full rounded-t-lg">
-          </figure>
-          <div class="flex flex-col items-center self-stretch">
-            <h3 class="text-label-sm self-stretch">스타벅스 아메리카노</h3>
-            <h3 class="text-label-sm self-stretch">10,000원</h3>
-          </div>
-        </div>
-        <!-- Second Item -->
         <div class="flex pb-[10px] flex-col gap-[14px] w-full">
           <figure>
             <img src="/src/assets/image.jpeg" alt="상품 이미지" class="flex w-full rounded-t-lg">
@@ -117,12 +78,12 @@
   >
   <button
     type="button"
-    class="bg-heart-icon w-5 h-5 bg-no-repeat bg-cover heartContainer"
+    class="bg-heart-icon w-5 h-5 bg-no-repeat bg-cover heartContainer herat"
     aria-label="좋아요 버튼"
   ></button>
   <div class="flex flex-col grow border-l-2 pl-3">
     <p class="text-label-md">820,000원</p>
-    <a href="#" class="text-label-sm text-secondary">가격 제안하기</a>
+    <a href="/src/pages/exchange/exchangeWrite.html" class="text-label-sm text-secondary">가격 제안하기</a>
   </div>
   <button
     class="px-[14px] py-2 bg-secondary rounded text-label-md text-white"
@@ -130,7 +91,6 @@
     채팅하기
   </button>
   </footer>
-  <script type="module" src="/src/components/swiper/swiper.js"></script>
-  <script type="module" src="/src/pages/exchange/exchange.js"></script>
+  <script type="module" src="/src/pages/exchange/exchangeDetail.js"></script>
 </body>
 </html>
