@@ -43,6 +43,7 @@ export default {
         'study-icon': "url('/src/assets/exchangeIcon/study.svg')",
         'exchange-close-icon': "url('/src/assets/exchangeIcon/close.svg')",
         'chat-button-icon':  "url('/src/assets/exchangeIcon/chatButton.svg')",
+        'heart-full-icon':  "url('/src/assets/exchangeIcon/heart_full.svg')",
         // MyEuid Icons
         'alram_bell-icon': "url('/src/assets/myPageIcon/alram_bell.svg')",
         'camera-icon': "url('/src/assets/myPageIcon/camera.svg')",

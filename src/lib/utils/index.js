@@ -2,11 +2,12 @@
 
 
 
-export * from './xhr.js'
-export * from './copy.js'
-export * from './memo.js'
-export * from './color.js'
-export * from './tiger.js'
-export * from './delay.js'
-export * from './typeOf.js'
-export * from './storage.js'
+export * from './xhr'
+export * from './copy'
+export * from './memo'
+export * from './color'
+export * from './tiger'
+export * from './delay'
+export * from './typeOf'
+export * from './storage'
+export * from './getPbImageUrl'

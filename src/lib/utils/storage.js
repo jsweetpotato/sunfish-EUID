@@ -1,7 +1,5 @@
-import { isString } from "./typeOf.js"
-import { typeError } from '../error/typeError.js'
-
-
+import { isString } from "./typeOf"
+import { typeError } from '../error/typeError'
 
 
 const {localStorage:storage} = window
