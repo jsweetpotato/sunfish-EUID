@@ -10,12 +10,10 @@
   <body class="min-w-screen max-w-screen w-full m-auto">
     <header class="bg-white min-w-screen max-w-screen w-full h-10">
       <div class="flex items-center relative">
-        <a
-          href="/src/pages/myeuid/myProfile.html"
-          role="button"
+        <button
           aria-label="창 닫기"
-          class="bg-close-icon block w-10 h-10 bg-no-repeat bg-center hover:bg-gray-100 hover:rounded transition-all duration-300"
-        ></a>
+          class="cancelButton bg-close-icon block w-10 h-10 bg-no-repeat bg-center hover:bg-gray-100 hover:rounded transition-all duration-300"
+        ></button>
         <h1
           aria-label="프로필 수정"
           class="text-label-md absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
@@ -243,10 +241,42 @@
         <div class="flex gap-[9px]">
           <button
             type="submit"
-            class="py-3 text-center text-label-md rounded w-full bg-gray-100 text-black"
+            class="cancelButton py-3 text-center text-label-md rounded w-full bg-gray-100 text-black"
           >
             취소
           </button>
+
+          <!-- 경고 모달 -->
+          <dialog
+            id="warningModal"
+            class="bg-white shadow-lg backdrop:bg-black backdrop:bg-opacity-40 rounded-3xl"
+          >
+            <div
+              class="w-[233px] px-[18px] py-5 flex flex-col items-center gap-5"
+            >
+              <p class="text-label-medium font-semibold leading-[150%]">
+                😱 나가시겠어요?
+              </p>
+              <span
+                class="text-paragraph-sm text-contents-content-secondary leading-[160%]"
+                >입력하신 내용이 저장되지 않아요.</span
+              >
+              <div class="flex w-full justify-between gap-[6px]">
+                <button
+                  id="closeModalButton"
+                  class="w-full h-9 bg-gray-100 text-black text-label-medium font-semibold leading-[150%] rounded hover:bg-gray-300 transition-all duration-300"
+                >
+                  취소
+                </button>
+                <button
+                  onclick="history.back();"
+                  class="w-full h-9 bg-secondary text-white text-label-medium font-semibold leading-[150%] rounded hover:bg-blue-600 transition-all duration-300"
+                >
+                  확인
+                </button>
+              </div>
+            </div>
+          </dialog>
 
           <button
             type="submit"
@@ -256,6 +286,30 @@
           >
             저장
           </button>
+
+          <!-- 저장 완료 모달 -->
+          <dialog
+            class="bg-white shadow-lg backdrop:bg-black backdrop:bg-opacity-40 rounded-3xl"
+            id="saveModal"
+          >
+            <div
+              class="w-[233px] px-[18px] py-5 flex flex-col items-center gap-5"
+            >
+              <p class="text-label-medium font-semibold leading-[150%]">
+                🥳 저장 완료!
+              </p>
+              <span
+                class="text-paragraph-sm text-contents-content-secondary leading-[160%]"
+                >프로필 정보가 저장되었습니다.</span
+              >
+              <button
+                class="w-full h-9 bg-secondary text-white text-label-medium font-semibold leading-[150%] rounded hover:bg-blue-400 transition-all duration-300"
+                onclick="location.href='myProfile.html'"
+              >
+                확인
+              </button>
+            </div>
+          </dialog>
         </div>
 
         <span

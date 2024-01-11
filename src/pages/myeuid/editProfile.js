@@ -41,3 +41,33 @@ agreeCheckboxes.forEach((checkbox) => {
     handleCheckboxChange
   );
 });
+
+// 저장 완료 모달
+const saveModal = getNode('#saveModal');
+
+function showSaveModal() {
+  saveModal.showModal();
+}
+
+saveButton.addEventListener('click', showSaveModal);
+
+// 경고 모달
+const cancelButton = getNodes('.cancelButton');
+const warningModal = getNode('#warningModal');
+
+function showWarningModal() {
+  warningModal.showModal();
+}
+
+cancelButton.forEach((button) => {
+  button.addEventListener('click', showWarningModal);
+});
+
+// 모달창 닫기
+const closeModalButton = getNode('#closeModalButton');
+
+function closeModal() {
+  warningModal.close();
+}
+
+closeModalButton.addEventListener('click', closeModal);
