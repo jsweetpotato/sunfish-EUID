@@ -1,6 +1,5 @@
-import PocketBase from 'pocketbase';
 import { createPrimaryBtn, toggleValid } from '../../../components/main_button';
-import { getNode } from '../../../lib/dom/getNode';
+import { getNode, pb } from '../../../lib';
 
 const INVALID_CLASS = 'invalid';
 const $form = getNode('form');
@@ -16,8 +15,6 @@ const $submitButton = createPrimaryBtn({
   // eslint-disable-next-line no-use-before-define
   onClick: handleSubmit,
 });
-
-const pb = new PocketBase(import.meta.env.VITE_PB_URL);
 
 const $inputEmail = getNode('#email');
 const $inputPW = getNode('#pw');

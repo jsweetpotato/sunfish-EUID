@@ -1,6 +1,5 @@
-import PocketBase from 'pocketbase';
 import { createPrimaryBtn, toggleValid } from '../../../components/main_button';
-import { getNode } from '../../../lib/dom/getNode';
+import { getNode, pb } from '../../../lib';
 
 const INVALID_CLASS = 'invalid';
 
@@ -18,8 +17,6 @@ const state = {
   pw: false,
   pwConfirm: false,
 };
-
-const pb = new PocketBase(import.meta.env.VITE_PB_URL);
 
 const emailPattern = /^[\w-]+@([a-z]+\.)+[\w]{2,4}/g;
 const pwPattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;
