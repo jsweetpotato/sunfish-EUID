@@ -30,12 +30,14 @@
           ></a>
           <div class="flex items-center">
             <button
+              id="share"
               type="button"
               aria-label="공유하기"
               class="bg-share-icon w-10 h-10 bg-no-repeat bg-center hover:bg-gray-100 hover:rounded transition-all duration-300"
             ></button>
 
             <button
+              id="more"
               type="button"
               aria-label="더보기"
               class="bg-more-icon w-10 h-10 bg-no-repeat bg-center hover:bg-gray-100 hover:rounded transition-all duration-300"
@@ -44,12 +46,12 @@
         </div>
       </header>
 
-      <main class="relative h-[calc(100dvh-40px)] overflow-auto">
+      <main class="relative h-[calc(100dvh-143px)] overflow-auto">
         <section class="h-full">
           <h1 class="sr-only">같이해요 게시글 조회</h1>
           <article class="px-3 py-6 flex flex-col items-start gap-2">
             <span
-              class="inline-block px-2 py-0.5 bg-bluegray-500 text-label-sm text-white rounded"
+              class="inline-block pl-[7px] pr-2 py-0.5 bg-bluegray-500 text-label-sm text-white rounded"
               >📝 스터디</span
             >
             <h2 class="text-label-lg font-medium">
@@ -82,7 +84,7 @@
             <div class="w-[132px] h-[40px] flex items-center gap-2">
               <div class="w-[30px] h-[30px] rounded-full overflow-hidden">
                 <img
-                  class=""
+                  class="bg-gray-300"
                   src="/src/assets/image.jpeg"
                   alt="프로필 이미지"
                 />
@@ -103,17 +105,17 @@
               </div>
             </div>
           </div>
-
-          <div class="px-3 pt-[24px] pb-[34px]">
-            <button
-              id="step1Next"
-              class="w-full h-[45px] text-label-md text-white bg-secondary rounded hover:brightness-90 transition-all duration-300"
-            >
-              채팅방으로 이동
-            </button>
-          </div>
         </section>
       </main>
+
+      <footer class="w-full px-3 pt-[24px] pb-[34px]">
+        <button
+          id="step1Next"
+          class="w-full h-[45px] text-label-md text-white bg-secondary rounded hover:brightness-90 transition-all duration-300"
+        >
+          채팅방으로 이동
+        </button>
+      </footer>
     </div>
   </body>
 </html>
