@@ -1,37 +1,48 @@
 import { createPrimaryBtn, toggleValid } from '../../../components/main_button';
 import { getNode, pb } from '../../../lib';
 
-const INVALID_CLASS = 'invalid';
+// 돔 엘리먼트
 const $form = getNode('form');
-
-const state = {
-  email: false,
-  pw: false,
-};
-const $submitButton = createPrimaryBtn({
-  id: 'formbutton',
-  type: 'submit',
-  value: '가입 시작하기',
-  // eslint-disable-next-line no-use-before-define
-  onClick: handleSubmit,
-});
-
 const $inputEmail = getNode('#email');
 const $inputPW = getNode('#pw');
 
 const $emailBox = getNode('#email-box');
 const $pwBox = getNode('#pw-box');
 
+const $submitButton = createPrimaryBtn({
+  id: 'formbutton',
+  type: 'submit',
+  value: '가입 시작하기',
+});
+
+// 상태 관리
+const state = {
+  email: false,
+  pw: false,
+};
+
+// 버튼 draw
+$form.insertAdjacentElement('beforeend', $submitButton);
+
+// 클래스 세팅
+const INVALID_CLASS = 'invalid';
+
+// 정규표현식 패턴
 const emailPattern = /^[\w-]+@([a-z]+\.)+[\w]{2,4}/g;
 const pwPattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;
 
-async function handleSubmit(e) {
+const handleSubmit = async (e) => {
   e.preventDefault();
-  await pb
-    .collection('users')
-    .authWithPassword($inputEmail.value, $inputPW.value);
-  alert('로그인 완료');
-}
+  try {
+    await pb
+      .collection('users')
+      .authWithPassword($inputEmail.value, $inputPW.value);
+    window.location.href = '/src/pages/login/oauth/';
+  } catch (err) {
+    toggleValid($submitButton, false);
+    $emailBox.classList.add(INVALID_CLASS);
+  }
+};
 
 const checkInput = (target, regex, parent) => {
   if (target.value === '') {
@@ -50,11 +61,8 @@ const checkInput = (target, regex, parent) => {
   if (state.email && state.pw) toggleValid($submitButton, true);
 };
 
-$inputEmail.addEventListener('input', ({ target }) =>
-  checkInput(target, emailPattern, $emailBox)
-);
-$inputPW.addEventListener('input', ({ target }) =>
-  checkInput(target, pwPattern, $pwBox)
-);
-
-$form.insertAdjacentElement('beforeend', $submitButton);
+// 이벤트 바인딩
+$inputEmail.oninput = ({ target }) =>
+  checkInput(target, emailPattern, $emailBox);
+$inputPW.oninput = ({ target }) => checkInput(target, pwPattern, $pwBox);
+$submitButton.onclick = handleSubmit;

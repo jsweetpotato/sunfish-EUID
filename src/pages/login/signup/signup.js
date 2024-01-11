@@ -1,8 +1,8 @@
 import { createPrimaryBtn, toggleValid } from '../../../components/main_button';
-import { getNode, pb } from '../../../lib';
+import { getNode, pb, setStorage } from '../../../lib';
+import { cache } from '../cache';
 
-const INVALID_CLASS = 'invalid';
-
+// 돔 엘리먼트
 const $form = getNode('form');
 const $inputEmail = getNode('#email');
 const $inputPW = getNode('#pw');
@@ -12,39 +12,55 @@ const $emailBox = getNode('#email-box');
 const $pwBox = getNode('#pw-box');
 const $pwConfirmBox = getNode('#pw-confirm-box');
 
+const $submitButton = createPrimaryBtn({
+  id: 'formbutton',
+  type: 'submit',
+  value: '가입 시작하기',
+});
+
+// 상태 관리
 const state = {
   email: false,
   pw: false,
   pwConfirm: false,
 };
 
+// 버튼 draw
+$form.insertAdjacentElement('beforeend', $submitButton);
+
+// 클래스 세팅
+const INVALID_CLASS = 'invalid';
+const HAS_EMAIL_CLASS = 'hasemail';
+
+// 정규표현식 패턴
 const emailPattern = /^[\w-]+@([a-z]+\.)+[\w]{2,4}/g;
 const pwPattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;
-// const pwPattern = /^(?=[a-z]).{8,15}$/;
 
-const $submitButton = createPrimaryBtn({
-  id: 'formbutton',
-  type: 'submit',
-  value: '가입 시작하기',
-  // eslint-disable-next-line no-use-before-define
-  onClick: handleSubmit,
-});
-
-async function handleSubmit(e) {
+const handleSubmit = async (e) => {
   e.preventDefault();
-  // const data = pb
-  //   .collection('users')
-  //   .authWithPassword($inputEmail.value, $inputPW.value);
-  console.table(state);
-}
+  try {
+    await pb
+      .collection('users')
+      .getFirstListItem(`email="${$inputEmail.value}"`);
+    toggleValid($submitButton, false);
+    state.email = false;
+    $emailBox.classList.add(HAS_EMAIL_CLASS);
+  } catch {
+    cache['users-oauth'] = { email: $inputEmail.value, pw: $inputPW.value };
+    // setStorage(
+    //   'users-oauth',
+    //   `${JSON.stringify({ email: $inputEmail.value, pw: $inputPW.value })}`
+    // );
+
+    window.location.href = '/src/pages/login/oauth/';
+  }
+};
 
 const checkState = () => {
   if (state.email && state.pw && state.pwConfirm) {
-    console.table(state);
     toggleValid($submitButton, true);
   } else {
     toggleValid($submitButton, false);
-    console.table(state);
   }
 };
 
@@ -65,7 +81,11 @@ const checkInput = (target, regex, parent) => {
   checkState();
 };
 
-// 비밀번호 confirm 오류 해결!!
+const checkEmail = (target, regex, parent) => {
+  parent.classList.remove(HAS_EMAIL_CLASS);
+  checkInput(target, regex, parent);
+  checkState();
+};
 
 const checkConfirm = ({ target }) => {
   if (target.value === '') {
@@ -83,12 +103,9 @@ const checkConfirm = ({ target }) => {
   checkState();
 };
 
-$inputEmail.addEventListener('input', ({ target }) =>
-  checkInput(target, emailPattern, $emailBox)
-);
-$inputPW.addEventListener('input', ({ target }) =>
-  checkInput(target, pwPattern, $pwBox)
-);
-$inputPWConfirm.addEventListener('input', checkConfirm);
-
-$form.insertAdjacentElement('beforeend', $submitButton);
+// 이벤트 바인딩
+$inputEmail.oninput = ({ target }) =>
+  checkEmail(target, emailPattern, $emailBox);
+$inputPW.oninput = ({ target }) => checkInput(target, pwPattern, $pwBox);
+$submitButton.onclick = handleSubmit;
+$inputPWConfirm.oninput = checkConfirm;

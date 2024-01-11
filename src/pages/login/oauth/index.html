@@ -32,7 +32,7 @@
         <form
           id="oauth-form"
           action="/"
-          class="group/form group/send w-full h-full flex flex-col gap-8"
+          class="group w-full h-full flex flex-col gap-8"
         >
           <div class="relative">
             <label for="contentName" class="sr-only">컨텐츠 이름</label>
@@ -43,14 +43,15 @@
               pattern="[010]+[0-9]{10}"
               maxlength="11"
               required
-              class="p-2 rounded border w-full border-contents-content-tertiary group-[.send]/send:text-gray-500"
+              class="group-[.invalid]:border-red-500 group-[.send]:text-gray-500 p-2 rounded border w-full border-contents-content-tertiary text-contents-content-primary"
               placeholder="휴대폰 번호 ( -없이 숫자만 입력 )"
             />
             <span
-              class="group-[.invalid]/form:block absolute bottom-[-18px] left-0 hidden text-label-sm text-red-500"
+              class="group-[.invalid]:block absolute bottom-[-18px] left-0 hidden text-label-sm text-red-500"
               >올바를 전화번호를 입력해주세요.</span
             >
           </div>
+          <div class="button-wrapper"></div>
         </form>
       </main>
     </div>

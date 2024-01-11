@@ -12,17 +12,15 @@
       class="flex flex-col px-3 min-w-screen max-w-screen min-h-screen mx-auto"
     >
       <header class="sticky top-0 bg-white w-full h-10 pe-3">
-        <div class="flex justify-between items-center">
-          <a
-            href="javascript:window.history.back();"
-            role="button"
-            aria-label="돌아가기"
-            class="bg-direction-icon block w-10 h-10 bg-no-repeat bg-center rotate-90 hover:bg-gray-100"
-          ></a>
-        </div>
+        <a
+          href="javascript:window.history.back();"
+          role="button"
+          aria-label="돌아가기"
+          class="bg-direction-icon block w-10 h-10 bg-no-repeat bg-bottom rotate-90 hover:bg-gray-100"
+        ></a>
       </header>
       <main>
-        <p class="text-label-lg text-prima mt-[1.125rem] mb-[1.125rem]">
+        <p class="text-label-lg text-prima my-[1.125rem]">
           안녕하세요!<br />
           이메일로 가입해주세요!
         </p>
@@ -32,32 +30,36 @@
           action="/"
           class="w-full h-full flex flex-col gap-8"
         >
-          <div id="email-box" class="relative group/email flex flex-col gap-2">
+          <div id="email-box" class="relative group flex flex-col gap-2">
             <label for="contentName" class="text-label-md">이메일</label>
             <input
               id="email"
               type="email"
               required
-              class="p-2 rounded border w-full border-contents-content-tertiary"
+              class="group-[.invalid]:border-red-500 group-[.hasemail]:border-red-500 p-2 rounded border w-full border-contents-content-tertiary"
               placeholder="이메일 주소 입력"
             />
             <span
-              class="group-[.invalid]/email:block absolute bottom-[-18px] left-0 hidden text-label-sm text-red-500"
+              class="group-[.invalid]:block absolute bottom-[-18px] left-0 hidden text-label-sm text-red-500"
               >올바른 이메일을 입력해주세요.</span
             >
+            <span
+              class="group-[.hasemail]:block absolute bottom-[-18px] left-0 hidden text-label-sm text-red-500"
+              >이미 존재하는 이메일 입니다.</span
+            >
           </div>
-          <div id="pw-box" class="relative group/pw flex flex-col gap-2">
+          <div id="pw-box" class="relative group flex flex-col gap-2">
             <label for="contentName" class="text-label-md">비밀번호</label>
             <input
               id="pw"
               type="password"
               minlength="6"
               required
-              class="p-2 rounded border w-full border-contents-content-tertiary"
+              class="group-[.invalid]:border-red-500 p-2 rounded border w-full border-contents-content-tertiary"
               placeholder="대소문자,특수문자 포함 6자리 이상"
             />
             <span
-              class="group-[.invalid]/pw:block absolute bottom-[-18px] left-0 hidden text-label-sm text-red-500"
+              class="group-[.invalid]:block absolute bottom-[-18px] left-0 hidden text-label-sm text-red-500"
               >대소문자,특수문자 포함 6자리 이상 입력해주세요</span
             >
           </div>
@@ -71,7 +73,7 @@
               type="password"
               minlength="6"
               required
-              class="p-2 rounded border w-full border-contents-content-tertiary"
+              class="group-[.invalid]/confirm:border-red-500 p-2 rounded border w-full border-contents-content-tertiary"
               placeholder="비밀번호 재입력"
             />
             <span
