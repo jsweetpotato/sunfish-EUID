@@ -42,7 +42,7 @@ export default {
         'project-icon': "url('/src/assets/exchangeIcon/project.svg')",
         'study-icon': "url('/src/assets/exchangeIcon/study.svg')",
         'exchange-close-icon': "url('/src/assets/exchangeIcon/close.svg')",
-        'chat-button-icon':  "url('/src/assets/exchangeIcon/chatButton.svg')",
+        'chat-button-icon': "url('/src/assets/exchangeIcon/chatButton.svg')",
         // MyEuid Icons
         'alram_bell-icon': "url('/src/assets/myPageIcon/alram_bell.svg')",
         'camera-icon': "url('/src/assets/myPageIcon/camera.svg')",
@@ -168,7 +168,7 @@ export default {
         'paragraph-md': [
           '0.875rem',
           {
-            fontWeight: 600,
+            fontWeight: 400,
             letterSpacing: '0px',
             lineHeight: 1.5,
           },
@@ -176,7 +176,7 @@ export default {
         'paragraph-sm': [
           '0.625rem',
           {
-            fontWeight: 500,
+            fontWeight: 400,
             letterSpacing: '0px',
             lineHeight: 1.5,
           },
