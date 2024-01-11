@@ -1,6 +1,5 @@
 import { createPrimaryBtn, toggleValid } from '../../../components/main_button';
 import { getNode, pb, setStorage } from '../../../lib';
-import { cache } from '../cache';
 
 // 돔 엘리먼트
 const $form = getNode('form');
@@ -46,11 +45,10 @@ const handleSubmit = async (e) => {
     state.email = false;
     $emailBox.classList.add(HAS_EMAIL_CLASS);
   } catch {
-    cache['users-oauth'] = { email: $inputEmail.value, pw: $inputPW.value };
-    // setStorage(
-    //   'users-oauth',
-    //   `${JSON.stringify({ email: $inputEmail.value, pw: $inputPW.value })}`
-    // );
+    setStorage(
+      'users-oauth',
+      `${JSON.stringify({ email: $inputEmail.value, pw: $inputPW.value })}`
+    );
 
     window.location.href = '/src/pages/login/oauth/';
   }
