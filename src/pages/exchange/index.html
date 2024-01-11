@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="/src/styles/tailwind.css">
   <title>엔터 이듬</title>
 </head>
-<body class="min-h-screen min-w-screen max-w-screen m-auto">
+<body class="min-h-screen min-w-screen max-w-screen m-auto" id="body">
   <header class="w-full ">
     <div class="flex justify-between ">
       <div class="flex items-center">
@@ -40,67 +40,15 @@
       </ul>
     </div>
   </header>
-  <main class="overflow-auto  h-[calc(100vh-40px-69px)] relative">
+  <main class="overflow-auto h-[calc(100vh-40px-69px)] relative">
     <nav class="w-full flex flex-col justify-center items-center gap-2 self-stretch">
       <ul class="flex text-center gap-2 items-center w-full p-2">
-        <li class="grow hover:border-b-2 border-primary"><a href="/" aria-label="기기거래 페이지로 이동" tabindex="0">기기거래</a></li>
-        <li class="grow hover:border-b-2 border-primary"><a href="#" aria-label="프로젝트 구인 페이지로 이동" tabindex="0">프로젝트 구인</a></li>
-        <li class="grow hover:border-b-2 border-primary"><a href="#" aria-label="과외 클래스로 페이지로 이동" tabindex="0"  >과외/클래스</a></li>
+        <li class="grow border-b-2 border-primary"><a href="/" aria-label="기기거래 페이지로 이동" tabindex="0">기기거래</a></li>
+        <li class="grow border-primary"><a href="#" aria-label="프로젝트 구인 페이지로 이동" tabindex="0">프로젝트 구인</a></li>
+        <li class="grow border-primary"><a href="#" aria-label="과외 클래스로 페이지로 이동" tabindex="0"  >과외/클래스</a></li>
       </ul>
     </nav>
-    <section class="flex flex-col sticky top-0">
-      <div class="flex p-3 gap-3 justify-center items-center border-b boder-[0.3px]" id="exchangeList">
-        <figure>
-          <img src="/src/assets/image.jpeg" alt="2017 Mac Pro의 이미지" class="w-full grow rounded-lg">
-        </figure>
-        <div class="flex flex-col grow p-3 relative">
-          <h2 class="text-paragraph-md">2017 mac pro</h2>
-          <span class="text-paragraph-sm" aria-label="판매위치 • 작성시간">마포구 신수동 • 44분전</span>
-          <div class="flex items-end gap-2">
-            <span class="flex gap-2 bg-reservation-icon bg-no-repeat py-[2px] px-1 h-5 w-9"></span>
-            <span class="text-label-sm" aria-label="판매가격">800,000원</span>
-          </div>
-          <div class="flex gap-[2px] absolute right-1  bottom-[-1rem] pb-1 ">
-            <button type="button" class="heartContainer bg-heart-icon p-2 bg-no-repeat" aria-label="좋아요 표시하기"></button>
-            <span class="text-paragraph-sm">4</span>
-          </div>
-        </div>
-      </div>
-      <div class="flex p-3 gap-3 justify-center items-center border-b boder-[0.3px]">
-        <figure>
-          <img src="/src/assets/image.jpeg" alt="2017 Mac Pro의 이미지" class="w-full grow rounded-lg">
-        </figure>
-        <div class="flex flex-col grow p-3 relative">
-          <h2 class="text-paragraph-md">2017 mac pro</h2>
-          <span class="text-paragraph-sm" aria-label="판매위치 • 작성시간">마포구 신수동 • 44분전</span>
-          <div class="flex items-end gap-2">
-            <span class="flex gap-2 bg-reservation-icon bg-no-repeat py-[2px] px-1 h-5 w-9"></span>
-            <span class="text-label-sm" aria-label="판매가격">800,000원</span>
-          </div>
-          <div class="flex gap-[2px] absolute right-1  bottom-[-1rem] pb-1">
-            <button type="button" class="heartContainer bg-heart-icon p-2 bg-no-repeat" aria-label="좋아요 표시하기"></button>
-            <span class="text-paragraph-sm">4</span>
-          </div>
-        </div>
-      </div>
-      <div class="flex p-3 gap-3 justify-center items-center border-b boder-[0.3px]">
-        <figure>
-          <img src="/src/assets/image.jpeg" alt="2017 Mac Pro의 이미지" class="w-full grow rounded-lg">
-        </figure>
-        <div class="flex flex-col grow p-3 relative">
-          <h2 class="text-paragraph-md">2017 mac pro</h2>
-          <span class="text-paragraph-sm" aria-label="판매위치 • 작성시간">마포구 신수동 • 44분전</span>
-          <div class="flex items-end gap-2">
-            <span class="flex gap-2 bg-reservation-icon bg-no-repeat py-[2px] px-1 h-5 w-9"></span>
-            <span class="text-label-sm" aria-label="판매가격">800,000원</span>
-          </div>
-          <div class="flex gap-[2px] absolute right-1  bottom-[-1rem] pb-1">
-            <button type="button" class="heartContainer bg-heart-icon p-2 bg-no-repeat" aria-label="좋아요 표시하기"></button>
-            <span class="text-paragraph-sm">4</span>
-          </div>
-        </div>
-      </div>
-      
+    <section class="content flex flex-col sticky top-0">
     </section>
     <div class="absolute right-14">
       <div class="fixed bottom-20" id="plusButton-container">
@@ -121,7 +69,7 @@
           >
             <a
               class="bg-home-icon hover:bg-home_full-icon block relative h-full text-paragraph-sm bg-no-repeat bg-top"
-              href=""
+              href="/"
               aria-label="메인 페이지로 이동"
             >
               <span
@@ -135,7 +83,7 @@
           >
             <a
               class="bg-board-icon block hover:bg-board_full-icon relative h-full text-paragraph-sm bg-no-repeat bg-top"
-              href=""
+              href="/src/pages/board/index.html"
               aria-label="게시판 페이지로 이동"
               ><span
                 class="absolute w-full text-center -tracking-[1px] bottom-0 left-1/2 -translate-x-1/2"
@@ -148,7 +96,7 @@
           >
             <a
               class="bg-near hover:bg-near_full block relative h-full text-paragraph-sm bg-no-repeat bg-top"
-              href=""
+              href="#"
               aria-label="내 근처 페이지로 이동"
               ><span
                 class="absolute w-full text-center -tracking-[1px] bottom-0 left-1/2 -translate-x-1/2"
@@ -174,7 +122,7 @@
         >
           <a
             class="bg-my-icon hover:bg-my_full-icon block relative h-full text-paragraph-sm bg-no-repeat bg-top"
-            href=""
+            href="/src/pages/myeuid/index.html"
             aria-label="채팅 페이지로 이동"
             ><span
               class="absolute w-full text-center text-paragraph-sm -tracking-[1px] bottom-0 left-1/2 -translate-x-1/2"

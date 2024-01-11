@@ -1,18 +1,23 @@
-const plusButton = document.querySelector('#plusButton-container');
-const plusButtonIcon = document.querySelector('#plusButton');
-const body = document.querySelector('body');
-const exchangeList = document.querySelector('#exchangeList');
-const heartContainer = document.querySelectorAll('.heartContainer');
-let clickCount = 0;
+/* eslint-disable no-param-reassign */
+import { getNode } from '/src/lib';
+import list from './exchangeData';
+
+
+const plusButton = getNode('#plusButton');
+const body = getNode('#body');
+const section = getNode('.content');
+let plusClickCount = 0;
 let isClick = false;
+
 let createCategory;
 
-function onClick(){
-  clickCount++;
+function show(){
+  plusClickCount+=1;
 
-  if(clickCount % 2 !== 0 ){
-    body.style.background='rgba(0, 0, 0, 0.5)';
-    plusButton.insertAdjacentHTML('beforebegin', /*html */
+  if(plusClickCount % 2 !== 0 ){
+    body.style.background = 'rgba(0, 0, 0, 0.30)';
+    section.style.filter = 'brightness(50%)';
+    plusButton.insertAdjacentHTML('beforebegin', /* html */
     `
     <div id='span-tag' class="flex flex-col absolute left-[-78px] w-full min-w-screen max-w-screen">
       <div class="fixed bottom-36 flex flex-col w-[133px] items-center gap-1">
@@ -26,6 +31,7 @@ function onClick(){
     createCategory = document.querySelector('#span-tag');
   }else {
     body.style.background='';
+    section.style.filter='';
     if(createCategory) {
       createCategory.remove();
     }
@@ -33,31 +39,17 @@ function onClick(){
 }
 
 function toggle(){
-  isClick != isClick
+  isClick = !isClick
   this.classList.toggle('bg-plus-icon');
   this.classList.toggle('bg-exchange-close-icon');
   this.classList.toggle('bg-white');
   this.classList.toggle('bg-secondary');
 }
 
-function move(){
-  window.location.href='/src/pages/exchange/exchangeDetail.html';
-}
 
-function stop(e){
-  e.stopPropagation();
-  isClick = !isClick; 
-  if(!isClick){
-    e.currentTarget.style.backgroundColor=''; 
-  } else {
-    e.currentTarget.style.backgroundColor='pink';
-  }
-}
+list();
+
+plusButton.addEventListener('click', show);
+plusButton.addEventListener('click', toggle);
 
 
-heartContainer.forEach((item) => {
-  item.addEventListener('click', stop);
-})
-plusButton.addEventListener('click', onClick);
-plusButtonIcon.addEventListener('click', toggle);
-exchangeList.addEventListener('click', move)
