@@ -1,3 +1,5 @@
+/* eslint-disable no-param-reassign */
+
 document.addEventListener('DOMContentLoaded', () => {
   const allAgreeCheckbox = document.querySelector('#all-agree-checkbox');
   const agreeCheckboxes = document.querySelectorAll('.agree-checkbox');
@@ -28,9 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 전체동의 체크박스가 true/false면 하위 체크박스도 true/false
     agreeCheckboxes.forEach((checkbox) => {
-      const currentCheckbox = checkbox; // checkbox를 다른 변수에 할당
-
-      currentCheckbox.checked = isChecked; // 개별 체크박스의 상태를 "전체 동의" 체크박스의 상태로 업데이트
+      checkbox.checked = isChecked; // 개별 체크박스의 상태를 "전체 동의" 체크박스의 상태로 업데이트
     });
 
     const checked = !isChecked;
