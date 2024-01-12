@@ -1,3 +1,4 @@
+import { createModal1Btn } from '../../../components/Modal/Modal';
 import { createPrimaryBtn, toggleValid } from '../../../components/main_button';
 import { getNode, pb } from '../../../lib';
 
@@ -9,11 +10,20 @@ const $inputPW = getNode('#pw');
 const $emailBox = getNode('#email-box');
 const $pwBox = getNode('#pw-box');
 
+const $loginToEmail = getNode('#login-to-email');
+
 // 버튼
 const $submitButton = createPrimaryBtn({
   id: 'formbutton',
   type: 'submit',
-  value: '가입 시작하기',
+  value: '로그인',
+});
+
+// 모달
+const [$modal, $modalButton] = createModal1Btn({
+  title: '😭서비스 준비중입니다.',
+  desc: '열심히 준비중이예요💦<br> 조금만 기다려주세요',
+  buttonText: '알겠어요',
 });
 
 // 상태 관리
@@ -67,3 +77,6 @@ $inputEmail.oninput = ({ target }) =>
   checkInput(target, emailPattern, $emailBox);
 $inputPW.oninput = ({ target }) => checkInput(target, pwPattern, $pwBox);
 $submitButton.onclick = handleSubmit;
+
+$loginToEmail.onclick = () => $modal.showing();
+$modalButton.onclick = () => $modal.closing();

@@ -90,3 +90,10 @@ $categoryList.addEventListener('click', handleCategory());
 $back.onclick = () => {
   window.location.href = '/src/pages/login/';
 };
+
+const textToStar = (text) => {
+  if (text.length < 3) return text.at(0) + '*'.repeat(text.length - 1);
+  const first = text.at(0);
+  const last = text.at(-1);
+  return first + '*'.repeat(text.length - 2) + last;
+};
