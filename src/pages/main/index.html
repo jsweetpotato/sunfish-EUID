@@ -44,9 +44,9 @@
       <header class="w-full">
         <div class="flex justify-between">
           <div class="flex h-full items-center">
-            <h1 class="items-center pl-3 text-label-lg font-semibold">
+            <span class="items-center pl-3 text-label-lg font-semibold">
               남가좌제2동
-            </h1>
+            </span>
             <button
               type="button"
               aria-label="내 동네 설정하기"
@@ -73,269 +73,79 @@
             </li>
           </ul>
         </div>
-
-        <div
-          id="swiper-container"
-          class="swiper w-full aspect-[1.5/1] bg-yellow-300 transition-all duration-300"
-          role="banner"
-        >
-          <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <div class="relative w-full h-full">
-                <img
-                  class="absolute bottom-0 w-full"
-                  src="/src/assets/banner.png"
-                  alt="메인 배너"
-                />
-                <div class="absolute top-[6.25%] left-[6.25%] text-white">
-                  <h2 class="w-[148px] text-label-lg font-medium">
-                    풀리지 않는 버그 속 개발자로 살아남기
-                  </h2>
-                  <a class="text-paragraph-sm" href="">자세히 보기</a>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="relative w-full h-full">
-                <img
-                  class="absolute bottom-0 w-full"
-                  src="/src/assets/banner.png"
-                  alt="메인 배너"
-                />
-                <div class="absolute top-[6.25%] left-[6.25%] text-white">
-                  <h2 class="w-[148px] text-label-lg font-medium">
-                    풀리지 않는 버그 속 개발자로 살아남기
-                  </h2>
-                  <a class="text-paragraph-sm" href="">자세히 보기</a>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="relative w-full h-full">
-                <img
-                  class="absolute bottom-0 w-full"
-                  src="/src/assets/banner.png"
-                  alt="메인 배너"
-                />
-                <div class="absolute top-[6.25%] left-[6.25%] text-white">
-                  <h2 class="w-[148px] text-label-lg font-medium">
-                    풀리지 않는 버그 속 개발자로 살아남기
-                  </h2>
-                  <a class="text-paragraph-sm" href="">자세히 보기</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-pagination" style="bottom: 0"></div>
-          <div class="swiper-button-prev"></div>
-          <div class="swiper-button-next"></div>
-        </div>
-
-        <nav>
-          <ul class="flex justify-around bg-primary">
-            <li>
-              <button class="p-2 text-label-md text-white">
-                선배님 스토리
-              </button>
-            </li>
-            <li>
-              <button class="p-2 text-label-md text-contents-content-tertiary">
-                기기 거래
-              </button>
-            </li>
-            <li>
-              <button class="p-2 text-label-md text-contents-content-tertiary">
-                질의 응답
-              </button>
-            </li>
-            <li>
-              <button class="p-2 text-label-md text-contents-content-tertiary">
-                같이 해요
-              </button>
-            </li>
-          </ul>
-        </nav>
       </header>
 
-      <main id="main" class="relative overflow-auto flex-1">
+      <main id="main" class="relative overflow-x-hidden overflow-y-auto flex-1">
         <section class="w-full">
-          <h2 class="sr-only">선배님 스토리 게시글 리스트</h2>
-          <div class="[&>*:nth-child(even)]:ml-auto p-3 flex flex-wrap gap-y-6">
-            <article
-              class="relative w-[48%] h-[200px] rounded-lg border border-contents-content-secondary shadow-md"
-            >
-              <img
-                class="w-full h-1/2 object-cover rounded-t-lg bg-contents-content-secondary"
-                src="/src/assets/image.jpeg"
-                alt=""
-              />
-
-              <div
-                class="p-1.5 h-1/2 text-paragraph-sm leading-[1.6] font-normal"
-              >
-                <a class="absolute top-0 left-0 w-full h-full" href="">
-                  <span
-                    class="absolute w-[92%] top-[105px] left-1.5 text-ellipsis line-clamp-2"
-                  >
-                    디자인에 대해 하나도 알지 못했던 내가 취업할 수 있었던 이유
-                  </span>
-                </a>
-                <span
-                  class="block h-9 mt-8 mb-1 text-contents-content-secondary"
-                  >한국철도공사·불탄고구마불판</span
-                >
-                <div class="text-label-sm">
-                  <span
-                    class="px-1 text-secondary border border-secondary rounded"
-                    >1기</span
-                  >
-                  <span
-                    class="px-1 text-gray-700 border border-contents-content-tertiary rounded"
-                    >프론트엔드</span
-                  >
+          <div
+            id="swiper-container"
+            class="swiper w-full aspect-[1.5/1] bg-yellow-300 transition-all duration-300"
+            role="banner"
+          >
+            <h2 class="sr-only">메인 배너 캐러셀</h2>
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <div class="relative w-full h-full">
+                  <img
+                    class="absolute bottom-0 w-full"
+                    src="/src/assets/banner.png"
+                    alt="메인 배너"
+                  />
+                  <div class="absolute top-[6.25%] left-[6.25%] text-white">
+                    <h3 class="w-[148px] text-label-lg font-medium">
+                      풀리지 않는 버그 속 개발자로 살아남기
+                    </h3>
+                    <a class="text-paragraph-sm" href="">자세히 보기</a>
+                  </div>
                 </div>
               </div>
-            </article>
-
-            <article
-              class="relative w-[48%] h-[200px] rounded-lg border border-contents-content-secondary shadow-md"
-            >
-              <img
-                class="w-full h-1/2 object-cover rounded-t-lg bg-contents-content-secondary"
-                src="/src/assets/image.jpeg"
-                alt=""
-              />
-              <div
-                class="p-1.5 h-1/2 text-paragraph-sm leading-[1.6] font-normal"
-              >
-                <a class="absolute top-0 left-0 w-full h-full" href="">
-                  <span
-                    class="absolute w-[92%] top-[105px] left-1.5 text-ellipsis line-clamp-2"
-                  >
-                    디자인에 대해 하나도 알지 못했던 내가 취업할 수 있었던 이유
-                  </span>
-                </a>
-                <span
-                  class="block h-9 mt-8 mb-1 text-contents-content-secondary"
-                  >한국철도공사·불탄고구마불판</span
-                >
-                <div class="text-label-sm">
-                  <span
-                    class="px-1 text-secondary border border-secondary rounded"
-                    >1기</span
-                  >
-                  <span
-                    class="px-1 text-gray-700 border border-contents-content-tertiary rounded"
-                    >프론트엔드</span
-                  >
+              <div class="swiper-slide">
+                <div class="relative w-full h-full">
+                  <img
+                    class="absolute bottom-0 w-full"
+                    src="/src/assets/banner.png"
+                    alt="메인 배너"
+                  />
+                  <div class="absolute top-[6.25%] left-[6.25%] text-white">
+                    <h3 class="w-[148px] text-label-lg font-medium">
+                      풀리지 않는 버그 속 개발자로 살아남기
+                    </h3>
+                    <a class="text-paragraph-sm" href="">자세히 보기</a>
+                  </div>
                 </div>
               </div>
-            </article>
-
-            <article
-              class="relative w-[48%] h-[200px] rounded-lg border border-contents-content-secondary shadow-md"
-            >
-              <img
-                class="w-full h-1/2 object-cover rounded-t-lg bg-contents-content-secondary"
-                src="/src/assets/image.jpeg"
-                alt=""
-              />
-              <div
-                class="p-1.5 h-1/2 text-paragraph-sm leading-[1.6] font-normal"
-              >
-                <a class="absolute top-0 left-0 w-full h-full" href="">
-                  <span
-                    class="absolute w-[92%] top-[105px] left-1.5 text-ellipsis line-clamp-2"
-                  >
-                    디자인에 대해 하나도 알지 못했던 내가 취업할 수 있었던 이유
-                  </span>
-                </a>
-                <span
-                  class="block h-9 mt-8 mb-1 text-contents-content-secondary"
-                  >한국철도공사·불탄고구마불판</span
-                >
-                <div class="text-label-sm">
-                  <span
-                    class="px-1 text-secondary border border-secondary rounded"
-                    >1기</span
-                  >
-                  <span
-                    class="px-1 text-gray-700 border border-contents-content-tertiary rounded"
-                    >프론트엔드</span
-                  >
+              <div class="swiper-slide">
+                <div class="relative w-full h-full">
+                  <img
+                    class="absolute bottom-0 w-full"
+                    src="/src/assets/banner.png"
+                    alt="메인 배너"
+                  />
+                  <div class="absolute top-[6.25%] left-[6.25%] text-white">
+                    <h3 class="w-[148px] text-label-lg font-medium">
+                      풀리지 않는 버그 속 개발자로 살아남기
+                    </h3>
+                    <a class="text-paragraph-sm" href="">자세히 보기</a>
+                  </div>
                 </div>
               </div>
-            </article>
-
-            <article
-              class="relative w-[48%] h-[200px] rounded-lg border border-contents-content-secondary shadow-md"
-            >
-              <img
-                class="w-full h-1/2 object-cover rounded-t-lg bg-contents-content-secondary"
-                src="/src/assets/image.jpeg"
-                alt=""
-              />
-              <div
-                class="p-1.5 h-1/2 text-paragraph-sm leading-[1.6] font-normal"
-              >
-                <a class="absolute top-0 left-0 w-full h-full" href="">
-                  <span
-                    class="absolute w-[92%] top-[105px] left-1.5 text-ellipsis line-clamp-2"
-                  >
-                    디자인에 대해 하나도 알지 못했던 내가 취업할 수 있었던 이유
-                  </span>
-                </a>
-                <span
-                  class="block h-9 mt-8 mb-1 text-contents-content-secondary"
-                  >한국철도공사·불탄고구마불판</span
-                >
-                <div class="text-label-sm">
-                  <span
-                    class="px-1 text-secondary border border-secondary rounded"
-                    >1기</span
-                  >
-                  <span
-                    class="px-1 text-gray-700 border border-contents-content-tertiary rounded"
-                    >프론트엔드</span
-                  >
-                </div>
-              </div>
-            </article>
-
-            <article
-              class="relative w-[48%] h-[200px] rounded-lg border border-contents-content-secondary shadow-md"
-            >
-              <img
-                class="w-full h-1/2 object-cover rounded-t-lg bg-contents-content-secondary"
-                src="/src/assets/image.jpeg"
-                alt=""
-              />
-              <div
-                class="p-1.5 h-1/2 text-paragraph-sm leading-[1.6] font-normal"
-              >
-                <a class="absolute top-0 left-0 w-full h-full" href="">
-                  <span
-                    class="absolute w-[92%] top-[105px] left-1.5 text-ellipsis line-clamp-2"
-                  >
-                    디자인에 대해 하나도 알지 못했던 내가 취업할 수 있었던 이유
-                  </span>
-                </a>
-                <span
-                  class="block h-9 mt-8 mb-1 text-contents-content-secondary"
-                  >한국철도공사·불탄고구마불판</span
-                >
-                <div class="text-label-sm">
-                  <span
-                    class="px-1 text-secondary border border-secondary rounded"
-                    >1기</span
-                  >
-                  <span
-                    class="px-1 text-gray-700 border border-contents-content-tertiary rounded"
-                    >프론트엔드</span
-                  >
-                </div>
-              </div>
-            </article>
+            </div>
+            <div
+              class="pagination z-10"
+              style="
+                width: 41px;
+                top: 75%;
+                left: 11%;
+                height: 2px;
+                background-color: white;
+              "
+            ></div>
+          </div>
+          <div
+            id="story-container"
+            class="[&>*:nth-child(odd)]:ml-auto p-3 flex flex-wrap gap-y-6"
+          >
+            <h2 class="sr-only">선배님 스토리 게시물 목록</h2>
           </div>
         </section>
 
