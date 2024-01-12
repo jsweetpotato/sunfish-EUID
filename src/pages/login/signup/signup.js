@@ -50,7 +50,11 @@ const handleSubmit = async (e) => {
   } catch {
     storage.setItem(
       'users-oauth',
-      JSON.stringify({ email: $inputEmail.value, pw: $inputPW.value })
+      JSON.stringify({
+        email: $inputEmail.value,
+        password: $inputPW.value,
+        passwordConfirm: $inputPWConfirm.value,
+      })
     );
 
     window.location.href = '/src/pages/login/oauth/';

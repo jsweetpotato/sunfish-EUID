@@ -37,7 +37,7 @@ const handleSubmit = async (e) => {
     await pb
       .collection('users')
       .authWithPassword($inputEmail.value, $inputPW.value);
-    window.location.href = '/src/pages/login/oauth/';
+    window.location.href = '/src/pages/myeuid/';
   } catch (err) {
     toggleValid($submitButton, false);
     $emailBox.classList.add(INVALID_CLASS);

@@ -4,7 +4,7 @@ import {
   createSecondaryBtn,
   toggleValid,
 } from '../../../components/main_button';
-import { getNode, setStorage } from '../../../lib';
+import { getNode, pb } from '../../../lib';
 
 // 돔 엘리먼트
 const $form = document.querySelector('#oauth-form');
@@ -27,6 +27,8 @@ const [$alertModal, $modalBtn] = createModal1Btn({
   desc: '콘솔창에서 인증번호를 확인해주세요!',
   buttonText: '확인',
 });
+
+const storage = window.localStorage;
 
 // 상태 관리
 const state = {
@@ -61,6 +63,7 @@ const handleOauthInput = () => {
     }
   };
 };
+
 const drawTemplate = () => {
   const template = /* html */ `
   <div class="relative">
@@ -86,10 +89,17 @@ const drawTemplate = () => {
   $oauthInput.oninput = handleOauthInput();
 };
 
-const handleSubmitButton = (e) => {
+const handleSubmitButton = async (e) => {
   e.preventDefault();
   if (state.oauthNum === $oauthInput.value) {
-    console.log('인증');
+    const data = JSON.parse(storage.getItem('users-oauth'));
+    console.dir(data);
+    data.phone = $phoneInput.value;
+
+    await pb.collection('users').create(data);
+    storage.removeItem('users-oauth');
+    await pb.collection('users').authWithPassword(data.email, data.password);
+    window.location.href = '/src/pages/myeuid/editProfile.html';
   }
 };
 
