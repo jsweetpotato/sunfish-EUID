@@ -9,6 +9,7 @@ const $inputPW = getNode('#pw');
 const $emailBox = getNode('#email-box');
 const $pwBox = getNode('#pw-box');
 
+// 버튼
 const $submitButton = createPrimaryBtn({
   id: 'formbutton',
   type: 'submit',

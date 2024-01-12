@@ -1,5 +1,6 @@
+import { createModal2Btn } from '../../../components/Modal/Modal';
 import { createPrimaryBtn, toggleValid } from '../../../components/main_button';
-import { getNode, pb, setStorage } from '../../../lib';
+import { getNode, pb } from '../../../lib';
 
 // 돔 엘리먼트
 const $form = getNode('form');
@@ -11,13 +12,23 @@ const $emailBox = getNode('#email-box');
 const $pwBox = getNode('#pw-box');
 const $pwConfirmBox = getNode('#pw-confirm-box');
 
-const storage = window.localStorage;
+const $back = document.querySelector('#back');
 
+// 버튼
 const $submitButton = createPrimaryBtn({
   id: 'formbutton',
   type: 'submit',
   value: '가입 시작하기',
 });
+
+// 모달
+const [$backModal, $cancelBack, $SubmitBack] = createModal2Btn({
+  title: '정말 취소하시겠어요?',
+  desc: '시작하기 페이지로 이동하면 작성하신 데이터가 소멸됩니다.',
+});
+
+// localStorage
+const storage = window.localStorage;
 
 // 상태 관리
 const state = {
@@ -35,20 +46,20 @@ const HAS_EMAIL_CLASS = 'hasemail';
 
 // 정규표현식 패턴
 const emailPattern = /^[\w-]+@([a-z]+\.)+[\w]{2,4}/g;
-const pwPattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,15}$/;
+const pwPattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;
 // const pwPattern = /^(?=.*[0-9]).{1,15}$/;
+
+let allUser;
+let allUserEmail;
 
 const handleSubmit = async (e) => {
   e.preventDefault();
-  try {
-    await pb
-      .collection('users')
-      .getFirstListItem(`email="${$inputEmail.value}"`);
+
+  if (allUserEmail.includes($inputEmail.value)) {
     toggleValid($submitButton, false);
     state.email = false;
     $emailBox.classList.add(HAS_EMAIL_CLASS);
-  } catch {
-    console.log(false);
+  } else {
     storage.setItem(
       'users-oauth',
       JSON.stringify({
@@ -115,3 +126,15 @@ $inputEmail.oninput = ({ target }) =>
 $inputPW.oninput = ({ target }) => checkInput(target, pwPattern, $pwBox);
 $submitButton.onclick = handleSubmit;
 $inputPWConfirm.oninput = checkConfirm;
+
+$back.onclick = () => $backModal.showing();
+$cancelBack.onclick = () => $backModal.closing();
+$SubmitBack.onclick = () => {
+  storage.removeItem('user-oauth');
+  storage.removeItem('pocketbase_auth');
+  window.location.href = '/src/pages/login/';
+};
+
+// eslint-disable-next-line prefer-const
+allUser = await pb.collection('users').getFullList();
+allUserEmail = allUser.map((item) => item.email);
