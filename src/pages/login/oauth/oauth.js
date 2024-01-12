@@ -100,13 +100,11 @@ const handleSubmitButton = async (e) => {
   e.preventDefault();
   if (state.oauthNum === $oauthInput.value) {
     const data = JSON.parse(storage.getItem('users-oauth'));
-    console.dir(data);
+    data.categorys = JSON.parse(storage.getItem('categorys'));
+    storage.removeItem('categorys');
     data.phone = $phoneInput.value;
-
-    toggleValid($summitButton, false);
-    await pb.collection('users').create(data);
-    storage.removeItem('users-oauth');
-    await pb.collection('users').authWithPassword(data.email, data.password);
+    storage.setItem('users-oauth', JSON.stringify(data));
+    window.history.replaceState(null, null, '/src/pages/login/');
     window.location.href = '/src/pages/myeuid/editProfile.html';
   }
 };

@@ -24,8 +24,10 @@ const CATEGORY_LIST = [
   'Backend',
   'AI',
   'Blockchain',
+  'React',
+  'DataAnalysis',
+  'Publishing',
 ];
-
 // 상태 관리
 const state = {
   Programming: false,
@@ -35,6 +37,9 @@ const state = {
   Backend: false,
   AI: false,
   Blockchain: false,
+  React: false,
+  dataAnalysis: false,
+  Publishing: false,
 };
 
 const drawTemplate = () => {

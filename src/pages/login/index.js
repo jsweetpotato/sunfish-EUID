@@ -13,7 +13,7 @@ const handleStart = (e) => {
 
 const handleLogin = (e) => {
   e.preventDefault();
-  storage.setItem('type', true);
+  storage.setItem('login', true);
   window.location.href = '/src/pages/login/signin/';
 };
 
