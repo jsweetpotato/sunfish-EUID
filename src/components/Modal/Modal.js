@@ -14,7 +14,7 @@ export const createModal1Btn = ({ title, desc, buttonText = '확인' }) => {
     <div class="w-[233px] p-[18px] flex flex-col items-center gap-5">
       <p class="text-label-md" aria-label="모달 제목">${title}</p>
       <span
-        class="text-paragraph-md text-gray-600"
+        class="text-paragraph-md text-center text-gray-600"
         aira-label="모달 본문"
         >${desc}</span>
       <button class="w-full h-9 bg-secondary text-white text-label-md rounded hover:brightness-90">
@@ -68,7 +68,7 @@ export const createModal2Btn = ({
     <div class="w-[233px] p-[18px] flex flex-col items-center gap-5">
       <p class="text-label-md" aria-label="모달 제목">${title}</p>
       <span
-        class="text-paragraph-md text-gray-600"
+        class="text-paragraph-md text-center text-gray-600"
         aira-label="모달 본문"
         >${desc}</span>      
       <div class="flex gap-2 w-full">

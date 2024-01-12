@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/src/styles/tailwind.css" />
     <title>my-euid</title>
+    <script type="module" src="/src/pages/myeuid/index.js"></script>
     <style>
       .is-hover {
         transition-property: all;
@@ -41,7 +42,7 @@
           class="flex flex-col justify-center items-center gap-[9px]"
         >
           <img
-            src="/src/assets/image.jpeg"
+            src="/src/assets/profile.png"
             alt="내 프로필 사진"
             class="w-[68px] rounded-full shadow-[0_4px_4px_0_rgba(0,0,0,0.1)]"
           />
@@ -64,7 +65,7 @@
             </li>
             <li class="is-hover w-12 h-full">
               <a
-                href="/src/pages/myeuid/MyProfile.html"
+                href="/src/pages/myeuid/myProfile.html"
                 role="button"
                 aria-label="나의 프로필 보기"
                 class="bg-profile-icon block bg-top bg-no-repeat h-full mt-[3px] relative"
@@ -100,7 +101,7 @@
                 href=""
                 role="button"
                 aria-label="관심목록 보기"
-                class="bg-heart-icon bg-no-repeat w-full h-full bg-[12px_14px] flex items-center"
+                class="bg-empty_heart-icon bg-no-repeat w-full h-full bg-[12px_14px] flex items-center"
               >
                 <span class="text-paragraph-md font-normal ml-10"
                   >관심목록</span
@@ -141,7 +142,7 @@
                 href=""
                 role="button"
                 aria-label="내 모임 보기"
-                class="bg-people-icon bg-no-repeat w-full h-full bg-[12px_14px] flex items-center"
+                class="bg-people_black-icon bg-no-repeat w-full h-full bg-[12px_14px] flex items-center"
               >
                 <span class="text-paragraph-md font-normal ml-10">내 모임</span>
               </a>
@@ -196,6 +197,28 @@
                 <span class="text-paragraph-md font-normal ml-3">공지사항</span>
               </a>
             </li>
+
+            <li class="w-full h-12 is-hover">
+              <button
+                id="logoutButton"
+                aria-label="로그아웃 하기"
+                class="h-full flex items-center"
+                style="width: 100%"
+              >
+                <span class="text-paragraph-md font-normal ml-3">로그아웃</span>
+              </button>
+            </li>
+
+            <li class="w-full h-12 is-hover">
+              <button
+                id="withdrawButton"
+                aria-label="회원탈퇴 하기"
+                class="h-full flex items-center"
+                style="width: 100%"
+              >
+                <span class="text-paragraph-md font-normal ml-3">회원탈퇴</span>
+              </button>
+            </li>
           </ul>
         </div>
       </section>
@@ -220,7 +243,7 @@
           <li class="h-full w-12 pt-0.5 is-hover">
             <a
               class="bg-board-icon block relative h-full text-paragraph-sm font-normal bg-no-repeat bg-top"
-              href=""
+              href="/src/pages/board/"
               ><span
                 class="absolute w-full text-center bottom-0 left-1/2 -translate-x-1/2"
                 >게시판</span
@@ -230,7 +253,7 @@
           <li class="h-full w-12 pt-0.5 is-hover">
             <a
               class="bg-near block relative h-full text-paragraph-sm font-normal bg-no-repeat bg-top"
-              href=""
+              href="/src/pages/exchange/"
               ><span
                 class="absolute w-full text-center bottom-0 left-1/2 -translate-x-1/2"
                 >내 근처</span
@@ -260,5 +283,63 @@
         </ul>
       </nav>
     </footer>
+
+    <!-- 로그아웃 모달 -->
+    <dialog
+      id="logoutModal"
+      class="modal bg-white shadow-lg backdrop:bg-black backdrop:bg-opacity-40 rounded-3xl"
+    >
+      <div class="w-[233px] px-[18px] py-5 flex flex-col items-center gap-5">
+        <p class="text-label-medium font-semibold leading-[150%]">
+          ❗️ 로그아웃할까요?
+        </p>
+        <span
+          class="text-paragraph-sm text-center text-contents-content-secondary leading-[160%]"
+          >언제든지 다시 로그인하실 수 있어요.</span
+        >
+        <div class="flex w-full justify-between gap-[6px]">
+          <button
+            class="closeModalButton w-full h-9 bg-gray-100 text-black text-label-medium font-semibold leading-[150%] rounded hover:bg-gray-300 transition-all duration-300"
+          >
+            취소
+          </button>
+          <button
+            onclick="location.href='/src/pages/login/'"
+            class="w-full h-9 bg-secondary text-white text-label-medium font-semibold leading-[150%] rounded hover:bg-blue-600 transition-all duration-300"
+          >
+            확인
+          </button>
+        </div>
+      </div>
+    </dialog>
+
+    <!-- 회원탈퇴 모달 -->
+    <dialog
+      id="withdrawModal"
+      class="modal bg-white shadow-lg backdrop:bg-black backdrop:bg-opacity-40 rounded-3xl"
+    >
+      <div class="w-[233px] px-[18px] py-5 flex flex-col items-center gap-5">
+        <p class="text-label-medium font-semibold leading-[150%]">
+          ❗️ 탈퇴할까요?
+        </p>
+        <span
+          class="text-paragraph-sm text-center text-contents-content-secondary leading-[160%]"
+          >계정은 삭제되며, 복구되지 않습니다.</span
+        >
+        <div class="flex w-full justify-between gap-[6px]">
+          <button
+            class="closeModalButton w-full h-9 bg-gray-100 text-black text-label-medium font-semibold leading-[150%] rounded hover:bg-gray-300 transition-all duration-300"
+          >
+            취소
+          </button>
+          <button
+            onclick="location.href='/src/pages/login/'"
+            class="w-full h-9 bg-secondary text-white text-label-medium font-semibold leading-[150%] rounded hover:bg-blue-600 transition-all duration-300"
+          >
+            확인
+          </button>
+        </div>
+      </div>
+    </dialog>
   </body>
 </html>

@@ -1,9 +1,8 @@
-import PocketBase from 'pocketbase';
+import { createModal2Btn } from '../../../components/Modal/Modal';
 import { createPrimaryBtn, toggleValid } from '../../../components/main_button';
-import { getNode } from '../../../lib/dom/getNode';
+import { getNode, pb } from '../../../lib';
 
-const INVALID_CLASS = 'invalid';
-
+// 돔 엘리먼트
 const $form = getNode('form');
 const $inputEmail = getNode('#email');
 const $inputPW = getNode('#pw');
@@ -13,41 +12,72 @@ const $emailBox = getNode('#email-box');
 const $pwBox = getNode('#pw-box');
 const $pwConfirmBox = getNode('#pw-confirm-box');
 
+const $back = document.querySelector('#back');
+
+// 버튼
+const $submitButton = createPrimaryBtn({
+  id: 'formbutton',
+  type: 'submit',
+  value: '가입하기',
+});
+
+// 모달
+const [$backModal, $cancelBack, $SubmitBack] = createModal2Btn({
+  title: '정말 취소하시겠어요?',
+  desc: '시작하기 페이지로 이동하면 작성하신 데이터가 소멸됩니다.',
+});
+
+// localStorage
+const storage = window.localStorage;
+
+// 상태 관리
 const state = {
   email: false,
   pw: false,
   pwConfirm: false,
 };
 
-const pb = new PocketBase(import.meta.env.VITE_PB_URL);
+// 버튼 draw
+$form.insertAdjacentElement('beforeend', $submitButton);
 
+// 클래스 세팅
+const INVALID_CLASS = 'invalid';
+const HAS_EMAIL_CLASS = 'hasemail';
+
+// 정규표현식 패턴
 const emailPattern = /^[\w-]+@([a-z]+\.)+[\w]{2,4}/g;
 const pwPattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;
-// const pwPattern = /^(?=[a-z]).{8,15}$/;
+// const pwPattern = /^(?=.*[0-9]).{1,15}$/;
 
-const $submitButton = createPrimaryBtn({
-  id: 'formbutton',
-  type: 'submit',
-  value: '가입 시작하기',
-  // eslint-disable-next-line no-use-before-define
-  onClick: handleSubmit,
-});
+let allUser;
+let allUserEmail;
 
-async function handleSubmit(e) {
+const handleSubmit = async (e) => {
   e.preventDefault();
-  // const data = pb
-  //   .collection('users')
-  //   .authWithPassword($inputEmail.value, $inputPW.value);
-  console.table(state);
-}
+
+  if (allUserEmail.includes($inputEmail.value)) {
+    toggleValid($submitButton, false);
+    state.email = false;
+    $emailBox.classList.add(HAS_EMAIL_CLASS);
+  } else {
+    storage.setItem(
+      'users-oauth',
+      JSON.stringify({
+        email: $inputEmail.value,
+        password: $inputPW.value,
+        passwordConfirm: $inputPWConfirm.value,
+        emailVisibility: true,
+      })
+    );
+    window.location.href = '/src/pages/login/oauth/';
+  }
+};
 
 const checkState = () => {
   if (state.email && state.pw && state.pwConfirm) {
-    console.table(state);
     toggleValid($submitButton, true);
   } else {
     toggleValid($submitButton, false);
-    console.table(state);
   }
 };
 
@@ -68,7 +98,11 @@ const checkInput = (target, regex, parent) => {
   checkState();
 };
 
-// 비밀번호 confirm 오류 해결!!
+const checkEmail = (target, regex, parent) => {
+  parent.classList.remove(HAS_EMAIL_CLASS);
+  checkInput(target, regex, parent);
+  checkState();
+};
 
 const checkConfirm = ({ target }) => {
   if (target.value === '') {
@@ -86,12 +120,21 @@ const checkConfirm = ({ target }) => {
   checkState();
 };
 
-$inputEmail.addEventListener('input', ({ target }) =>
-  checkInput(target, emailPattern, $emailBox)
-);
-$inputPW.addEventListener('input', ({ target }) =>
-  checkInput(target, pwPattern, $pwBox)
-);
-$inputPWConfirm.addEventListener('input', checkConfirm);
+// 이벤트 바인딩
+$inputEmail.oninput = ({ target }) =>
+  checkEmail(target, emailPattern, $emailBox);
+$inputPW.oninput = ({ target }) => checkInput(target, pwPattern, $pwBox);
+$submitButton.onclick = handleSubmit;
+$inputPWConfirm.oninput = checkConfirm;
 
-$form.insertAdjacentElement('beforeend', $submitButton);
+$back.onclick = () => $backModal.showing();
+$cancelBack.onclick = () => $backModal.closing();
+$SubmitBack.onclick = () => {
+  storage.clear();
+  window.history.replaceState(null, null, '/src/pages/login/');
+  window.location.href = '/src/pages/login/';
+};
+
+// eslint-disable-next-line prefer-const
+allUser = await pb.collection('users').getFullList();
+allUserEmail = allUser.map((item) => item.email);
