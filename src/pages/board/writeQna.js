@@ -122,7 +122,9 @@ fileClearButton.addEventListener('click', handleClear);
 
 const submitButton = document.querySelector('#complete');
 function handleSubmit(e) {
-  console.log(formObj);
+  if (Object.values(validState).every((value) => value)) {
+    console.log(formObj);
+  }
 }
 
 submitButton.addEventListener('click', handleSubmit);
