@@ -30,9 +30,6 @@
         scrollbar-width: thin;
         scrollbar-color: #c5c5c5 #f1f1f1;
       }
-      .bg-plus-icon {
-        background-image: url('/src/assets/boardIcon/plus.svg');
-      }
     </style>
   </head>
   <body class="min-h-screen">
@@ -83,7 +80,7 @@
             <li>
               <a
                 href=""
-                id="RoundButton"
+                id="popular"
                 class="px-2.5 py-1.5 text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 transition-all duration-300"
               >
                 인기글
@@ -92,7 +89,7 @@
             <li>
               <a
                 href="/src/pages/board/together.html"
-                id="RoundButton"
+                id="together"
                 class="px-2.5 py-1.5 text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 transition-all duration-300"
               >
                 같이해요
@@ -101,7 +98,7 @@
             <li>
               <a
                 href=""
-                id="RoundButton"
+                id="qna"
                 class="px-2.5 py-1.5 text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 transition-all duration-300"
               >
                 질의응답
@@ -115,8 +112,8 @@
         <section>
           <h1 class="sr-only">게시판 메인</h1>
           <ul id="board-list"></ul>
-          <div class="absolute right-16">
-            <div class="fixed bottom-28">
+          <div class="absolute right-[60px]">
+            <div class="fixed bottom-20">
               <a
                 class="block w-12 h-12 rounded-full bg-plus-icon bg-center bg-no-repeat bg-secondary shadow-lg hover:brightness-90 transition-all duration-300"
                 href=""
@@ -135,8 +132,6 @@
         <ul
           id="modal"
           tabindex="0"
-          aria-modal="true"
-          role="dialog"
           class="absolute bottom-[-300px] w-full bg-white flex flex-col text-paragraph-md font-normal rounded-t-lg"
         >
           <li class="py-2 px-3 flex justify-between items-center">
@@ -148,7 +143,7 @@
           <li class="py-2 px-3 flex justify-between items-center">
             <p tabindex="0">Programming</p>
             <button
-              id="interestSelect"
+              id="programming"
               data-name="programming"
               class="px-2.5 py-1.5 text-paragraph-sm font-normal bg-white rounded-full border border-contents-content-tertiary hover:brightness-95 transition-all duration-300"
             >
@@ -158,7 +153,7 @@
           <li class="py-2 px-3 flex justify-between items-center">
             <p tabindex="0">Design</p>
             <button
-              id="interestSelect"
+              id="design"
               data-name="design"
               class="px-2.5 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
             >
@@ -174,7 +169,7 @@
               <abbr title="User Experience">UX</abbr>
             </p>
             <button
-              id="interestSelect"
+              id="uiux"
               data-name="uiux"
               class="px-2.5 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
             >
@@ -184,7 +179,7 @@
           <li class="py-2 px-3 flex justify-between items-center">
             <p tabindex="0">Frontend</p>
             <button
-              id="interestSelect"
+              id="frontend"
               data-name="frontend"
               class="px-2.5 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
             >
@@ -194,7 +189,7 @@
           <li class="py-2 px-3 flex justify-between items-center">
             <p tabindex="0">Backend</p>
             <button
-              id="interestSelect"
+              id="backend"
               data-name="backend"
               class="px-2.5 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
             >
@@ -204,7 +199,7 @@
           <li class="py-2 px-3 flex justify-between items-center">
             <p tabindex="0">Publishing</p>
             <button
-              id="interestSelect"
+              id="publishing"
               data-name="publishing"
               class="px-2.5 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
             >
@@ -217,7 +212,7 @@
               <abbr title="Artificial Intelligence">AI</abbr>
             </p>
             <button
-              id="interestSelect"
+              id="ai"
               data-name="ai"
               class="px-2.5 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
             >
@@ -227,7 +222,7 @@
           <li class="py-2 px-3 flex justify-between items-center">
             <p tabindex="0">Blockchain</p>
             <button
-              id="interestSelect"
+              id="blockchain"
               data-name="blockhain"
               class="px-2.5 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
             >
@@ -249,7 +244,7 @@
             >
               <a
                 class="home block relative h-full text-paragraph-sm font-normal bg-home-icon bg-no-repeat bg-top"
-                href=""
+                href="/"
               >
                 <span
                   class="absolute w-full text-center bottom-0 left-1/2 -translate-x-1/2"
@@ -262,7 +257,7 @@
             >
               <a
                 class="board block relative h-full text-paragraph-sm font-normal bg-board_full-icon bg-no-repeat bg-top"
-                href=""
+                href="/src/pages/board/"
                 ><span
                   class="absolute w-full text-center bottom-0 left-1/2 -translate-x-1/2"
                   >게시판</span
@@ -274,7 +269,7 @@
             >
               <a
                 class="near block relative h-full text-paragraph-sm font-normal bg-near bg-no-repeat bg-top"
-                href=""
+                href="/src/pages/exchange/index.html"
                 ><span
                   class="absolute w-full text-center bottom-0 left-1/2 -translate-x-1/2"
                   >내 근처</span
@@ -298,7 +293,7 @@
             >
               <a
                 class="my block relative h-full text-paragraph-sm font-normal bg-my-icon bg-no-repeat bg-top"
-                href=""
+                href="/src/pages/myEuid/index.html"
                 ><span
                   class="absolute w-full text-center bottom-0 left-1/2 -translate-x-1/2"
                   >나의 이듬</span

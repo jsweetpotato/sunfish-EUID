@@ -48,7 +48,7 @@
       <header class="w-full">
         <div class="flex items-center relative">
           <a
-            href="javascript:window.history.back();"
+            href="/src/pages/board/"
             role="button"
             aria-label="뒤로 가기"
             class="bg-[url('/src/assets/boardIcon/back.svg')] block w-10 h-10 bg-no-repeat bg-center hover:bg-gray-100 hover:rounded transition-all duration-300"
@@ -65,75 +65,77 @@
             <div class="swiper-wrapper">
               <div class="swiper-slide w-[54px] flex flex-col justify-between">
                 <button
-                  id="categoryButton"
+                  id="all"
                   data-category="all"
-                  class="w-[54px] h-[54px] text-label-xl border-2 rounded-full bg-gray-100 border-secondary"
+                  class="category-button w-[54px] h-[54px] text-label-xl border-2 rounded-full bg-gray-100 border-secondary"
                 >
                   🌎
                 </button>
-                <p class="text-label-sm text-center text-secondary">전체</p>
+                <span class="text-label-sm text-center text-secondary"
+                  >전체</span
+                >
               </div>
               <div class="swiper-slide w-[54px] flex flex-col justify-between">
                 <button
-                  id="categoryButton"
+                  id="project"
                   data-category="project"
-                  class="w-[54px] h-[54px] text-label-xl border-2 rounded-full bg-gray-100"
+                  class="category-button w-[54px] h-[54px] text-label-xl border-2 rounded-full bg-gray-100"
                 >
                   💻
                 </button>
-                <p class="text-label-sm text-center">프로젝트</p>
+                <span class="text-label-sm text-center">프로젝트</span>
               </div>
               <div class="swiper-slide w-[54px] flex flex-col justify-between">
                 <button
-                  id="categoryButton"
+                  id="study"
                   data-category="study"
-                  class="w-[54px] h-[54px] text-label-xl border-2 rounded-full bg-gray-100"
+                  class="category-button w-[54px] h-[54px] text-label-xl border-2 rounded-full bg-gray-100"
                 >
                   📑
                 </button>
-                <p class="text-label-sm text-center">스터디</p>
+                <span class="text-label-sm text-center">스터디</span>
               </div>
               <div class="swiper-slide w-[54px] flex flex-col justify-between">
                 <button
-                  id="categoryButton"
+                  id="food"
                   data-category="food"
-                  class="w-[54px] h-[54px] text-label-xl border-2 rounded-full bg-gray-100"
+                  class="category-button w-[54px] h-[54px] text-label-xl border-2 rounded-full bg-gray-100"
                 >
                   🍝
                 </button>
-                <p class="text-label-sm text-center">음식</p>
+                <span class="text-label-sm text-center">음식</span>
               </div>
               <div class="swiper-slide w-[54px] flex flex-col justify-between">
                 <button
-                  id="categoryButton"
+                  id="hobby"
                   data-category="hobby"
-                  class="w-[54px] h-[54px] text-label-xl border-2 rounded-full bg-gray-100"
+                  class="category-button w-[54px] h-[54px] text-label-xl border-2 rounded-full bg-gray-100"
                 >
                   🎧
                 </button>
-                <p class="text-label-sm text-center">취미/여가</p>
+                <span class="text-label-sm text-center">취미/여가</span>
               </div>
               <div class="swiper-slide w-[54px] flex flex-col justify-between">
                 <button
-                  id="categoryButton"
+                  id="sports"
                   data-category="sports"
-                  class="w-[54px] h-[54px] text-label-xl border-2 rounded-full bg-gray-100"
+                  class="category-button w-[54px] h-[54px] text-label-xl border-2 rounded-full bg-gray-100"
                 >
                   ⚽
                 </button>
-                <p class="text-label-sm text-center">운동</p>
+                <span class="text-label-sm text-center">운동</span>
               </div>
               <div
-                class="swiper-slide mr-5 w-[54px] flex flex-col justify-between"
+                class="category-button swiper-slide mr-5 w-[54px] flex flex-col justify-between"
               >
                 <button
-                  id="categoryButton"
+                  id="reading"
                   data-category="reading"
-                  class="w-[54px] h-[54px] text-label-xl border-2 rounded-full bg-gray-100"
+                  class="category-button w-[54px] h-[54px] text-label-xl border-2 rounded-full bg-gray-100"
                 >
                   📚
                 </button>
-                <p class="text-label-sm text-center">독서</p>
+                <span class="text-label-sm text-center">독서</span>
               </div>
             </div>
           </div>
@@ -146,7 +148,6 @@
             <li>
               <button
                 id="sort"
-                role="combobox"
                 class="pl-8 pr-[10px] py-1.5 text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary bg-direction-icon bg-[10px_center] bg-no-repeat hover:brightness-95 transition-all duration-300"
               >
                 최근 작성 순
@@ -174,8 +175,8 @@
         <section>
           <h1 class="sr-only">같이해요 게시판</h1>
           <ul id="board-list"></ul>
-          <div class="absolute right-16">
-            <div class="fixed bottom-28">
+          <div class="absolute right-[60px]">
+            <div class="fixed bottom-20">
               <a
                 class="block w-12 h-12 rounded-full bg-plus-icon bg-center bg-no-repeat bg-secondary shadow-lg hover:brightness-90 transition-all duration-300"
                 href="/src/pages/board/writeTogether.html"
@@ -199,7 +200,7 @@
             >
               <a
                 class="home block relative h-full text-paragraph-sm font-normal bg-home-icon bg-no-repeat bg-top"
-                href=""
+                href="/"
               >
                 <span
                   class="absolute w-full text-center bottom-0 left-1/2 -translate-x-1/2"
@@ -212,7 +213,7 @@
             >
               <a
                 class="board block relative h-full text-paragraph-sm font-normal bg-board_full-icon bg-no-repeat bg-top"
-                href=""
+                href="/src/pages/board/"
                 ><span
                   class="absolute w-full text-center bottom-0 left-1/2 -translate-x-1/2"
                   >게시판</span
@@ -224,7 +225,7 @@
             >
               <a
                 class="near block relative h-full text-paragraph-sm font-normal bg-near bg-no-repeat bg-top"
-                href=""
+                href="/src/pages/exchange/"
                 ><span
                   class="absolute w-full text-center bottom-0 left-1/2 -translate-x-1/2"
                   >내 근처</span
@@ -236,7 +237,7 @@
             >
               <a
                 class="chat block relative h-full text-paragraph-sm font-normal bg-chat-icon bg-no-repeat bg-top"
-                href=""
+                href="/"
                 ><span
                   class="absolute w-full text-center bottom-0 left-1/2 -translate-x-1/2"
                   >채팅</span
@@ -248,7 +249,7 @@
             >
               <a
                 class="my block relative h-full text-paragraph-sm font-normal bg-my-icon bg-no-repeat bg-top"
-                href=""
+                href="/src/pages/myEuid/"
                 ><span
                   class="absolute w-full text-center bottom-0 left-1/2 -translate-x-1/2"
                   >나의 이듬</span
