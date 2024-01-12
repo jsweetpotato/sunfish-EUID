@@ -23,7 +23,7 @@ export default async function getData() {
     .collection('selling')
     .getOne(hash, { expand: 'profile.userId' });
 
-  const { title, description, price } = avatarList;
+  const { title, description, price, isPriceOffer } = avatarList;
   const users = avatarList.expand.profile.expand.userId;
   const { name } = users;
 
@@ -70,6 +70,7 @@ export default async function getData() {
   );
 
   productInfo.insertAdjacentHTML(
+
     'afterbegin' /* html */,
     `
       <div class="flex flex-col items-start gap-3">
@@ -81,6 +82,11 @@ export default async function getData() {
   `
   );
 
+  const url =
+    isPriceOffer === true
+      ? `/src/pages/exchange/exchangeWrite.html?id=#${avatarList.id}`
+      : '#'; ;
+
   footer.insertAdjacentHTML(
     'afterbegin' /* html */,
     `
@@ -91,7 +97,7 @@ export default async function getData() {
   ></button>
   <div class="flex flex-col grow border-l-2 pl-3">
     <p class="text-label-md">${comma(price)}원</p>
-    <a href="/src/pages/exchange/exchangeWrite.html" class="text-label-sm text-secondary">가격 제안하기</a>
+    <a href="${url}" class="text-label-sm text-secondary">가격 제안하기</a>
   </div>
   <button
     class="px-[14px] py-2 bg-secondary rounded text-label-md text-white"
@@ -124,8 +130,6 @@ function changeHeart(e) {
 
 async function watch() {
   const watchList = await pb.collection('selling').getList(1, 6);
-  console.log(watchList);
-
   watchList.items.forEach((item) => {
     watchTogether.insertAdjacentHTML(
       'afterbegin',
@@ -133,9 +137,11 @@ async function watch() {
       <article class="relative aspect-[1/1.38] rounded-lg shadow-[4px_4px_16px_0px_rgba(0,0,0,0.08),0px_1px_4px_0px_rgba(0,0,0,0.15)] hover:shadow-gray-300 transition-all duration-200">
         <figure class="h-1/2">
           <img class="w-full h-full object-cover rounded-t-lg bg-contents-content-secondary"
-          src="${getPbImageURL(item, 'productImages')}" alt="상품 이미지" ">
+          src="${getPbImageURL(item, 'productImages')}" alt="${item}">
         </figure>
-        <a class="absolute top-0 left-0 w-full h-full" href="">
+        <a class="absolute top-0 left-0 w-full h-full" href="/src/pages/exchange/exchangeDetail.html?id=#${
+          item.id
+        }">
           <span class="absolute w-full top-[55%] px-2">
             <span class="text-ellipsis line-clamp-2 text-paragraph-sm">
               ${item.title}

@@ -4,10 +4,11 @@ import { getNode, getPbImageURL, comma } from '/src/lib';
 const pb = new PocketBase(import.meta.env.VITE_PB_URL);
 const section = getNode('.content');
 
-function handleHeartClick({ target }) {
-  const heartBG = target.querySelector('.heart-bg');
-
-  if (target.classList.contains('heartContainer')) {
+function handleHeartClick(e) {
+  const heartContainer = e.target.closest('.heartContainer');
+  
+  if (heartContainer) {
+    const heartBG = heartContainer.querySelector('.heart-bg');
     const countElement = heartBG.nextElementSibling;
     let count = Number(countElement.innerText) || 0;
 
