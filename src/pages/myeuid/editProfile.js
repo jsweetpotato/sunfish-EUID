@@ -1,5 +1,45 @@
 /* eslint-disable no-param-reassign */
 import { getNode, getNodes } from '../../lib';
+import initInput from '../../components/ValidationInput/ValidationInput';
+
+const inputArray = [
+  {
+    id: 'nameInput',
+    min: 0,
+    max: 8,
+    placeholder: '별명이나 이름을 입력해주세요.',
+    label: '이름',
+  },
+  {
+    id: 'jobInput',
+    min: 0,
+    max: 20,
+    placeholder: '어떤 일을 하는지 알려주세요.',
+    label: '직업',
+  },
+  {
+    id: 'companyInput',
+    min: 0,
+    max: 24,
+    placeholder: '일하시는 곳을 알려주세요.',
+    label: '직장',
+  },
+];
+initInput(inputArray);
+
+const textarea = getNode('#description');
+const characterCount = getNode('#characterCount');
+
+function countCharacters() {
+  const count = textarea.value.length;
+  characterCount.textContent = `${count}/500`;
+  if (count > 500) {
+    textarea.value = textarea.value.substring(0, 500);
+    characterCount.textContent = '500/500';
+  }
+}
+
+textarea.addEventListener('input', countCharacters);
 
 const allAgreeCheckbox = getNode('#all-agree-checkbox');
 const agreeCheckboxes = getNodes('.agree-checkbox');
@@ -71,3 +111,32 @@ function closeModal() {
 }
 
 closeModalButton.addEventListener('click', closeModal);
+
+const fileField = getNode('#file');
+const imagePreview = getNode('#image-preview');
+const imageWrapper = getNode('#image-wrapper');
+const fileClearButton = getNode('#file-clear');
+
+function handleFileChange({ target }) {
+  if (target.value === '') return;
+  const { files } = target;
+  imageWrapper.innerHTML = '';
+
+  [...files].forEach((file) => {
+    const imgUrl = URL.createObjectURL(file);
+    const img = document.createElement('img');
+    img.classList.add('w-[50px]', 'h-[50px]');
+    img.src = imgUrl;
+    imageWrapper.appendChild(img);
+  });
+
+  imagePreview.classList.remove('hidden');
+}
+fileField.addEventListener('change', handleFileChange);
+
+function handleClear({ target }) {
+  fileField.value = '';
+  imageWrapper.innerHTML = '';
+  imagePreview.classList.add('hidden');
+}
+fileClearButton.addEventListener('click', handleClear);
