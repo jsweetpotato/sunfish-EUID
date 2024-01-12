@@ -1,16 +1,15 @@
+import { createModal1Btn } from '../../../components/Modal/Modal';
 import {
   createPrimaryBtn,
   createSecondaryBtn,
   toggleValid,
 } from '../../../components/main_button';
-import { getNode } from '../../../lib';
-import { setStorage } from '../../../lib/utils/storage';
+import { getNode, setStorage } from '../../../lib';
 
 // 돔 엘리먼트
 const $form = document.querySelector('#oauth-form');
 const $btnWrapper = document.querySelector('.button-wrapper');
 const $phoneInput = document.querySelector('#phone');
-const $alertModal = document.querySelector('#alert-modal');
 let $oauthInput;
 
 const $sendButton = createPrimaryBtn({
@@ -22,6 +21,11 @@ const $summitButton = createPrimaryBtn({
   id: 'send-button',
   type: 'submit',
   value: '인증확인',
+});
+const [$alertModal, $modalBtn] = createModal1Btn({
+  title: '😁인증번호가 발송되었습니다.',
+  desc: '콘솔창에서 인증번호를 확인해주세요!',
+  buttonText: '확인',
 });
 
 // 상태 관리
@@ -95,7 +99,7 @@ const handleSendButton = () => {
   const sendOauthNum = () => {
     const array = new Uint16Array(1);
     state.oauthNum = null;
-    $alertModal.showModal();
+    $alertModal.showing();
     setTimeout(() => {
       const oauthNum = crypto.getRandomValues(array).join('');
       state.oauthNum = oauthNum;
@@ -168,6 +172,7 @@ const handlePhoneInput = () => {
   };
 };
 
+$modalBtn.onclick = () => $alertModal.closing();
 $sendButton.onclick = handleSendButton();
 $summitButton.onclick = handleSubmitButton;
 $phoneInput.onkeypress = checkNumber;

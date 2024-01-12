@@ -11,6 +11,8 @@ const $emailBox = getNode('#email-box');
 const $pwBox = getNode('#pw-box');
 const $pwConfirmBox = getNode('#pw-confirm-box');
 
+const storage = window.localStorage;
+
 const $submitButton = createPrimaryBtn({
   id: 'formbutton',
   type: 'submit',
@@ -33,7 +35,8 @@ const HAS_EMAIL_CLASS = 'hasemail';
 
 // 정규표현식 패턴
 const emailPattern = /^[\w-]+@([a-z]+\.)+[\w]{2,4}/g;
-const pwPattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,15}$/;
+// const pwPattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,15}$/;
+const pwPattern = /^(?=.*[0-9]).{1,15}$/;
 
 const handleSubmit = async (e) => {
   e.preventDefault();
@@ -45,9 +48,9 @@ const handleSubmit = async (e) => {
     state.email = false;
     $emailBox.classList.add(HAS_EMAIL_CLASS);
   } catch {
-    setStorage(
+    storage.setItem(
       'users-oauth',
-      `${JSON.stringify({ email: $inputEmail.value, pw: $inputPW.value })}`
+      JSON.stringify({ email: $inputEmail.value, pw: $inputPW.value })
     );
 
     window.location.href = '/src/pages/login/oauth/';
