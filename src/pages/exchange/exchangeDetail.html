@@ -1,75 +1,94 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/src/styles/tailwind.css">
-  <title>엔터 이듬</title>
-</head>
-<body class=" m-auto min-w-screen max-w-screen">
-  <header class="w-full sticky top-0 bg-white">
-    <div class="flex justify-between items-center">
-      <a
-        id="back"
-        href="#"
-        role="button"
-        aria-label="돌아가기"
-        class="bg-direction-icon back block w-10 h-10 bg-no-repeat bg-center rotate-90 hover:bg-gray-100 hover:rounded transition-all duration-300"
-      ></a>
-      <div class="flex items-center">
-        <button
-          type="button"
-          aria-label="공유하기"
-          class="bg-share-icon w-10 h-10 bg-no-repeat bg-center hover:bg-gray-100 hover:rounded transition-all duration-300"
-        ></button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/src/styles/tailwind.css" />
+    <title>엔터 이듬</title>
+  </head>
+  <body class="m-auto min-w-screen max-w-screen">
+    <header class="w-full sticky top-0 bg-white">
+      <div class="flex justify-between items-center">
+        <a
+          id="back"
+          href="#"
+          role="button"
+          aria-label="돌아가기"
+          class="bg-direction-icon back block w-10 h-10 bg-no-repeat bg-center rotate-90 hover:bg-gray-100 hover:rounded transition-all duration-300"
+        ></a>
+        <div class="flex items-center">
+          <button
+            type="button"
+            aria-label="공유하기"
+            class="bg-share-icon w-10 h-10 bg-no-repeat bg-center hover:bg-gray-100 hover:rounded transition-all duration-300"
+          ></button>
 
-        <button
-          type="button"
-          aria-label="더보기"
-          class="bg-more-icon w-10 h-10 bg-no-repeat bg-center hover:bg-gray-100 hover:rounded transition-all duration-300"
-        ></button>
-      </div>
-    </div>
-  </header>
-  <main id="main" class="w-full overflow-auto h-[calc(100vh-40px)]">
-    <!-- Profile Information -->
-    <section id="profileInfo" class="grow w-full flex px-3 justify-between items-center rounded py-2">
-      <div role="group" class="flex grow gap-[-8px] items-end flex-col pr-2">
-        <div class="flex items-center justify-center gap-1">
-          <span class="text-label-md text-secondary" aria-label="매너 온도 41.2도">41.2℃</span>
-          <span class="text-xl items-center justify-center" role="img" aria-label="매너 온도 표시 아이콘">☺️</span>
+          <button
+            type="button"
+            aria-label="더보기"
+            class="bg-more-icon w-10 h-10 bg-no-repeat bg-center hover:bg-gray-100 hover:rounded transition-all duration-300"
+          ></button>
         </div>
-        <span aria-label="매너온도" class="text-paragraph-sm">매너온도</span>
       </div>
-    </section>
+    </header>
+    <main id="main" class="w-full overflow-auto h-[calc(100vh-40px)]">
+      <!-- Profile Information -->
+      <section
+        id="profileInfo"
+        class="grow w-full flex px-3 justify-between items-center rounded py-2"
+      >
+        <div role="group" class="flex grow gap-[-8px] items-end flex-col pr-2">
+          <div class="flex items-center justify-center gap-1">
+            <span
+              class="text-label-md text-secondary"
+              aria-label="매너 온도 41.2도"
+              >41.2℃</span
+            >
+            <span
+              class="text-xl items-center justify-center"
+              role="img"
+              aria-label="매너 온도 표시 아이콘"
+              >☺️</span
+            >
+          </div>
+          <span aria-label="매너온도" class="text-paragraph-sm">매너온도</span>
+        </div>
+      </section>
 
-    <!-- Product Information -->
-    <section class="flex pl-3 pb-5 pt-3" id="productInfo">
-    </section>
+      <!-- Product Information -->
+      <section class="flex pl-3 pb-5 pt-3" id="productInfo"></section>
 
-    <!-- Report Button -->
-    <div class="inline-flex px-[15px] py-[18px] border-contents-content-secondary border-t-[0.3px] border-b-[0.3px] w-full justify-between">
-      <span class="text-label-md">이 게시글 신고하기</span>
-      <button class="bg-right-icon w-4 h-4" aria-label="신고하기 버튼"></button>
-    </div>
-
-    <!-- Other Posts -->
-    <section class="inline-flex w-full  items-center ">
-      <div class="inline-flex w-full  px-[15px] py-[18px] justify-between items-center">
-        <h1 class="text-label-md grow">이 글을 함께 봤어요</h1>
+      <!-- Report Button -->
+      <div
+        class="inline-flex px-[15px] py-[18px] border-contents-content-secondary border-t-[0.3px] border-b-[0.3px] w-full justify-between"
+      >
+        <span class="text-label-md">이 게시글 신고하기</span>
+        <button
+          class="bg-right-icon w-4 h-4"
+          aria-label="신고하기 버튼"
+        ></button>
       </div>
-    </section>
-    <!-- Other Posts Items -->
-    <section class="grid grid-rows-2 pl-2 grid-cols-2 grow w-full flex-col gap-5" id="watchTogether">
-      <!-- First Item -->
-    </section>
-  </main>
-  <footer
-  class="flex items-center gap-3 w-full px-3 pt-3 pb-8 bg-white sticky bottom-0"
-  id="footer"
-  >
-  
-  </footer>
-  <script type="module" src="/src/pages/exchange/exchangeDetail.js"></script>
-</body>
+
+      <!-- Other Posts -->
+      <section class="inline-flex w-full items-center">
+        <div
+          class="inline-flex w-full px-[15px] py-[18px] justify-between items-center"
+        >
+          <h1 class="text-label-md grow">이 글을 함께 봤어요</h1>
+        </div>
+      </section>
+      <!-- Other Posts Items -->
+      <section
+        class="px-3 grid grid-cols-2 w-full flex-col gap-4"
+        id="watchTogether"
+      >
+        <!-- First Item -->
+      </section>
+    </main>
+    <footer
+      class="flex items-center gap-3 w-full px-3 pt-3 pb-8 bg-white sticky bottom-0"
+      id="footer"
+    ></footer>
+    <script type="module" src="/src/pages/exchange/exchangeDetail.js"></script>
+  </body>
 </html>
