@@ -1,14 +1,12 @@
-import gsap from 'gsap';
-
 /**
- * 원버튼 모달 생성하기
+ * 원 버튼 모달 생성하기
  * @param {Object} obj
  * @param {String} obj.title 모달 제목
  * @param {String} obj.desc 모달 설명
  * @param {String} obj.buttonText 버튼 텍스트
  * @returns {HTMLDialogElement & HTMLButtonElement}
  */
-export const createModal1Btn = ({ title, desc, buttonText }) => {
+export const createModal1Btn = ({ title, desc, buttonText = '확인' }) => {
   const array = new Uint8Array(1);
   const id = `modal${crypto.getRandomValues(array).join('')}`;
   const template = /* html */ `
@@ -49,7 +47,7 @@ export const createModal1Btn = ({ title, desc, buttonText }) => {
   return [modal, button];
 };
 /**
- * 원버튼 모달 생성하기
+ * 투 버튼 모달 생성하기
  * @param {Object} obj
  * @param {String} obj.title 모달 제목
  * @param {String} obj.desc 모달 설명
