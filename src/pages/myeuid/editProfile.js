@@ -28,7 +28,7 @@ const inputArray = [
 ];
 initInput(inputArray);
 
-const textarea = getNode('#description');
+const textarea = getNode('#aboutMeInput');
 const characterCount = getNode('#characterCount');
 const saveButton = getNode('#saveButton');
 
@@ -100,14 +100,60 @@ const [warningModal, modalCancelButton, modalSubmitButton] = createModal2Btn({
 
 // 저장 모달
 const login = localStorage.getItem('login');
-const nameInput = getNode('#nameInput').value;
-const jobInput = getNode('#jobInput').value;
-const companyInput = getNode('#companyInput').value;
-const aboutMeInput = getNode('#aboutMeInput').value;
+const nameInput = getNode('#nameInput');
+const jobInput = getNode('#jobInput');
+const companyInput = getNode('#companyInput');
+const aboutMeInput = getNode('#aboutMeInput');
+const genderInput = document.querySelector('input[name="gender"]:checked');
 
 const saveData = async () => {
   if (login === 'false') {
-    localStorage.removeItem('login');
+    // 회원가입 유저
+
+    const localData = localStorage.getItem('users-oauth');
+    const parseData = JSON.parse(localData);
+
+    const data = {
+      username: `${nameInput.value}`,
+      email: parseData.email,
+      emailVisibility: true,
+      password: parseData.password,
+      passwordConfirm: parseData.passwordConfirm,
+      name: 'qwe',
+      phone: parseData.phone,
+      categorys: parseData.categorys,
+      gender: `${genderInput.value}`,
+      company: `${companyInput.value}`,
+      job: `${jobInput.value}`,
+      period: Math.ceil(Math.random() * 10),
+      introduce: `${aboutMeInput.value}`,
+      passionTemp: 12,
+      sellingProductCount: 12,
+    };
+
+    const data2 = {
+      username: 'test_username',
+      email: 'test@example.com',
+      emailVisibility: true,
+      password: parseData.password,
+      passwordConfirm: parseData.passwordConfirm,
+      name: 'test',
+      phone: 'test',
+      categorys: ['programming'],
+      gender: 'none',
+      company: 'test',
+      job: 'test',
+      period: 123,
+      introduce: 'test',
+      passionTemp: 123,
+      sellingProductCount: 123,
+    };
+
+    const record = await pb.collection('users').create(data2);
+    console.log(record);
+
+    await pb.collection('users').create(data);
+
     localStorage.setItem('login', 'true');
   }
 

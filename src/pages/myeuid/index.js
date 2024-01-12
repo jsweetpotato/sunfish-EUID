@@ -43,7 +43,7 @@ const withdrawCancel = () => {
 };
 
 // 회원탈퇴 확인
-const withdrawSubmit = async () => {
+const withdrawSubmit = () => {
   localStorage.clear();
   window.location.href = '/src/pages/login/';
 };
