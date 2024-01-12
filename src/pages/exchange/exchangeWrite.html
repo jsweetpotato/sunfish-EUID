@@ -10,7 +10,7 @@
   <header class="w-full h-10 sticky top-0 bg-white">
     <div class="flex items-center relative">
       <a
-        href="/"
+        href="/src/pages/exchange/index.html"
         role="button"
         aria-label="창 닫기"
         class="bg-close-icon block w-10 h-10 bg-no-repeat bg-center hover:bg-gray-100 hover:rounded transition-all duration-300"
@@ -27,38 +27,41 @@
     <section id="photo" class="inline-flex flex-col items-start w-full">
       <div class="flex p-3 flex-col justify-center items-start gap-2 w-full grow">
         <h1 class="text-label-md">사진</h1>
-        <a href="/" class="bg-camera-icon w-[50px] h-[50px]"></a>
+        <label for="file" class="bg-camera-icon px-7 py-7 bg-no-repeat"></label>
+        <input type="file" class=" w-[50px] h-[50px] cursor-pointer hidden"></input>
       </div>
     </section>
     <section id="title" class="flex flex-col items-start w-full">
-      <div class="flex p-3 flex-col justify-center items-start gap-2 w-full grow">
-        <h1 class="text-label-md">제목</h1>
-        <form action="/" class="w-full min-w-screen max-w-screen grow">
-          <label for="contentName" class="sr-only">컨텐츠 이름</label>
-          <div class="flex flex-col">
-            <input
-              type="text"
-              class="p-2 textCount border rounded-[4px]"
-              placeholder="아무 이름적어주세요"
-            />
+    <div class="relative min-w-screen max-w-screen w-full mx-auto">
+      <div id="label1" class="valid-input-box p-3">
+        <label for="label1" class="text-label-sm">제목</label>
+        <div class="flex flex-col w-full">
+          <input
+            type="text"
+            id="label1"
+            class="input p-2 text-paragraph-sm text w-full outline-none border border-contents-content-tertiary rounded"
+            placeholder="제목을 입력해 주세요."
+            spellcheck="false"
+          />
+          <div class="flex justify-between">
             <span
-              aria-label="입력한 문자 수"
+              class="error-msg text-red-500 text-paragraph-sm font-normal opacity-0"
+            ></span>
+            <span
               aria-live="polite"
-              id="letterCount"
-              class="block text-contents-content-tertiary text-paragraph-md  self-stretch text-right w-full grow"
-              >0/24</span
-            >
+              class="letter-count text-contents-content-tertiary text-paragraph-sm font-normal"
+            ></span>
           </div>
         </div>
-      </form>
       </div>
+    </div>
     </section>
     <section id="priceMethod" class="flex flex-col items-start w-full">
       <div class="flex p-3 flex-col justify-center items-start gap-2 w-full grow">
-        <h1 class="text-label-md">거래 방식</h1>
+        <h1 class="text-label-sm">거래 방식</h1>
         <div class="flex gap-1" role="button" id="">
-          <button type="button" class="px-2 justify-center items-center rounded-[20px] py-[6px] border bg-primary text-white">판매하기</button>
-          <button type="button" class="px-2 justify-center items-center rounded-[20px] py-[6px] border">나눔하기</button>
+          <button type="button" class="px-[10px] justify-center items-center rounded-[20px] py-[6px] border bg-primary text-white">판매하기</button>
+          <button type="button" class="px-[10px] justify-center items-center rounded-[20px] py-[6px] border">나눔하기</button>
         </div>
       </div>
     </section>
@@ -69,35 +72,35 @@
           <input
             type="text"
             id="contentName"
-            class="p-2 border rounded-[4px]"
+            class="p-2 border rounded-[4px] text-label-sm"
             placeholder="₩ 가격을 입력해 주새요"
           />
           <div class="flex gap-2">
             <input type="checkbox">
-            <p class="text-paragraph-md">가격 제안받기</p>
+            <p class="text-paragraph-sm">가격 제안받기</p>
           </div>
         </div>
       </div>
     </form>
     </section>
     <section id="detailExplanation" class="flex p-3 flex-col justify-center items-start gap-2">
-      <h1 class="text-label-md pt-8">자세한 설명</h1>
+      <h1 class="text-label-sm pt-8">자세한 설명</h1>
       <form action="/" class="w-full min-w-screen max-w-screen grow">
         <label for="contentName" class="sr-only">컨텐츠 이름</label>
-        <textarea class="flex textCount flex-col text-paragraph-md w-full pt-2 pb-20 p-2 border rounded-[4px] gap-2 self-stretch">응암동에 올릴 게시글 내용을 작성해 주세요. (판매 금지 물품은 게시가 제한될 수 있어요.)</textarea>
+        <textarea class="flex textCount flex-col text-paragraph-sm w-full pt-2 pb-20 p-2 border rounded-[4px] gap-2 self-stretch">응암동에 올릴 게시글 내용을 작성해 주세요. (판매 금지 물품은 게시가 제한될 수 있어요.)</textarea>
         </div>
       </div>
       <span
       aria-label="입력한 문자 수"
       aria-live="polite"
       id="letterCount"
-      class="block text-contents-content-tertiary text-paragraph-md  self-stretch text-right w-full grow"
+      class="block text-contents-content-tertiary text-paragraph-sm  self-stretch text-right w-full grow"
       >0/24</span>
     </form>
     </section>
     <section id="meeting" class="flex flex-col items-start w-full">
       <div class="flex p-3 flex-col justify-center items-start gap-2 w-full grow">
-        <h1 class="text-label-md">거래 희망 장소</h1>
+        <h1 class="text-label-sm">거래 희망 장소</h1>
         <form action="/" class="w-full min-w-screen max-w-screen grow">
           <label for="contentName" class="sr-only">컨텐츠 이름</label>
           <div class="flex flex-col">
@@ -124,6 +127,6 @@
     </div>
   </footer>
   
-  <script></script>
+  <script type="module" src="/src/pasges/exchange/exchangeWrite.js"></script>
 </body>
 </html>
