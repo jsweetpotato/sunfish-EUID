@@ -2,32 +2,44 @@ import { createPrimaryBtn, toggleValid } from '../../../components/main_button';
 
 const $categoryList = document.querySelector('#category-list');
 const $buttonWrapper = document.querySelector('#button-wrapper');
+const $back = document.querySelector('#back');
+
+// 버튼
 const $submitbutton = createPrimaryBtn({
   id: 'submit',
   value: '이대로 저장할래요',
   type: 'submit',
 });
 
+// localStorage
+const storage = window.localStorage;
+
 $buttonWrapper.appendChild($submitbutton);
 
 const CATEGORY_LIST = [
-  'Program  ing',
+  'Programming',
   'Design',
   'UI/UX',
   'Frontend',
   'Backend',
   'AI',
   'Blockchain',
+  'React',
+  'DataAnalysis',
+  'Publishing',
 ];
-
+// 상태 관리
 const state = {
-  Programing: false,
+  Programming: false,
   Design: false,
   'UI/UX': false,
   Frontend: false,
   Backend: false,
   AI: false,
   Blockchain: false,
+  React: false,
+  dataAnalysis: false,
+  Publishing: false,
 };
 
 const drawTemplate = () => {
@@ -67,6 +79,12 @@ const handleCategory = () => {
 
 const handleSubmit = (e) => {
   e.preventDefault();
+
+  const stateValue = Object.values(state);
+  const categorys = CATEGORY_LIST.filter(
+    (value, idx) => stateValue[idx] ?? value
+  );
+  storage.setItem('categorys', JSON.stringify(categorys));
   window.location.href = '/src/pages/login/signup/';
 };
 
@@ -74,3 +92,13 @@ drawTemplate();
 
 $submitbutton.onclick = handleSubmit;
 $categoryList.addEventListener('click', handleCategory());
+$back.onclick = () => {
+  window.location.href = '/src/pages/login/';
+};
+
+const textToStar = (text) => {
+  if (text.length < 3) return text.at(0) + '*'.repeat(text.length - 1);
+  const first = text.at(0);
+  const last = text.at(-1);
+  return first + '*'.repeat(text.length - 2) + last;
+};

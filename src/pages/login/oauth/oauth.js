@@ -1,17 +1,18 @@
-import { createModal1Btn } from '../../../components/Modal/Modal';
 import {
-  createPrimaryBtn,
-  createSecondaryBtn,
-  toggleValid,
-} from '../../../components/main_button';
+  createModal1Btn,
+  createModal2Btn,
+} from '../../../components/Modal/Modal';
+import { createPrimaryBtn, toggleValid } from '../../../components/main_button';
 import { getNode, pb } from '../../../lib';
 
 // 돔 엘리먼트
 const $form = document.querySelector('#oauth-form');
 const $btnWrapper = document.querySelector('.button-wrapper');
 const $phoneInput = document.querySelector('#phone');
+const $back = document.querySelector('#back');
 let $oauthInput;
 
+// 버튼
 const $sendButton = createPrimaryBtn({
   id: 'send-button',
   type: 'submit',
@@ -22,12 +23,19 @@ const $summitButton = createPrimaryBtn({
   type: 'submit',
   value: '인증확인',
 });
+
+// 모달
 const [$alertModal, $modalBtn] = createModal1Btn({
   title: '😁인증번호가 발송되었습니다.',
   desc: '콘솔창에서 인증번호를 확인해주세요!',
   buttonText: '확인',
 });
+const [$backModal, $cancelBack, $SubmitBack] = createModal2Btn({
+  title: '정말 취소하시겠어요?',
+  desc: '시작하기 페이지로 이동하면 작성하신 데이터가 소멸됩니다.',
+});
 
+// localStorage
 const storage = window.localStorage;
 
 // 상태 관리
@@ -44,7 +52,6 @@ const INVALID_CLASS = 'invalid';
 
 // 정규표현식 패턴
 const phonePattern = /^[010]+[0-9]{8}$/g;
-const OauthPattern = /^[0-9]{4,6}$/g;
 
 const checkNumber = (e) => {
   if (e.key >= 0 && e.key <= 9) return true;
@@ -93,12 +100,11 @@ const handleSubmitButton = async (e) => {
   e.preventDefault();
   if (state.oauthNum === $oauthInput.value) {
     const data = JSON.parse(storage.getItem('users-oauth'));
-    console.dir(data);
+    data.categorys = JSON.parse(storage.getItem('categorys'));
+    storage.removeItem('categorys');
     data.phone = $phoneInput.value;
-
-    await pb.collection('users').create(data);
-    storage.removeItem('users-oauth');
-    await pb.collection('users').authWithPassword(data.email, data.password);
+    storage.setItem('users-oauth', JSON.stringify(data));
+    window.history.replaceState(null, null, '/src/pages/login/');
     window.location.href = '/src/pages/myeuid/editProfile.html';
   }
 };
@@ -187,3 +193,12 @@ $sendButton.onclick = handleSendButton();
 $summitButton.onclick = handleSubmitButton;
 $phoneInput.onkeypress = checkNumber;
 $phoneInput.oninput = handlePhoneInput();
+
+$back.onclick = () => $backModal.showing();
+$cancelBack.onclick = () => $backModal.closing();
+$SubmitBack.onclick = () => {
+  storage.clear();
+  window.history.replaceState(null, null, '/src/pages/login/');
+  window.location.href = '/src/pages/login/';
+};
+// 포켓베이스 가져오기

@@ -24,6 +24,8 @@ export default defineConfig({
         writeTogether: resolve(__dirname, 'src/pages/board/writeTogether.html'),
         // 기기거래
         exchange: resolve(__dirname, 'src/pages/exchange/index.html'),
+        // 스토리
+        story: resolve(__dirname, 'src/pages/main/'),
       },
     },
   },

@@ -13,7 +13,8 @@
     >
       <header class="sticky top-0 bg-white w-full h-10 pe-3">
         <a
-          href="javascript:window.history.back();"
+          href="#"
+          id="back"
           role="button"
           aria-label="돌아가기"
           class="bg-direction-icon block w-10 h-10 bg-no-repeat bg-bottom rotate-90 hover:bg-gray-100"
@@ -53,10 +54,10 @@
             <input
               id="pw"
               type="password"
-              minlength="6"
+              minlength="8"
               required
               class="group-[.invalid]:border-red-500 p-2 rounded border w-full border-contents-content-tertiary"
-              placeholder="대소문자,특수문자 포함 6자리 이상"
+              placeholder="대소문자, 특수문자, 숫자 포함 8자리 이상"
             />
             <span
               class="group-[.invalid]:block absolute bottom-[-18px] left-0 hidden text-label-sm text-red-500"
