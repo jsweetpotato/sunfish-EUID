@@ -26,6 +26,7 @@ export default async function getData() {
   const { title, description, price, isPriceOffer } = avatarList;
   const users = avatarList.expand.profile.expand.userId;
   const { name } = users;
+  console.log(avatarList)
 
   main.insertAdjacentHTML(
     'afterbegin' /* html */,
@@ -83,7 +84,7 @@ export default async function getData() {
   );
 
   const url =
-    isPriceOffer === true
+    isPriceOffer === 'true'
       ? `/src/pages/exchange/exchangeWrite.html?id=#${avatarList.id}`
       : '#'; ;
 
