@@ -35,8 +35,8 @@ const HAS_EMAIL_CLASS = 'hasemail';
 
 // 정규표현식 패턴
 const emailPattern = /^[\w-]+@([a-z]+\.)+[\w]{2,4}/g;
-// const pwPattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,15}$/;
-const pwPattern = /^(?=.*[0-9]).{1,15}$/;
+const pwPattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,15}$/;
+// const pwPattern = /^(?=.*[0-9]).{1,15}$/;
 
 const handleSubmit = async (e) => {
   e.preventDefault();
@@ -48,15 +48,16 @@ const handleSubmit = async (e) => {
     state.email = false;
     $emailBox.classList.add(HAS_EMAIL_CLASS);
   } catch {
+    console.log(false);
     storage.setItem(
       'users-oauth',
       JSON.stringify({
         email: $inputEmail.value,
         password: $inputPW.value,
         passwordConfirm: $inputPWConfirm.value,
+        emailVisibility: true,
       })
     );
-
     window.location.href = '/src/pages/login/oauth/';
   }
 };

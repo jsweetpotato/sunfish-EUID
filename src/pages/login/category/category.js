@@ -11,7 +11,7 @@ const $submitbutton = createPrimaryBtn({
 $buttonWrapper.appendChild($submitbutton);
 
 const CATEGORY_LIST = [
-  'Program  ing',
+  'Programming',
   'Design',
   'UI/UX',
   'Frontend',
@@ -21,7 +21,7 @@ const CATEGORY_LIST = [
 ];
 
 const state = {
-  Programing: false,
+  Programming: false,
   Design: false,
   'UI/UX': false,
   Frontend: false,
