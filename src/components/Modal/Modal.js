@@ -53,7 +53,7 @@ export const createModal1Btn = ({ title, desc, buttonText = '확인' }) => {
  * @param {String} obj.desc 모달 설명
  * @param {String} obj.cancelText 취소 버튼 텍스트
  * @param {String} obj.submitText 승인 버튼 텍스트
- * @returns {HTMLDialogElement & HTMLButtonElement}
+ * @returns {HTMLDialogElement & HTMLButtonElement & HTMLButtonElement}
  */
 
 export const createModal2Btn = ({
@@ -89,7 +89,6 @@ export const createModal2Btn = ({
   const cancelButton = document.querySelector(`#${id} button`);
   const submitButton = document.querySelector(`#${id} button:last-child`);
 
-  console.log(submitButton);
   modal.showing = () => {
     modal.showModal();
   };
