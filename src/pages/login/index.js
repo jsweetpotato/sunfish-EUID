@@ -1,25 +1,51 @@
-// import Category from './category';
+import { getNode } from '../../lib/dom/getNode';
 
-const loginPage = document.querySelector('main');
+const loginButton = getNode('#login');
+const startButton = getNode('#join');
 
-function Login() {
-  this.init = () => {
-    this.route();
-  };
+const storage = window.localStorage;
 
-  const route = () => {
-    const { pathname } = window.location;
+const handleStart = (e) => {
+  e.preventDefault();
+  storage.setItem('type', 'join');
+  window.location.href = '/src/pages/login/category/';
+};
 
-    if (pathname === '/category') {
-      new Category(loginPage).init();
-      return;
-    }
+const handleLogin = (e) => {
+  e.preventDefault();
+  storage.setItem('type', 'login');
+  window.location.href = '/src/pages/login/signin/';
+};
 
-    if (pathname === '/signin') {
-      console.log('signin');
-    }
-  };
-}
+loginButton.onclick = handleLogin;
+startButton.onclick = handleStart;
 
-const login = new Login();
-login.init();
+// function Login() {
+//   this.init = () => {
+//     this.route();
+//   };
+
+//   this.route = () => {
+//     const { pathname } = window.location;
+
+//     if (pathname === '/join/category') {
+//       new CategoryPage(loginPage).init();
+//       return;
+//     }
+
+//     if (pathname === '/join/email') {
+//       new CategoryPage(loginPage).init();
+//       return;
+//     }
+
+//     if (pathname === '/signin') {
+//       console.log('signin');
+//     }
+//   };
+
+//   this.route();
+//   window.addEventListener('locationChange', this.route);
+// }
+
+// const login = new Login();
+// login.init();
