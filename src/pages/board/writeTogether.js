@@ -1,6 +1,7 @@
-/* eslint-disable no-alert, no-shadow */
+/* eslint-disable no-alert, no-shadow, import/no-unresolved, import/extensions, import/no-absolute-path */
 
 import gsap from 'gsap';
+import { pb } from '/src/lib/';
 
 const inputRadioNameArray = [
   ['category'],
@@ -16,7 +17,8 @@ const formObj = {
   time: '오후 8:00',
   gender: 'anyone',
   age: 'anyone',
-  maxMember: 'noLimited',
+  maxMember: 'unLimited',
+  isApproval: false,
 };
 
 const validConfig = {
@@ -56,12 +58,14 @@ function handleToggleCheckBox({ currentTarget }) {
       marginLeft: 'auto',
       duration: 0.2,
     });
+    formObj.isApproval = true;
   } else {
     label.classList.replace('bg-secondary', 'bg-contents-content-tertiary');
     gsap.to('#approveHandle', {
       marginLeft: 0,
       duration: 0.2,
     });
+    formObj.isApproval = false;
   }
 }
 approveCheckBox.addEventListener('change', handleToggleCheckBox);

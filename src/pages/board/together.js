@@ -1,7 +1,8 @@
-/* eslint-disable import/no-unresolved */
+/* eslint-disable no-alert, no-shadow, import/no-unresolved, import/extensions, import/no-absolute-path */
 
 import Swiper from 'swiper';
-// import 'swiper/css';
+import gsap from 'gsap';
+import { pb, getNode, getNodes, insertLast } from '/src/lib/';
 
 const swiper = new Swiper('.swiper', {
   slidesPerView: 'auto',
@@ -9,149 +10,102 @@ const swiper = new Swiper('.swiper', {
   freeMode: true,
 });
 
-/**
- * @type {{ together: {id:number, title: string, age: string, datetime:string, local: string, createdAt: number, maxMember: number, currentMember: string[] }; qna: {}; }}
- */
-const dummyData = {
-  together: [
-    {
-      id: 0,
-      title: 'youtube 클론 프젝 같이하실분~',
-      age: '누구나 참여가능',
-      datetime: '내일, 오후 7:00',
-      local: '응암동',
-      createdAt: new Date().getTime(),
-      maxMember: 3,
-      currentMember: ['kim', 'lee'],
-    },
-    {
-      id: 1,
-      title: '멋사플레이스 클론스터디 하실분',
-      age: '20대',
-      datetime: '오늘, 오후 8:00',
-      local: '비전동',
-      createdAt: new Date().getTime(),
-      maxMember: 4,
-      currentMember: ['jo'],
-    },
-    {
-      id: 2,
-      title: '알고리즘 매일 아침마다 인증할 분',
-      age: '누구나 참여 가능',
-      datetime: '5월 1일, 오전 10:00',
-      local: '통복동',
-      createdAt: new Date().getTime(),
-      maxMember: 5,
-      currentMember: ['jo', 'kang', 'choi'],
-    },
-    {
-      id: 3,
-      title: 'youtube 클론 프젝 같이하실분~',
-      age: '누구나 참여가능',
-      datetime: '내일, 오후 7:00',
-      local: '응암동',
-      createdAt: new Date().getTime(),
-      maxMember: 3,
-      currentMember: ['kim', 'lee'],
-    },
-    {
-      id: 4,
-      title: '멋사플레이스 클론스터디 하실분',
-      age: '20대',
-      datetime: '오늘, 오후 8:00',
-      local: '비전동',
-      createdAt: new Date().getTime(),
-      maxMember: 4,
-      currentMember: ['jo'],
-    },
-    {
-      id: 5,
-      title: '알고리즘 매일 아침마다 인증할 분',
-      age: '누구나 참여 가능',
-      datetime: '5월 1일, 오전 10:00',
-      local: '통복동',
-      createdAt: new Date().getTime(),
-      maxMember: 5,
-      currentMember: ['jo', 'kang', 'choi'],
-    },
-  ],
-};
+let interestsState = 'all';
+let sortState = '@random';
 
-function createTemplate(data) {
-  const { together } = data;
-  const togetherTemplateArray = [];
-  together.forEach((item) => {
-    const { title, age, datetime, local, createdAt, maxMember, currentMember } =
-      item;
-    const template = /* html */ `
-    <li  class="hover:bg-gray-100 transition-all">
+function createTogetherTemplate(item) {
+  const { age, category, date, gender, id, members, title, owner, created } =
+    item;
+  let { maxMember } = item;
+  maxMember = maxMember === '제한없음' ? maxMember : `${maxMember}명`;
+  const template = /* html */ `
+    <li  class="hover:bg-gray-100">
     <div
-      class="relative p-3 flex flex-col justify-center items-start gap-1 border-b border-contents-content-secondary"
-      
-    >
+      class="relative p-3 flex flex-col justify-center items-start gap-1 border-b border-contents-content-secondary">
     <div class="flex items-center gap-1 mb-7">
       <span
-      class="text-label-sm px-1 bg-bluegray-600 text-white rounded"
-      >스터디</span
-    >
-    <span
-      class="text-label-sm px-1 bg-tertiary text-white rounded"
-      >인기</span
-    >
+        class="text-label-sm px-1 bg-bluegray-600 text-white rounded"
+        >같이해요</span>
+      <span
+        class="text-label-sm px-1 bg-tertiary text-white rounded"
+        >${category}</span>
     </div>
-     
-      <a href="/src/pages/board/togetherView.html"
-        class="absolute top-0 left-0 w-full h-full flex-auto text-paragraph-md font-normal text-contents-content-primary "
-      >
+      <a href="/src/pages/board/togetherView.html?id=${id}"
+        class="absolute top-0 left-0 w-full h-full flex-auto text-paragraph-md font-normal text-contents-content-primary ">
         <span class="absolute top-8 left-3 w-[90%] overflow-hidden whitespace-nowrap text-ellipsis">${title}</span>
       </a>
       <span
         class="pl-4 text-paragraph-sm font-normal text-gray-600 bg-people_full-icon bg-no-repeat bg-left"
-        >${age}</span
-      >
+        >${age}, ${gender}</span>
       <span
         class="pl-4 text-paragraph-sm font-normal text-gray-600 bg-calender-icon bg-no-repeat bg-left"
-        >${datetime}</span
-      >
+        >${new Date(date).toLocaleDateString()}</span>
       <div class="w-full flex justify-between">
         <span class="text-paragraph-sm font-normal text-gray-600"
-          >${local} · 9분 전</span
-        >
+          >연희동 · ${new Date(created).toLocaleDateString()}</span>
         <span
           class="pl-4 text-paragraph-sm font-normal text-gray-600 bg-people-icon bg-no-repeat bg-left"
-          >${currentMember.length}/${maxMember}명</span
-        >
+          >${members.memberId.length}/${maxMember}</span>
       </div>
     </div>
     </li>
     `;
-    togetherTemplateArray.push(template);
+
+  return template;
+}
+function createData(array) {
+  const result = [];
+  array.forEach((item) => {
+    result.push(createTogetherTemplate(item));
   });
-
-  const resultTemplate = [...togetherTemplateArray];
-  return resultTemplate.join('');
+  return result;
 }
-const boardList = document.querySelector('#board-list');
-boardList.insertAdjacentHTML('beforeend', createTemplate(dummyData));
-
-function removeActiveClass() {
-  const slides = document.querySelectorAll('.swiper-slide');
-  slides.forEach((slide) => {
-    const [btn, p] = slide.children;
-    btn.classList.remove('border-secondary');
-    p.classList.remove('text-secondary');
+function render(array) {
+  const boardList = getNode('#board-list');
+  boardList.innerHTML = '';
+  insertLast(boardList, array.join(''));
+  const listItem = getNodes('#board-list>li');
+  if (listItem.length === 0) return;
+  gsap.from('#board-list>li', {
+    x: -500,
+    duration: 0.3,
+    stagger: 0.1,
   });
 }
-
-function handleSetActiveClass(e) {
-  removeActiveClass();
-  e.currentTarget.classList.add('border-secondary');
-  e.currentTarget.nextElementSibling.classList.add('text-secondary');
+function getFilterString(interests) {
+  if (interests === 'all') return '';
+  const nameTable = {
+    project: '프로젝트',
+    study: '스터디',
+    food: '음식',
+    hobby: '취미/여가',
+    sports: '운동',
+    reading: '독서',
+  };
+  return `category = "${nameTable[interests]}"`;
 }
+
+async function getData() {
+  const filterString = getFilterString(interestsState);
+  console.log(filterString);
+  const togetherResponse = await pb.collection('together').getFullList({
+    filter: filterString,
+    sort: sortState,
+  });
+  console.log(togetherResponse);
+  render(createData(togetherResponse));
+}
+getData();
 
 const categoryButton = document.querySelectorAll('.category-button');
+function handleCheck({ target }) {
+  if (target.id === interestsState) return;
+  const { id } = target;
+  interestsState = id;
+  getData();
+}
 categoryButton.forEach((button) => {
-  button.addEventListener('click', handleSetActiveClass);
+  button.addEventListener('click', handleCheck);
 });
 
 const sortButton = document.querySelector('#sort');
@@ -164,14 +118,17 @@ function handleChangeSort() {
         'bg-direction-icon',
         'bg-direction_rotate-icon'
       );
+      sortState = '+created';
     } else {
       e.currentTarget.textContent = '최근 작성 순';
       e.currentTarget.classList.replace(
         'bg-direction_rotate-icon',
         'bg-direction-icon'
       );
+      sortState = '-created';
     }
     isLatest = !isLatest;
+    getData();
   };
 }
 sortButton.addEventListener('click', handleChangeSort());

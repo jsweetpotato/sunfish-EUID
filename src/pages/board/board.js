@@ -3,6 +3,8 @@
 import gsap from 'gsap';
 import { pb, getNode, getNodes, insertLast } from '/src/lib/';
 
+console.log('start');
+
 /*
   init함수 : 로컬스토리지 관심분야 불러오고 객체에 할당
 */
@@ -24,7 +26,7 @@ function createTogetherTemplate(item) {
   let { maxMember } = item;
   maxMember = maxMember === '제한없음' ? maxMember : `${maxMember}명`;
   const template = /* html */ `
-    <li  class="hover:bg-gray-100 transition-all">
+    <li  class="hover:bg-gray-100 ">
     <div
       class="relative p-3 flex flex-col justify-center items-start gap-1 border-b border-contents-content-secondary">
     <div class="flex items-center gap-1 mb-7">
@@ -75,7 +77,7 @@ function createQnaTemplate(item) {
       : pb.files.getUrl(item, imgField[0], { thumb: '0x60' });
 
   const template = /* html */ `
-    <li class="hover:bg-gray-100 transition-all">
+    <li class="hover:bg-gray-100 ">
     <div
       class="relative p-3 border-b flex flex-row justify-between gap-1 border-contents-content-secondary"
 
@@ -112,7 +114,9 @@ function createQnaTemplate(item) {
       <img
       class="w-full h-full object-cover"
         src="${imgUrl}"
-        alt="썸네일" />
+        alt="썸네일"
+        loading="lazy"
+        />
     </div>`
       }
       </div>
@@ -139,6 +143,16 @@ function render(array) {
   const boardList = getNode('#board-list');
   boardList.innerHTML = '';
   insertLast(boardList, array.join(''));
+  const listItem = getNodes('#board-list>li');
+  if (listItem.length === 0) return;
+  gsap.from('#board-list li', {
+    x: -500,
+    duration: 0.3,
+    stagger: 0.1,
+    onStart() {
+      console.log('start');
+    },
+  });
 }
 function getFilterString(interests) {
   const nameTable = {
@@ -175,109 +189,6 @@ async function getData() {
   render(createData(sortResponse));
 }
 getData(interestsState);
-
-// function createTemplate(data) {
-//   const { together, qna } = data;
-//   const togetherTemplateArray = [];
-//   const qnaTemplateArray = [];
-//   together.forEach((item) => {
-//     const { title, age, datetime, local, createdAt, maxMember, currentMember } =
-//       item;
-//     const template = /* html */ `
-//     <li  class="hover:bg-gray-100 transition-all">
-//     <div
-//       class="relative p-3 flex flex-col justify-center items-start gap-1 border-b border-contents-content-secondary"
-
-//     >
-//       <span
-//         class="text-label-sm px-1 mb-7 bg-bluegray-600 text-white rounded"
-//         >같이해요</span
-//       >
-//       <a href="/src/pages/board/togetherView.html"
-//         class="absolute top-0 left-0 w-full h-full flex-auto text-paragraph-md font-normal text-contents-content-primary "
-//       >
-//         <span class="absolute top-8 left-3 w-[90%] overflow-hidden whitespace-nowrap text-ellipsis">${title}</span>
-//       </a>
-//       <span
-//         class="pl-4 text-paragraph-sm font-normal text-gray-600 bg-people_full-icon bg-no-repeat bg-left"
-//         >${age}</span
-//       >
-//       <span
-//         class="pl-4 text-paragraph-sm font-normal text-gray-600 bg-calender-icon bg-no-repeat bg-left"
-//         >${datetime}</span
-//       >
-//       <div class="w-full flex justify-between">
-//         <span class="text-paragraph-sm font-normal text-gray-600"
-//           >${local} · 9분 전</span
-//         >
-//         <span
-//           class="pl-4 text-paragraph-sm font-normal text-gray-600 bg-people-icon bg-no-repeat bg-left"
-//           >${currentMember.length}/${maxMember}명</span
-//         >
-//       </div>
-//     </div>
-//     </li>
-//     `;
-//     togetherTemplateArray.push(template);
-//   });
-//   qna.forEach((item) => {
-//     const { title, description, local, createdAt, views, imgUrl } = item;
-//     const template = /* html */ `
-// <li class="hover:bg-gray-100 transition-all">
-// <div
-//   class="relative p-3 border-b flex flex-row justify-between gap-1 border-contents-content-secondary"
-
-// >
-//   <div
-//     class="w-[calc(100%-70px)] flex flex-col flex-shrink-1 justify-center items-start gap-1"
-//   >
-//     <div class="flex items-center gap-1 mb-7">
-//       <span
-//         class="text-label-sm px-1 bg-bluegray-600 text-white rounded"
-//         >질의응답</span
-//       >
-//       <span
-//         class="text-label-sm px-1 bg-tertiary text-white rounded"
-//         >인기</span
-//       >
-//     </div>
-//     <a href=""
-//       class="absolute top-0 left-0 w-full h-full flex-auto text-paragraph-md font-normal text-contents-content-primary "
-//     >
-//       <span class="absolute top-8 left-3 w-[70%] overflow-hidden whitespace-nowrap text-ellipsis">${title}</span>
-//     </a>
-//     <span
-//       class="w-full text-paragraph-sm font-normal text-gray-600 overflow-hidden whitespace-nowrap text-ellipsis"
-//       >${description.slice(0, 50)}...</span
-//     >
-//     <span class="text-paragraph-sm font-normal text-gray-600"
-//       >${local} · 9분 전 · 조회 ${views}</span
-//     >
-//   </div>
-//   <div
-//     class="w-[70px] min-w-[70px] flex justify-center items-center"
-//   >
-//     <div
-//       class="w-[60px] h-[60px] overflow-hidden border border-gray-300 rounded"
-//     >
-//       <img
-//         src="${imgUrl[0]}"
-//         alt="이미지"
-//       />
-//     </div>
-//   </div>
-// </div>
-// </li>
-// `;
-//     qnaTemplateArray.push(template);
-//   });
-//   const resultTemplate = [...togetherTemplateArray, ...qnaTemplateArray].sort(
-//     (a, b) => a.createdAt - b.createdAt
-//   );
-//   return resultTemplate.join('');
-// }
-
-// boardList.insertAdjacentHTML('beforeend', createTemplate(dummyData));
 
 const $modalDimmed = getNode('#modalDimmed');
 const $openModalButton = getNode('#openModal');

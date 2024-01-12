@@ -63,79 +63,148 @@
         <div class="w-full h-[90px] pl-5 py-2">
           <div class="swiper w-full h-full">
             <div class="swiper-wrapper">
-              <div class="swiper-slide w-[54px] flex flex-col justify-between">
-                <button
+              <div class="swiper-slide w-[54px]">
+                <input
+                  class="category-button [&:checked+label>span:nth-child(1)]:border-secondary [&:checked+label>span:nth-child(2)]:text-secondary w-0 h-0 block"
+                  type="radio"
                   id="all"
-                  data-category="all"
-                  class="category-button w-[54px] h-[54px] text-label-xl border-2 rounded-full bg-gray-100 border-secondary"
-                >
-                  🌎
-                </button>
-                <span class="text-label-sm text-center text-secondary"
-                  >전체</span
-                >
+                  name="category"
+                  checked
+                />
+                <label class="cursor-pointer" for="all">
+                  <span
+                    id="all"
+                    data-category="all"
+                    class="block w-[54px] h-[54px] text-label-xl border-2 text-center leading-[50px] rounded-full bg-gray-100"
+                  >
+                    🌎
+                  </span>
+                  <span class="block mt-1.5 text-label-sm text-center"
+                    >전체</span
+                  >
+                </label>
               </div>
               <div class="swiper-slide w-[54px] flex flex-col justify-between">
-                <button
+                <input
+                  class="category-button [&:checked+label>span:nth-child(1)]:border-secondary [&:checked+label>span:nth-child(2)]:text-secondary w-0 h-0 block"
+                  type="radio"
                   id="project"
-                  data-category="project"
-                  class="category-button w-[54px] h-[54px] text-label-xl border-2 rounded-full bg-gray-100"
-                >
-                  💻
-                </button>
-                <span class="text-label-sm text-center">프로젝트</span>
+                  name="category"
+                />
+                <label class="cursor-pointer" for="project">
+                  <span
+                    id="project"
+                    data-category="project"
+                    class="block w-[54px] h-[54px] text-label-xl border-2 text-center leading-[50px] rounded-full bg-gray-100"
+                  >
+                    💻
+                  </span>
+                  <span class="block mt-1.5 text-label-sm text-center"
+                    >프로젝트</span
+                  >
+                </label>
               </div>
               <div class="swiper-slide w-[54px] flex flex-col justify-between">
-                <button
+                <input
+                  class="category-button [&:checked+label>span:nth-child(1)]:border-secondary [&:checked+label>span:nth-child(2)]:text-secondary w-0 h-0 block"
+                  type="radio"
                   id="study"
-                  data-category="study"
-                  class="category-button w-[54px] h-[54px] text-label-xl border-2 rounded-full bg-gray-100"
-                >
-                  📑
-                </button>
-                <span class="text-label-sm text-center">스터디</span>
+                  name="category"
+                />
+                <label class="cursor-pointer" for="study">
+                  <span
+                    id="study"
+                    data-category="study"
+                    class="block w-[54px] h-[54px] text-label-xl border-2 text-center leading-[50px] rounded-full bg-gray-100"
+                  >
+                    📑
+                  </span>
+                  <span class="block mt-1.5 text-label-sm text-center"
+                    >스터디</span
+                  >
+                </label>
               </div>
               <div class="swiper-slide w-[54px] flex flex-col justify-between">
-                <button
+                <input
+                  class="category-button [&:checked+label>span:nth-child(1)]:border-secondary [&:checked+label>span:nth-child(2)]:text-secondary w-0 h-0 block"
+                  type="radio"
                   id="food"
-                  data-category="food"
-                  class="category-button w-[54px] h-[54px] text-label-xl border-2 rounded-full bg-gray-100"
-                >
-                  🍝
-                </button>
-                <span class="text-label-sm text-center">음식</span>
+                  name="category"
+                />
+                <label class="cursor-pointer" for="food">
+                  <span
+                    id="food"
+                    data-category="food"
+                    class="block w-[54px] h-[54px] text-label-xl border-2 text-center leading-[50px] rounded-full bg-gray-100"
+                  >
+                    🍝
+                  </span>
+                  <span class="block mt-1.5 text-label-sm text-center"
+                    >음식</span
+                  >
+                </label>
               </div>
               <div class="swiper-slide w-[54px] flex flex-col justify-between">
-                <button
+                <input
+                  class="category-button [&:checked+label>span:nth-child(1)]:border-secondary [&:checked+label>span:nth-child(2)]:text-secondary w-0 h-0 block"
+                  type="radio"
                   id="hobby"
-                  data-category="hobby"
-                  class="category-button w-[54px] h-[54px] text-label-xl border-2 rounded-full bg-gray-100"
-                >
-                  🎧
-                </button>
-                <span class="text-label-sm text-center">취미/여가</span>
+                  name="category"
+                />
+                <label class="cursor-pointer" for="hobby">
+                  <span
+                    id="hobby"
+                    data-category="hobby"
+                    class="block w-[54px] h-[54px] text-label-xl border-2 text-center leading-[50px] rounded-full bg-gray-100"
+                  >
+                    🎧
+                  </span>
+                  <span class="block mt-1.5 text-label-sm text-center"
+                    >취미/여가</span
+                  >
+                </label>
               </div>
               <div class="swiper-slide w-[54px] flex flex-col justify-between">
-                <button
+                <input
+                  class="category-button [&:checked+label>span:nth-child(1)]:border-secondary [&:checked+label>span:nth-child(2)]:text-secondary w-0 h-0 block"
+                  type="radio"
                   id="sports"
-                  data-category="sports"
-                  class="category-button w-[54px] h-[54px] text-label-xl border-2 rounded-full bg-gray-100"
-                >
-                  ⚽
-                </button>
-                <span class="text-label-sm text-center">운동</span>
+                  name="category"
+                />
+                <label class="cursor-pointer" for="sports">
+                  <span
+                    id="sports"
+                    data-category="sports"
+                    class="block w-[54px] h-[54px] text-label-xl border-2 text-center leading-[50px] rounded-full bg-gray-100"
+                  >
+                    ⚽
+                  </span>
+                  <span class="block mt-1.5 text-label-sm text-center"
+                    >운동</span
+                  >
+                </label>
               </div>
               <div
-                class="category-button swiper-slide mr-5 w-[54px] flex flex-col justify-between"
+                class="swiper-slide mr-5 w-[54px] flex flex-col justify-between"
               >
-                <button
+                <input
+                  class="category-button [&:checked+label>span:nth-child(1)]:border-secondary [&:checked+label>span:nth-child(2)]:text-secondary w-0 h-0 block"
+                  type="radio"
                   id="reading"
-                  data-category="reading"
-                  class="category-button w-[54px] h-[54px] text-label-xl border-2 rounded-full bg-gray-100"
-                >
-                  📚
-                </button>
-                <span class="text-label-sm text-center">독서</span>
+                  name="category"
+                />
+                <label class="cursor-pointer" for="reading">
+                  <span
+                    id="reading"
+                    data-category="reading"
+                    class="block w-[54px] h-[54px] text-label-xl border-2 text-center leading-[50px] rounded-full bg-gray-100"
+                  >
+                    📚
+                  </span>
+                  <span class="block mt-1.5 text-label-sm text-center"
+                    >독서</span
+                  >
+                </label>
               </div>
             </div>
           </div>
