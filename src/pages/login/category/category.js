@@ -2,11 +2,17 @@ import { createPrimaryBtn, toggleValid } from '../../../components/main_button';
 
 const $categoryList = document.querySelector('#category-list');
 const $buttonWrapper = document.querySelector('#button-wrapper');
+const $back = document.querySelector('#back');
+
+// 버튼
 const $submitbutton = createPrimaryBtn({
   id: 'submit',
   value: '이대로 저장할래요',
   type: 'submit',
 });
+
+// localStorage
+const storage = window.localStorage;
 
 $buttonWrapper.appendChild($submitbutton);
 
@@ -20,6 +26,7 @@ const CATEGORY_LIST = [
   'Blockchain',
 ];
 
+// 상태 관리
 const state = {
   Programming: false,
   Design: false,
@@ -67,6 +74,12 @@ const handleCategory = () => {
 
 const handleSubmit = (e) => {
   e.preventDefault();
+
+  const stateValue = Object.values(state);
+  const categorys = CATEGORY_LIST.filter(
+    (value, idx) => stateValue[idx] ?? value
+  );
+  storage.setItem('categorys', JSON.stringify(categorys));
   window.location.href = '/src/pages/login/signup/';
 };
 
@@ -74,3 +87,6 @@ drawTemplate();
 
 $submitbutton.onclick = handleSubmit;
 $categoryList.addEventListener('click', handleCategory());
+$back.onclick = () => {
+  window.location.href = '/src/pages/login/';
+};
