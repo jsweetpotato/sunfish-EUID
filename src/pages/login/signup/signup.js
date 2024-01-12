@@ -18,7 +18,7 @@ const $back = document.querySelector('#back');
 const $submitButton = createPrimaryBtn({
   id: 'formbutton',
   type: 'submit',
-  value: '가입 시작하기',
+  value: '가입하기',
 });
 
 // 모달
@@ -130,8 +130,8 @@ $inputPWConfirm.oninput = checkConfirm;
 $back.onclick = () => $backModal.showing();
 $cancelBack.onclick = () => $backModal.closing();
 $SubmitBack.onclick = () => {
-  storage.removeItem('user-oauth');
-  storage.removeItem('pocketbase_auth');
+  storage.clear();
+  window.history.replaceState(null, null, '/src/pages/login/');
   window.location.href = '/src/pages/login/';
 };
 

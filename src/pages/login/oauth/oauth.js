@@ -199,8 +199,8 @@ $phoneInput.oninput = handlePhoneInput();
 $back.onclick = () => $backModal.showing();
 $cancelBack.onclick = () => $backModal.closing();
 $SubmitBack.onclick = () => {
-  storage.removeItem('user-oauth');
-  storage.removeItem('pocketbase_auth');
+  storage.clear();
+  window.history.replaceState(null, null, '/src/pages/login/');
   window.location.href = '/src/pages/login/';
 };
 // 포켓베이스 가져오기
