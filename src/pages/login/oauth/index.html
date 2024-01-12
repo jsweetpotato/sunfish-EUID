@@ -54,6 +54,24 @@
           <div class="button-wrapper"></div>
         </form>
       </main>
+      <dialog
+        id="alert-modal"
+        class="bg-white shadow-lg backdrop:bg-black backdrop:bg-opacity-40 rounded-2xl"
+      >
+        <div class="w-[233px] p-[18px] flex flex-col items-center gap-5">
+          <p class="text-label-md" aria-label="모달 제목">원버튼 모달 제목</p>
+          <span
+            class="text-paragraph-small text-contents-content-secondary"
+            aira-label="모달 본문"
+            >모달 본문입니다.</span
+          >
+          <button
+            class="w-full h-9 bg-secondary text-white text-label-md rounded hover:brightness-90"
+          >
+            확인
+          </button>
+        </div>
+      </dialog>
     </div>
   </body>
 </html>

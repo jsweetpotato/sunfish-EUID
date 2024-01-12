@@ -8,7 +8,7 @@ const $submitbutton = createPrimaryBtn({
   type: 'submit',
 });
 
-$buttonWrapper.insertAdjacentElement('beforeend', $submitbutton);
+$buttonWrapper.appendChild($submitbutton);
 
 const CATEGORY_LIST = [
   'Program  ing',

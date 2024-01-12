@@ -3,12 +3,15 @@ import {
   createSecondaryBtn,
   toggleValid,
 } from '../../../components/main_button';
+import { getNode } from '../../../lib';
 import { setStorage } from '../../../lib/utils/storage';
 
 // 돔 엘리먼트
 const $form = document.querySelector('#oauth-form');
 const $btnWrapper = document.querySelector('.button-wrapper');
 const $phoneInput = document.querySelector('#phone');
+const $alertModal = document.querySelector('#alert-modal');
+let $oauthInput;
 
 const $sendButton = createPrimaryBtn({
   id: 'send-button',
@@ -24,6 +27,7 @@ const $summitButton = createPrimaryBtn({
 // 상태 관리
 const state = {
   isDrawed: false,
+  oauthNum: null,
 };
 
 // 버튼 draw
@@ -36,16 +40,34 @@ const INVALID_CLASS = 'invalid';
 const phonePattern = /^[010]+[0-9]{8}$/g;
 const OauthPattern = /^[0-9]{4,6}$/g;
 
+const checkNumber = (e) => {
+  if (e.key >= 0 && e.key <= 9) return true;
+  return false;
+};
+const handleOauthInput = () => {
+  let isValid = false;
+  return (e) => {
+    if (e.currentTarget.value.length > 3) {
+      isValid = true;
+      toggleValid($summitButton, isValid);
+    } else {
+      if (!isValid) return;
+      isValid = false;
+      toggleValid($summitButton, isValid);
+    }
+  };
+};
 const drawTemplate = () => {
   const template = /* html */ `
   <div class="relative">
     <label for="contentName" class="sr-only">컨텐츠 이름</label>
     <input
-      id="phone"
+      id="oauth"
       type="text"
       inputmode="tel"
-      pattern="[0-9]{4}"
+      pattern="[0-9]{4,5}"
       maxlength="6"
+      required
       class="group-[.invalid]:border-red-500 p-2 rounded border w-full border-contents-content-tertiary text-contents-content-primary"
       placeholder="인증번호를 입력하세요"
     />
@@ -54,8 +76,17 @@ const drawTemplate = () => {
   `;
   $form.insertAdjacentHTML('beforeend', template);
   const $btnWrapper2 = $form.querySelector('.button-wrapper:last-child');
-  toggleValid($summitButton, true);
   $btnWrapper2.appendChild($summitButton);
+  $oauthInput = getNode('#oauth');
+  $oauthInput.onkeypress = checkNumber;
+  $oauthInput.oninput = handleOauthInput();
+};
+
+const handleSubmitButton = (e) => {
+  e.preventDefault();
+  if (state.oauthNum === $oauthInput.value) {
+    console.log('인증');
+  }
 };
 
 const handleSendButton = () => {
@@ -63,9 +94,11 @@ const handleSendButton = () => {
 
   const sendOauthNum = () => {
     const array = new Uint16Array(1);
+    state.oauthNum = null;
+    $alertModal.showModal();
     setTimeout(() => {
       const oauthNum = crypto.getRandomValues(array).join('');
-      setStorage('oauth', `${oauthNum}`);
+      state.oauthNum = oauthNum;
       console.log(oauthNum);
       // eslint-disable-next-line no-alert
       // alert('인증번호가 발송되었습니다. 콘솔창을 확인해주세요.');
@@ -121,11 +154,6 @@ const handleSendButton = () => {
   };
 };
 
-const checkNumber = (e) => {
-  if (e.key >= 0 && e.key <= 9) return true;
-  return false;
-};
-
 const handlePhoneInput = () => {
   let isValid = false;
   return (e) => {
@@ -141,5 +169,6 @@ const handlePhoneInput = () => {
 };
 
 $sendButton.onclick = handleSendButton();
+$summitButton.onclick = handleSubmitButton;
 $phoneInput.onkeypress = checkNumber;
 $phoneInput.oninput = handlePhoneInput();
