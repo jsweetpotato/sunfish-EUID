@@ -1,10 +1,10 @@
 /**
- * 원 버튼 모달 생성하기
+ * 원버튼 모달 생성하기
  * @param {Object} obj
  * @param {String} obj.title 모달 제목
  * @param {String} obj.desc 모달 설명
  * @param {String} obj.buttonText 버튼 텍스트
- * @returns {HTMLDialogElement & HTMLButtonElement}
+ * @returns {HTMLDialogElement & HTMLButtonElement & HTMLButtonElement}
  */
 export const createModal1Btn = ({ title, desc, buttonText = '확인' }) => {
   const array = new Uint8Array(1);
@@ -55,7 +55,6 @@ export const createModal1Btn = ({ title, desc, buttonText = '확인' }) => {
  * @param {String} obj.submitText 승인 버튼 텍스트
  * @returns {HTMLDialogElement & HTMLButtonElement}
  */
-
 export const createModal2Btn = ({
   title,
   desc,
@@ -89,7 +88,6 @@ export const createModal2Btn = ({
   const cancelButton = document.querySelector(`#${id} button`);
   const submitButton = document.querySelector(`#${id} button:last-child`);
 
-  console.log(submitButton);
   modal.showing = () => {
     modal.showModal();
   };
