@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>이듬</title>
+    <script type="module" crossorigin src="/assets/signin-m_HhRk5O.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-9p4a8sJU.js">
+    <link rel="modulepreload" crossorigin href="/assets/Modal-1FvcQ_11.js">
+    <link rel="modulepreload" crossorigin href="/assets/main_button-S1akn1o1.js">
+    <link rel="modulepreload" crossorigin href="/assets/getNode-pa7syr6m.js">
+    <link rel="modulepreload" crossorigin href="/assets/pb-1NQpvyqM.js">
+    <link rel="stylesheet" crossorigin href="/assets/tailwind-zd2sDhNp.css">
+  </head>
+  <body>
+    <div
+      class="flex flex-col px-3 min-w-screen max-w-screen min-h-screen mx-auto"
+    >
+      <header class="sticky top-0 bg-white w-full h-10 pe-3">
+        <a
+          href="javascript:window.history.back();"
+          role="button"
+          aria-label="돌아가기"
+          class="bg-direction-icon block w-10 h-10 bg-no-repeat bg-bottom rotate-90 hover:bg-gray-100"
+        ></a>
+      </header>
+      <main>
+        <p class="text-label-lg text-prima mt-[1.125rem] mb-[1.125rem]">
+          안녕하세요!<br />
+          이메일로 로그인해주세요!
+        </p>
+        <form
+          id="oauth-form"
+          action="/"
+          class="w-full h-full flex flex-col gap-8"
+        >
+          <div id="email-box" class="relative group/email flex flex-col gap-2">
+            <label for="contentName" class="text-label-md">이메일</label>
+            <input
+              id="email"
+              type="email"
+              required
+              class="group-[.invalid]/email:border-red-500 p-2 rounded border w-full border-contents-content-tertiary"
+              placeholder="이메일 주소 입력"
+            />
+            <span
+              class="group-[.invalid]/email:block absolute bottom-[-18px] left-0 hidden text-label-sm text-red-500"
+              >올바른 이메일을 입력해주세요.</span
+            >
+          </div>
+          <div id="pw-box" class="relative group/pw flex flex-col gap-2">
+            <label for="contentName" class="text-label-md">비밀번호</label>
+            <input
+              id="pw"
+              type="password"
+              minlength="6"
+              required
+              class="group-[.invalid]/pw:border-red-500 p-2 rounded border w-full border-contents-content-tertiary"
+              placeholder="대소문자,특수문자 포함 6자리 이상"
+            />
+            <span
+              class="group-[.invalid]/pw:block absolute bottom-[-18px] left-0 hidden text-label-sm text-red-500"
+              >대소문자,특수문자 포함 6자리 이상 입력해주세요</span
+            >
+          </div>
+        </form>
+        <p p class="mt-3 text-paragraph-sm text-center">
+          휴대폰 번호가 변경되었나요?
+          <a id="login-to-email" class="underline underline-offset-2" href="#"
+            >이메일로 계정찾기</a
+          >
+        </p>
+      </main>
+    </div>
+  </body>
+</html>
