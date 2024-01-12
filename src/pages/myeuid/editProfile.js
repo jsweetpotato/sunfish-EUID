@@ -1,6 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { getNode, getNodes } from '../../lib';
 import initInput from '../../components/ValidationInput/ValidationInput';
+import { createModal1Btn, createModal2Btn } from '../../components/Modal/Modal';
 
 const inputArray = [
   {
@@ -29,6 +30,7 @@ initInput(inputArray);
 
 const textarea = getNode('#description');
 const characterCount = getNode('#characterCount');
+const saveButton = getNode('#saveButton');
 
 function countCharacters() {
   const count = textarea.value.length;
@@ -43,7 +45,6 @@ textarea.addEventListener('input', countCharacters);
 
 const allAgreeCheckbox = getNode('#all-agree-checkbox');
 const agreeCheckboxes = getNodes('.agree-checkbox');
-const saveButton = getNode('#saveButton');
 
 // 하위 체크박스가 모두 체크되면 전체동의도 체크되는 함수
 const handleCheckboxChange = () => {
@@ -83,34 +84,64 @@ agreeCheckboxes.forEach((checkbox) => {
 });
 
 // 저장 완료 모달
-const saveModal = getNode('#saveModal');
 
-function showSaveModal() {
-  saveModal.showModal();
-}
+const [saveModal, modalSaveButton] = createModal1Btn({
+  title: '🥳 저장 완료!',
+  desc: '프로필 정보가 저장되었습니다.',
+  buttonText: '확인',
+});
 
-saveButton.addEventListener('click', showSaveModal);
+const [warningModal, modalCancelButton, modalSubmitButton] = createModal2Btn({
+  title: '😱 나가시겠어요?',
+  desc: '변경사항이 저장되지 않아요. <br /> 정말로 나가시겠어요?',
+  cancelText: '취소',
+  submitText: '확인',
+});
+
+// 저장 모달
+const saveData = () => {
+  // 코드 넣기
+  saveModal.closing();
+};
+
+modalSaveButton.onclick = saveData;
+saveButton.onclick = () => saveModal.showing();
 
 // 경고 모달
 const cancelButton = getNodes('.cancelButton');
-const warningModal = getNode('#warningModal');
 
-function showWarningModal() {
-  warningModal.showModal();
-}
+const cancelProfileEdit = () => {
+  window.history.back();
+};
+
+const continueProfileEdit = () => warningModal.closing();
+
+modalCancelButton.onclick = continueProfileEdit;
+modalSubmitButton.onclick = cancelProfileEdit;
 
 cancelButton.forEach((button) => {
-  button.addEventListener('click', showWarningModal);
+  button.onclick = () => warningModal.showing();
 });
 
-// 모달창 닫기
-const closeModalButton = getNode('#closeModalButton');
+// 시작하기
+// -> 데이터 입력해서 user 컬렉션에 저장
+// -> user.datalocalStorage에 저장
+// -> 프로필 수정 페이지로 이동
+// -> 프로필 수정 페이지에서 user 데이타 받아와서 뿌리기
 
-function closeModal() {
-  warningModal.close();
-}
+// 로그아웃
+// -> localStorage에 유저정보 삭제
 
-closeModalButton.addEventListener('click', closeModal);
+// 회원탈퇴
+// -> localStorage에 유저정보 삭제
+// -> pb에 있는 user데이터 삭제
+// 단, 게시글이 작성된 미리 생성된 기본 유저는 삭제 X
+// 갓 생성한 user만 삭제
+
+// 수정
+// -> localStorage에 저장된 유저 데이터 가져오기
+// -> editProfile에 뿌리기
+// -> 수정 후 pb에 데이터 전달하기
 
 const fileField = getNode('#file');
 const imagePreview = getNode('#image-preview');

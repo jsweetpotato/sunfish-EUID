@@ -224,39 +224,6 @@
             취소
           </button>
 
-          <!-- 경고 모달 -->
-          <dialog
-            id="warningModal"
-            class="bg-white shadow-lg backdrop:bg-black backdrop:bg-opacity-40 rounded-3xl"
-          >
-            <div
-              class="w-[233px] px-[18px] py-5 flex flex-col items-center gap-5"
-            >
-              <p class="text-label-medium font-semibold leading-[150%]">
-                😱 나가시겠어요?
-              </p>
-              <span
-                class="text-paragraph-sm text-center text-contents-content-secondary leading-[160%]"
-                >변경사항이 저장되지 않아요. <br />
-                정말로 나가시겠어요?</span
-              >
-              <div class="flex w-full justify-between gap-[6px]">
-                <button
-                  id="closeModalButton"
-                  class="w-full h-9 bg-gray-100 text-black text-label-medium font-semibold leading-[150%] rounded hover:bg-gray-300 transition-all duration-300"
-                >
-                  취소
-                </button>
-                <button
-                  onclick="history.back();"
-                  class="w-full h-9 bg-secondary text-white text-label-medium font-semibold leading-[150%] rounded hover:bg-blue-600 transition-all duration-300"
-                >
-                  확인
-                </button>
-              </div>
-            </div>
-          </dialog>
-
           <button
             type="submit"
             id="saveButton"
@@ -265,30 +232,6 @@
           >
             저장
           </button>
-
-          <!-- 저장 완료 모달 -->
-          <dialog
-            class="bg-white shadow-lg backdrop:bg-black backdrop:bg-opacity-40 rounded-3xl"
-            id="saveModal"
-          >
-            <div
-              class="w-[233px] px-[18px] py-5 flex flex-col items-center gap-5"
-            >
-              <p class="text-label-medium font-semibold leading-[150%]">
-                🥳 저장 완료!
-              </p>
-              <span
-                class="text-paragraph-sm text-contents-content-secondary leading-[160%]"
-                >프로필 정보가 저장되었습니다.</span
-              >
-              <button
-                class="w-full h-9 bg-secondary text-white text-label-medium font-semibold leading-[150%] rounded hover:bg-blue-400 transition-all duration-300"
-                onclick="location.href='myProfile.html'"
-              >
-                확인
-              </button>
-            </div>
-          </dialog>
         </div>
 
         <span
