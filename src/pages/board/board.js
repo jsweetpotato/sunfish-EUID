@@ -59,8 +59,16 @@ function createTogetherTemplate(item) {
   return template;
 }
 function createQnaTemplate(item) {
-  const { category, title, description, imgField, comments, views, created } =
-    item;
+  const {
+    id,
+    category,
+    title,
+    description,
+    imgField,
+    comments,
+    views,
+    created,
+  } = item;
   const imgUrl =
     imgField.length === 0
       ? ''
@@ -82,7 +90,7 @@ function createQnaTemplate(item) {
             class="text-label-sm px-1 bg-tertiary text-white rounded"
             >${category}</span>
         </div>
-        <a href=""
+        <a href="/src/pages/board/qnaView.html?id=${id}"
           class="absolute top-0 left-0 w-full h-full flex-auto text-paragraph-md font-normal text-contents-content-primary">
           <span class="absolute top-8 left-3 w-[70%] overflow-hidden whitespace-nowrap text-ellipsis">${title}</span>
         </a>
