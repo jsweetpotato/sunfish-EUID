@@ -54,7 +54,7 @@ const initInput = (validConfig) => {
           type="text"
           id=${id}
           data-index="${idx}"
-          placeholder=${placeholder}
+          placeholder="${placeholder}"
           minlength="${min}"
           maxlength="${max}"
           class="group-[.invalid]:border-red-500 p-2 text-paragraph-sm w-full outline-none border border-contents-content-tertiary rounded"

@@ -47,6 +47,7 @@ export default {
         'alram_bell-icon': "url('/src/assets/myPageIcon/alram_bell.svg')",
         'camera-icon': "url('/src/assets/myPageIcon/camera.svg')",
         'cart-icon': "url('/src/assets/myPageIcon/cart.svg')",
+        'empty_heart-icon': "url('/src/assets/myPageIcon/heart.svg')",
         'information-icon': "url('/src/assets/myPageIcon/information.svg')",
         'note-icon': "url('/src/assets/myPageIcon/note.svg')",
         'people_black-icon': "url('/src/assets/myPageIcon/people.svg')",
