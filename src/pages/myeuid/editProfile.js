@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import { getNode, getNodes } from '../../lib';
+import { getNode, getNodes, pb } from '../../lib';
 import initInput from '../../components/ValidationInput/ValidationInput';
 import { createModal1Btn, createModal2Btn } from '../../components/Modal/Modal';
 
@@ -99,8 +99,19 @@ const [warningModal, modalCancelButton, modalSubmitButton] = createModal2Btn({
 });
 
 // 저장 모달
-const saveData = () => {
-  // 코드 넣기
+const login = localStorage.getItem('login');
+const nameInput = getNode('#nameInput').value;
+const jobInput = getNode('#jobInput').value;
+const companyInput = getNode('#companyInput').value;
+const aboutMeInput = getNode('#aboutMeInput').value;
+
+const saveData = async () => {
+  if (login === 'false') {
+    localStorage.removeItem('login');
+    localStorage.setItem('login', 'true');
+  }
+
+  window.location.href = '/src/pages/myeuid/myProfile.html';
   saveModal.closing();
 };
 
@@ -109,9 +120,15 @@ saveButton.onclick = () => saveModal.showing();
 
 // 경고 모달
 const cancelButton = getNodes('.cancelButton');
+const storage = window.localStorage;
 
 const cancelProfileEdit = () => {
-  window.history.back();
+  if (login === 'true') {
+    window.location.href = '/src/pages/myeuid/myProfile.html';
+  } else {
+    storage.clear();
+    window.location.href = '/src/pages/login/';
+  }
 };
 
 const continueProfileEdit = () => warningModal.closing();
