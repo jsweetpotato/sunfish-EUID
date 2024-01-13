@@ -37,7 +37,7 @@
         </div>
       </header>
 
-      <main class="relative h-[calc(100dvh-91px)] overflow-auto">
+      <main class="relative h-[calc(100dvh-193px)] overflow-auto">
         <section class="h-full">
           <h1 class="sr-only">질의응답 글쓰기</h1>
           <button
@@ -64,7 +64,7 @@
               <input
                 type="text"
                 id="title"
-                class="input w-full text-label-lg font-medium pl-2 border-l-2 rounded-tr rounded-br border-secondary"
+                class="input w-full text-label-lg font-medium pl-2 rounded"
                 placeholder="제목"
                 spellcheck="false"
               />
@@ -99,8 +99,26 @@
         </section>
       </main>
 
-      <footer class="w-full h-[50px] border-t border-contents-content-tertiary">
-        <div class="px-3 py-3 h-full flex gap-3">
+      <footer class="w-full h-[152px]">
+        <div class="w-full px-3 pt-6 pb-[34px] flex gap-1.5">
+          <button
+            id="cancel"
+            class="flex justify-center items-center w-[28%] h-[45px] text-label-md text-black bg-gray-100 rounded hover:brightness-90 transition-all duration-300"
+          >
+            취소
+          </button>
+          <button
+            id="complete"
+            class="w-[72%] h-[45px] text-label-md text-white bg-secondary rounded disabled:bg-contents-content-secondary disabled:text-black disabled:cursor-not-allowed hover:brightness-90 transition-all duration-300"
+            disabled
+          >
+            작성 완료
+          </button>
+        </div>
+
+        <div
+          class="px-3 py-3 flex gap-3 border-t border-contents-content-tertiary"
+        >
           <div class="flex items-center">
             <input
               type="file"
@@ -124,27 +142,16 @@
         </div>
       </footer>
 
-      <button
-        type="submit"
-        id="complete"
-        form="form"
-        aria-label="완료하기"
-        class="absolute right-0 top-0 text-label-md w-11 h-10 text-secondary disabled:text-contents-content-tertiary disabled:cursor-not-allowed hover:bg-gray-100 hover:rounded transition-all duration-300"
-        disabled
-      >
-        완료
-      </button>
-
       <div
         id="modalDimmed"
-        class="absolute top-0 left-0 w-full h-[calc(100dvh-50px)] bg-gradient-to-b from-transparent from-[-27%] to-black to-[72%] overflow-hidden hidden opacity-0"
+        class="absolute top-0 left-0 w-full h-[calc(100dvh-50px)] bg-[rgba(0,0,0,0.3)] overflow-hidden hidden opacity-0"
       >
         <ul
           id="modal"
           tabindex="0"
           class="absolute bottom-[-400px] w-full bg-white flex flex-col text-paragraph-md font-normal rounded-t-lg"
         >
-          <li class="py-2 px-3 flex justify-between items-center">
+          <li class="py-4 px-3 flex justify-between items-center">
             <h2 id="modalTitle" class="text-label-lg">관심분야</h2>
             <button id="closeModal" class="bg-close-icon w-5 h-5">
               <span class="sr-only">질의응답 선택창 닫기</span>
@@ -155,7 +162,7 @@
             <button
               id="programming"
               data-name="programming"
-              class="select px-2.5 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
+              class="select px-3 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
             >
               선택
             </button>
@@ -165,7 +172,7 @@
             <button
               id="design"
               data-name="design"
-              class="select px-2.5 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
+              class="select px-3 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
             >
               선택
             </button>
@@ -175,13 +182,13 @@
               <span class="sr-only" tabindex="0"
                 >User Interface and User Experience</span
               >
-              <abbr title="User Interface">UI</abbr> ·
-              <abbr title="User Experience">UX</abbr>
+              <abbr title="User Interface" class="no-underline">UI</abbr> ·
+              <abbr title="User Experience" class="no-underline">UX</abbr>
             </p>
             <button
               id="uiux"
               data-name="ui·ux"
-              class="select px-2.5 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
+              class="select px-3 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
             >
               선택
             </button>
@@ -191,7 +198,7 @@
             <button
               id="frontend"
               data-name="frontend"
-              class="select px-2.5 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
+              class="select px-3 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
             >
               선택
             </button>
@@ -201,7 +208,7 @@
             <button
               id="backend"
               data-name="backend"
-              class="select px-2.5 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
+              class="select px-3 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
             >
               선택
             </button>
@@ -211,7 +218,7 @@
             <button
               id="publishing"
               data-name="publishing"
-              class="select px-2.5 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
+              class="select px-3 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
             >
               선택
             </button>
@@ -219,12 +226,14 @@
           <li class="py-2 px-3 flex justify-between items-center">
             <p>
               <span class="sr-only" tabindex="0">인공지능</span>
-              <abbr title="Artificial Intelligence">AI</abbr>
+              <abbr title="Artificial Intelligence" class="no-underline"
+                >AI</abbr
+              >
             </p>
             <button
               id="ai"
               data-name="ai"
-              class="select px-2.5 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
+              class="select px-3 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
             >
               선택
             </button>
@@ -234,7 +243,7 @@
             <button
               id="blockchain"
               data-name="blockchain"
-              class="select px-2.5 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
+              class="select px-3 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
             >
               선택
             </button>

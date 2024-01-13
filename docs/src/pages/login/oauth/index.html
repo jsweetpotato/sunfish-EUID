@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>이듬</title>
+    <script type="module" crossorigin src="/assets/oauth-svKTvcYF.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-9p4a8sJU.js">
+    <link rel="modulepreload" crossorigin href="/assets/Modal-1FvcQ_11.js">
+    <link rel="modulepreload" crossorigin href="/assets/main_button-S1akn1o1.js">
+    <link rel="modulepreload" crossorigin href="/assets/getNode-pa7syr6m.js">
+    <link rel="modulepreload" crossorigin href="/assets/pb-KemexN1N.js">
+    <link rel="stylesheet" crossorigin href="/assets/tailwind-zd2sDhNp.css">
+  </head>
+  <body>
+    <div
+      class="flex flex-col px-3 min-w-screen max-w-screen min-h-screen mx-auto"
+    >
+      <header class="sticky top-0 bg-white w-full h-10 pe-3">
+        <div class="flex justify-between items-center">
+          <a
+            href="#"
+            id="back"
+            role="button"
+            aria-label="돌아가기"
+            class="bg-direction-icon block w-10 h-10 bg-no-repeat bg-bottom rotate-90 hover:bg-gray-100"
+          ></a>
+        </div>
+      </header>
+      <main>
+        <p class="text-label-lg text-prima mt-[1.125rem]">
+          거의 다 끝났어요!<br />
+          휴대폰 번호로 본인인증을 해주세요.
+        </p>
+        <p class="text-paragraph-sm mb-[1.125rem]">
+          휴대폰 번호는 안전하게 보관되며 서로에게 공개되지 않아요.
+        </p>
+        <form
+          id="oauth-form"
+          action="/"
+          class="group w-full h-full flex flex-col gap-8"
+        >
+          <div class="relative">
+            <label for="contentName" class="sr-only">컨텐츠 이름</label>
+            <input
+              id="phone"
+              type="text"
+              inputmode="tel"
+              pattern="[010]+[0-9]{10}"
+              maxlength="11"
+              required
+              class="group-[.invalid]:border-red-500 group-[.send]:text-gray-500 p-2 rounded border w-full border-contents-content-tertiary text-contents-content-primary"
+              placeholder="휴대폰 번호 ( -없이 숫자만 입력 )"
+            />
+            <span
+              class="group-[.invalid]:block absolute bottom-[-18px] left-0 hidden text-label-sm text-red-500"
+              >올바를 전화번호를 입력해주세요.</span
+            >
+          </div>
+          <div class="button-wrapper"></div>
+        </form>
+      </main>
+    </div>
+  </body>
+</html>

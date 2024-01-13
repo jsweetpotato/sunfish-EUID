@@ -12,14 +12,12 @@
       class="flex flex-col px-3 min-w-screen max-w-screen min-h-screen mx-auto"
     >
       <header class="sticky top-0 bg-white w-full h-10 pe-3">
-        <div class="flex justify-between items-center">
-          <a
-            href="javascript:window.history.back();"
-            role="button"
-            aria-label="돌아가기"
-            class="bg-direction-icon block w-10 h-10 bg-no-repeat bg-center rotate-90 hover:bg-gray-100"
-          ></a>
-        </div>
+        <a
+          href="javascript:window.history.back();"
+          role="button"
+          aria-label="돌아가기"
+          class="bg-direction-icon block w-10 h-10 bg-no-repeat bg-bottom rotate-90 hover:bg-gray-100"
+        ></a>
       </header>
       <main>
         <p class="text-label-lg text-prima mt-[1.125rem] mb-[1.125rem]">
@@ -37,7 +35,7 @@
               id="email"
               type="email"
               required
-              class="p-2 rounded border w-full border-contents-content-tertiary"
+              class="group-[.invalid]/email:border-red-500 p-2 rounded border w-full border-contents-content-tertiary"
               placeholder="이메일 주소 입력"
             />
             <span
@@ -52,7 +50,7 @@
               type="password"
               minlength="6"
               required
-              class="p-2 rounded border w-full border-contents-content-tertiary"
+              class="group-[.invalid]/pw:border-red-500 p-2 rounded border w-full border-contents-content-tertiary"
               placeholder="대소문자,특수문자 포함 6자리 이상"
             />
             <span
@@ -63,7 +61,9 @@
         </form>
         <p p class="mt-3 text-paragraph-sm text-center">
           휴대폰 번호가 변경되었나요?
-          <a class="underline underline-offset-2" href="#">이메일로 계정찾기</a>
+          <a id="login-to-email" class="underline underline-offset-2" href="#"
+            >이메일로 계정찾기</a
+          >
         </p>
       </main>
     </div>

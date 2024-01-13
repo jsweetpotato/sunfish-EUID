@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" sizes="48x48" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" sizes="192x192" href="/android-icon.png" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <link rel="stylesheet" href="/src/styles/tailwind.css" />
+    <title>엔터 이듬 - 메인</title>
+    <style>
+      /* custom scrollbar style */
+      /* for webkit */
+      main::-webkit-scrollbar {
+        width: 7px;
+      }
+      main::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+      main::-webkit-scrollbar-thumb {
+        background: #c5c5c5;
+        border-radius: 5px;
+      }
+      main::-webkit-scrollbar-thumb:hover {
+        background: #aaa;
+      }
+      /* for mozilla */
+      main {
+        scrollbar-width: thin;
+        scrollbar-color: #c5c5c5 #f1f1f1;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen">
+    <div
+      class="relative min-w-screen max-w-screen w-full mx-auto h-screen flex flex-col"
+    >
+      <h1 class="sr-only">엔터이듬 메인</h1>
+      <header class="w-full">
+        <div class="flex justify-between">
+          <div class="flex h-full items-center">
+            <span class="items-center pl-3 text-label-lg font-semibold">
+              남가좌제2동
+            </span>
+            <button
+              type="button"
+              aria-label="내 동네 설정하기"
+              class="bg-direction-icon w-10 h-10 bg-no-repeat bg-center hover:bg-gray-100 hover:rounded transition-all duration-300"
+            ></button>
+          </div>
+
+          <ul class="flex">
+            <li>
+              <a
+                href="/"
+                role="button"
+                aria-label="검색하기"
+                class="bg-search-icon block w-10 h-10 bg-no-repeat bg-center hover:bg-gray-100 hover:rounded transition-all duration-300"
+              ></a>
+            </li>
+            <li>
+              <a
+                href="/"
+                role="button"
+                aria-label="알림"
+                class="bg-alram-icon block w-10 h-10 bg-no-repeat bg-center hover:bg-gray-100 hover:rounded transition-all duration-300"
+              ></a>
+            </li>
+          </ul>
+        </div>
+      </header>
+
+      <main id="main" class="relative overflow-x-hidden overflow-y-auto flex-1">
+        <section class="w-full">
+          <div
+            id="swiper-container"
+            class="swiper w-full aspect-[1.5/1] bg-gray-300 transition-all duration-300"
+            role="banner"
+          >
+            <h2 class="sr-only">메인 배너 캐러셀</h2>
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <div class="relative w-full h-full">
+                  <img
+                    class="absolute bottom-0 w-full"
+                    src="/src/assets/banner.png"
+                    alt="메인 배너"
+                  />
+                  <div class="absolute top-[6.25%] left-[6.25%] text-white">
+                    <h3 class="w-[148px] text-label-lg font-medium">
+                      풀리지 않는 버그 속 개발자로 살아남기
+                    </h3>
+                    <a class="text-paragraph-sm" href="">자세히 보기</a>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="relative w-full h-full">
+                  <img
+                    class="absolute bottom-0 w-full"
+                    src="/src/assets/banner.png"
+                    alt="메인 배너"
+                  />
+                  <div class="absolute top-[6.25%] left-[6.25%] text-white">
+                    <h3 class="w-[148px] text-label-lg font-medium">
+                      풀리지 않는 버그 속 개발자로 살아남기
+                    </h3>
+                    <a class="text-paragraph-sm" href="">자세히 보기</a>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="relative w-full h-full">
+                  <img
+                    class="absolute bottom-0 w-full"
+                    src="/src/assets/banner.png"
+                    alt="메인 배너"
+                  />
+                  <div class="absolute top-[6.25%] left-[6.25%] text-white">
+                    <h3 class="w-[148px] text-label-lg font-medium">
+                      풀리지 않는 버그 속 개발자로 살아남기
+                    </h3>
+                    <a class="text-paragraph-sm" href="">자세히 보기</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="pagination z-10"
+              style="
+                width: 41px;
+                top: 75%;
+                left: 11%;
+                height: 2px;
+                background-color: white;
+              "
+            ></div>
+          </div>
+          <div
+            id="story-container"
+            class="mt-4 [&>*:nth-child(odd)]:ml-auto p-3 flex flex-wrap gap-y-6"
+          >
+            <h2 class="sr-only">선배님 스토리 게시물 목록</h2>
+          </div>
+        </section>
+
+        <div class="absolute right-[60px]">
+          <div class="fixed bottom-20">
+            <a
+              class="block w-12 h-12 rounded-full bg-plus-icon bg-center bg-no-repeat bg-secondary shadow-lg hover:brightness-90 transition-all duration-300"
+              href=""
+            >
+              <span class="sr-only">글쓰기</span>
+            </a>
+          </div>
+        </div>
+      </main>
+
+      <footer
+        class="relative min-w-screen max-w-screen w-full h-[69px] bg-white"
+      >
+        <nav
+          class="w-full h-[69px] pl-2 pr-3 pt-2 pb-5 border-t-[1px] border-gray-200"
+        >
+          <ul class="w-full h-full flex justify-between items-center">
+            <li
+              class="is-select h-full w-12 pt-0.5 hover:bg-gray-100 hover:rounded transition-all duration-300"
+            >
+              <a
+                class="home block relative h-full text-paragraph-sm font-normal bg-home_full-icon bg-no-repeat bg-top"
+                href="/"
+              >
+                <span
+                  class="absolute w-full text-center bottom-0 left-1/2 -translate-x-1/2"
+                  >홈</span
+                >
+              </a>
+            </li>
+            <li
+              class="h-full w-12 pt-0.5 hover:bg-gray-100 hover:rounded transition-all duration-300"
+            >
+              <a
+                class="board block relative h-full text-paragraph-sm font-normal bg-board-icon bg-no-repeat bg-top"
+                href="/src/pages/board/"
+                ><span
+                  class="absolute w-full text-center bottom-0 left-1/2 -translate-x-1/2"
+                  >게시판</span
+                ></a
+              >
+            </li>
+            <li
+              class="h-full w-12 pt-0.5 hover:bg-gray-100 hover:rounded transition-all duration-300"
+            >
+              <a
+                class="near block relative h-full text-paragraph-sm font-normal bg-near bg-no-repeat bg-top"
+                href="/src/pages/exchange/index.html"
+                ><span
+                  class="absolute w-full text-center bottom-0 left-1/2 -translate-x-1/2"
+                  >내 근처</span
+                ></a
+              >
+            </li>
+            <li
+              class="h-full w-12 pt-0.5 hover:bg-gray-100 hover:rounded transition-all duration-300"
+            >
+              <a
+                class="chat block relative h-full text-paragraph-sm font-normal bg-chat-icon bg-no-repeat bg-top"
+                href=""
+                ><span
+                  class="absolute w-full text-center bottom-0 left-1/2 -translate-x-1/2"
+                  >채팅</span
+                ></a
+              >
+            </li>
+            <li
+              class="h-full w-12 pt-0.5 hover:bg-gray-100 hover:rounded transition-all duration-300"
+            >
+              <a
+                class="my block relative h-full text-paragraph-sm font-normal bg-my-icon bg-no-repeat bg-top"
+                href="/src/pages/myEuid/index.html"
+                ><span
+                  class="absolute w-full text-center bottom-0 left-1/2 -translate-x-1/2"
+                  >나의 이듬</span
+                ></a
+              >
+            </li>
+          </ul>
+        </nav>
+      </footer>
+    </div>
+
+    <script type="module" src="/src/pages/main/main.js"></script>
+  </body>
+</html>

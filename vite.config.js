@@ -13,22 +13,24 @@ export default defineConfig({
         myProfile: resolve(__dirname, 'src/pages/myeuid/myProfile.html'),
         editProfile: resolve(__dirname, 'src/pages/myeuid/editProfile.html'),
         // 로그인
-        login: resolve(__dirname, 'src/pages/login/index/'),
-        category: resolve(__dirname, 'src/pages/login/category/'),
-        oauth: resolve(__dirname, 'src/pages/login/oauth/'),
-        signin: resolve(__dirname, 'src/pages/login/signin/'),
-        signup: resolve(__dirname, 'src/pages/login/signup/'),
+        login: resolve(__dirname, 'src/pages/login/index.html'),
+        category: resolve(__dirname, 'src/pages/login/category/index.html'),
+        oauth: resolve(__dirname, 'src/pages/login/oauth/index.html'),
+        signin: resolve(__dirname, 'src/pages/login/signin/index.html'),
+        signup: resolve(__dirname, 'src/pages/login/signup/index.html'),
         // 게시판
         board: resolve(__dirname, 'src/pages/board/index.html'),
         together: resolve(__dirname, 'src/pages/board/together.html'),
         writeTogether: resolve(__dirname, 'src/pages/board/writeTogether.html'),
         // 기기거래
         exchange: resolve(__dirname, 'src/pages/exchange/index.html'),
+        // 스토리
+        story: resolve(__dirname, 'src/pages/main/index.html'),
       },
     },
   },
   // esbuild로 빌드 시 console과 debugger 구문 제거
   esbuild: {
-    drop: ['console', 'debugger'],
+    drop: ['debugger'],
   },
 });

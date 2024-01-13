@@ -32,7 +32,7 @@
       }
     </style>
   </head>
-  <body class="min-h-screen">
+  <body class="min-h-screen overflow-y-hidden">
     <div class="relative min-w-screen max-w-screen w-full mx-auto">
       <header class="w-full">
         <div class="flex justify-between h-full">
@@ -68,7 +68,7 @@
         <nav
           class="w-full px-3 py-2 border-b border-b-contents-content-secondary"
         >
-          <ul class="flex items-center gap-1">
+          <ul class="flex items-center gap-1 h-[29px]">
             <li>
               <button
                 id="openModal"
@@ -78,28 +78,27 @@
               </button>
             </li>
             <li>
-              <a
-                href=""
+              <button
                 id="popular"
                 class="px-2.5 py-1.5 text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 transition-all duration-300"
               >
                 인기글
-              </a>
+              </button>
             </li>
             <li>
               <a
                 href="/src/pages/board/together.html"
                 id="together"
-                class="px-2.5 py-1.5 text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 transition-all duration-300"
+                class="inline-block px-2.5 py-1.5 h-full text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 transition-all duration-300"
               >
                 같이해요
               </a>
             </li>
             <li>
               <a
-                href=""
+                href="/src/pages/board/qna.html"
                 id="qna"
-                class="px-2.5 py-1.5 text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 transition-all duration-300"
+                class="inline-block px-2.5 py-1.5 h-full text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 transition-all duration-300"
               >
                 질의응답
               </a>
@@ -127,14 +126,14 @@
 
       <div
         id="modalDimmed"
-        class="absolute top-0 left-0 w-full h-[calc(100dvh-69px)] bg-gradient-to-b from-transparent from-[-27%] to-black to-[72%] hidden opacity-0"
+        class="absolute top-0 left-0 w-full h-[calc(100dvh-69px)] bg-[rgba(0,0,0,0.3)] hidden opacity-0"
       >
         <ul
           id="modal"
           tabindex="0"
           class="absolute bottom-[-300px] w-full bg-white flex flex-col text-paragraph-md font-normal rounded-t-lg"
         >
-          <li class="py-2 px-3 flex justify-between items-center">
+          <li class="py-4 px-3 flex justify-between items-center">
             <h2 id="modalTitle" class="text-label-lg">관심분야</h2>
             <button id="closeModal" class="bg-close-icon w-5 h-5">
               <span class="sr-only">관심분야 선택창 닫기</span>
@@ -145,7 +144,7 @@
             <button
               id="programming"
               data-name="programming"
-              class="px-2.5 py-1.5 text-paragraph-sm font-normal bg-white rounded-full border border-contents-content-tertiary hover:brightness-95 transition-all duration-300"
+              class="px-3 py-1.5 text-paragraph-sm font-normal bg-white rounded-full border border-contents-content-tertiary hover:brightness-95 transition-all duration-300"
             >
               팔로우 취소
             </button>
@@ -155,7 +154,7 @@
             <button
               id="design"
               data-name="design"
-              class="px-2.5 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
+              class="px-3 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
             >
               팔로우
             </button>
@@ -165,13 +164,13 @@
               <span class="sr-only" tabindex="0"
                 >User Interface and User Experience</span
               >
-              <abbr title="User Interface">UI</abbr> ·
-              <abbr title="User Experience">UX</abbr>
+              <abbr title="User Interface" class="no-underline">UI</abbr> ·
+              <abbr title="User Experience" class="no-underline">UX</abbr>
             </p>
             <button
               id="uiux"
               data-name="uiux"
-              class="px-2.5 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
+              class="px-3 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
             >
               팔로우
             </button>
@@ -181,7 +180,7 @@
             <button
               id="frontend"
               data-name="frontend"
-              class="px-2.5 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
+              class="px-3 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
             >
               팔로우
             </button>
@@ -191,7 +190,7 @@
             <button
               id="backend"
               data-name="backend"
-              class="px-2.5 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
+              class="px-3 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
             >
               팔로우
             </button>
@@ -201,7 +200,7 @@
             <button
               id="publishing"
               data-name="publishing"
-              class="px-2.5 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
+              class="px-3 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
             >
               팔로우
             </button>
@@ -209,12 +208,14 @@
           <li class="py-2 px-3 flex justify-between items-center">
             <p>
               <span class="sr-only" tabindex="0">인공지능</span>
-              <abbr title="Artificial Intelligence">AI</abbr>
+              <abbr title="Artificial Intelligence" class="no-underline"
+                >AI</abbr
+              >
             </p>
             <button
               id="ai"
               data-name="ai"
-              class="px-2.5 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
+              class="px-3 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
             >
               팔로우
             </button>
@@ -224,7 +225,7 @@
             <button
               id="blockchain"
               data-name="blockhain"
-              class="px-2.5 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
+              class="px-3 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
             >
               팔로우
             </button>
