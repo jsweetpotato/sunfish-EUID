@@ -1,8 +1,9 @@
 /* eslint-disable no-param-reassign */
-import { getNode } from '/src/lib';
+import { getNode, getNodes } from '/src/lib';
 import list from './exchangeData';
+import { createModal1Btn } from '../../components/Modal/Modal';
 
-
+const modals = getNodes('.modal');
 const plusButton = getNode('#plusButton');
 const body = getNode('#body');
 const section = getNode('.content');
@@ -46,9 +47,22 @@ function toggle(){
   this.classList.toggle('bg-secondary');
 }
 
+function showingModal(e) {
+  e.preventDefault();
+}
 
 list();
 
+modals.forEach((item) => {
+  item.addEventListener('click', showingModal);
+  const [modal, button] = createModal1Btn({
+    title: '서비스 준비중입니다',
+    desc: '빠른시일 내에 업데이트 할게요~이용에 불편을 드려 죄송합니다!',
+    buttonText: '확인',
+  });
+  item.addEventListener('click', modal.showing)
+  button.addEventListener('click', modal.closing);
+})
 plusButton.addEventListener('click', show);
 plusButton.addEventListener('click', toggle);
 
