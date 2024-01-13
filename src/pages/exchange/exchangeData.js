@@ -50,7 +50,7 @@ export default async function imageList() {
           )}" alt="${value}" class="w-[95px] h-[95px] object-cover grow rounded-lg">
         </figure>
         <div class="flex flex-col grow p-3 ">
-          <a href="/src/pages/exchange/exchangeDetail.html?id=#${value.id}" 
+          <a href="/src/pages/exchange/exchangeDetail.html#${value.id}" 
           class="text-paragraph-md absolute w-full h-full top-0 left-0">
           <span class='absolute top-5 left-32'>${value.title}</span>
           </a>
