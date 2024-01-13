@@ -43,7 +43,11 @@ const withdrawCancel = () => {
 };
 
 // 회원탈퇴 확인
-const withdrawSubmit = () => {
+const withdrawSubmit = async () => {
+  const pocketAuth = localStorage.getItem('pocketbase_auth');
+  const pocketData = JSON.parse(pocketAuth);
+
+  await pb.collection('users').delete(pocketData.model.id);
   localStorage.clear();
   window.location.href = '/src/pages/login/';
 };

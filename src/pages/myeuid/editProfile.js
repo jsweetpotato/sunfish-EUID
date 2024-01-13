@@ -105,60 +105,57 @@ const jobInput = getNode('#jobInput');
 const companyInput = getNode('#companyInput');
 const aboutMeInput = getNode('#aboutMeInput');
 const genderInput = document.querySelector('input[name="gender"]:checked');
+const usersOauth = localStorage.getItem('users-oauth');
+const userData = JSON.parse(usersOauth);
+const pocketAuth = localStorage.getItem('pocketbase_auth');
+const pocketData = JSON.parse(pocketAuth);
 
+// 프로필 수정 : 저장
 const saveData = async () => {
   if (login === 'false') {
-    // 회원가입 유저
-
-    const localData = localStorage.getItem('users-oauth');
-    const parseData = JSON.parse(localData);
-
-    const data = {
-      username: `${nameInput.value}`,
-      email: parseData.email,
+    const createUser = {
+      username: `${userData.email.split('@')[0]}`,
+      email: `${userData.email}`,
       emailVisibility: true,
-      password: parseData.password,
-      passwordConfirm: parseData.passwordConfirm,
-      name: 'qwe',
-      phone: parseData.phone,
-      categorys: parseData.categorys,
+      password: `${userData.password}`,
+      passwordConfirm: `${userData.passwordConfirm}`,
+      name: `${nameInput.value}`,
+      phone: `${userData.phone}`,
+      categorys: userData.categorys.map((data) => data.toLowerCase()),
       gender: `${genderInput.value}`,
       company: `${companyInput.value}`,
       job: `${jobInput.value}`,
       period: Math.ceil(Math.random() * 10),
       introduce: `${aboutMeInput.value}`,
-      passionTemp: 12,
-      sellingProductCount: 12,
-    };
-
-    const data2 = {
-      username: 'test_username',
-      email: 'test@example.com',
-      emailVisibility: true,
-      password: parseData.password,
-      passwordConfirm: parseData.passwordConfirm,
-      name: 'test',
-      phone: 'test',
-      categorys: ['programming'],
-      gender: 'none',
-      company: 'test',
-      job: 'test',
-      period: 123,
-      introduce: 'test',
       passionTemp: 123,
       sellingProductCount: 123,
     };
+    saveModal.closing();
+    await pb.collection('users').create(createUser);
 
-    const record = await pb.collection('users').create(data2);
-    console.log(record);
-
-    await pb.collection('users').create(data);
-
+    await pb
+      .collection('users')
+      .authWithPassword(userData.email, userData.password)
+      .then(() => {
+        window.location.href = '/src/pages/main/';
+      });
+    localStorage.removeItem('users-oauth');
     localStorage.setItem('login', 'true');
-  }
+  } else {
+    const updateUser = {
+      name: `${nameInput.value}`,
+      gender: `${genderInput.value}`,
+      company: `${companyInput.value}`,
+      job: `${jobInput.value}`,
+      introduce: `${aboutMeInput.value}`,
+    };
 
-  window.location.href = '/src/pages/myeuid/myProfile.html';
-  saveModal.closing();
+    pb.collection('users')
+      .update(pocketData.model.id, updateUser)
+      .then(() => {
+        window.location.href = '/src/pages/myeuid/myProfile.html';
+      });
+  }
 };
 
 modalSaveButton.onclick = saveData;
@@ -185,26 +182,6 @@ modalSubmitButton.onclick = cancelProfileEdit;
 cancelButton.forEach((button) => {
   button.onclick = () => warningModal.showing();
 });
-
-// 시작하기
-// -> 데이터 입력해서 user 컬렉션에 저장
-// -> user.datalocalStorage에 저장
-// -> 프로필 수정 페이지로 이동
-// -> 프로필 수정 페이지에서 user 데이타 받아와서 뿌리기
-
-// 로그아웃
-// -> localStorage에 유저정보 삭제
-
-// 회원탈퇴
-// -> localStorage에 유저정보 삭제
-// -> pb에 있는 user데이터 삭제
-// 단, 게시글이 작성된 미리 생성된 기본 유저는 삭제 X
-// 갓 생성한 user만 삭제
-
-// 수정
-// -> localStorage에 저장된 유저 데이터 가져오기
-// -> editProfile에 뿌리기
-// -> 수정 후 pb에 데이터 전달하기
 
 const fileField = getNode('#file');
 const imagePreview = getNode('#image-preview');
