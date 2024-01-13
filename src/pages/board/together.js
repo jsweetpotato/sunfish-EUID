@@ -180,11 +180,11 @@ function handleChangeSortCreated(limit = 1000) {
       }
       isLatest = !isLatest;
       getData();
+      isWaiting = true;
+      setTimeout(() => {
+        isWaiting = false;
+      }, limit);
     } else alert('성격이 급하신 것 같아요. 천천히 눌러주세요~');
-    isWaiting = true;
-    setTimeout(() => {
-      isWaiting = false;
-    }, limit);
   };
 }
 sortCreatedButton.addEventListener('click', handleChangeSortCreated());

@@ -45,7 +45,7 @@ function createQnaTemplate(item) {
           : ''
       }
       </div>
-      <a href="/src/pages/board/qnaView.html"
+      <a href="/src/pages/board/qnaView.html?id=${id}"
         class="absolute top-0 left-0 w-full h-full flex-auto text-paragraph-md font-normal text-contents-content-primary "
       >
         <span class="absolute top-8 left-3 w-[70%] overflow-hidden whitespace-nowrap text-ellipsis">${title}</span>

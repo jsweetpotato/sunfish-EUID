@@ -23,8 +23,8 @@ function createTemplate(item) {
     : 'text-contents-content-secondary';
   gender = gender === '누구나' ? `${gender} 참여가능` : `${gender}만 참여가능`;
   age = age === '모든 연령' ? age : `${age}대`;
-  const ownerProfileImgUrl = pb.files.getUrl(item.expand.user, avatar, {
-    thumb: '50x0',
+  const ownerAvatarUrl = pb.files.getUrl(item.expand.user, avatar, {
+    thumb: '0x50',
   });
   const isMember = members.indexOf(pb.authStore.model.id) > -1;
 
@@ -56,12 +56,14 @@ function createTemplate(item) {
       }</span>/${maxMember}</span
     >
     <div class=" h-[40px] flex items-center gap-2">
-      <div class="w-[30px] h-[30px] rounded-full bg-contents-content-secondary overflow-hidden">
+      <div class="w-[30px] h-[30px] rounded-full ${
+        ownerAvatarUrl ? '' : 'bg-contents-content-secondary'
+      } overflow-hidden">
         ${
-          ownerProfileImgUrl
+          ownerAvatarUrl
             ? `<img
-        class="bg-gray-300"
-        src="${ownerProfileImgUrl}"
+        class="bg-gray-300 h-full object-cover"
+        src="${ownerAvatarUrl}"
         alt="프로필 이미지"
       />`
             : ''
@@ -159,6 +161,10 @@ function attachButtonHandler(handlerObj, pbData) {
 
 async function getData() {
   const idParam = new URL(window.location.href).searchParams.get('id');
+  if (idParam === null) {
+    alert('잘못된 접근입니다.');
+    window.location.href = '/src/pages/board/together.html';
+  }
   const response = await pb.collection('together').getOne(idParam, {
     expand: 'user',
   });
