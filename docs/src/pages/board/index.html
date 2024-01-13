@@ -29,16 +29,13 @@
         scrollbar-width: thin;
         scrollbar-color: #c5c5c5 #f1f1f1;
       }
-      .bg-plus-icon {
-        background-image: url("data:image/svg+xml,%3csvg%20width='28'%20height='28'%20viewBox='0%200%2028%2028'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Icon/plus'%3e%3cpath%20id='Vector'%20d='M22.1666%2015.1644H15.1666V22.1644H12.8333V15.1644H5.83331V12.8311H12.8333V5.83105H15.1666V12.8311H22.1666V15.1644Z'%20fill='white'/%3e%3c/g%3e%3c/svg%3e");
-      }
     </style>
-    <script type="module" crossorigin src="/assets/board-AAY8sqEw.js"></script>
+    <script type="module" crossorigin src="/assets/board-oZyOBRGp.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-9p4a8sJU.js">
-    <link rel="modulepreload" crossorigin href="/assets/index-LZz_RBWS.js">
-    <link rel="stylesheet" crossorigin href="/assets/tailwind-i_82ISra.css">
+    <link rel="modulepreload" crossorigin href="/assets/index-35H_NU9g.js">
+    <link rel="stylesheet" crossorigin href="/assets/tailwind-zd2sDhNp.css">
   </head>
-  <body class="min-h-screen">
+  <body class="min-h-screen overflow-y-hidden">
     <div class="relative min-w-screen max-w-screen w-full mx-auto">
       <header class="w-full">
         <div class="flex justify-between h-full">
@@ -74,7 +71,7 @@
         <nav
           class="w-full px-3 py-2 border-b border-b-contents-content-secondary"
         >
-          <ul class="flex items-center gap-1">
+          <ul class="flex items-center gap-1 h-[29px]">
             <li>
               <button
                 id="openModal"
@@ -84,28 +81,27 @@
               </button>
             </li>
             <li>
-              <a
-                href=""
-                id="RoundButton"
+              <button
+                id="popular"
                 class="px-2.5 py-1.5 text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 transition-all duration-300"
               >
                 인기글
-              </a>
+              </button>
             </li>
             <li>
               <a
                 href="/src/pages/board/together.html"
-                id="RoundButton"
-                class="px-2.5 py-1.5 text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 transition-all duration-300"
+                id="together"
+                class="inline-block px-2.5 py-1.5 h-full text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 transition-all duration-300"
               >
                 같이해요
               </a>
             </li>
             <li>
               <a
-                href=""
-                id="RoundButton"
-                class="px-2.5 py-1.5 text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 transition-all duration-300"
+                href="/src/pages/board/qna.html"
+                id="qna"
+                class="inline-block px-2.5 py-1.5 h-full text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 transition-all duration-300"
               >
                 질의응답
               </a>
@@ -118,8 +114,8 @@
         <section>
           <h1 class="sr-only">게시판 메인</h1>
           <ul id="board-list"></ul>
-          <div class="absolute right-16">
-            <div class="fixed bottom-28">
+          <div class="absolute right-[60px]">
+            <div class="fixed bottom-20">
               <a
                 class="block w-12 h-12 rounded-full bg-plus-icon bg-center bg-no-repeat bg-secondary shadow-lg hover:brightness-90 transition-all duration-300"
                 href=""
@@ -133,16 +129,14 @@
 
       <div
         id="modalDimmed"
-        class="absolute top-0 left-0 w-full h-[calc(100dvh-69px)] bg-gradient-to-b from-transparent from-[-27%] to-black to-[72%] hidden opacity-0"
+        class="absolute top-0 left-0 w-full h-[calc(100dvh-69px)] bg-[rgba(0,0,0,0.3)] hidden opacity-0"
       >
         <ul
           id="modal"
           tabindex="0"
-          aria-modal="true"
-          role="dialog"
           class="absolute bottom-[-300px] w-full bg-white flex flex-col text-paragraph-md font-normal rounded-t-lg"
         >
-          <li class="py-2 px-3 flex justify-between items-center">
+          <li class="py-4 px-3 flex justify-between items-center">
             <h2 id="modalTitle" class="text-label-lg">관심분야</h2>
             <button id="closeModal" class="bg-close-icon w-5 h-5">
               <span class="sr-only">관심분야 선택창 닫기</span>
@@ -151,9 +145,9 @@
           <li class="py-2 px-3 flex justify-between items-center">
             <p tabindex="0">Programming</p>
             <button
-              id="interestSelect"
+              id="programming"
               data-name="programming"
-              class="px-2.5 py-1.5 text-paragraph-sm font-normal bg-white rounded-full border border-contents-content-tertiary hover:brightness-95 transition-all duration-300"
+              class="px-3 py-1.5 text-paragraph-sm font-normal bg-white rounded-full border border-contents-content-tertiary hover:brightness-95 transition-all duration-300"
             >
               팔로우 취소
             </button>
@@ -161,9 +155,9 @@
           <li class="py-2 px-3 flex justify-between items-center">
             <p tabindex="0">Design</p>
             <button
-              id="interestSelect"
+              id="design"
               data-name="design"
-              class="px-2.5 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
+              class="px-3 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
             >
               팔로우
             </button>
@@ -173,13 +167,13 @@
               <span class="sr-only" tabindex="0"
                 >User Interface and User Experience</span
               >
-              <abbr title="User Interface">UI</abbr> ·
-              <abbr title="User Experience">UX</abbr>
+              <abbr title="User Interface" class="no-underline">UI</abbr> ·
+              <abbr title="User Experience" class="no-underline">UX</abbr>
             </p>
             <button
-              id="interestSelect"
+              id="uiux"
               data-name="uiux"
-              class="px-2.5 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
+              class="px-3 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
             >
               팔로우
             </button>
@@ -187,9 +181,9 @@
           <li class="py-2 px-3 flex justify-between items-center">
             <p tabindex="0">Frontend</p>
             <button
-              id="interestSelect"
+              id="frontend"
               data-name="frontend"
-              class="px-2.5 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
+              class="px-3 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
             >
               팔로우
             </button>
@@ -197,9 +191,9 @@
           <li class="py-2 px-3 flex justify-between items-center">
             <p tabindex="0">Backend</p>
             <button
-              id="interestSelect"
+              id="backend"
               data-name="backend"
-              class="px-2.5 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
+              class="px-3 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
             >
               팔로우
             </button>
@@ -207,9 +201,9 @@
           <li class="py-2 px-3 flex justify-between items-center">
             <p tabindex="0">Publishing</p>
             <button
-              id="interestSelect"
+              id="publishing"
               data-name="publishing"
-              class="px-2.5 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
+              class="px-3 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
             >
               팔로우
             </button>
@@ -217,12 +211,14 @@
           <li class="py-2 px-3 flex justify-between items-center">
             <p>
               <span class="sr-only" tabindex="0">인공지능</span>
-              <abbr title="Artificial Intelligence">AI</abbr>
+              <abbr title="Artificial Intelligence" class="no-underline"
+                >AI</abbr
+              >
             </p>
             <button
-              id="interestSelect"
+              id="ai"
               data-name="ai"
-              class="px-2.5 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
+              class="px-3 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
             >
               팔로우
             </button>
@@ -230,9 +226,9 @@
           <li class="py-2 px-3 flex justify-between items-center">
             <p tabindex="0">Blockchain</p>
             <button
-              id="interestSelect"
+              id="blockchain"
               data-name="blockhain"
-              class="px-2.5 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
+              class="px-3 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
             >
               팔로우
             </button>
@@ -252,7 +248,7 @@
             >
               <a
                 class="home block relative h-full text-paragraph-sm font-normal bg-home-icon bg-no-repeat bg-top"
-                href=""
+                href="/"
               >
                 <span
                   class="absolute w-full text-center bottom-0 left-1/2 -translate-x-1/2"
@@ -265,7 +261,7 @@
             >
               <a
                 class="board block relative h-full text-paragraph-sm font-normal bg-board_full-icon bg-no-repeat bg-top"
-                href=""
+                href="/src/pages/board/"
                 ><span
                   class="absolute w-full text-center bottom-0 left-1/2 -translate-x-1/2"
                   >게시판</span
@@ -277,7 +273,7 @@
             >
               <a
                 class="near block relative h-full text-paragraph-sm font-normal bg-near bg-no-repeat bg-top"
-                href=""
+                href="/src/pages/exchange/index.html"
                 ><span
                   class="absolute w-full text-center bottom-0 left-1/2 -translate-x-1/2"
                   >내 근처</span
@@ -301,7 +297,7 @@
             >
               <a
                 class="my block relative h-full text-paragraph-sm font-normal bg-my-icon bg-no-repeat bg-top"
-                href=""
+                href="/src/pages/myEuid/index.html"
                 ><span
                   class="absolute w-full text-center bottom-0 left-1/2 -translate-x-1/2"
                   >나의 이듬</span

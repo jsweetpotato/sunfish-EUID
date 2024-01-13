@@ -11,7 +11,7 @@ function createTemplate(data) {
     const imageURL = pb.files.getUrl(item, item.field, { thumb: '200x0' });
     const template = /* html */ `
     <article
-    class="relative w-[48%] aspect-[1/1.38] rounded-lg shadow-[4px_4px_16px_0px_rgba(0,0,0,0.08),0px_1px_4px_0px_rgba(0,0,0,0.15)] hover:shadow-contents-content-tertiary transition-all duration-200"
+    class="relative w-[48%] aspect-[1/1.38] rounded-lg shadow-[3px_3px_8px_0px_rgba(0,0,0,0.08),0px_0px_4px_0px_rgba(0,0,0,0.05)] hover:shadow-gray-300 transition-all duration-200"
   >
     <img
       class="w-full h-1/2 object-cover rounded-t-lg bg-contents-content-secondary"
@@ -30,7 +30,7 @@ function createTemplate(data) {
             </span>
             <span
               class="mb-1 text-contents-content-secondary text-ellipsis line-clamp-2"
-              >${item.expand.profile.company} · ${item.expand.profile.expand.userId.name}</span
+              >${item.expand.user.company} · ${item.expand.user.name}</span
             >
             <div class="text-label-sm min-[375px]:text-label-md">
               <span
@@ -57,8 +57,10 @@ function render(data) {
 }
 (async function getStoryData() {
   const response = await pb.collection('story').getFullList({
-    expand: 'profile.userId',
+    expand: 'user',
   });
+
+  console.log(response);
   const result = createTemplate(response);
   render(result);
 })();
@@ -68,8 +70,9 @@ const swiper = new Swiper('.swiper', {
   slidesPerView: 1,
   slidesPerGroup: 1,
   direction: 'horizontal',
+  speed: 500,
   autoplay: {
-    delay: 3000,
+    delay: 5000,
   },
   pagination: {
     type: 'progressbar',
