@@ -2,7 +2,7 @@
 
 import Swiper from 'swiper';
 import gsap from 'gsap';
-import { pb, getNode, getNodes, insertLast } from '/src/lib/';
+import { pb, getNode, getNodes, insertLast, clearContents } from '/src/lib/';
 
 const swiper = new Swiper('.swiper', {
   slidesPerView: 'auto',
@@ -10,13 +10,37 @@ const swiper = new Swiper('.swiper', {
   freeMode: true,
 });
 
-let interestsState = 'all';
+const options = {
+  interestsState: 'all',
+  filter: 'filterAll',
+};
+
 let sortState = '@random';
 
 function createTogetherTemplate(item) {
-  const { age, category, date, gender, id, members, title, owner, created } =
-    item;
+  const {
+    age,
+    category,
+    date,
+    gender,
+    id,
+    members,
+    isOpen,
+    title,
+    owner,
+    created,
+  } = item;
   let { maxMember } = item;
+  let openState = '모집중';
+  let openStateClass = 'bg-secondary';
+  if (maxMember === '제한없음') {
+    openState = '상시모집';
+    openStateClass = 'bg-orange-400';
+  }
+  if (!isOpen) {
+    openState = '모집완료';
+    openStateClass = 'bg-bluegray-300';
+  }
   maxMember = maxMember === '제한없음' ? maxMember : `${maxMember}명`;
   const template = /* html */ `
     <li  class="hover:bg-gray-100">
@@ -24,10 +48,10 @@ function createTogetherTemplate(item) {
       class="relative p-3 flex flex-col justify-center items-start gap-1 border-b border-contents-content-secondary">
     <div class="flex items-center gap-1 mb-7">
       <span
-        class="text-label-sm px-1 bg-bluegray-600 text-white rounded"
-        >같이해요</span>
+        class="text-label-sm px-1 ${openStateClass} text-white rounded"
+        >${openState}</span>
       <span
-        class="text-label-sm px-1 bg-tertiary text-white rounded"
+        class="text-label-sm px-1 bg-bluegray-600 text-white rounded"
         >${category}</span>
     </div>
       <a href="/src/pages/board/togetherView.html?id=${id}"
@@ -45,7 +69,7 @@ function createTogetherTemplate(item) {
           >연희동 · ${new Date(created).toLocaleDateString()}</span>
         <span
           class="pl-4 text-paragraph-sm font-normal text-gray-600 bg-people-icon bg-no-repeat bg-left"
-          >${members.memberId.length}/${maxMember}</span>
+          >${members.length}/${maxMember}</span>
       </div>
     </div>
     </li>
@@ -60,56 +84,87 @@ function createData(array) {
   });
   return result;
 }
+function renderNothing() {
+  insertLast(
+    '#board-list',
+    `
+   <div class="sorry p-3 flex flex-col text-center">
+     <span class="text-heading-2xl">😅</span>
+     <p class="p-1 text-paragraph-lg">게시물이 없습니다.</p>
+   </div>
+   `
+  );
+  gsap.from('.sorry', {
+    y: 30,
+    opacity: 0,
+    duration: 0.2,
+  });
+}
+
 function render(array) {
-  const boardList = getNode('#board-list');
-  boardList.innerHTML = '';
-  insertLast(boardList, array.join(''));
-  const listItem = getNodes('#board-list>li');
-  if (listItem.length === 0) return;
+  if (array.length < 1) {
+    renderNothing();
+    return;
+  }
+  insertLast('#board-list', array.join(''));
   gsap.from('#board-list>li', {
     x: -500,
     duration: 0.3,
     stagger: 0.1,
   });
 }
-function getFilterString(interests) {
-  if (interests === 'all') return '';
+function getFilterString(options) {
+  const filterArray = [];
   const nameTable = {
+    all: '',
     project: '프로젝트',
     study: '스터디',
     food: '음식',
     hobby: '취미/여가',
     sports: '운동',
     reading: '독서',
+    filterAll: '',
+    filterOpen: 'true',
   };
-  return `category = "${nameTable[interests]}"`;
+  if (options.interestsState !== 'all')
+    filterArray.push(`category = "${nameTable[options.interestsState]}"`);
+  if (options.filter === 'filterOpen')
+    filterArray.push(`isOpen = ${nameTable[options.filter]}`);
+  return filterArray.join('&&');
 }
 
 async function getData() {
-  const filterString = getFilterString(interestsState);
+  clearContents('#board-list');
+  const filterString = getFilterString(options);
   console.log(filterString);
-  const togetherResponse = await pb.collection('together').getFullList({
-    filter: filterString,
-    sort: sortState,
-  });
-  console.log(togetherResponse);
-  render(createData(togetherResponse));
+  try {
+    const togetherResponse = await pb.collection('together').getFullList({
+      filter: filterString,
+      sort: sortState,
+    });
+    console.log(togetherResponse);
+    render(createData(togetherResponse));
+  } catch (error) {
+    alert(
+      '서버 통신을 하는 도중 오류가 발생했습니다. 잠시후 다시 시도해주세요.'
+    );
+    console.log(error);
+  }
 }
 getData();
 
-const categoryButton = document.querySelectorAll('.category-button');
-function handleCheck({ target }) {
-  if (target.id === interestsState) return;
+const categoryButton = getNodes('.category-button');
+function handleCategoryChange({ target }) {
   const { id } = target;
-  interestsState = id;
+  options.interestsState = id;
   getData();
 }
 categoryButton.forEach((button) => {
-  button.addEventListener('click', handleCheck);
+  button.addEventListener('change', handleCategoryChange);
 });
 
-const sortButton = document.querySelector('#sort');
-function handleChangeSort() {
+const sortCreatedButton = getNode('#sortCreated');
+function handleChangeSortCreated() {
   let isLatest = true;
   return (e) => {
     if (isLatest) {
@@ -131,4 +186,14 @@ function handleChangeSort() {
     getData();
   };
 }
-sortButton.addEventListener('click', handleChangeSort());
+sortCreatedButton.addEventListener('click', handleChangeSortCreated());
+
+const filterOpenButtons = getNodes('input[name="filterOpen"]');
+function handleFilterChange({ target }) {
+  const { id } = target;
+  options.filter = id;
+  getData();
+}
+filterOpenButtons.forEach((button) => {
+  button.addEventListener('change', handleFilterChange);
+});
