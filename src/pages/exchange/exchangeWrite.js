@@ -1,21 +1,10 @@
 import PocketBase from 'pocketbase';
 import { getNode, getNodes } from "/src/lib";
-import initInput from '../../components/ValidationInput/ValidationInput';
 
 const pb = new PocketBase(import.meta.env.VITE_PB_URL);
 const prev = getNode('#prev');
-const priceValidation = getNode('#priceValidation');
 const tradeButton = getNodes('#tradeMethod > button');
 
-const validConfig = [
-  {
-    id: 'label1',
-    min: 5,
-    max: 24,
-    placeholder: '제목을 입력해 주세요',
-    label: '제목',
-  },
-];
 
 async function methodInfo() {
   const hash = window.location.hash.slice(1);
@@ -30,19 +19,18 @@ async function methodInfo() {
   }
 }
 
-function validation({ target }) {
-  let {value} = target;
-  const regExp = /^[0-9]*$/; 
-  const isValid = regExp.test(value);
+// function validation({ target }) {
+//   let {value} = target;
+//   const regExp = /^[0-9]*$/; 
+//   const isValid = regExp.test(value);
 
-  if (!isValid) {
-    console.log('숫자만 입력해주세요.');
-    value = value.replace(/[^0-9]/g, ''); 
-  }
-}
+//   if (!isValid) {
+//     console.log('숫자만 입력해주세요.');
+//     value = value.replace(/[^0-9]/g, ''); 
+//   }
+// }
 
-initInput(validConfig);
-priceValidation.addEventListener('input', validation);
+
 prev.addEventListener('click', () => history.back())
 methodInfo()
 

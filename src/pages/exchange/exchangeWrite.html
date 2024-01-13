@@ -32,9 +32,16 @@
       </div>
     </section>
     <section id="title" class="flex flex-col items-start w-full">
-    <div class="relative min-w-screen max-w-screen w-full mx-auto">
-      <div id="label1" class="valid-input-box p-3">
-      </div>
+    <div class="relative min-w-screen max-w-screen w-full mx-auto p-3">
+      <h1 class="text-label-sm">제목</h1>
+      <form action="/" class="w-full min-w-screen max-w-screen grow">
+        <input placeholder="제목을 입력 해주세요" class="flex textCount flex-col text-paragraph-sm w-full pt-2 p-2 border border-contents-content-tertiary rounded-[4px] gap-2 self-stretch" /> 
+      <span
+      aria-label="입력한 문자 수"
+      aria-live="polite"
+      id="letterCount"
+      class="block text-contents-content-tertiary text-paragraph-sm  self-stretch text-right w-full grow"
+      >0/24</span>
     </div>
     </section>
     <section id="priceMethod" class="flex flex-col items-start w-full">
@@ -46,7 +53,7 @@
         </div>
       </div>
     </section>
-    <section id="priceOffer" class="p-3 items-start">
+    <section id="priceOffer" class="p-3 ">
       <form action="/" class="w-full min-w-screen max-w-screen grow">
         <label for="contentName" class="sr-only">컨텐츠 이름</label>
         <div class="flex flex-col gap-2">
