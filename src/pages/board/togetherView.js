@@ -152,7 +152,6 @@ const handlerObject = {
 function attachButtonHandler(handlerObj, pbData) {
   if (!pbData.isOpen) return;
   const button = getNode('footer > button');
-  console.log(button);
   const isMember = pbData.members.indexOf(pb.authStore.model.id) > -1;
   const handler = isMember ? handlerObj.handleGoChat : handlerObj.handleJoin;
   button.addEventListener('click', handler(pbData));

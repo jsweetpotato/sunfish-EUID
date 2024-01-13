@@ -15,7 +15,7 @@ const options = {
   filter: 'filterAll',
 };
 
-let sortState = '@random';
+let sortState = '-created';
 
 function createTogetherTemplate(item) {
   const { category, date, id, members, isOpen, title, owner, created } = item;
@@ -158,26 +158,33 @@ categoryButton.forEach((button) => {
 });
 
 const sortCreatedButton = getNode('#sortCreated');
-function handleChangeSortCreated() {
+function handleChangeSortCreated(limit = 1000) {
   let isLatest = true;
+  let isWaiting = false;
   return (e) => {
-    if (isLatest) {
-      e.currentTarget.textContent = '오래된 작성 순';
-      e.currentTarget.classList.replace(
-        'bg-direction-icon',
-        'bg-direction_rotate-icon'
-      );
-      sortState = '+created';
-    } else {
-      e.currentTarget.textContent = '최근 작성 순';
-      e.currentTarget.classList.replace(
-        'bg-direction_rotate-icon',
-        'bg-direction-icon'
-      );
-      sortState = '-created';
-    }
-    isLatest = !isLatest;
-    getData();
+    if (!isWaiting) {
+      if (isLatest) {
+        e.currentTarget.textContent = '오래된 작성 순';
+        e.currentTarget.classList.replace(
+          'bg-direction-icon',
+          'bg-direction_rotate-icon'
+        );
+        sortState = '+created';
+      } else {
+        e.currentTarget.textContent = '최근 작성 순';
+        e.currentTarget.classList.replace(
+          'bg-direction_rotate-icon',
+          'bg-direction-icon'
+        );
+        sortState = '-created';
+      }
+      isLatest = !isLatest;
+      getData();
+    } else alert('성격이 급하신 것 같아요. 천천히 눌러주세요~');
+    isWaiting = true;
+    setTimeout(() => {
+      isWaiting = false;
+    }, limit);
   };
 }
 sortCreatedButton.addEventListener('click', handleChangeSortCreated());
