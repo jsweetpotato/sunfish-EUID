@@ -42,9 +42,9 @@ export default {
         'project-icon': "url('/src/assets/exchangeIcon/project.svg')",
         'study-icon': "url('/src/assets/exchangeIcon/study.svg')",
         'exchange-close-icon': "url('/src/assets/exchangeIcon/close.svg')",
-        'chat-button-icon':  "url('/src/assets/exchangeIcon/chatButton.svg')",
-        'heart-full-icon':  "url('/src/assets/exchangeIcon/heart_full.svg')", 
-        
+        'chat-button-icon': "url('/src/assets/exchangeIcon/chatButton.svg')",
+        'heart-full-icon': "url('/src/assets/exchangeIcon/heart_full.svg')",
+
         // MyEuid Icons
         'alram_bell-icon': "url('/src/assets/myPageIcon/alram_bell.svg')",
         'camera-icon': "url('/src/assets/myPageIcon/camera.svg')",
@@ -63,6 +63,10 @@ export default {
         'people_full-icon': "url('/src/assets/boardIcon/people_full.svg')",
         'people-icon': "url('/src/assets/boardIcon/people.svg')",
         'calender-icon': "url('/src/assets/boardIcon/calender.svg')",
+        // Search
+        'search-sm-icon': "url('/src/assets/boardIcon/people_full.svg')",
+        'time-icon': "url('/src/assets/searchIcon/time.svg')",
+        'close-blue-icon': "url('/src/assets/searchIcon/close-blue.svg')",
       },
       colors: {
         primary: '#373F67',
@@ -139,7 +143,7 @@ export default {
             lineHeight: 1.5,
           },
         ],
-        'heading-sm': '0.625rem',
+        'heading-sm': '0.6875rem',
         'label-2xl': '2.0625rem',
         'label-xl': '1.5rem',
         'label-lg': [
@@ -159,7 +163,7 @@ export default {
           },
         ],
         'label-sm': [
-          '0.625rem',
+          '0.6875rem',
           {
             fontWeight: 600,
             letterSpacing: '0px',
@@ -177,7 +181,7 @@ export default {
           },
         ],
         'paragraph-sm': [
-          '0.625rem',
+          '0.6875rem',
           {
             fontWeight: 400,
             letterSpacing: '0px',
