@@ -21,12 +21,11 @@ export default async function getData() {
 
   const avatarList = await pb
     .collection('selling')
-    .getOne(hash, { expand: 'profile.userId' });
+    .getOne(hash, { expand: 'user' });
 
-  const { title, description, price, isPriceOffer } = avatarList;
-  const users = avatarList.expand.profile.expand.userId;
+  const { title, description, price, id, isPriceOffer } = avatarList;
+  const users = avatarList.expand.user;
   const { name } = users;
-  console.log(avatarList)
 
   main.insertAdjacentHTML(
     'afterbegin' /* html */,
@@ -84,8 +83,8 @@ export default async function getData() {
   );
 
   const url =
-    isPriceOffer === 'true'
-      ? `/src/pages/exchange/exchangeWrite.html?id=#${avatarList.id}`
+    isPriceOffer === true
+      ? `/src/pages/exchange/exchangeWrite.html?id=#${id}`
       : '#'; ;
 
   footer.insertAdjacentHTML(
@@ -158,7 +157,7 @@ async function watch() {
   });
 }
 
-watch();
 getData();
+watch();
 footer.addEventListener('click', changeHeart);
 back.addEventListener('click', () => history.back());
