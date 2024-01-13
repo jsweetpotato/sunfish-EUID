@@ -26,6 +26,8 @@ export default defineConfig({
         exchange: resolve(__dirname, 'src/pages/exchange/index.html'),
         // 스토리
         story: resolve(__dirname, 'src/pages/main/index.html'),
+        // 검색
+        search: resolve(__dirname, 'src/pages/search/index.html'),
       },
     },
   },
