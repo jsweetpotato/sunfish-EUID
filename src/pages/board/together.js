@@ -18,19 +18,8 @@ const options = {
 let sortState = '@random';
 
 function createTogetherTemplate(item) {
-  const {
-    age,
-    category,
-    date,
-    gender,
-    id,
-    members,
-    isOpen,
-    title,
-    owner,
-    created,
-  } = item;
-  let { maxMember } = item;
+  const { category, date, id, members, isOpen, title, owner, created } = item;
+  let { maxMember, gender, age } = item;
   let openState = '모집중';
   let openStateClass = 'bg-secondary';
   if (maxMember === '제한없음') {
@@ -42,6 +31,8 @@ function createTogetherTemplate(item) {
     openStateClass = 'bg-bluegray-300';
   }
   maxMember = maxMember === '제한없음' ? maxMember : `${maxMember}명`;
+  gender = gender === '누구나' ? `${gender} 참여가능` : `${gender}만 참여가능`;
+  age = age === '모든 연령' ? age : `${age}대`;
   const template = /* html */ `
     <li  class="hover:bg-gray-100">
     <div
@@ -60,7 +51,7 @@ function createTogetherTemplate(item) {
       </a>
       <span
         class="pl-4 text-paragraph-sm font-normal text-gray-600 bg-people_full-icon bg-no-repeat bg-left"
-        >${age}, ${gender}</span>
+        >${age} ${gender}</span>
       <span
         class="pl-4 text-paragraph-sm font-normal text-gray-600 bg-calender-icon bg-no-repeat bg-left"
         >${new Date(date).toLocaleDateString()}</span>
@@ -125,11 +116,14 @@ function getFilterString(options) {
     reading: '독서',
     filterAll: '',
     filterOpen: 'true',
+    filterJoin: `members ~ "${pb.authStore.model.id}"`,
   };
   if (options.interestsState !== 'all')
     filterArray.push(`category = "${nameTable[options.interestsState]}"`);
   if (options.filter === 'filterOpen')
     filterArray.push(`isOpen = ${nameTable[options.filter]}`);
+  if (options.filter === 'filterJoin')
+    filterArray.push(nameTable[options.filter]);
   return filterArray.join('&&');
 }
 
@@ -188,12 +182,12 @@ function handleChangeSortCreated() {
 }
 sortCreatedButton.addEventListener('click', handleChangeSortCreated());
 
-const filterOpenButtons = getNodes('input[name="filterOpen"]');
+const filterButtons = getNodes('input[name="filter"]');
 function handleFilterChange({ target }) {
   const { id } = target;
   options.filter = id;
   getData();
 }
-filterOpenButtons.forEach((button) => {
+filterButtons.forEach((button) => {
   button.addEventListener('change', handleFilterChange);
 });

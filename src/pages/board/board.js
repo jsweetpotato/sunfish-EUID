@@ -1,7 +1,7 @@
 /* eslint-disable no-alert, no-shadow, import/no-unresolved, import/extensions, import/no-absolute-path */
 
 import gsap from 'gsap';
-import { pb, getNode, getNodes, insertLast } from '/src/lib/';
+import { pb, getNode, getNodes, insertLast, clearContents } from '/src/lib/';
 
 console.log('start');
 
@@ -21,10 +21,11 @@ const interestsState = {
 };
 
 function createTogetherTemplate(item) {
-  const { age, category, date, gender, id, members, title, owner, created } =
-    item;
-  let { maxMember } = item;
+  const { category, date, id, members, title, owner, created } = item;
+  let { maxMember, gender, age } = item;
   maxMember = maxMember === '제한없음' ? maxMember : `${maxMember}명`;
+  gender = gender === '누구나' ? `${gender} 참여가능` : `${gender}만 참여가능`;
+  age = age === '모든 연령' ? age : `${age}대`;
   const template = /* html */ `
     <li  class="hover:bg-gray-100 ">
     <div
@@ -43,7 +44,7 @@ function createTogetherTemplate(item) {
       </a>
       <span
         class="pl-4 text-paragraph-sm font-normal text-gray-600 bg-people_full-icon bg-no-repeat bg-left"
-        >${age}, ${gender}</span>
+        >${age} ${gender}</span>
       <span
         class="pl-4 text-paragraph-sm font-normal text-gray-600 bg-calender-icon bg-no-repeat bg-left"
         >${new Date(date).toLocaleDateString()}</span>
@@ -52,7 +53,7 @@ function createTogetherTemplate(item) {
           >연희동 · ${new Date(created).toLocaleDateString()}</span>
         <span
           class="pl-4 text-paragraph-sm font-normal text-gray-600 bg-people-icon bg-no-repeat bg-left"
-          >${members.memberId.length}/${maxMember}</span>
+          >${members.length}/${maxMember}</span>
       </div>
     </div>
     </li>
@@ -139,12 +140,29 @@ function createData(array) {
   return result;
 }
 
+function renderNothing() {
+  insertLast(
+    '#board-list',
+    `
+   <div class="sorry p-3 flex flex-col text-center">
+     <span class="text-heading-2xl">😅</span>
+     <p class="p-1 text-paragraph-lg">게시물이 없습니다.</p>
+   </div>
+   `
+  );
+  gsap.from('.sorry', {
+    y: 30,
+    opacity: 0,
+    duration: 0.2,
+  });
+}
+
 function render(array) {
-  const boardList = getNode('#board-list');
-  boardList.innerHTML = '';
-  insertLast(boardList, array.join(''));
-  const listItem = getNodes('#board-list>li');
-  if (listItem.length === 0) return;
+  if (array.length === 0) {
+    renderNothing();
+    return;
+  }
+  insertLast('#board-list', array.join(''));
   gsap.from('#board-list li', {
     x: -500,
     duration: 0.3,
@@ -176,17 +194,25 @@ function getFilterString(interests) {
 }
 
 async function getData() {
+  clearContents('#board-list');
   const filterString = getFilterString(interestsState);
   console.log(filterString);
-  const togetherResponse = await pb.collection('together').getFullList();
-  const qnaResponse = await pb.collection('qAndA').getFullList({
-    filter: filterString,
-  });
-  const sortResponse = [...togetherResponse, ...qnaResponse].sort(
-    (a, b) => new Date(b.created).getTime() - new Date(a.created).getTime()
-  );
-  console.log(sortResponse);
-  render(createData(sortResponse));
+  try {
+    const togetherResponse = await pb.collection('together').getFullList();
+    const qnaResponse = await pb.collection('qAndA').getFullList({
+      filter: filterString,
+    });
+    const sortResponse = [...togetherResponse, ...qnaResponse].sort(
+      (a, b) => new Date(b.created).getTime() - new Date(a.created).getTime()
+    );
+    console.log(sortResponse);
+    render(createData(sortResponse));
+  } catch (error) {
+    alert(
+      '서버 통신을 하는 도중 오류가 발생했습니다. 잠시후 다시 시도해주세요.'
+    );
+    console.log(error);
+  }
 }
 getData(interestsState);
 

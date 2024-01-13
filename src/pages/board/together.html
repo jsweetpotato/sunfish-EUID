@@ -226,8 +226,10 @@
               <input
                 class="[&:checked+label]:bg-primary [&:checked+label]:text-white [&:focus+label]:outline [&:focus+label]:outline-secondary block w-0 h-0"
                 type="radio"
-                name="filterOpen"
+                name="filter"
                 id="filterAll"
+                value="filterAll"
+                autocomplete="off"
                 checked
               />
               <label
@@ -241,14 +243,32 @@
               <input
                 class="[&:checked+label]:bg-primary [&:checked+label]:text-white [&:focus+label]:outline [&:focus+label]:outline-secondary block w-0 h-0"
                 type="radio"
-                name="filterOpen"
+                name="filter"
                 id="filterOpen"
+                value="filterOpen"
+                autocomplete="off"
               />
               <label
                 for="filterOpen"
                 class="block px-2.5 py-1.5 text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 transition-all duration-300 cursor-pointer"
               >
                 모집 중인 글만
+              </label>
+            </li>
+            <li>
+              <input
+                class="[&:checked+label]:bg-primary [&:checked+label]:text-white [&:focus+label]:outline [&:focus+label]:outline-secondary block w-0 h-0"
+                type="radio"
+                name="filter"
+                id="filterJoin"
+                value="filterJoin"
+                autocomplete="off"
+              />
+              <label
+                for="filterJoin"
+                class="block px-2.5 py-1.5 text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 transition-all duration-300 cursor-pointer"
+              >
+                가입한 모임만
               </label>
             </li>
           </ul>
