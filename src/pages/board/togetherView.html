@@ -18,7 +18,7 @@
       }
     </style>
   </head>
-  <body class="min-h-screen">
+  <body class="min-h-screen overflow-hidden">
     <div class="relative min-w-screen max-w-screen w-full mx-auto">
       <header class="w-full">
         <div class="flex justify-between items-center">
@@ -49,73 +49,76 @@
       <main class="relative h-[calc(100dvh-143px)] overflow-auto">
         <section class="h-full">
           <h1 class="sr-only">같이해요 게시글 조회</h1>
-          <article class="px-3 py-6 flex flex-col items-start gap-2">
-            <span
-              class="inline-block pl-[7px] pr-2 py-0.5 bg-bluegray-500 text-label-sm text-white rounded"
-              >📝 스터디</span
-            >
-            <h2 class="text-label-lg font-medium">
-              <span class="text-secondary">모집중</span> EUID 피그마 스터디
-              하실분~
-            </h2>
-            <div>
-              <span
-                class="block pl-[22px] text-paragraph-md font-normal bg-people-icon bg-no-repeat bg-left bg-[length:14px_14px]"
-                >누구나 참여 가능</span
-              >
-              <span
-                class="block pl-[22px] text-paragraph-md font-normal bg-calender_black-icon bg-no-repeat bg-left bg-[length:14px_14px]"
-                >오늘</span
-              >
-            </div>
-            <p class="text-paragraph-md font-normal leading-[160%]">
-              연남동 거주하시는 분 중에서 이번에 시작하는 멋사플레이스 피그마
-              스터디 하실분~~~ 아직 기초라서 조금 능숙한분과 함께 했으면
-              좋겠습니다. 툴은 figma 사용할 예정입니다. 하다가 어려우면 선범님
-              강의 결제 예정입니다. 같이 강의도 나눠서 결제하고 들으면 더 좋을
-              것 같습니다! ㅎㅎ *연남동 스타벅스에서 매주 월요일 진행!
-            </p>
-          </article>
 
-          <div class="px-3 py-4 mb-[74px] flex flex-col gap-[13px]">
-            <span class="text-label-md"
-              >참여중인 이웃 <span class="text-secondary">1</span>/4</span
-            >
-            <div class="w-[132px] h-[40px] flex items-center gap-2">
-              <div class="w-[30px] h-[30px] rounded-full overflow-hidden">
-                <img
-                  class="bg-gray-300"
-                  src="/src/assets/image.jpeg"
-                  alt="프로필 이미지"
-                />
-              </div>
-              <div
-                class="h-full text-paragraph-sm font-normal flex flex-col justify-center"
+          <div id="article">
+            <!-- <article class="px-3 py-6 flex flex-col items-start gap-2">
+              <span
+                class="inline-block pl-[7px] pr-2 py-0.5 bg-bluegray-500 text-label-sm text-white rounded"
+                >📝 스터디</span
               >
-                <p class="h-1/2 flex items-center">
-                  멋사드미
-                  <span
-                    class="pl-[21px] ml-2 flex items-center h-full text-gray-600 bg-organizer-icon bg-no-repeat bg-left"
-                    >모임장</span
-                  >
-                </p>
-                <span class="h-1/2 flex items-center text-gray-600"
-                  >연남동 인증 4회</span
+              <h2 class="text-label-lg font-medium">
+                <span class="text-secondary">모집중</span> EUID 피그마 스터디
+                하실분~
+              </h2>
+              <div>
+                <span
+                  class="block pl-[22px] text-paragraph-md font-normal bg-people-icon bg-no-repeat bg-left bg-[length:14px_14px]"
+                  >누구나 참여 가능</span
+                >
+                <span
+                  class="block pl-[22px] text-paragraph-md font-normal bg-calender_black-icon bg-no-repeat bg-left bg-[length:14px_14px]"
+                  >오늘</span
                 >
               </div>
-            </div>
+              <p class="text-paragraph-md font-normal leading-[160%]">
+                연남동 거주하시는 분 중에서 이번에 시작하는 멋사플레이스 피그마
+                스터디 하실분~~~ 아직 기초라서 조금 능숙한분과 함께 했으면
+                좋겠습니다. 툴은 figma 사용할 예정입니다. 하다가 어려우면 선범님
+                강의 결제 예정입니다. 같이 강의도 나눠서 결제하고 들으면 더 좋을
+                것 같습니다! ㅎㅎ *연남동 스타벅스에서 매주 월요일 진행!
+              </p>
+            </article>
+            <div class="px-3 py-4 mb-[74px] flex flex-col gap-[13px]">
+              <span class="text-label-md"
+                >참여중인 이웃 <span class="text-secondary">1</span>/4</span
+              >
+              <div class="w-[132px] h-[40px] flex items-center gap-2">
+                <div class="w-[30px] h-[30px] rounded-full overflow-hidden">
+                  <img
+                    class="bg-gray-300"
+                    src="/src/assets/image.jpeg"
+                    alt="프로필 이미지"
+                  />
+                </div>
+                <div
+                  class="h-full text-paragraph-sm font-normal flex flex-col justify-center"
+                >
+                  <p class="h-1/2 flex items-center">
+                    멋사드미
+                    <span
+                      class="pl-[21px] ml-2 flex items-center h-full text-gray-600 bg-organizer-icon bg-no-repeat bg-left"
+                      >모임장</span
+                    >
+                  </p>
+                  <span class="h-1/2 flex items-center text-gray-600"
+                    >연남동 인증 4회</span
+                  >
+                </div>
+              </div>
+            </div> -->
           </div>
         </section>
       </main>
 
       <footer class="w-full px-3 pt-[24px] pb-[34px]">
-        <button
+        <!-- <button
           id="step1Next"
-          class="w-full h-[45px] text-label-md text-white bg-secondary rounded hover:brightness-90 transition-all duration-300"
+          class="w-full h-[45px] text-label-md text-white bg-secondary rounded disabled:bg-contents-content-secondary disabled:text-black disabled:cursor-not-allowed hover:brightness-90 transition-all duration-300"
         >
           채팅방으로 이동
-        </button>
+        </button> -->
       </footer>
     </div>
+    <script type="module" src="/src/pages/board/togetherView.js"></script>
   </body>
 </html>
