@@ -22,13 +22,20 @@ function getPbImageURL(item, fileName = 'photo') {
   }/${item[fileName]}`;
 }
 
+// if(등록된 이미지가 없으면){
+//   기본 프로필 사진
+// }else {
+//   등록한 프로필 사진
+// }
+
 profile.insertAdjacentHTML(
   'afterbegin' /* html */,
   `
   <img
     src="${getPbImageURL(userProfile, 'avatar')}"
     alt="내 프로필 사진"
-    class="w-20 rounded-full shadow-[0_4px_4px_0_rgba(0,0,0,0.1)]"
+    id="userImg"
+    class="size-20 rounded-full shadow-[0_4px_4px_0_rgba(0,0,0,0.1)]"
   />
   <span class="text-label-lg">${name}</span>
   <span

@@ -60,7 +60,6 @@ function moveCheck(e) {
   if (prevChecked) {
     prevChecked.removeAttribute('checked');
   }
-
   e.target.setAttribute('checked', 'checked');
 }
 privateRadio.addEventListener('click', moveCheck);
@@ -142,6 +141,7 @@ const [warningModal, modalCancelButton, modalSubmitButton] = createModal2Btn({
 /* -------------------------------- saveModal ------------------------------- */
 
 const login = localStorage.getItem('login');
+const userImg = getNode('#userImg');
 const nameInput = getNode('#nameInput');
 const jobInput = getNode('#jobInput');
 const companyInput = getNode('#companyInput');
@@ -150,9 +150,19 @@ const usersOauth = localStorage.getItem('users-oauth');
 const userData = JSON.parse(usersOauth);
 const pocketAuth = localStorage.getItem('pocketbase_auth');
 const pocketData = JSON.parse(pocketAuth);
+const fileField = getNode('#file');
+const imageWrapper = getNode('#image-wrapper');
 
 const saveData = async () => {
   const genderInput = document.querySelector('input[name="gender"]:checked');
+
+  if (imageWrapper.innerHTML === '') {
+    const hash = window.location.hash.slice(1);
+    const defaultImg = {
+      avatar: `profile_img_${hash}.svg`,
+    };
+    pb.collection('users').update(pocketData.model.id, defaultImg);
+  }
 
   /* --------------------------------- 회원가입 유저 -------------------------------- */
   if (login === 'false') {
@@ -167,7 +177,7 @@ const saveData = async () => {
       passwordConfirm: `${userData.passwordConfirm}`,
       categorys: userData.categorys.map((data) => data.toLowerCase()),
       phone: `${userData.phone}`,
-      avatar: '',
+      avatar: fileField.files[0],
       name: `${nameInput.value}`,
       gender: `${genderInput.id}`,
       job: `${jobInput.value}`,
@@ -177,7 +187,6 @@ const saveData = async () => {
       userCord,
       sellingProductCount: 123,
     };
-
     saveModal.closing();
 
     await pb.collection('users').create(createUser);
@@ -194,9 +203,9 @@ const saveData = async () => {
     /* --------------------------------- 로그인 유저 --------------------------------- */
   } else {
     const updateUser = {
-      avatar: '',
+      avatar: fileField.files[0],
       name: `${nameInput.value}`,
-      gender: `${genderInput.value}`,
+      gender: `${genderInput.id}`,
       job: `${jobInput.value}`,
       company: `${companyInput.value}`,
       introduce: `${aboutMeInput.value}`,
@@ -235,9 +244,11 @@ cancelButton.forEach((button) => {
   button.onclick = () => warningModal.showing();
 });
 
-const fileField = getNode('#file');
+/* -------------------------------------------------------------------------- */
+/*                                  userImage                                 */
+/* -------------------------------------------------------------------------- */
+
 const imagePreview = getNode('#image-preview');
-const imageWrapper = getNode('#image-wrapper');
 const fileClearButton = getNode('#file-clear');
 
 function handleFileChange({ target }) {
@@ -249,6 +260,7 @@ function handleFileChange({ target }) {
     const imgUrl = URL.createObjectURL(file);
     const img = document.createElement('img');
     img.classList.add('w-[50px]', 'h-[50px]');
+    img.id = 'userImg';
     img.src = imgUrl;
     imageWrapper.appendChild(img);
   });
@@ -263,3 +275,43 @@ function handleClear({ target }) {
   imagePreview.classList.add('hidden');
 }
 fileClearButton.addEventListener('click', handleClear);
+
+/* -------------------------------------------------------------------------- */
+/*                 로그인 유저 : 프로필 수정 페이지 -> 기존 데이터 렌더링                 */
+/* -------------------------------------------------------------------------- */
+const userProfile = await pb.collection('users').getOne(pocketData.model.id, {
+  fields: 'avatar',
+});
+function getPbImageURL(item, fileName = 'photo') {
+  return `${import.meta.env.VITE_PB_URL}/api/files/users/${
+    pocketData.model.id
+  }/${item[fileName]}`;
+}
+
+if (login === 'true') {
+  imagePreview.classList.remove('hidden');
+  imageWrapper.insertAdjacentHTML(
+    'afterbegin' /* html */,
+    `
+    <img class="w-[50px] h-[50px]" id="userImg" src="${getPbImageURL(
+      userProfile,
+      'avatar'
+    )}">
+    `
+  );
+
+  nameInput.value = pocketData.model.name;
+  jobInput.value = pocketData.model.job;
+  companyInput.value = pocketData.model.company;
+  aboutMeInput.value = pocketData.model.introduce;
+
+  const prevGender = pocketData.model.gender;
+  const prevElement = getNode(`#${prevGender}`);
+  if (prevElement) {
+    prevElement.setAttribute('checked', 'checked');
+  } else {
+    privateRadio.removeAttribute('checked');
+    maleRadio.removeAttribute('checked');
+    femaleRadio.removeAttribute('checked');
+  }
+}

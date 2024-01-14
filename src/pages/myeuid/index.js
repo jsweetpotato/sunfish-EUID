@@ -78,7 +78,7 @@ profile.insertAdjacentHTML(
   `<img
     src="${getPbImageURL(userProfile, 'avatar')}"
     alt="내 프로필 사진"
-    class="w-[68px] rounded-full shadow-[0_4px_4px_0_rgba(0,0,0,0.1)]"
+    class="size-[68px] rounded-full shadow-[0_4px_4px_0_rgba(0,0,0,0.1)]"
     />
   `
 );
