@@ -47,7 +47,7 @@ function createMessageBox(box) {
       <li class="px-3 w-full">
       <div class="flex gap-1 justify-end">
         <span class="mt-auto text-paragraph-sm align-bottom"
-          >${new Date(created).toLocaleDateString()}</span
+          >${new Date(created).toLocaleString().slice(6, -3)}</span
         >
         <span
           class="px-[14px] py-2 text-paragraph-md text-white bg-secondary rounded-full"
@@ -78,7 +78,7 @@ function createMessageBox(box) {
           >
         </div>
         <span class="mt-auto text-paragraph-sm align-bottom"
-          >${new Date(created).toLocaleDateString()}</span
+          >${new Date(created).toLocaleString().slice(6, -3)}</span
         >
       </div>
     </li>
