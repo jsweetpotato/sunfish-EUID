@@ -2,7 +2,6 @@ import { hangulIncludes } from '@toss/hangul';
 import { pb } from '../../lib';
 import { resultDataList } from './data';
 import { drawRecentSearchList } from './draw';
-import { drawSuggestionList } from './suggestion';
 
 const $back = document.querySelectorAll('#back');
 $back.onclick = () => window.history.back();
@@ -60,12 +59,14 @@ $popularSearchItems.forEach((item) => {
   };
 });
 
+// the standard way to create multipart/form-data body
 /* -------------------------------------------------------------------------- */
 /*                              최근 검색 목록                                  */
 /* -------------------------------------------------------------------------- */
 
 $recentSearchUl.addEventListener('focusin', (e) => {
   const { target } = e;
+  console.log(target);
 
   if (target.dataset.type === 'delete') {
     target.addEventListener('click', () => {
@@ -78,7 +79,9 @@ $recentSearchUl.addEventListener('focusin', (e) => {
   }
 
   target.addEventListener('click', () => {
-    $searchInput.value = target.innerText;
+    const t = target.querySelector('.search-btn');
+    console.log(t);
+    $searchInput.value = t.innerText;
     toSearchInput();
   });
 });
@@ -128,6 +131,7 @@ const getSearchSuggestions = () => {
   searchResult = searchKeywords;
 };
 
+// eslint-disable-next-line consistent-return
 const handleInput = () => {
   if ($searchInput.value === '')
     return $defaultSearchView.classList.remove('hidden');
@@ -145,3 +149,25 @@ $searchForm.onsubmit = () => {
   // 폼의 기본 제출 동작을 방지합니다.
   return false;
 };
+
+const imgField = document.querySelector('#image-file');
+const testBtn = document.querySelector('#test-btn');
+
+async function handleNewPost() {
+  const data = {
+    field: imgField.files[0],
+    desc: 'sdasdasdd',
+    name: 'test',
+  };
+
+  try {
+    await pb.collection('test').create(data);
+  } catch (e) {
+    console.log(e);
+    alert('상품 정보를 올바르게 입력해 주세요.');
+  }
+}
+testBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  handleNewPost();
+});
