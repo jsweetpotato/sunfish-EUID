@@ -51,7 +51,7 @@
         </form>
       </header>
       <main class="flex flex-col flex-grow">
-        <div id="default-search-view" class="pt-2">
+        <div id="default-search-view" class="pt-2 hidden">
           <div id="search-recommand" class="relative">
             <p class="text-label-md mx-3" role="presentation">인기 검색</p>
             <button
@@ -140,7 +140,7 @@
             ></ul>
           </div>
         </div>
-        <div id="suggestion-view" class="hidden">
+        <div id="suggestion-view" class="pt-2 hidden">
           <ul
             id="search-combobox"
             role="listbox"
@@ -282,6 +282,40 @@
                   <span class="suggestion-item"></span>
                 </div>
               </div>
+            </li>
+          </ul>
+        </div>
+        <div id="search-result-view" class="pt-2 hidden">
+          <ul>
+            <li
+              class="search-result-list border-b border-contents-content-secondary"
+            >
+              <article class="flex flex-col py-3 items-start px-3">
+                <span
+                  class="p-1 mb-[6px] bg-bluegray-600 text-white rounded text-label-sm leading-none"
+                  >같이해요</span
+                >
+                <div
+                  class="w-full *:text-nowrap *:overflow-hidden *:leading-none"
+                >
+                  <a class="title text-paragraph-md" href=""
+                    >아니 디버깅 돌려봤는데도 왜 이러냐?</a
+                  >
+                  <p
+                    role="presentation"
+                    class="text-ellipsis w-full text-paragraph-sm text-gray-700"
+                  >
+                    내가 혼자 게임 만들려고 코드 짰는데 왜 작동 안되는거냐
+                    일수가 없다ㄴㅇㅁㄴㅇㄴㅁㅇㅁㄴㅇ
+                  </p>
+                </div>
+                <span
+                  role="presentation"
+                  class="mt-2 text-label-sm text-gray-600"
+                >
+                  연희동 • 49분 전 • 조회 4
+                </span>
+              </article>
             </li>
           </ul>
         </div>
