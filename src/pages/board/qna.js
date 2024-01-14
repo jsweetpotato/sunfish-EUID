@@ -1,6 +1,8 @@
-/* eslint-disable import/no-unresolved */
+/* eslint-disable no-alert, no-shadow, import/no-unresolved, import/extensions, import/no-absolute-path */
 
 import Swiper from 'swiper';
+import gsap from 'gsap';
+import { pb, getNode, getNodes, insertLast, clearContents } from '/src/lib/';
 
 const swiper = new Swiper('.swiper', {
   slidesPerView: 'auto',
@@ -8,150 +10,177 @@ const swiper = new Swiper('.swiper', {
   freeMode: true,
 });
 
-const dummyData = {
-  qna: [
-    {
-      id: 0,
-      title:
-        '코딩 입문한지 얼마안된 초보입니다. (자바스크립트 클로저에 대한 질문)',
-      description:
-        '안녕하세요. 디자인 전공으로 종사하다가 코딩쪽으로 스펙업을 하고 싶어서 입문하게된 코린이입니다. 독학으로 자바스크립트 공부중인데요. chtatGPT라는 정말 좋은 선생님이 생겨서 공부하기 정말 좋은 시대라고 생각하고 공부 하고 있습니다. 입문한지는 며칠안되어서 너무 기본적인 것일 수도 있겠지만',
-      local: '연희동',
-      createdAt: new Date().getTime(),
-      views: 12,
-      imgUrl: [
-        '/src/assets/boardIcon/sampleImg.png',
-        '/src/assets/boardIcon/sampleImg.png',
-      ],
-    },
-    {
-      id: 1,
-      title: '자바스크립트 마우스 이벤트 질문',
-      description:
-        '자바스크립트로 아날로그 타이머를 만들고 있었는데 이해가 잘안되는 부분이 생겼습니다.',
-      local: '연희동',
-      createdAt: new Date().getTime(),
-      views: 181,
-      imgUrl: [
-        '/src/assets/boardIcon/sampleImg.png',
-        '/src/assets/boardIcon/sampleImg.png',
-      ],
-    },
-    {
-      id: 2,
-      title: '유효성 인식 문제 (자바스크립트 )',
-      description:
-        '안녕하세요 우편번호 찾기 버튼 없이 숫자를 직접 넣었을 때는 아래 이미지와 같이 잘 됩니다. 그런데 [우편번호 찾기] 버튼으로 우편 번호 검색을 한 후 우편번호 필드에 출력은 되는데 바로 유효성 인식을 하지 못하는 상황 입니다.',
-      local: '중앙동',
-      createdAt: new Date().getTime(),
-      views: 11,
-      imgUrl: [
-        '/src/assets/boardIcon/sampleImg.png',
-        '/src/assets/boardIcon/sampleImg.png',
-      ],
-    },
-  ],
+const options = {
+  interestsState: 'all',
 };
 
-function createTemplate(data) {
-  const { qna } = data;
-  const togetherTemplateArray = [];
-  qna.forEach((item) => {
-    const { title, description, local, createdAt, views, imgUrl } = item;
-    const template = /* html */ `
-    <li class="hover:bg-gray-100 transition-all">
+let sortState = '-created';
+
+function createQnaTemplate(item) {
+  const { id, category, title, imgField, views, created, comments } = item;
+  let { description } = item;
+  description = description.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  const imgUrl = pb.files.getUrl(item, imgField[0], { thumb: '0x60' });
+
+  const template = /* html */ `
+  <li class="hover:bg-gray-100">
+  <div
+    class="relative p-3 border-b flex flex-row justify-between gap-1 border-contents-content-secondary"
+    
+  >
     <div
-      class="relative p-3 border-b flex flex-row justify-between gap-1 border-contents-content-secondary"
-      
+      class="w-[calc(100%-70px)] flex flex-col flex-shrink-1 justify-center items-start gap-1"
     >
-      <div
-        class="w-[calc(100%-70px)] flex flex-col flex-shrink-1 justify-center items-start gap-1"
-      >
-        <div class="flex items-center gap-1 mb-7">
-          <span
-            class="text-label-sm px-1 bg-bluegray-600 text-white rounded"
-            >질의응답</span
-          >
-          <span
-            class="text-label-sm px-1 bg-tertiary text-white rounded"
-            >인기</span
-          >
-        </div>
-        <a href="/src/pages/board/qnaView.html"
-          class="absolute top-0 left-0 w-full h-full flex-auto text-paragraph-md font-normal text-contents-content-primary "
-        >
-          <span class="absolute top-8 left-3 w-[70%] overflow-hidden whitespace-nowrap text-ellipsis">${title}</span>
-        </a>
+      <div class="flex items-center gap-1 mb-7">
         <span
-          class="w-full text-paragraph-sm font-normal text-gray-600 overflow-hidden whitespace-nowrap text-ellipsis"
-          >${description.slice(0, 50)}...</span
+          class="text-label-sm px-1 bg-bluegray-600 text-white rounded"
+          >${category}</span
         >
-        <span class="text-paragraph-sm font-normal text-gray-600"
-          >${local} · 9분 전 · 조회 ${views}</span
-        >
+      ${
+        views > 100
+          ? `<span
+      class="text-label-sm px-1 bg-tertiary text-white rounded"
+      >인기</span
+    >`
+          : ''
+      }
       </div>
-      <div
-        class="w-[70px] min-w-[70px] flex justify-center items-center"
+      <a href="/src/pages/board/qnaView.html?id=${id}"
+        class="absolute top-0 left-0 w-full h-full flex-auto text-paragraph-md font-normal text-contents-content-primary "
       >
-        <div
-          class="w-[60px] h-[60px] overflow-hidden border border-gray-300 rounded"
-        >
-          <img
-            src="${imgUrl[0]}"
-            alt="이미지"
-          />
-        </div>
-      </div>
+        <span class="absolute top-8 left-3 w-[70%] overflow-hidden whitespace-nowrap text-ellipsis">${title}</span>
+      </a>
+      <span
+        class="w-full text-paragraph-sm font-normal text-gray-600 overflow-hidden whitespace-nowrap text-ellipsis"
+        >${description.slice(0, 50)}...</span
+      >
+      <span class="text-paragraph-sm font-normal text-gray-600"
+      >연희동 · ${new Date(
+        created
+      ).toLocaleDateString()} · 조회 ${views} · 댓글 ${comments.length}</span>
     </div>
-    </li>
-    `;
-    togetherTemplateArray.push(template);
+      <div
+      class="w-[70px] min-w-[70px] flex justify-center items-center">
+    ${
+      imgUrl === ''
+        ? ''
+        : /* html */ `<div
+    class="w-[60px] h-[60px] overflow-hidden border border-gray-300 rounded">
+    <img
+    class="w-full h-full object-cover"
+      src="${imgUrl}"
+      alt="썸네일"
+      loading="lazy"
+      />
+  </div>`
+    }
+    </div>
+  </div>
+  </li>
+  `;
+  return template;
+}
+function createData(array) {
+  const result = [];
+  array.forEach((item) => {
+    result.push(createQnaTemplate(item));
   });
-
-  const resultTemplate = [...togetherTemplateArray];
-  return resultTemplate.join('');
+  return result;
 }
-const boardList = document.querySelector('#board-list');
-boardList.insertAdjacentHTML('beforeend', createTemplate(dummyData));
-
-function removeActiveClass() {
-  const slides = document.querySelectorAll('.swiper-slide');
-  slides.forEach((slide) => {
-    const [btn, p] = slide.children;
-    btn.classList.remove('border-secondary');
-    p.classList.remove('text-secondary');
+function renderNothing() {
+  insertLast(
+    '#board-list',
+    `
+   <div class="sorry p-3 flex flex-col text-center">
+     <span class="text-heading-2xl">😅</span>
+     <p class="p-1 text-paragraph-lg">게시물이 없습니다.</p>
+   </div>
+   `
+  );
+  gsap.from('.sorry', {
+    y: 30,
+    opacity: 0,
+    duration: 0.2,
+  });
+}
+function render(array) {
+  if (array.length < 1) {
+    renderNothing();
+    return;
+  }
+  insertLast('#board-list', array.join(''));
+  gsap.from('#board-list>li', {
+    x: -500,
+    duration: 0.3,
+    stagger: 0.1,
   });
 }
 
-function handleSetActiveClass(e) {
-  removeActiveClass();
-  e.currentTarget.classList.add('border-secondary');
-  e.currentTarget.nextElementSibling.classList.add('text-secondary');
+function getFilterString(options) {
+  const filterArray = [];
+  if (options.interestsState !== 'all')
+    filterArray.push(`category = "${options.interestsState}"`);
+  return filterArray.join('&&');
 }
 
-const categoryButton = document.querySelectorAll('.category-button');
+async function getData() {
+  clearContents('#board-list');
+  const filterString = getFilterString(options);
+  console.log(filterString);
+  try {
+    const qnaResponse = await pb.collection('qAndA').getFullList({
+      sort: sortState,
+      filter: filterString,
+    });
+    console.log(qnaResponse);
+    render(createData(qnaResponse));
+  } catch (error) {
+    alert(
+      '서버 통신을 하는 도중 오류가 발생했습니다. 잠시후 다시 시도해주세요.'
+    );
+    console.log(error);
+  }
+}
+getData();
+
+const categoryButton = getNodes('.category-button');
+function handleCategoryChange({ target }) {
+  const { id } = target;
+  options.interestsState = id;
+  getData();
+}
 categoryButton.forEach((button) => {
-  button.addEventListener('click', handleSetActiveClass);
+  button.addEventListener('change', handleCategoryChange);
 });
 
-const sortButton = document.querySelector('#sort');
-function handleChangeSort() {
+const sortCreatedButton = getNode('#sort');
+function handleChangeSortCreated(limit = 1000) {
   let isLatest = true;
+  let isWaiting = false;
   return (e) => {
-    if (isLatest) {
-      e.currentTarget.textContent = '오래된 작성 순';
-      e.currentTarget.classList.replace(
-        'bg-direction-icon',
-        'bg-direction_rotate-icon'
-      );
-    } else {
-      e.currentTarget.textContent = '최근 작성 순';
-      e.currentTarget.classList.replace(
-        'bg-direction_rotate-icon',
-        'bg-direction-icon'
-      );
-    }
-    isLatest = !isLatest;
+    if (!isWaiting) {
+      if (isLatest) {
+        e.currentTarget.textContent = '오래된 작성 순';
+        e.currentTarget.classList.replace(
+          'bg-direction-icon',
+          'bg-direction_rotate-icon'
+        );
+        sortState = '+created';
+      } else {
+        e.currentTarget.textContent = '최근 작성 순';
+        e.currentTarget.classList.replace(
+          'bg-direction_rotate-icon',
+          'bg-direction-icon'
+        );
+        sortState = '-created';
+      }
+      isLatest = !isLatest;
+      getData();
+    } else alert('성격이 급하신 것 같아요. 천천히 눌러주세요~');
+    isWaiting = true;
+    setTimeout(() => {
+      isWaiting = false;
+    }, limit);
   };
 }
-sortButton.addEventListener('click', handleChangeSort());
+sortCreatedButton.addEventListener('click', handleChangeSortCreated());

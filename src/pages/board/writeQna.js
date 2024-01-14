@@ -1,20 +1,27 @@
+/* eslint-disable no-alert, no-shadow, import/no-unresolved, import/extensions, import/no-absolute-path, no-restricted-syntax */
+
 import gsap from 'gsap';
+import { pb, getNode, getNodes } from '/src/lib/';
 
 (function init() {
-  const form = document.querySelector('#form');
+  const form = getNode('#form');
   form.addEventListener('submit', (e) => e.preventDefault());
 })();
 
 const formObj = {
-  category: 'frontend',
+  type: 'qna',
   title: '',
-  question: '',
-  files: [],
+  description: '',
+  category: '프론트엔드',
+  imgField: [],
+  views: 0,
+  comments: JSON.stringify([]),
+  user: pb.authStore.model.id,
 };
 
-const $openModalButton = document.querySelector('#category-select');
-const $closeModalButton = document.querySelector('#closeModal');
-const $modalDimmed = document.querySelector('#modalDimmed');
+const $openModalButton = getNode('#category-select');
+const $closeModalButton = getNode('#closeModal');
+const $modalDimmed = getNode('#modalDimmed');
 
 function showModal() {
   const tl = gsap.timeline();
@@ -50,12 +57,12 @@ $openModalButton.addEventListener('click', showModal);
 $closeModalButton.addEventListener('click', closeModal);
 $modalDimmed.addEventListener('click', closeModal);
 
-const selectButtons = document.querySelectorAll('.select');
+const selectButtons = getNodes('.select');
 selectButtons.forEach((button) => {
   button.addEventListener('click', (e) => {
-    const { name } = e.target.dataset;
-    $openModalButton.textContent = name;
-    formObj.category = name;
+    const { id, dataset } = e.target;
+    $openModalButton.textContent = dataset.name;
+    formObj.category = id;
     gsap.to('#modalDimmed', {
       opacity: 0,
       duration: 0.1,
@@ -69,12 +76,12 @@ selectButtons.forEach((button) => {
 
 const validState = {
   title: false,
-  question: false,
+  description: false,
 };
 
-const inputs = document.querySelectorAll('.input');
+const inputs = getNodes('.input');
 function handleInput({ target }) {
-  const submit = document.querySelector('#complete');
+  const submit = getNode('#complete');
   validState[target.id] = target.value.length > 0;
   formObj[target.id] = target.value;
   if (Object.values(validState).every((value) => value)) {
@@ -87,18 +94,18 @@ inputs.forEach((input) => {
   input.addEventListener('input', handleInput);
 });
 
-const fileField = document.querySelector('#file');
+const fileField = getNode('#file');
 function handleFileChange({ target }) {
   if (target.value === '') return;
   const { files } = target;
-  const imageWrapper = document.querySelector('#image-wrapper');
+  const imageWrapper = getNode('#image-wrapper');
   imageWrapper.innerHTML = '';
   imageWrapper.parentElement.classList.remove('hidden');
   gsap.from(imageWrapper.parentElement, {
     y: 70,
   });
   [...files].forEach((file) => {
-    formObj.files.push(file);
+    formObj.imgField.push(file);
 
     const imgUrl = URL.createObjectURL(file);
     imageWrapper.insertAdjacentHTML(
@@ -109,21 +116,32 @@ function handleFileChange({ target }) {
 }
 fileField.addEventListener('change', handleFileChange);
 
-const fileClearButton = document.querySelector('#file-clear');
+const fileClearButton = getNode('#file-clear');
 function handleClear({ target }) {
-  const imageWrapper = document.querySelector('#image-wrapper');
+  const imageWrapper = getNode('#image-wrapper');
   fileField.value = '';
-  formObj.files = [];
+  formObj.imgField = [];
   imageWrapper.innerHTML = '';
   imageWrapper.parentElement.classList.add('hidden');
-  console.log(formObj.files);
+  console.log(formObj.imgField);
 }
 fileClearButton.addEventListener('click', handleClear);
 
-const submitButton = document.querySelector('#complete');
-function handleSubmit(e) {
-  if (Object.values(validState).every((value) => value)) {
-    console.log(formObj);
+const submitButton = getNode('#complete');
+async function handleSubmit(e) {
+  if (!Object.values(validState).every((value) => value)) return;
+  const formData = new FormData();
+  for (const [key, value] of Object.entries(formObj)) {
+    if (key === 'imgField') {
+      formObj[key].forEach((file) => formData.append('imgField', file));
+    } else formData.append(key, value);
+  }
+  try {
+    await pb.collection('qAndA').create(formData);
+    alert('작성이 완료되었습니다.');
+    window.location.replace('/src/pages/board/qna.html');
+  } catch (error) {
+    alert('알 수 없는 오류가 발생했습니다. 다시 시도해주세요.');
   }
 }
 
