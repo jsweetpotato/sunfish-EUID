@@ -144,10 +144,21 @@ const handlerObject = {
       }
     };
   },
-  handleGoChat() {
+  handleGoChat(pbData) {
     // 채팅방 이동 로직
-    return (e) => {
-      console.log('handlegochat');
+    return async (e) => {
+      const { chatroomId } = pbData;
+      const myId = pb.authStore.model.id;
+      const response = await pb.collection('chatroom').getOne(chatroomId, {
+        fields: 'members',
+      });
+      const currentMembers = response.members;
+      if (currentMembers.indexOf(myId) < 0) {
+        await pb.collection('chatroom').update(chatroomId, {
+          members: [...currentMembers, myId],
+        });
+      }
+      window.location.href = `/src/pages/chatting/room.html?id=${chatroomId}`;
     };
   },
 };

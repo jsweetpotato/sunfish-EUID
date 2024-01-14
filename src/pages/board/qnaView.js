@@ -158,7 +158,6 @@ getData();
 
 const commentButton = getNode('#send');
 async function handleSendComment(e) {
-  e.preventDefault();
   const input = e.target.previousElementSibling;
   if (input.value.replace(/\s/g, '') === '') {
     input.classList.replace('border-transparent', 'border-red-500');
@@ -191,6 +190,7 @@ async function handleSendComment(e) {
 function throttle(callback, limit = 1000) {
   let isWaiting = false;
   return (e) => {
+    e.preventDefault();
     if (!isWaiting) {
       callback(e);
       isWaiting = true;

@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" sizes="48x48" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" sizes="192x192" href="/android-icon.png" />
+    <link rel="stylesheet" href="/src/styles/tailwind.css" />
+    <title>엔터 이듬 - 채팅방</title>
+    <style>
+      .bg-organizer-icon {
+        background-image: url('/src/assets/boardIcon/organizer.svg');
+      }
+      .bg-calender_black-icon {
+        background-image: url('/src/assets/boardIcon/calender_black.svg');
+      }
+      .bg-won-icon {
+        background-image: url('/src/assets/chattingIcon/won.svg');
+      }
+      .bg-send-icon {
+        background-image: url('/src/assets/boardIcon/send.svg');
+      }
+    </style>
+  </head>
+  <body class="min-h-screen overflow-hidden">
+    <div
+      class="relative min-w-screen max-w-screen w-full h-[100dvh] mx-auto flex flex-col"
+    >
+      <header class="w-full">
+        <h1 class="sr-only">채팅방</h1>
+        <div id="header-inner">
+          <div
+            class="flex justify-between items-center border-b border-b-contents-content-tertiary"
+          >
+            <div class="flex gap-3 items-center">
+              <a
+                href="/src/pages/board/qna.html"
+                role="button"
+                aria-label="돌아가기"
+                class="bg-direction-icon block w-10 h-10 bg-no-repeat bg-center rotate-90 hover:bg-gray-100 hover:rounded transition-all duration-300"
+              ></a>
+              <p class="text-label-md">
+                <span class="text-contents-content-secondary"></span>
+              </p>
+            </div>
+            <div class="flex items-center">
+              <button
+                id="more"
+                type="button"
+                aria-label="더보기"
+                class="bg-more-icon w-10 h-10 bg-no-repeat bg-center hover:bg-gray-100 hover:rounded transition-all duration-300"
+              ></button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="relative flex-1 overflow-auto">
+        <section>
+          <h2 class="sr-only">채팅 메세지</h2>
+          <ul id="message-box" class="py-2.5 flex flex-col gap-2">
+            <li class="px-3 w-full">
+              <div class="flex gap-1 justify-end">
+                <span
+                  class="w-[40px] h-[15px] bg-gray-100 rounded-full mt-auto text-paragraph-sm align-bottom"
+                ></span>
+                <span
+                  class="w-[100px] h-[37px] px-[14px] py-2 text-paragraph-md text-white bg-gray-100 rounded-[20px]"
+                ></span>
+              </div>
+            </li>
+            <li class="px-3 w-full">
+              <div class="flex gap-1 justify-start">
+                <figure
+                  class="w-[30px] h-[30px] bg-gray-100 shrink-0 rounded-full overflow-hidden"
+                ></figure>
+                <span
+                  class="w-[100px] h-[37px] px-[14px] py-2 text-paragraph-md text-black bg-gray-100 rounded-[20px]"
+                ></span>
+                <span
+                  class="w-[40px] h-[15px] mt-auto text-paragraph-sm align-bottom bg-gray-100 rounded-[20px]"
+                ></span>
+              </div>
+            </li>
+            <li class="px-3 w-full">
+              <div class="flex gap-1 justify-start">
+                <figure
+                  class="w-[30px] h-[30px] bg-gray-100 shrink-0 rounded-full overflow-hidden"
+                ></figure>
+                <span
+                  class="w-[100px] h-[37px] px-[14px] py-2 text-paragraph-md text-black bg-gray-100 rounded-[20px]"
+                ></span>
+                <span
+                  class="w-[40px] h-[15px] mt-auto text-paragraph-sm align-bottom bg-gray-100 rounded-[20px]"
+                ></span>
+              </div>
+            </li>
+            <li class="px-3 w-full">
+              <div class="flex gap-1 justify-end">
+                <span
+                  class="w-[40px] h-[15px] bg-gray-100 rounded-full mt-auto text-paragraph-sm align-bottom"
+                ></span>
+                <span
+                  class="w-[100px] h-[37px] px-[14px] py-2 text-paragraph-md text-white bg-gray-100 rounded-[20px]"
+                ></span>
+              </div>
+            </li>
+            <li class="px-3 w-full">
+              <div class="flex gap-1 justify-start">
+                <figure
+                  class="w-[30px] h-[30px] bg-gray-100 shrink-0 rounded-full overflow-hidden"
+                ></figure>
+                <span
+                  class="w-[100px] h-[37px] px-[14px] py-2 text-paragraph-md text-black bg-gray-100 rounded-[20px]"
+                ></span>
+                <span
+                  class="w-[40px] h-[15px] mt-auto text-paragraph-sm align-bottom bg-gray-100 rounded-[20px]"
+                ></span>
+              </div>
+            </li>
+            <li class="px-3 w-full">
+              <div class="flex gap-1 justify-end">
+                <span
+                  class="w-[40px] h-[15px] bg-gray-100 rounded-full mt-auto text-paragraph-sm align-bottom"
+                ></span>
+                <span
+                  class="w-[100px] h-[37px] px-[14px] py-2 text-paragraph-md text-white bg-gray-100 rounded-[20px]"
+                ></span>
+              </div>
+            </li>
+            <li class="px-3 w-full">
+              <div class="flex gap-1 justify-end">
+                <span
+                  class="w-[40px] h-[15px] bg-gray-100 rounded-full mt-auto text-paragraph-sm align-bottom"
+                ></span>
+                <span
+                  class="w-[100px] h-[37px] px-[14px] py-2 text-paragraph-md text-white bg-gray-100 rounded-[20px]"
+                ></span>
+              </div>
+            </li>
+          </ul>
+        </section>
+      </main>
+
+      <footer class="w-full h-[54px] px-3 pt-2 pb-2">
+        <form class="w-full h-full flex gap-3">
+          <label class="sr-only" for="comment">댓글</label>
+          <input
+            class="px-3 py-2 w-full bg-bluegray-100 text-paragraph-md rounded-full border-2 border-transparent"
+            type="text"
+            placeholder="메세지을 입력해주세요."
+            spellcheck="false"
+          />
+          <button
+            id="send"
+            type="submit"
+            class="block w-10 h-full bg-send-icon bg-no-repeat bg-center rounded-lg hover:bg-gray-100"
+          ></button>
+        </form>
+      </footer>
+    </div>
+    <script type="module" src="/src/pages/chatting/room.js"></script>
+  </body>
+</html>
