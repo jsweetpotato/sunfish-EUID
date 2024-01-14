@@ -84,7 +84,7 @@ export default async function getData() {
 
   const url =
     isPriceOffer === true
-      ? `/src/pages/exchange/exchangeWrite.html?id=${id}`
+      ? `/src/pages/exchange/exchangeWrite.html?=${id}`
       : '#'; ;
 
   footer.insertAdjacentHTML(
