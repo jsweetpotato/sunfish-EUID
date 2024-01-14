@@ -3,6 +3,9 @@ import { getNode, getNodes, pb } from '../../lib';
 import initInput from '../../components/ValidationInput/ValidationInput';
 import { createModal1Btn, createModal2Btn } from '../../components/Modal/Modal';
 
+const saveButton = getNode('#saveButton');
+const cancelButton = getNodes('.cancelButton');
+
 /* -------------------------------------------------------------------------- */
 /*                              Validation Input                              */
 /* -------------------------------------------------------------------------- */
@@ -33,7 +36,6 @@ initInput(inputArray);
 
 const textarea = getNode('#aboutMeInput');
 const characterCount = getNode('#characterCount');
-const saveButton = getNode('#saveButton');
 
 function countCharacters() {
   const count = textarea.value.length;
@@ -43,20 +45,46 @@ function countCharacters() {
     characterCount.textContent = '500/500';
   }
 }
-
 textarea.addEventListener('input', countCharacters);
+
+/* -------------------------------------------------------------------------- */
+/*                                Radio Button                                */
+/* -------------------------------------------------------------------------- */
+
+const privateRadio = getNode('#private');
+const maleRadio = getNode('#male');
+const femaleRadio = getNode('#female');
+
+function moveCheck(e) {
+  const prevChecked = document.querySelector('[checked]');
+  if (prevChecked) {
+    prevChecked.removeAttribute('checked');
+  }
+
+  e.target.setAttribute('checked', 'checked');
+}
+privateRadio.addEventListener('click', moveCheck);
+maleRadio.addEventListener('click', moveCheck);
+femaleRadio.addEventListener('click', moveCheck);
 
 /* -------------------------------------------------------------------------- */
 /*                                agreeCheckbox                               */
 /* -------------------------------------------------------------------------- */
 const allAgreeCheckbox = getNode('#all-agree-checkbox');
 const agreeCheckboxes = getNodes('.agree-checkbox');
+const isDisabled = [true, true]; // 모두 false가 되면 저장 버튼 활성화
 
 const handleCheckboxChange = () => {
   const isAllChecked = [...agreeCheckboxes].every(
     (checkbox) => checkbox.checked
   );
-  saveButton.disabled = !isAllChecked;
+
+  if (!isAllChecked) {
+    saveButton.disabled = true;
+    isDisabled[0] = true;
+  } else {
+    isDisabled[0] = false;
+  }
   allAgreeCheckbox.checked = isAllChecked;
 };
 
@@ -70,6 +98,28 @@ allAgreeCheckbox.addEventListener('change', () => {
 
 agreeCheckboxes.forEach((checkbox) => {
   checkbox.addEventListener('change', handleCheckboxChange);
+});
+
+/* ---------------------------------- 필수 입력 --------------------------------- */
+
+// 필수 입력 필드에 공통 클래스 required-input 추가
+const required = getNodes('.required input');
+required.forEach((element) => {
+  element.classList.add('required-input');
+});
+
+// 필수 입력 필드가 비어있으면 isDisabled[0] = true
+const requiredInputs = getNodes('.required-input');
+requiredInputs.forEach((element) => {
+  element.addEventListener('input', () => {
+    if (element.value === '') {
+      isDisabled[1] = true;
+      saveButton.disabled = true;
+    } else {
+      isDisabled[1] = false;
+      saveButton.disabled = false;
+    }
+  });
 });
 
 /* -------------------------------------------------------------------------- */
@@ -96,14 +146,15 @@ const nameInput = getNode('#nameInput');
 const jobInput = getNode('#jobInput');
 const companyInput = getNode('#companyInput');
 const aboutMeInput = getNode('#aboutMeInput');
-const genderInput = document.querySelector('input[name="gender"]:checked');
 const usersOauth = localStorage.getItem('users-oauth');
 const userData = JSON.parse(usersOauth);
 const pocketAuth = localStorage.getItem('pocketbase_auth');
 const pocketData = JSON.parse(pocketAuth);
 
-// 프로필 수정 : 저장
 const saveData = async () => {
+  const genderInput = document.querySelector('input[name="gender"]:checked');
+
+  /* --------------------------------- 회원가입 유저 -------------------------------- */
   if (login === 'false') {
     const array = new Uint16Array(1);
     const userCord = crypto.getRandomValues(array).join('');
@@ -118,7 +169,7 @@ const saveData = async () => {
       phone: `${userData.phone}`,
       avatar: '',
       name: `${nameInput.value}`,
-      gender: `${genderInput.value}`,
+      gender: `${genderInput.id}`,
       job: `${jobInput.value}`,
       company: `${companyInput.value}`,
       introduce: `${aboutMeInput.value}`,
@@ -139,6 +190,8 @@ const saveData = async () => {
       });
     localStorage.removeItem('users-oauth');
     localStorage.setItem('login', 'true');
+
+    /* --------------------------------- 로그인 유저 --------------------------------- */
   } else {
     const updateUser = {
       avatar: '',
@@ -162,7 +215,6 @@ saveButton.onclick = () => saveModal.showing();
 
 /* ------------------------------ warningModal ------------------------------ */
 
-const cancelButton = getNodes('.cancelButton');
 const storage = window.localStorage;
 
 const cancelProfileEdit = () => {
