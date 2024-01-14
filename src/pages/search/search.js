@@ -1,43 +1,100 @@
+import { hangulIncludes } from '@toss/hangul';
 import { pb } from '../../lib';
-import { drawRecentSearchList } from './recentSearch';
+import { resultDataList } from './data';
+import { drawRecentSearchList } from './draw';
+import { drawSuggestionList } from './suggestion';
+
+const $back = document.querySelectorAll('#back');
+$back.onclick = () => window.history.back();
 
 const $searchForm = document.querySelector('#searchForm');
 const $searchInput = document.querySelector('#searchInput');
 const $recentSearchUl = document.querySelector('#recent-search-ul');
+const $searchCombobox = document.querySelector('#search-combobox');
+const $defaultSearchView = document.querySelector('#default-search-view');
+const $popularSearchItems = document.querySelectorAll(
+  '#popular-search-ul button'
+);
+const $skipList = document.querySelectorAll('.skip');
 
 const recentSearchList = [
   {
     name: '감자',
-    label: '감자',
   },
   {
     name: 'preview',
-    label: 'Preview',
   },
   {
     name: 'Programming',
-    label: 'programming',
   },
   {
     name: '컴퓨터',
-    label: '컴퓨터',
+  },
+  {
+    name: '노트북',
+  },
+  {
+    name: '고라니',
+  },
+  {
+    name: '지능',
   },
 ];
 
 drawRecentSearchList(recentSearchList, $recentSearchUl);
-// collection 타입에 따라서 일치하는 리스트를 받아와야 하나?
-// 아니면 모든 컬렉션을 받아와서 그 이후에 검색?
 
-// const productData = await pb.collection('products').getFullList();
+/* -------------------------------------------------------------------------- */
+/*                                 스킵하기                                    */
+/* -------------------------------------------------------------------------- */
+const toRecentList = () => $recentSearchUl.querySelector('button').focus();
+$skipList[0].onclick = toRecentList;
 
-// 문제는 product 컬렉션에서만 데이터를 가져온다는 것
-// let filteredData = productData.filter((item) => item.title.includes(value));
+const toSearchInput = () => $searchInput.focus();
+$skipList[1].onclick = toSearchInput;
 
-// autoAlpha로 처리
+$popularSearchItems.forEach((item) => {
+  // eslint-disable-next-line no-param-reassign
+  item.onclick = () => {
+    $searchInput.value = item.innerText;
+    toSearchInput();
+  };
+});
 
-// 연관 단어는 어떻게 셀렉?
+/* -------------------------------------------------------------------------- */
+/*                              최근 검색 목록                                  */
+/* -------------------------------------------------------------------------- */
 
-// data에서 filter로 받아오기?
+$recentSearchUl.addEventListener('focusin', (e) => {
+  const { target } = e;
+
+  if (target.dataset.type === 'delete') {
+    target.addEventListener('click', () => {
+      const { idx } = target.dataset;
+      recentSearchList.splice(idx, 1);
+      $recentSearchUl.innerHTML = '';
+      drawRecentSearchList(recentSearchList, $recentSearchUl);
+    });
+    return;
+  }
+
+  target.addEventListener('click', () => {
+    $searchInput.value = target.innerText;
+    toSearchInput();
+  });
+});
+
+/* -------------------------------------------------------------------------- */
+/*                                검색어 추천                                   */
+/* -------------------------------------------------------------------------- */
+
+// drawSuggestionList(,$searchCombobox)
+
+// 검색어 셀렉 하면 -> 인풋에 그려짐 ✅
+// 인풋 벨류 가져와서 검색하기
+// 인풋에 하나라도 작성되면 리스트 안보이기
+// 데이터 저장소 총 5개 -> 이거를 하나씩 검색하면 너무 느림..
+
+// ⏩ 보여주기 식으로 변경
 
 function debounce(callback, limit = 200) {
   let timeout;
@@ -51,10 +108,38 @@ function debounce(callback, limit = 200) {
   };
 }
 
+const getData = await pb.collection('qna').getFullList();
+
+window.localStorage.setItem('data', JSON.stringify(getData));
+
+let searchResult;
+// 타이틀하고 설명 칸에 해당 단어가 있으면 데이터(배열)추출 ✅
+// 여기서 나온 데이터가 title에서 나온건지 description에서 나온건지 확인해야함
+
+const getSearchKeywords = (input) =>
+  resultDataList.filter((item) => {
+    const { title, description } = item;
+    return hangulIncludes(title, input) || hangulIncludes(description, input);
+  });
+
+const getSearchSuggestions = () => {
+  const input = $searchInput.value;
+  const searchKeywords = getSearchKeywords(input);
+  searchResult = searchKeywords;
+};
+
+const handleInput = () => {
+  if ($searchInput.value === '')
+    return $defaultSearchView.classList.remove('hidden');
+  $defaultSearchView.classList.add('hidden');
+  getSearchSuggestions();
+};
+
+$searchInput.addEventListener('input', debounce(handleInput, 150));
+
 // 테스트 데이터를 더 만들자
 $searchForm.onsubmit = () => {
   const searchQuery = $searchInput.value;
-  console.log('검색어:', searchQuery);
   // 여기에 검색 처리 로직을 추가합니다.
 
   // 폼의 기본 제출 동작을 방지합니다.

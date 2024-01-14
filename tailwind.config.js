@@ -64,7 +64,7 @@ export default {
         'people-icon': "url('/src/assets/boardIcon/people.svg')",
         'calender-icon': "url('/src/assets/boardIcon/calender.svg')",
         // Search
-        'search-sm-icon': "url('/src/assets/boardIcon/people_full.svg')",
+        'search-sm-icon': "url('/src/assets/searchIcon/search.svg')",
         'time-icon': "url('/src/assets/searchIcon/time.svg')",
         'close-blue-icon': "url('/src/assets/searchIcon/close-blue.svg')",
       },

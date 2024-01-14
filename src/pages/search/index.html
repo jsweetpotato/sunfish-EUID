@@ -8,13 +8,31 @@
       href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
     />
     <script type="module" src="/src/pages/search/search.js"></script>
+    <script type="module" src="/src/pages/search/scroll.js"></script>
     <link rel="stylesheet" href="/src/styles/tailwind.css" />
     <title>엔터 이듬 - 검색하기</title>
+    <style>
+      .scrollable {
+        overflow: auto;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE 10+ */
+        scroll-behavior: smooth;
+      }
+
+      .scrollable::-webkit-scrollbar {
+        /* WebKit */
+        width: 0;
+        height: 0;
+      }
+    </style>
   </head>
   <body>
     <div class="flex flex-col min-w-screen max-w-screen min-h-screen mx-auto">
       <h1 class="sr-only">검색</h1>
-      <header class="px-3 flex items-center sticky top-0 bg-white w-full h-10">
+      <header
+        id="back"
+        class="px-3 flex items-center sticky top-0 bg-white w-full h-10"
+      >
         <a
           href="#"
           id="back"
@@ -32,9 +50,9 @@
         </form>
       </header>
       <main class="flex flex-col flex-grow">
-        <div id="default-search-view" class="pt-2">
-          <div id="search-recommand" class="mb-3 mx-3 relative">
-            <p class="text-label-md" role="presentation">인기 검색</p>
+        <div id="default-search-view" class="pt-2 hidden">
+          <div id="search-recommand" class="relative">
+            <p class="text-label-md mx-3" role="presentation">인기 검색</p>
             <button
               class="skip absolute bg-white text-label-md focus:size-fit focus:p-1 overflow-hidden size-0"
               aria-label="인기 검색 목록 넘어가기"
@@ -42,12 +60,13 @@
               인기 검색 넘어가기
             </button>
             <ul
-              class="flex mt-3 gap-1 overflow-x-auto text-label-sm leading-none"
+              id="popular-search-ul"
+              class="scrollable flex py-3 px-3 gap-1 overflow-x-auto text-label-sm leading-none"
               aria-label="인기 검색 목록"
             >
               <li class="shrink-0">
                 <button
-                  class="border border-contents-content-tertiary rounded-3xl px-[10px] py-2"
+                  class="border border-contents-content-tertiary rounded-3xl px-[10px] py-2 focus:bg-primary focus:text-white"
                   data-popular-suggestion="노트북"
                 >
                   노트북
@@ -55,7 +74,7 @@
               </li>
               <li class="shrink-0">
                 <button
-                  class="border border-contents-content-tertiary rounded-3xl px-[10px] py-2"
+                  class="border border-contents-content-tertiary rounded-3xl px-[10px] py-2 focus:bg-primary focus:text-white"
                   data-popular-suggestion="태블릿"
                 >
                   태블릿
@@ -63,7 +82,7 @@
               </li>
               <li class="shrink-0">
                 <button
-                  class="border border-contents-content-tertiary rounded-3xl px-[10px] py-2"
+                  class="border border-contents-content-tertiary rounded-3xl px-[10px] py-2 focus:bg-primary focus:text-white"
                   data-popular-suggestion="키보드"
                 >
                   키보드
@@ -71,7 +90,7 @@
               </li>
               <li class="shrink-0">
                 <button
-                  class="border border-contents-content-tertiary rounded-3xl px-[10px] py-2"
+                  class="border border-contents-content-tertiary rounded-3xl px-[10px] py-2 focus:bg-primary focus:text-white"
                   data-popular-suggestion="마우스"
                 >
                   마우스
@@ -79,17 +98,33 @@
               </li>
               <li class="shrink-0">
                 <button
-                  class="border border-contents-content-tertiary rounded-3xl px-[10px] py-2"
+                  class="border border-contents-content-tertiary rounded-3xl px-[10px] py-2 focus:bg-primary focus:text-white"
                   data-popular-suggestion="해드셋"
                 >
                   해드셋
+                </button>
+              </li>
+              <li class="shrink-0">
+                <button
+                  class="border border-contents-content-tertiary rounded-3xl px-[10px] py-2 focus:bg-primary focus:text-white"
+                  data-popular-suggestion="고구마"
+                >
+                  고구마
+                </button>
+              </li>
+              <li class="shrink-0">
+                <button
+                  class="border border-contents-content-tertiary rounded-3xl px-[10px] py-2 focus:bg-primary focus:text-white"
+                  data-popular-suggestion="감자"
+                >
+                  감자
                 </button>
               </li>
             </ul>
           </div>
           <hr />
           <div id="recent-search" class="my-3 relative">
-            <p class="text-label-md mx-3" role="presentation">최근 검색</p>
+            <p class="text-label-md mx-3 mb-2" role="presentation">최근 검색</p>
             <button
               class="skip absolute left-3 bg-white text-label-md focus:size-fit focus:p-1 overflow-hidden size-0"
               aria-label="인기 검색 목록 넘어가기"
@@ -104,7 +139,14 @@
             ></ul>
           </div>
         </div>
-        <div id="search-view"></div>
+        <div>
+          <ul
+            id="search-combobox"
+            role="listbox"
+            aria-label="최근 검색 목록"
+            class="text-label-sm leading-none"
+          ></ul>
+        </div>
       </main>
     </div>
   </body>
