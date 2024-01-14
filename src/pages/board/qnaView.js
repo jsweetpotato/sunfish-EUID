@@ -3,6 +3,8 @@
 import gsap from 'gsap';
 import { pb, getNode, insertLast, clearContents, endScroll } from '/src/lib/';
 
+let firstVisit = true;
+
 function getImageUrl(recordId, array, options = {}) {
   const urlArray = [];
   array.forEach((image) => {
@@ -150,7 +152,14 @@ async function getData() {
   const response = await pb.collection('qAndA').getOne(idParam, {
     expand: 'user',
   });
-  console.log(response);
+  if (firstVisit) {
+    setTimeout(async () => {
+      await pb.collection('qAndA').update(idParam, {
+        views: response.views + 1,
+      });
+      firstVisit = false;
+    }, 2000);
+  }
   render(createTemplate(response));
   commentButton.addEventListener('click', throttle(handleSendComment));
 }
