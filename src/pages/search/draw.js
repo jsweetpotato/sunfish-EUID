@@ -10,15 +10,17 @@ export const drawRecentSearchList = (list, target) => {
     const template = /* html */ `
     <li role="presentation">
     <div
-      class="group flex items-center peer focus-within:bg-gray-100 hover:bg-gray-100 mx-[6px] px-[6px] rounded-md">
+    role="button"
+    tabIndex="0"
+      class="group flex items-center py-[2px] peer focus-within:bg-gray-100 gap-2 hover:bg-gray-100 px-3">
       <div
         aria-atomic="true"
         role="presentation"
-        class="bg-time-icon size-[12px] bg-cover bg-no-repeat group-has-[:focus]:bg-search-sm-icon group-hover:bg-search-sm-icon"
+        class="bg-time-icon size-[12px]  bg-cover bg-no-repeat group-has-[:focus]:bg-search-sm-icon group-hover:bg-search-sm-icon group-focus:bg-search-sm-icon"
       ></div>
-      <button class="mr-auto p-1" role="option" aria-label="${name}">
+      <div class="mr-auto item" role="option" aria-label="${name}">
         <span>${name}</span>
-      </button>
+      </div>
       <button
         aria-label="기록에서 삭제"        
         data-type="delete"

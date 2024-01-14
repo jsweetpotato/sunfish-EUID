@@ -8,7 +8,7 @@
       href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
     />
     <script type="module" src="/src/pages/search/search.js"></script>
-    <script type="module" src="/src/pages/search/scroll.js"></script>
+    <!-- <script type="module" src="/src/pages/search/scroll.js"></script> -->
     <link rel="stylesheet" href="/src/styles/tailwind.css" />
     <title>엔터 이듬 - 검색하기</title>
     <style>
@@ -26,31 +26,32 @@
       }
     </style>
   </head>
-  <body>
-    <div class="flex flex-col min-w-screen max-w-screen min-h-screen mx-auto">
+  <body class="bg-gray-500">
+    <div
+      class="bg-white flex flex-col min-w-screen max-w-screen min-h-screen mx-auto"
+    >
       <h1 class="sr-only">검색</h1>
       <header
-        id="back"
-        class="px-3 flex items-center sticky top-0 bg-white w-full h-10"
+        class="pr-3 flex items-center justify-between sticky top-0 bg-white w-full h-10"
       >
         <a
-          href="#"
           id="back"
+          href="#"
           role="button"
           aria-label="돌아가기"
-          class="bg-direction-icon block w-10 h-10 bg-no-repeat bg-bottom rotate-90 hover:bg-gray-100"
+          class="bg-direction-icon block w-10 h-10 bg-no-repeat bg-center rotate-90 hover:bg-gray-100 hover:rounded transition-all duration-300"
         ></a>
-        <form id="searchForm" action="" class="w-full">
+        <form id="searchForm" action="" class="basis-[88%]">
           <input
             id="searchInput"
             type="text"
             aria-label="검색어 입력 창"
-            class="bg-gray-100 rounded-md text-paragraph-md px-2 min-h-7 box-border w-full"
+            class="bg-gray-100 rounded-md text-paragraph-md px-2 box-border min-h-7 w-full"
           />
         </form>
       </header>
       <main class="flex flex-col flex-grow">
-        <div id="default-search-view" class="pt-2 hidden">
+        <div id="default-search-view" class="pt-2">
           <div id="search-recommand" class="relative">
             <p class="text-label-md mx-3" role="presentation">인기 검색</p>
             <button
@@ -61,12 +62,12 @@
             </button>
             <ul
               id="popular-search-ul"
-              class="scrollable flex py-3 px-3 gap-1 overflow-x-auto text-label-sm leading-none"
+              class="scrollable flex py-3 px-3 gap-1 overflow-x-auto text-label-sm leading-none *:*:py-2 *:*:px-[10px] *:*: *:*:border *:*:border-contents-content-tertiary *:*:rounded-3xl"
               aria-label="인기 검색 목록"
             >
               <li class="shrink-0">
                 <button
-                  class="border border-contents-content-tertiary rounded-3xl px-[10px] py-2 focus:bg-primary focus:text-white"
+                  class="focus:bg-primary focus:text-white hover:bg-primary hover:text-white"
                   data-popular-suggestion="노트북"
                 >
                   노트북
@@ -74,7 +75,7 @@
               </li>
               <li class="shrink-0">
                 <button
-                  class="border border-contents-content-tertiary rounded-3xl px-[10px] py-2 focus:bg-primary focus:text-white"
+                  class="focus:bg-primary focus:text-white hover:bg-primary hover:text-white"
                   data-popular-suggestion="태블릿"
                 >
                   태블릿
@@ -82,7 +83,7 @@
               </li>
               <li class="shrink-0">
                 <button
-                  class="border border-contents-content-tertiary rounded-3xl px-[10px] py-2 focus:bg-primary focus:text-white"
+                  class="focus:bg-primary focus:text-white hover:bg-primary hover:text-white"
                   data-popular-suggestion="키보드"
                 >
                   키보드
@@ -90,7 +91,7 @@
               </li>
               <li class="shrink-0">
                 <button
-                  class="border border-contents-content-tertiary rounded-3xl px-[10px] py-2 focus:bg-primary focus:text-white"
+                  class="focus:bg-primary focus:text-white hover:bg-primary hover:text-white"
                   data-popular-suggestion="마우스"
                 >
                   마우스
@@ -98,7 +99,7 @@
               </li>
               <li class="shrink-0">
                 <button
-                  class="border border-contents-content-tertiary rounded-3xl px-[10px] py-2 focus:bg-primary focus:text-white"
+                  class="focus:bg-primary focus:text-white hover:bg-primary hover:text-white"
                   data-popular-suggestion="해드셋"
                 >
                   해드셋
@@ -106,7 +107,7 @@
               </li>
               <li class="shrink-0">
                 <button
-                  class="border border-contents-content-tertiary rounded-3xl px-[10px] py-2 focus:bg-primary focus:text-white"
+                  class="focus:bg-primary focus:text-white hover:bg-primary hover:text-white"
                   data-popular-suggestion="고구마"
                 >
                   고구마
@@ -114,7 +115,7 @@
               </li>
               <li class="shrink-0">
                 <button
-                  class="border border-contents-content-tertiary rounded-3xl px-[10px] py-2 focus:bg-primary focus:text-white"
+                  class="focus:bg-primary focus:text-white hover:bg-primary hover:text-white"
                   data-popular-suggestion="감자"
                 >
                   감자
@@ -139,13 +140,150 @@
             ></ul>
           </div>
         </div>
-        <div>
+        <div id="suggestion-view" class="hidden">
           <ul
             id="search-combobox"
             role="listbox"
             aria-label="최근 검색 목록"
-            class="text-label-sm leading-none"
-          ></ul>
+            class="text-label-sm leading-none *:*:py-[10px] *:*:px-3 *:*:gap-2 *:*:flex *:*:items-center"
+          >
+            <li role="presentation">
+              <div
+                role="button"
+                data-combobox-index="0"
+                tabindex="0"
+                class="group peer focus-within:bg-gray-100 hover:bg-gray-100"
+              >
+                <div
+                  aria-atomic="true"
+                  role="presentation"
+                  class="size-[12px] bg-cover bg-no-repeat bg-search-sm-icon"
+                ></div>
+                <div class="mr-auto" role="option" aria-label="">
+                  <span class="suggestion-item"></span>
+                </div>
+              </div>
+            </li>
+            <li role="presentation">
+              <div
+                role="button"
+                data-combobox-index="1"
+                tabindex="0"
+                class="group peer focus-within:bg-gray-100 hover:bg-gray-100"
+              >
+                <div
+                  aria-atomic="true"
+                  role="presentation"
+                  class="size-[12px] bg-cover bg-no-repeat bg-search-sm-icon"
+                ></div>
+                <div class="mr-auto" role="option" aria-label="">
+                  <span class="suggestion-item"></span>
+                </div>
+              </div>
+            </li>
+            <li role="presentation">
+              <div
+                role="button"
+                data-combobox-index="2"
+                tabindex="0"
+                class="group peer focus-within:bg-gray-100 hover:bg-gray-100"
+              >
+                <div
+                  aria-atomic="true"
+                  role="presentation"
+                  class="size-[12px] bg-cover bg-no-repeat bg-search-sm-icon"
+                ></div>
+                <div class="mr-auto" role="option" aria-label="">
+                  <span class="suggestion-item"></span>
+                </div>
+              </div>
+            </li>
+            <li role="presentation">
+              <div
+                role="button"
+                data-combobox-index="3"
+                tabindex="0"
+                class="group peer focus-within:bg-gray-100 hover:bg-gray-100"
+              >
+                <div
+                  aria-atomic="true"
+                  role="presentation"
+                  class="size-[12px] bg-cover bg-no-repeat bg-search-sm-icon"
+                ></div>
+                <div class="mr-auto" role="option" aria-label="">
+                  <span class="suggestion-item"></span>
+                </div>
+              </div>
+            </li>
+            <li role="presentation">
+              <div
+                role="button"
+                data-combobox-index="4"
+                tabindex="0"
+                class="group peer focus-within:bg-gray-100 hover:bg-gray-100"
+              >
+                <div
+                  aria-atomic="true"
+                  role="presentation"
+                  class="size-[12px] bg-cover bg-no-repeat bg-search-sm-icon"
+                ></div>
+                <div class="mr-auto" role="option" aria-label="">
+                  <span class="suggestion-item"></span>
+                </div>
+              </div>
+            </li>
+            <li role="presentation">
+              <div
+                role="button"
+                data-combobox-index="5"
+                tabindex="0"
+                class="group peer focus-within:bg-gray-100 hover:bg-gray-100"
+              >
+                <div
+                  aria-atomic="true"
+                  role="presentation"
+                  class="size-[12px] bg-cover bg-no-repeat bg-search-sm-icon"
+                ></div>
+                <div class="mr-auto" role="option" aria-label="">
+                  <span class="suggestion-item"></span>
+                </div>
+              </div>
+            </li>
+            <li role="presentation">
+              <div
+                role="button"
+                data-combobox-index="6"
+                tabindex="0"
+                class="group peer focus-within:bg-gray-100 hover:bg-gray-100"
+              >
+                <div
+                  aria-atomic="true"
+                  role="presentation"
+                  class="size-[12px] bg-cover bg-no-repeat bg-search-sm-icon"
+                ></div>
+                <div class="mr-auto" role="option" aria-label="">
+                  <span class="suggestion-item"></span>
+                </div>
+              </div>
+            </li>
+            <li role="presentation">
+              <div
+                role="button"
+                data-combobox-index="7"
+                tabindex="0"
+                class="group peer focus-within:bg-gray-100 hover:bg-gray-100"
+              >
+                <div
+                  aria-atomic="true"
+                  role="presentation"
+                  class="size-[12px] bg-cover bg-no-repeat bg-search-sm-icon"
+                ></div>
+                <div class="mr-auto" role="option" aria-label="">
+                  <span class="suggestion-item"></span>
+                </div>
+              </div>
+            </li>
+          </ul>
         </div>
       </main>
     </div>

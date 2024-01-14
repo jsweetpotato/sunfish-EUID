@@ -1,21 +1,8 @@
 import { hangulIncludes } from '@toss/hangul';
 import { pb } from '../../lib';
-import { resultDataList } from './data';
+import { keywords, resultDataList } from './data';
 import { drawRecentSearchList } from './draw';
-import { drawSuggestionList } from './suggestion';
-
-const $back = document.querySelectorAll('#back');
-$back.onclick = () => window.history.back();
-
-const $searchForm = document.querySelector('#searchForm');
-const $searchInput = document.querySelector('#searchInput');
-const $recentSearchUl = document.querySelector('#recent-search-ul');
-const $searchCombobox = document.querySelector('#search-combobox');
-const $defaultSearchView = document.querySelector('#default-search-view');
-const $popularSearchItems = document.querySelectorAll(
-  '#popular-search-ul button'
-);
-const $skipList = document.querySelectorAll('.skip');
+// import { drawSuggestionList } from './suggestion';
 
 const recentSearchList = [
   {
@@ -40,6 +27,39 @@ const recentSearchList = [
     name: '지능',
   },
 ];
+
+function debounce(callback, limit = 200) {
+  let timeout;
+
+  return function (...args) {
+    clearTimeout(timeout);
+
+    timeout = setTimeout(() => {
+      callback.apply(this, args);
+    }, limit);
+  };
+}
+
+const $back = document.querySelector('#back');
+
+$back.addEventListener('click', (e) => {
+  e.preventDefault();
+  window.history.back();
+});
+
+const $searchForm = document.querySelector('#searchForm');
+const $searchInput = document.querySelector('#searchInput');
+
+const $defaultSearchView = document.querySelector('#default-search-view');
+const $recentSearchUl = document.querySelector('#recent-search-ul');
+
+const $suggestionView = document.querySelector('#suggestion-view');
+const $suggetionList = document.querySelectorAll('.suggestion-item');
+
+const $popularSearchItems = document.querySelectorAll(
+  '#popular-search-ul button'
+);
+const $skipList = document.querySelectorAll('.skip');
 
 drawRecentSearchList(recentSearchList, $recentSearchUl);
 
@@ -78,8 +98,9 @@ $recentSearchUl.addEventListener('focusin', (e) => {
   }
 
   target.addEventListener('click', () => {
-    $searchInput.value = target.innerText;
+    $searchInput.value = target.innerText.trim();
     toSearchInput();
+    // renderSearchList();
   });
 });
 
@@ -87,57 +108,52 @@ $recentSearchUl.addEventListener('focusin', (e) => {
 /*                                검색어 추천                                   */
 /* -------------------------------------------------------------------------- */
 
-// drawSuggestionList(,$searchCombobox)
+let searchedKeywords;
 
-// 검색어 셀렉 하면 -> 인풋에 그려짐 ✅
-// 인풋 벨류 가져와서 검색하기
-// 인풋에 하나라도 작성되면 리스트 안보이기
-// 데이터 저장소 총 5개 -> 이거를 하나씩 검색하면 너무 느림..
-
-// ⏩ 보여주기 식으로 변경
-
-function debounce(callback, limit = 200) {
-  let timeout;
-
-  return function (...args) {
-    clearTimeout(timeout);
-
-    timeout = setTimeout(() => {
-      callback.apply(this, args);
-    }, limit);
-  };
-}
-
-const getData = await pb.collection('qna').getFullList();
-
-window.localStorage.setItem('data', JSON.stringify(getData));
-
-let searchResult;
-// 타이틀하고 설명 칸에 해당 단어가 있으면 데이터(배열)추출 ✅
-// 여기서 나온 데이터가 title에서 나온건지 description에서 나온건지 확인해야함
-
+// 키워드 추출
 const getSearchKeywords = (input) =>
-  resultDataList.filter((item) => {
-    const { title, description } = item;
-    return hangulIncludes(title, input) || hangulIncludes(description, input);
-  });
+  keywords.filter((item) => hangulIncludes(item, input));
 
-const getSearchSuggestions = () => {
+// 추천 검색어 리스트
+const getSearchSuggestionList = () => {
   const input = $searchInput.value;
-  const searchKeywords = getSearchKeywords(input);
-  searchResult = searchKeywords;
+  searchedKeywords = getSearchKeywords(input);
+
+  $suggetionList.forEach((item, idx) => {
+    const li = item.closest('li');
+    if (searchedKeywords[idx]) {
+      li.classList.remove('hidden');
+      item.innerText = searchedKeywords[idx];
+    } else li.classList.add('hidden');
+  });
 };
 
-const handleInput = () => {
-  if ($searchInput.value === '')
-    return $defaultSearchView.classList.remove('hidden');
+const handleSuggestion = () => {
+  if ($searchInput.value === '') {
+    $suggestionView.classList.add('hidden');
+    $defaultSearchView.classList.remove('hidden');
+    return;
+  }
   $defaultSearchView.classList.add('hidden');
-  getSearchSuggestions();
+  $suggestionView.classList.remove('hidden');
+
+  getSearchSuggestionList();
 };
 
-$searchInput.addEventListener('input', debounce(handleInput, 150));
+$searchInput.addEventListener('input', debounce(handleSuggestion, 120));
 
-// 테스트 데이터를 더 만들자
+/* -------------------------------------------------------------------------- */
+/*                                 검색 결과                                   */
+/* -------------------------------------------------------------------------- */
+
+let searchedResult;
+
+// const getSearchKeywords = (input) =>
+//   resultDataList.filter((item) => {
+//     const { title, description } = item;
+//     return hangulIncludes(title, input) || hangulIncludes(description, input);
+//   });
+
 $searchForm.onsubmit = () => {
   const searchQuery = $searchInput.value;
   // 여기에 검색 처리 로직을 추가합니다.
