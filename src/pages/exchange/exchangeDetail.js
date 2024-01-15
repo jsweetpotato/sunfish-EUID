@@ -1,6 +1,7 @@
 import PocketBase from 'pocketbase';
 import { getNode, getPbImageURL, comma } from '/src/lib';
 import Swiper from 'swiper';
+import gsap from 'gsap';
 import { Navigation, Pagination } from 'swiper/modules';
 import { createModal1Btn } from '../../components/Modal/Modal';
 // import Swiper and modules styles
@@ -13,6 +14,7 @@ const profileInfo = getNode('#profileInfo');
 const main = getNode('#main');
 const productInfo = getNode('#productInfo');
 const footer = getNode('#footer');
+const addButton = getNode('#addButton');
 const watchTogether = getNode('#watchTogether');
 const back = getNode('#back');
 
@@ -33,7 +35,7 @@ export default async function getData() {
   main.insertAdjacentHTML(
     'afterbegin' /* html */,
     `
-  <div class="swiper w-full flex grow flex-shrink bg-gray-100" >
+  <div class="list swiper w-full flex grow flex-shrink bg-gray-100" >
     <div class="swiper-wrapper">
       <div class="swiper-slide "><img src="${getPbImageURL(
         avatarList,
@@ -121,6 +123,12 @@ export default async function getData() {
       freeMode: true,
     },
   });
+
+  gsap.from('.list', {
+      x: -500,
+      duration: 0.3,
+      stagger: 0.1,
+    });
 }
 
 function changeHeart(e) {
@@ -139,7 +147,7 @@ async function watch() {
     watchTogether.insertAdjacentHTML(
       'afterbegin',
       /* html */ `
-      <article class="relative aspect-[1/1.38] rounded-lg shadow-[4px_4px_16px_0px_rgba(0,0,0,0.08),0px_1px_4px_0px_rgba(0,0,0,0.15)] hover:shadow-gray-300 transition-all duration-200">
+      <article class=" relative aspect-[1/1.38] rounded-lg shadow-[4px_4px_16px_0px_rgba(0,0,0,0.08),0px_1px_4px_0px_rgba(0,0,0,0.15)] hover:shadow-gray-300 transition-all duration-200">
         <figure class="h-1/2">
           <img class="w-full h-full object-cover rounded-t-lg bg-contents-content-secondary"
           src="${getPbImageURL(item, 'productImages')}" alt="${item}">
@@ -169,9 +177,17 @@ const [modal, button] = createModal1Btn({
     buttonText: '확인',
   });
     modal.showing()
-    button.addEventListener('click', modal.closing());
+    button.addEventListener('click', modal.closing);
 })
-
+addButton.addEventListener('click', () => {
+  const [modal, button] = createModal1Btn({
+    title: '서비스 준비중입니다',
+    desc: '빠른시일 내에 업데이트 할게요~이용에 불편을 드려 죄송합니다!',
+    buttonText: '확인',
+  });
+  modal.showing();
+  button.addEventListener('click', modal.closing);
+});
 getData();
 watch();
 footer.addEventListener('click', changeHeart);
