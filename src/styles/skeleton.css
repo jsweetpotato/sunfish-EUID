@@ -12,6 +12,10 @@
   animation: load 1s infinite;
 }
 
+.noround {
+  border-radius: 0 !important;
+}
+
 @keyframes load {
   100% {
     background-position: -100% 0;
