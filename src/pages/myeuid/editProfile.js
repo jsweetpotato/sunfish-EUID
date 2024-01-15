@@ -3,6 +3,8 @@ import { getNode, getNodes, pb } from '../../lib';
 import initInput from '../../components/ValidationInput/ValidationInput';
 import { createModal1Btn, createModal2Btn } from '../../components/Modal/Modal';
 
+const authData = await pb.collection('users').authRefresh();
+
 const saveButton = getNode('#saveButton');
 const cancelButton = getNodes('.cancelButton');
 
@@ -47,10 +49,6 @@ function countCharacters() {
 }
 textarea.addEventListener('input', countCharacters);
 
-/* -------------------------------------------------------------------------- */
-/*                                Radio Button                                */
-/* -------------------------------------------------------------------------- */
-
 const privateRadio = getNode('#private');
 const maleRadio = getNode('#male');
 const femaleRadio = getNode('#female');
@@ -67,11 +65,20 @@ maleRadio.addEventListener('click', moveCheck);
 femaleRadio.addEventListener('click', moveCheck);
 
 /* -------------------------------------------------------------------------- */
-/*                                agreeCheckbox                               */
+/*                                 저장버튼 활성화                                */
 /* -------------------------------------------------------------------------- */
+
+// 상태관리
+const state = {
+  input: [...getNodes('.required-input')].every(
+    (node) => node.value.length > 0
+  ),
+  agree: false,
+};
+
+// 전체동의
 const allAgreeCheckbox = getNode('#all-agree-checkbox');
 const agreeCheckboxes = getNodes('.agree-checkbox');
-const isDisabled = [true, true]; // 모두 false가 되면 저장 버튼 활성화
 
 const handleCheckboxChange = () => {
   const isAllChecked = [...agreeCheckboxes].every(
@@ -80,10 +87,12 @@ const handleCheckboxChange = () => {
 
   if (!isAllChecked) {
     saveButton.disabled = true;
-    isDisabled[0] = true;
+    state.agree = false;
   } else {
-    isDisabled[0] = false;
+    state.agree = true;
+    saveButton.disabled = !state.input || !state.agree;
   }
+
   allAgreeCheckbox.checked = isAllChecked;
 };
 
@@ -93,31 +102,26 @@ allAgreeCheckbox.addEventListener('change', () => {
     checkbox.checked = isChecked;
   });
   saveButton.disabled = !isChecked;
+  state.agree = isChecked;
+  saveButton.disabled = !state.input || !state.agree;
 });
 
 agreeCheckboxes.forEach((checkbox) => {
   checkbox.addEventListener('change', handleCheckboxChange);
 });
 
-/* ---------------------------------- 필수 입력 --------------------------------- */
-
-// 필수 입력 필드에 공통 클래스 required-input 추가
+// 필수 input
 const required = getNodes('.required input');
 required.forEach((element) => {
   element.classList.add('required-input');
 });
 
-// 필수 입력 필드가 비어있으면 isDisabled[0] = true
-const requiredInputs = getNodes('.required-input');
+const requiredInputs = Array.from(getNodes('.required-input'));
 requiredInputs.forEach((element) => {
   element.addEventListener('input', () => {
-    if (element.value === '') {
-      isDisabled[1] = true;
-      saveButton.disabled = true;
-    } else {
-      isDisabled[1] = false;
-      saveButton.disabled = false;
-    }
+    const allInputsFilled = requiredInputs.every((input) => input.value !== '');
+    state.input = allInputsFilled;
+    saveButton.disabled = !state.input || !state.agree;
   });
 });
 
@@ -138,10 +142,8 @@ const [warningModal, modalCancelButton, modalSubmitButton] = createModal2Btn({
   submitText: '확인',
 });
 
-/* -------------------------------- saveModal ------------------------------- */
-
+/* ----------------------------- 프로필수정 저장완료 모달 ----------------------------- */
 const login = localStorage.getItem('login');
-const userImg = getNode('#userImg');
 const nameInput = getNode('#nameInput');
 const jobInput = getNode('#jobInput');
 const companyInput = getNode('#companyInput');
@@ -156,18 +158,7 @@ const imageWrapper = getNode('#image-wrapper');
 const saveData = async () => {
   const genderInput = document.querySelector('input[name="gender"]:checked');
 
-  if (imageWrapper.innerHTML === '') {
-    const hash = window.location.hash.slice(1);
-    const defaultImg = {
-      avatar: `profile_img_${hash}.svg`,
-    };
-    pb.collection('users').update(pocketData.model.id, defaultImg);
-    console.log(defaultImg);
-    console.log(hash);
-    return;
-  }
-
-  /* --------------------------------- 회원가입 유저 -------------------------------- */
+  // 회원가입 유저 데이터 생성
   if (login === 'false') {
     const array = new Uint16Array(1);
     const userCord = crypto.getRandomValues(array).join('');
@@ -203,7 +194,7 @@ const saveData = async () => {
     localStorage.removeItem('users-oauth');
     localStorage.setItem('login', 'true');
 
-    /* --------------------------------- 로그인 유저 --------------------------------- */
+    // 로그인 유저 데이터 업데이트
   } else {
     const updateUser = {
       avatar: fileField.files[0],
@@ -213,6 +204,8 @@ const saveData = async () => {
       company: `${companyInput.value}`,
       introduce: `${aboutMeInput.value}`,
     };
+
+    updateUser.avatar = fileField.files[0] || null;
 
     pb.collection('users')
       .update(pocketData.model.id, updateUser)
@@ -225,8 +218,7 @@ const saveData = async () => {
 modalSaveButton.onclick = saveData;
 saveButton.onclick = () => saveModal.showing();
 
-/* ------------------------------ warningModal ------------------------------ */
-
+/* ----------------------------- 프로필수정 취소 경고 모달 ----------------------------- */
 const storage = window.localStorage;
 
 const cancelProfileEdit = () => {
@@ -248,7 +240,7 @@ cancelButton.forEach((button) => {
 });
 
 /* -------------------------------------------------------------------------- */
-/*                                  userImage                                 */
+/*                                 이미지 미리보기                                */
 /* -------------------------------------------------------------------------- */
 
 const imagePreview = getNode('#image-preview');
@@ -280,7 +272,7 @@ function handleClear({ target }) {
 fileClearButton.addEventListener('click', handleClear);
 
 /* -------------------------------------------------------------------------- */
-/*                 로그인 유저 : 프로필 수정 페이지 -> 기존 데이터 렌더링                 */
+/*                  로그인 유저 : 프로필 수정 페이지에 기존 데이터 렌더링                 */
 /* -------------------------------------------------------------------------- */
 const userProfile = await pb.collection('users').getOne(pocketData.model.id, {
   fields: 'avatar',
@@ -293,21 +285,23 @@ function getPbImageURL(item, fileName = 'photo') {
 }
 
 if (login === 'true') {
-  imagePreview.classList.remove('hidden');
-  imageWrapper.insertAdjacentHTML(
-    'afterbegin' /* html */,
-    `
+  if (pocketData.model.avatar !== '') {
+    imagePreview.classList.remove('hidden');
+    imageWrapper.insertAdjacentHTML(
+      'afterbegin' /* html */,
+      `
     <img class="w-[50px] h-[50px]" id="userImg" src="${getPbImageURL(
       userProfile,
       'avatar'
     )}">
     `
-  );
-
+    );
+  }
   nameInput.value = pocketData.model.name;
   jobInput.value = pocketData.model.job;
   companyInput.value = pocketData.model.company;
   aboutMeInput.value = pocketData.model.introduce;
+  countCharacters();
 
   needUpdate.state = true;
 

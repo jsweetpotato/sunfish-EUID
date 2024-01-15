@@ -62,8 +62,8 @@
           <img src="/src/assets/temperature.jpeg" alt="나의 열정 온도" />
         </div>
 
-        <div class="px-2 py-4 flex justify-between gap-7">
-          <div aria-label="내가 받은 좋아요" class="min-w-[105px]">
+        <div class="py-4 flex justify-between gap-3">
+          <div aria-label="내가 받은 좋아요" class="basis-1/2">
             <div class="flex gap-[5px]">
               <div
                 class="bg-heart-icon block bg-no-repeat w-5 h-5 bg-center"
@@ -78,7 +78,7 @@
               >11개 중 11명이 만족</span
             >
           </div>
-          <div aria-label="내 응답률">
+          <div aria-label="내 응답률" class="basis-1/2">
             <div class="flex gap-[5px]">
               <div
                 class="bg-speech-icon block bg-no-repeat w-5 h-5 bg-center"
@@ -104,46 +104,43 @@
         <h2 class="sr-only">나의 활동 목록</h2>
         <ul class="relative">
           <li class="w-full h-12 is-hover border-b-[1px] border-gray-200">
-            <a
-              href=""
-              role="button"
+            <button
+              type="button"
               aria-label="활동배지 보기"
-              class="h-full flex justify-between items-center"
+              class="h-full w-full flex justify-between items-center"
             >
               <span class="text-paragraph-md ml-3">활동배지 10개</span>
               <span
                 class="bg-right-icon block bg-no-repeat bg-right w-4 h-4 mr-4"
               ></span>
-            </a>
+            </button>
           </li>
           <li class="w-full h-12 is-hover border-b-[1px] border-gray-200">
-            <a
-              href=""
-              role="button"
+            <button
+              type="button"
               aria-label="판매상품 보기"
               id="sellingProduct"
-              class="h-full flex justify-between items-center"
+              class="h-full w-full flex justify-between items-center"
             >
               <span
                 class="bg-right-icon block bg-no-repeat bg-right w-4 h-4 mr-4"
               ></span>
-            </a>
+            </button>
           </li>
           <li class="w-full h-12 is-hover">
-            <a
-              href=""
-              role="button"
+            <button
+              type="button"
               aria-label="내가 받은 매너 평가 보기"
-              class="h-full flex justify-between items-center"
+              class="h-full w-full flex justify-between items-center"
             >
               <span class="text-paragraph-md ml-3">받은 매너 평가</span>
               <span
                 class="bg-right-icon block bg-no-repeat bg-right w-4 h-4 mr-4"
               ></span>
-            </a>
+            </button>
             <div
               aria-label="내가 받은 매너 평가 목록"
-              class="py-[14px] px-[10px] absolute top-full left-0"
+              class="py-[14px] px-3 absolute top-full left-0"
             >
               <div
                 class="bg-people_black-icon bg-no-repeat flex gap-[9px] mb-3"
@@ -175,17 +172,16 @@
           <li
             class="absolute w-full top-[315px] h-12 is-hover border-t-[1px] border-gray-200"
           >
-            <a
-              href=""
-              role="button"
+            <button
+              type="button"
               aria-label="내가 받은 거래 후기 보기"
-              class="h-full flex justify-between items-center"
+              class="h-full w-full flex justify-between items-center"
             >
               <span class="text-paragraph-md ml-3">받은 거래 후기</span>
               <span
                 class="bg-right-icon block bg-no-repeat bg-right w-4 h-4 mr-4"
               ></span>
-            </a>
+            </button>
             <div class="px-[10px] py-[14px]">
               <div class="flex items-start gap-[9px]">
                 <img
