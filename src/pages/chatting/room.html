@@ -14,7 +14,7 @@
     <div
       class="relative min-w-screen max-w-screen w-full h-[100dvh] mx-auto flex flex-col"
     >
-      <header class="w-full">
+      <header class="w-full h-[36px]">
         <h1 class="sr-only">채팅방</h1>
         <div id="header-inner">
           <div
@@ -22,7 +22,7 @@
           >
             <div class="flex gap-3 items-center">
               <a
-                href="/src/pages/board/qna.html"
+                href="/src/pages/chatting/lobby.html"
                 role="button"
                 aria-label="돌아가기"
                 class="bg-direction-icon block w-10 h-10 bg-no-repeat bg-center rotate-90 hover:bg-gray-100 hover:rounded transition-all duration-300"
@@ -36,7 +36,7 @@
                 id="more"
                 type="button"
                 aria-label="더보기"
-                class="bg-more-icon w-10 h-10 bg-no-repeat bg-center hover:bg-gray-100 hover:rounded transition-all duration-300"
+                class="bg-hamburger-icon w-10 h-10 bg-no-repeat bg-center hover:bg-gray-100 hover:rounded transition-all duration-300"
               ></button>
             </div>
           </div>
@@ -46,87 +46,7 @@
       <main class="relative flex-1 overflow-auto">
         <section>
           <h2 class="sr-only">채팅 메세지</h2>
-          <ul id="message-box" class="py-2.5 flex flex-col gap-2">
-            <li class="px-3 w-full">
-              <div class="flex gap-1 justify-end">
-                <span
-                  class="w-[40px] h-[15px] bg-gray-100 rounded-full mt-auto text-paragraph-sm align-bottom"
-                ></span>
-                <span
-                  class="w-[100px] h-[37px] px-[14px] py-2 text-paragraph-md text-white bg-gray-100 rounded-[20px]"
-                ></span>
-              </div>
-            </li>
-            <li class="px-3 w-full">
-              <div class="flex gap-1 justify-start">
-                <figure
-                  class="w-[30px] h-[30px] bg-gray-100 shrink-0 rounded-full overflow-hidden"
-                ></figure>
-                <span
-                  class="w-[100px] h-[37px] px-[14px] py-2 text-paragraph-md text-black bg-gray-100 rounded-[20px]"
-                ></span>
-                <span
-                  class="w-[40px] h-[15px] mt-auto text-paragraph-sm align-bottom bg-gray-100 rounded-[20px]"
-                ></span>
-              </div>
-            </li>
-            <li class="px-3 w-full">
-              <div class="flex gap-1 justify-start">
-                <figure
-                  class="w-[30px] h-[30px] bg-gray-100 shrink-0 rounded-full overflow-hidden"
-                ></figure>
-                <span
-                  class="w-[100px] h-[37px] px-[14px] py-2 text-paragraph-md text-black bg-gray-100 rounded-[20px]"
-                ></span>
-                <span
-                  class="w-[40px] h-[15px] mt-auto text-paragraph-sm align-bottom bg-gray-100 rounded-[20px]"
-                ></span>
-              </div>
-            </li>
-            <li class="px-3 w-full">
-              <div class="flex gap-1 justify-end">
-                <span
-                  class="w-[40px] h-[15px] bg-gray-100 rounded-full mt-auto text-paragraph-sm align-bottom"
-                ></span>
-                <span
-                  class="w-[100px] h-[37px] px-[14px] py-2 text-paragraph-md text-white bg-gray-100 rounded-[20px]"
-                ></span>
-              </div>
-            </li>
-            <li class="px-3 w-full">
-              <div class="flex gap-1 justify-start">
-                <figure
-                  class="w-[30px] h-[30px] bg-gray-100 shrink-0 rounded-full overflow-hidden"
-                ></figure>
-                <span
-                  class="w-[100px] h-[37px] px-[14px] py-2 text-paragraph-md text-black bg-gray-100 rounded-[20px]"
-                ></span>
-                <span
-                  class="w-[40px] h-[15px] mt-auto text-paragraph-sm align-bottom bg-gray-100 rounded-[20px]"
-                ></span>
-              </div>
-            </li>
-            <li class="px-3 w-full">
-              <div class="flex gap-1 justify-end">
-                <span
-                  class="w-[40px] h-[15px] bg-gray-100 rounded-full mt-auto text-paragraph-sm align-bottom"
-                ></span>
-                <span
-                  class="w-[100px] h-[37px] px-[14px] py-2 text-paragraph-md text-white bg-gray-100 rounded-[20px]"
-                ></span>
-              </div>
-            </li>
-            <li class="px-3 w-full">
-              <div class="flex gap-1 justify-end">
-                <span
-                  class="w-[40px] h-[15px] bg-gray-100 rounded-full mt-auto text-paragraph-sm align-bottom"
-                ></span>
-                <span
-                  class="w-[100px] h-[37px] px-[14px] py-2 text-paragraph-md text-white bg-gray-100 rounded-[20px]"
-                ></span>
-              </div>
-            </li>
-          </ul>
+          <ul id="message-box" class="py-2.5 flex flex-col gap-2"></ul>
         </section>
       </main>
 

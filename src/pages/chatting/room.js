@@ -9,6 +9,7 @@ import {
   endScroll,
   checkAuth,
 } from '/src/lib/';
+import { createModal1Btn } from '/src/components/Modal/Modal';
 
 (async function init() {
   if (!checkAuth()) return;
@@ -58,7 +59,7 @@ function createMessageBox(box) {
           >${new Date(created).toLocaleString().slice(6, -3)}</span
         >
         <span
-          class="px-[14px] py-2 text-paragraph-md text-white bg-secondary rounded-full"
+          class="px-[14px] py-2 max-w-[248px] text-paragraph-md text-white bg-secondary rounded-[20px]"
           >${message}</span
         >
       </div>
@@ -81,7 +82,7 @@ function createMessageBox(box) {
         <div class="flex flex-col text-label-sm font-normal">
           <span>${senderName}</span>
           <span
-            class="max-w-[248px] px-[14px] py-2 text-paragraph-md text-black bg-bluegray-100 rounded-[20px]"
+            class="px-[14px] py-2 max-w-[248px] text-paragraph-md text-black bg-bluegray-100 rounded-[20px]"
             >${message}</span
           >
         </div>
@@ -163,19 +164,19 @@ async function createTemplate(item) {
               href="/src/pages/chatting/lobby.html"
               role="button"
               aria-label="돌아가기"
-              class="bg-direction-icon block w-10 h-10 bg-no-repeat bg-center rotate-90 hover:bg-gray-100 hover:rounded transition-all duration-300"
+              class="bg-direction-icon block w-9 h-9 bg-no-repeat bg-center rotate-90 hover:bg-gray-100 hover:rounded transition-all duration-300"
             ></a>
-            <p class="text-label-md">
-              ${title} 대화방
-              <span id="member-count" class="text-contents-content-secondary">${members.length}</span>
-            </p>
           </div>
+          <h1 class="text-label-md max-[340px]:text-label-sm">
+          ${title} 대화방
+          <span id="member-count" class="text-contents-content-secondary">${members.length}</span>
+        </h1>
           <div class="flex items-center">
             <button
               id="more"
               type="button"
               aria-label="더보기"
-              class="bg-more-icon w-10 h-10 bg-no-repeat bg-center hover:bg-gray-100 hover:rounded transition-all duration-300"
+              class="bg-hamburger-icon w-9 h-9 bg-no-repeat bg-center hover:bg-gray-100 hover:rounded transition-all duration-300"
             ></button>
           </div>
         </div>
@@ -211,6 +212,17 @@ async function getData() {
   console.log(response);
   render(await createTemplate(response));
   sendButton.addEventListener('click', throttle(handleSendComment));
+  const moreButton = getNode('#more');
+  moreButton.addEventListener('click', (e) => {
+    const [modal, button] = createModal1Btn({
+      title: '😭서비스 준비중입니다.',
+      desc: '열심히 준비중이예요💦<br> 조금만 기다려주세요',
+      buttonText: '알겠어요',
+    });
+    button.addEventListener('click', () => modal.closing());
+    console.log('클릭');
+    modal.showing();
+  });
 }
 
 const sendButton = getNode('#send');
