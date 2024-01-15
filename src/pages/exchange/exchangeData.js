@@ -38,11 +38,12 @@ export default async function imageList() {
   const result = await pb
     .collection('selling')
     .getFullList('pb/collections/selling');
+  clearContents(section);
   result.forEach((value) => {
     const sharing =
       value.tradingType === 'nanum'
         ? `<span class="text-label-sm text-white rounded-[4px] gap-2 grow bg-no-repeat py-[2px] px-1 bg-secondary">나눔</span>`
-        : '';    
+        : '';
     section.insertAdjacentHTML(
       'afterbegin',
       /* html */
@@ -51,12 +52,12 @@ export default async function imageList() {
         value.id
       }">
         <figure>
-          <img src="${getPbImageURL(value, 'productImages', {
+          <img src="${pb.files.getUrl(value, value.productImages, {
             thumb: '0x300',
           })}" alt="${value}" class="w-[95px] h-[95px] object-cover grow rounded-lg ">
         </figure>
         <div class="flex flex-col grow p-3">
-          <a href="/src/pages/exchange/exchangeDetail.html#${value.id}" 
+          <a href="/src/pages/exchange/exchangeDetail.html?id=${value.id}" 
           class="text-paragraph-md absolute w-full h-full top-0 left-0">
           <span class='absolute top-5 left-[130px]'>${value.title}</span>
           </a>
@@ -77,13 +78,11 @@ export default async function imageList() {
     );
   });
 
-
-
-  gsap.from('.exchange-list', {
-    x: -500,
-    duration: 0.3,
-    stagger: 0.1,
-  });
+  // gsap.from('.exchange-list', {
+  //   x: -500,
+  //   duration: 0.3,
+  //   stagger: 0.1,
+  // });
 }
 
 section.addEventListener('click', handleHeartClick);
