@@ -48,7 +48,6 @@ const handleFiles = () => {
 
 window.onload = handleFiles;
 
-
 let titleValue = '';
 let infoValue = '';
 let contentValue = '';
@@ -63,11 +62,10 @@ async function submit() {
     productImages: fileValue,
     user: pb.authStore.model.id,
   };
-
   const record = await pb.collection('selling').create(data);
 
   // 페이지 이동 코드 추가
-  window.location.href = '/src/pages/exchange/index.html';
+  // window.location.href = '/src/pages/exchange/index.html';
 }
 
 fileInput.addEventListener('change', handleFiles);
