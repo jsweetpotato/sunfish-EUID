@@ -59,6 +59,7 @@ export default {
         'right_gray-icon': "url('/src/assets/myPageIcon/right_gray.svg')",
         'sell-icon': "url('/src/assets/myPageIcon/sell.svg')",
         'speech-icon': "url('/src/assets/myPageIcon/speech.svg')",
+        'profile-img': "url('/src/assets/profile-img.svg')",
         // Board Icons
         'people_full-icon': "url('/src/assets/boardIcon/people_full.svg')",
         'people-icon': "url('/src/assets/boardIcon/people.svg')",
