@@ -1,4 +1,4 @@
-import"./tailwind-FG0q2sUH.js";import{i as g}from"./insert-c9FKGVoP.js";import{c as u}from"./clear-vWyKvuJ4.js";import{p as r}from"./delay-L14dHocY.js";import{c as x}from"./convertTime-ltT1zPuc.js";import"./getNode-pa7syr6m.js";function h(t){return t.map(e=>{const{messageBox:s,updated:o,id:a,owner:i}=e,{members:l,originId:m}=e.expand,p=s.pop()?.message,n=l.filter(f=>f.id===i)[0],d=r.files.getUrl(n,n.avatar,{thumb:"50x0"});return`
+import"./tailwind-vaML6LCP.js";import{i as g}from"./insert-c9FKGVoP.js";import{c as u}from"./clear-vWyKvuJ4.js";import{p as r}from"./delay-L14dHocY.js";import{c as x}from"./convertTime-ltT1zPuc.js";import"./getNode-pa7syr6m.js";function h(t){return t.map(e=>{const{messageBox:s,updated:o,id:a,owner:i}=e,{members:l,originId:m}=e.expand,p=s.pop()?.message,n=l.filter(f=>f.id===i)[0],d=r.files.getUrl(n,n.avatar,{thumb:"50x0"});return`
     <li class="w-full p-3 border-b border-b-gray-100 hover:bg-gray-100">
     <a class="w-full flex items-center gap-3" href=${`/src/pages/chatting/room.html?id=${a}`}>
       <div class="w-[45px] h-full rounded-full overflow-hidden shrink-0 flex items-center">
