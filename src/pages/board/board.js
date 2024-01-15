@@ -115,7 +115,7 @@ function createTogetherTemplate(item) {
   const template = /* html */ `
     <li  class="hover:bg-gray-100 ">
     <div
-      class="relative p-3 flex flex-col justify-center items-start gap-1 border-b border-contents-content-secondary">
+      class="relative p-3 flex flex-col justify-center items-start gap-1 border-b">
     <div class="flex items-center gap-1 mb-7">
       <span
         class="text-label-sm p-1 leading-none bg-bluegray-600 text-white rounded"
@@ -159,7 +159,7 @@ function createQnaTemplate(item) {
   const template = /* html */ `
     <li class="hover:bg-gray-100 ">
     <div
-      class="relative p-3 border-b flex flex-row justify-between gap-1 border-contents-content-secondary"
+      class="relative p-3 border-b flex flex-row justify-between gap-1"
 
     >
       <div
@@ -386,6 +386,7 @@ function toggleSubMenu(isClicked) {
     });
   }
 }
+
 function handleClickWriteButton() {
   let isClicked = false;
   return (e) => {
