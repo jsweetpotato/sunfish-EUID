@@ -201,7 +201,7 @@ $back.onclick = () => $backModal.showing();
 $cancelBack.onclick = () => $backModal.closing();
 $SubmitBack.onclick = () => {
   storage.clear();
-  window.history.replaceState(null, null, '/src/pages/login/');
-  window.location.href = '/src/pages/login/';
+  window.history.replaceState(null, null, '/');
+  window.location.href = '/';
 };
 // 포켓베이스 가져오기

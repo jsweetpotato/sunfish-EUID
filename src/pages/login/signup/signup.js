@@ -131,8 +131,8 @@ $back.onclick = () => $backModal.showing();
 $cancelBack.onclick = () => $backModal.closing();
 $SubmitBack.onclick = () => {
   storage.clear();
-  window.history.replaceState(null, null, '/src/pages/login/');
-  window.location.href = '/src/pages/login/';
+  window.history.replaceState(null, null, '/');
+  window.location.href = '/';
 };
 
 // eslint-disable-next-line prefer-const

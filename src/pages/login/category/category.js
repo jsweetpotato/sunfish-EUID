@@ -93,7 +93,7 @@ drawTemplate();
 $submitbutton.onclick = handleSubmit;
 $categoryList.addEventListener('click', handleCategory());
 $back.onclick = () => {
-  window.location.href = '/src/pages/login/';
+  window.location.href = '/';
 };
 
 // const textToStar = (text) => {
