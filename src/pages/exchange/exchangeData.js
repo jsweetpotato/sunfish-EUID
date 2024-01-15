@@ -40,7 +40,7 @@ export default async function imageList() {
       'afterbegin',
       /* html */
       `
-      <div class="exchange-list flex p-3 gap-3 justify-center items-center border-b cursor-pointer relative" id="${
+      <div class="exchange-list hover:bg-gray-100 flex p-3 gap-3 justify-center items-center border-b cursor-pointer relative" id="${
         value.id
       }">
         <figure>
