@@ -100,7 +100,6 @@ const initInput = (validConfig) => {
         set(value) {
           // eslint-disable-next-line no-underscore-dangle
           this._state = value;
-          console.log('object: ', input);
           // 값이 변경될 때 원하는 이벤트를 트리거합니다.
           inputList.forEach((input) => letterCount(input));
         },
