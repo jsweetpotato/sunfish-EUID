@@ -1,5 +1,6 @@
-import { getNode, pb } from '../../lib';
+import { getNode, pb, checkAuth } from '../../lib';
 
+checkAuth();
 /* -------------------------------------------------------------------------- */
 /*                                  Rendering                                 */
 /* -------------------------------------------------------------------------- */
@@ -44,7 +45,7 @@ if (pocketData.model.avatar === '') {
     'afterbegin' /* html */,
     `
     <img
-    src="${getPbImageURL(userProfile, 'avatar')}"
+    src="${getPbImageURL(userProfile, 'avatar', { thumb: '300x300' })}"
     alt="내 프로필 사진"
     id="userImg"
     class="size-20 rounded-full shadow-[0_4px_4px_0_rgba(0,0,0,0.1)]"
