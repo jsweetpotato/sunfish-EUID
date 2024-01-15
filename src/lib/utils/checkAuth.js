@@ -9,7 +9,7 @@ export function checkAuth() {
     desc: '로그인 페이지로 이동합니다.',
   });
   button.addEventListener('click', () => {
-    window.location.href = '/src/pages/login/signin/';
+    window.location.href = '/';
   });
   const isAuth = localStorage.getItem('pocketbase_auth');
   if (!isAuth) {
