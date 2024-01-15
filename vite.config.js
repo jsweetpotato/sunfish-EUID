@@ -32,6 +32,8 @@ export default defineConfig({
         story: resolve(__dirname, 'src/pages/main/index.html'),
         // 검색
         search: resolve(__dirname, 'src/pages/search/index.html'),
+        // 채팅
+        chatting: resolve(__dirname, 'src/pages/chatting/room.html'),
       },
     },
   },
