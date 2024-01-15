@@ -1,3 +1,5 @@
+/* eslint-disable import/no-unresolved */
+
 import gsap from 'gsap';
 import Swiper from 'swiper';
 import 'swiper/css';
@@ -24,16 +26,15 @@ const pb = new PocketBase(import.meta.env.VITE_PB_URL);
 export default async function getData() {
   if (!checkAuth()) return;
 
-  const hash = window.location.hash.slice(1);
+  const idParam = new URL(window.location.href).searchParams.get('id');
 
   const avatarList = await pb
     .collection('selling')
-    .getOne(hash, { expand: 'user' });
+    .getOne(idParam, { expand: 'user' });
 
   const { title, description, price, id, isPriceOffer } = avatarList;
   const users = await avatarList.expand.user;
   const { name } = users;
-
   main.insertAdjacentHTML(
     'afterbegin' /* html */,
     `
@@ -107,14 +108,31 @@ export default async function getData() {
     <p class="text-label-md">${comma(price)}원</p>
     <a href="${url}" class="text-label-sm text-secondary">가격 제안하기</a>
   </div>
-  <a
-    href='/src/pages/chatting/lobby.html'
-    class="px-[14px] py-2 bg-secondary rounded text-label-md text-white"
-  >
-    채팅하기
-  </a>
+  <button id="chatting"
+    class="px-[14px] py-2 bg-secondary rounded text-label-md text-white">채팅하기</button>
   `
   );
+
+  // getNode('#chatting').addEventListener('click', async (e) => {
+  //   if (pb.authStore.model.id === users.id)
+  //     window.location.href = '/src/pages/chatting/lobby.html';
+  //   const findResponse = await pb.collection('chatroom').getFullList({
+  //     filter: `members ~ "${pb.authStore.model.id}" && originType = "${id}"`,
+  //   });
+  //   if (findResponse.length > 0) {
+  //     window.location.href = `/src/pages/chatting/room.html?id=${findResponse.id}`;
+  //   }
+  //   const formObj = {
+  //     originType: 'selling',
+  //     sellinigOriginId: idParam,
+  //     owner: users.id,
+  //     members: [pb.authStore.model.id, users.id],
+  //     messageBox: JSON.stringify([]),
+  //   };
+  //   console.log(formObj);
+  // const chatroomResponse = await pb.collection('chatroom').create(formObj);
+  // window.location.href = `/src/pages/chatting/room.html?id=${chatroomResponse.id}`;
+  // });
 
   const swiper = new Swiper('.swiper', {
     modules: [Navigation, Pagination],
@@ -155,7 +173,9 @@ async function watch() {
       <article class=" relative aspect-[1/1.38] rounded-lg shadow-[4px_4px_16px_0px_rgba(0,0,0,0.08),0px_1px_4px_0px_rgba(0,0,0,0.15)] hover:shadow-gray-300 transition-all duration-200">
         <figure class="h-1/2">
           <img class="w-full h-full object-cover rounded-t-lg bg-contents-content-secondary"
-          src="${getPbImageURL(item, 'productImages', {'thumb': '0x300'})}" alt="${item}">
+          src="${getPbImageURL(item, 'productImages', {
+            thumb: '0x300',
+          })}" alt="${item}">
         </figure>
         <a class="absolute top-0 left-0 w-full h-full" href="/src/pages/exchange/exchangeDetail.html?id=#${
           item.id
@@ -178,7 +198,6 @@ async function watch() {
 /* -------------------------------------------------------------------------- */
 /*                                     모달                                    */
 /* -------------------------------------------------------------------------- */
-
 
 const [modal, button] = createModal1Btn({
   title: '서비스 준비중입니다',
