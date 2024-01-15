@@ -103,11 +103,12 @@ export default async function getData() {
     <p class="text-label-md">${comma(price)}원</p>
     <a href="${url}" class="text-label-sm text-secondary">가격 제안하기</a>
   </div>
-  <button
+  <a
+    href='/src/pages/chatting/lobby.html'
     class="px-[14px] py-2 bg-secondary rounded text-label-md text-white"
   >
     채팅하기
-  </button>
+  </a>
   `
   );
 
@@ -173,6 +174,7 @@ async function watch() {
 /* -------------------------------------------------------------------------- */
 /*                                     모달                                    */
 /* -------------------------------------------------------------------------- */
+
 
 const [modal, button] = createModal1Btn({
   title: '서비스 준비중입니다',
