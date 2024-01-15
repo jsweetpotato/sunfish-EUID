@@ -1,9 +1,10 @@
 /* eslint-disable no-param-reassign */
-import { getNode, getNodes, pb } from '../../lib';
+import { getNode, getNodes, pb, checkAuth } from '../../lib';
 import initInput from '../../components/ValidationInput/ValidationInput';
 import { createModal1Btn, createModal2Btn } from '../../components/Modal/Modal';
 
-const authData = await pb.collection('users').authRefresh();
+checkAuth();
+
 const login = localStorage.getItem('login');
 const usersOauth = localStorage.getItem('users-oauth');
 const userData = JSON.parse(usersOauth);
@@ -273,10 +274,6 @@ fileClearButton.addEventListener('click', handleClear);
 /* -------------------------------------------------------------------------- */
 /*                  로그인 유저 : 프로필 수정 페이지에 기존 데이터 렌더링                 */
 /* -------------------------------------------------------------------------- */
-const userProfile = await pb.collection('users').getOne(pocketData.model.id, {
-  fields: 'avatar',
-});
-
 function getPbImageURL(item, fileName = 'photo') {
   return `${import.meta.env.VITE_PB_URL}/api/files/users/${
     pocketData.model.id
@@ -284,6 +281,10 @@ function getPbImageURL(item, fileName = 'photo') {
 }
 
 if (login === 'true') {
+  const userProfile = await pb.collection('users').getOne(pocketData.model.id, {
+    fields: 'avatar',
+  });
+
   if (pocketData.model.avatar !== '') {
     imagePreview.classList.remove('hidden');
     imageWrapper.insertAdjacentHTML(

@@ -1,13 +1,14 @@
 /* eslint-disable no-param-reassign */
 import { createModal1Btn, createModal2Btn } from '../../components/Modal/Modal';
-import { getNode, getNodes, pb } from '../../lib';
+import { getNode, getNodes, pb, checkAuth } from '../../lib';
+
+checkAuth();
 
 const logoutButton = getNode('#logoutButton');
 const withdrawButton = getNode('#withdrawButton');
 const storage = window.localStorage;
 
 // 모달
-
 const serviceModal = getNodes('.serviceModal');
 const [$modal, $modalButton] = createModal1Btn({
   title: '😭서비스 준비중입니다.',
@@ -102,7 +103,7 @@ if (pocketData.model.avatar === '') {
   profile.insertAdjacentHTML(
     'afterbegin' /* html */,
     `<img
-    src="${getPbImageURL(userProfile, 'avatar')}"
+    src="${getPbImageURL(userProfile, 'avatar', { thumb: '300x300' })}"
     alt="내 프로필 사진"
     class="size-[68px] rounded-full shadow-[0_4px_4px_0_rgba(0,0,0,0.1)]"
     />
