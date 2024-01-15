@@ -1,5 +1,5 @@
 import PocketBase from 'pocketbase';
-import { getNode, getNodes, getPbImageURL } from '/src/lib';
+import { getNode, getNodes, getPbImageURL, checkAuth } from '/src/lib';
 
 const pb = new PocketBase(import.meta.env.VITE_PB_URL);
 const prev = getNode('#prev');
@@ -11,6 +11,8 @@ const checkBox = getNode('#checkBox')
 const data = await pb.collection('selling').getOne(hash);
 
 async function methodInfo() {
+  if (!checkAuth()) return;
+
   const previewImg = getNode('#previewImg');
   const productTitle = getNode('#productTitle');
   const letterCount = getNode('#letterCount');
@@ -45,7 +47,7 @@ let warningMessage = null;
 
 
 function validation({ target }) {
-
+  if (!checkAuth()) return;
   const { value } = target;
   const regExp = /^[0-9]*$/;
   const isValid = regExp.test(value);
@@ -82,6 +84,7 @@ if (contentName.value.length > 12) {
 }
 
 async function change(value) {
+    if (!checkAuth()) return;
   if (!pb || !pb.authStore || !pb.authStore.model) {
     console.log('pb.authStore.model is undefined');
     return;

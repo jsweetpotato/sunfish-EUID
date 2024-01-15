@@ -26,18 +26,28 @@ async function changeColor({ target }) {
 let fileValue = '';
 const handleFiles = () => {
   const selectedFile = [...fileInput.files];
-  fileValue = selectedFile[0];
+  const previewImg = document.getElementById('previewImg');
 
-  selectedFile.forEach((file) => {
-    const fileReader = new FileReader();
+  if (selectedFile.length === 0) {
+    previewImg.style.display = 'none';
+  } else {
+    previewImg.style.display = 'block';
+    fileValue = selectedFile[0];
 
-    fileReader.readAsDataURL(file);
+    selectedFile.forEach((file) => {
+      const fileReader = new FileReader();
 
-    fileReader.onload = function () {
-      document.getElementById('previewImg').src = fileReader.result;
-    };
-  });
+      fileReader.readAsDataURL(file);
+
+      fileReader.onload = function () {
+        previewImg.src = fileReader.result;
+      };
+    });
+  }
 };
+
+window.onload = handleFiles;
+
 
 let titleValue = '';
 let infoValue = '';

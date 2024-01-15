@@ -5,6 +5,7 @@ import gsap from 'gsap';
 import { Navigation, Pagination, Autoplay, Keyboard } from 'swiper/modules';
 import {
   getNode,
+  getNodes,
   insertFirst,
   insertLast,
   clearContents,
@@ -109,7 +110,7 @@ function createArticleTemplate(data) {
       class="p-1.5 h-1/2 text-paragraph-sm min-[375px]:text-paragraph-md leading-[1.6] font-normal"
     >
       <h3>
-        <a class="absolute top-0 left-0 w-full h-full" href="">
+        <a id="story" class="absolute top-0 left-0 w-full h-full" href="">
           <span class="absolute w-[92%] top-[52%] left-1.5">
             <span class="text-ellipsis line-clamp-2">
               ${item.title}
@@ -144,6 +145,9 @@ function render(obj) {
   const { articleResult, slidesResult } = obj;
   insertLast(getNode('#story-container'), articleResult);
   insertLast(getNode('#main-swiper-wrapper'), slidesResult);
+  getNodes('#story').forEach((node) => {
+    node.addEventListener('click', (e) => e.preventDefault());
+  });
   swiper.update();
 }
 
@@ -159,16 +163,6 @@ function render(obj) {
   const slidesResult = createSlideTemplate(bannerResponse);
   render({ articleResult, slidesResult });
 })();
-
-const main = getNode('#main');
-
-function handleScroll({ target }) {
-  const { scrollHeight, scrollTop, clientHeight } = target;
-  if (scrollTop + clientHeight >= scrollHeight) {
-    // TODO : 무한 스크롤 로직 구현
-  }
-}
-main.addEventListener('scroll', handleScroll);
 
 // 글쓰기 팝업
 const writeButton = getNode('#write');

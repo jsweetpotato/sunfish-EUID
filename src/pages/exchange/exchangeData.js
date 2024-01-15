@@ -1,6 +1,12 @@
 import gsap from 'gsap';
 import PocketBase from 'pocketbase';
-import { getNode, getPbImageURL, comma } from '../../lib';
+import {
+  getNode,
+  getPbImageURL,
+  comma,
+  checkAuth,
+  clearContents,
+} from '../../lib';
 
 const pb = new PocketBase(import.meta.env.VITE_PB_URL);
 const section = getNode('.content');
@@ -28,6 +34,7 @@ function handleHeartClick(e) {
 }
 
 export default async function imageList() {
+  if (!checkAuth()) return;
   const result = await pb
     .collection('selling')
     .getFullList('pb/collections/selling');
@@ -35,19 +42,18 @@ export default async function imageList() {
     const sharing =
       value.tradingType === 'nanum'
         ? `<span class="text-label-sm text-white rounded-[4px] gap-2 grow bg-no-repeat py-[2px] px-1 bg-secondary">나눔</span>`
-        : '';
+        : '';    
     section.insertAdjacentHTML(
       'afterbegin',
       /* html */
       `
-      <div class="exchange-list flex p-3 gap-3 justify-center items-center border-b cursor-pointer relative" id="${
+      <div class=" exchange-list hover:bg-gray-100 flex p-3 gap-3 justify-center items-center border-b cursor-pointer relative" id="${
         value.id
       }">
         <figure>
-          <img src="${getPbImageURL(
-            value,
-            'productImages'
-          )}" alt="${value}" class=" w-[95px] h-[95px] object-cover grow rounded-lg ">
+          <img src="${getPbImageURL(value, 'productImages', {
+            thumb: '0x300',
+          })}" alt="${value}" class="w-[95px] h-[95px] object-cover grow rounded-lg ">
         </figure>
         <div class="flex flex-col grow p-3">
           <a href="/src/pages/exchange/exchangeDetail.html#${value.id}" 
@@ -70,6 +76,8 @@ export default async function imageList() {
       `
     );
   });
+
+
 
   gsap.from('.exchange-list', {
     x: -500,

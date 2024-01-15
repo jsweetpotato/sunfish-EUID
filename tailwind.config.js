@@ -65,20 +65,20 @@ export default {
         'people_full-icon': "url('/src/assets/boardIcon/people_full.svg')",
         'people-icon': "url('/src/assets/boardIcon/people.svg')",
         'calender-icon': "url('/src/assets/boardIcon/calender.svg')",
-        'bg-direction_rotate-icon':
+        'direction_rotate-icon':
           "url('/src/assets/boardIcon/direction_rotate.svg')",
-        'bg-plus-icon': "url('/src/assets/boardIcon/plus.svg')",
-        'bg-organizer-icon': "url('/src/assets/boardIcon/organizer.svg')",
-        'bg-calender_black-icon':
+        'organizer-icon': "url('/src/assets/boardIcon/organizer.svg')",
+        'calender_black-icon':
           "url('/src/assets/boardIcon/calender_black.svg')",
-        'bg-send-icon': "url('/src/assets/boardIcon/send.svg')",
-        'bg-send_full-icon': "url('/src/assets/boardIcon/send_full.svg')",
-        'bg-file-icon': "url('/src/assets/boardIcon/file.svg')",
-        'bg-time_black-icon': "url('/src/assets/boardIcon/time_black.svg')",
-        'bg-map_black-icon': "url('/src/assets/boardIcon/map_black.svg')",
-        'bg-lock_black-icon': "url('/src/assets/boardIcon/lock_black.svg')",
+        'send-icon': "url('/src/assets/boardIcon/send.svg')",
+        'send_full-icon': "url('/src/assets/boardIcon/send_full.svg')",
+        'file-icon': "url('/src/assets/boardIcon/file.svg')",
+        'time_black-icon': "url('/src/assets/boardIcon/time_black.svg')",
+        'map_black-icon': "url('/src/assets/boardIcon/map_black.svg')",
+        'lock_black-icon': "url('/src/assets/boardIcon/lock_black.svg')",
         // Chatting
-        'bg-won-icon': "url('/src/assets/chattingIcon/won.svg')",
+        'won-icon': "url('/src/assets/chattingIcon/won.svg')",
+        'hamburger-icon': "url('/src/assets/chattingIcon/hamburger.svg')",
 
         // Search
         'search-sm-icon': "url('/src/assets/searchIcon/search.svg')",
