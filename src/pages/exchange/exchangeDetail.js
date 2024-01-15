@@ -31,7 +31,7 @@ export default async function getData() {
   main.insertAdjacentHTML(
     'afterbegin' /* html */,
     `
-  <div class="swiper w-full flex grow flex-shrink" >
+  <div class="swiper w-full flex grow flex-shrink bg-gray-100" >
     <div class="swiper-wrapper">
       <div class="swiper-slide "><img src="${getPbImageURL(
         avatarList,
@@ -60,7 +60,7 @@ export default async function getData() {
           <img src="${getPbImageURL(
             users,
             'avatar'
-          )}" alt="" class="w-10 h-10 border rounded-full bg-contents-content-secondary">
+          )}" alt="" class="shadow-[0_4px_4px_0_rgba(0,0,0,0.1)] w-10 h-10 border rounded-full bg-contents-content-secondary">
         </figure>
         <div class="flex flex-col justify-center items-start">
           <span class="text-label-md" aria-label="프로필 이름">${name}</span>
@@ -71,14 +71,13 @@ export default async function getData() {
   );
 
   productInfo.insertAdjacentHTML(
-
     'afterbegin' /* html */,
     `
       <div class="flex flex-col items-start gap-3">
         <h1 class="text-label-lg">${title}</h1>
-        <span class="text-paragraph-sm" aria-label="제품종류와 작성시간">컴퓨터 • 17분전</span>
+        <span class="text-paragraph-sm text-gray-600" aria-label="제품종류와 작성시간">컴퓨터 • 17분전</span>
         <span class="text-paragraph-md h-24" aria-label="제품 상태 설명">${description}</span>
-        <span aria-label="조회수" class="paragraph-small">조회 19</span>
+        <span aria-label="조회수" class="paragraph-small text-gray-600">조회 19</span>
       </div>
   `
   );

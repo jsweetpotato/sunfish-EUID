@@ -47,7 +47,7 @@ export default async function imageList() {
           <img src="${getPbImageURL(
             value,
             'productImages'
-          )}" alt="${value}" class="w-[95px] h-[95px] object-cover grow rounded-lg">
+          )}" alt="${value}" class=" w-[95px] h-[95px] object-cover grow rounded-lg ">
         </figure>
         <div class="flex flex-col grow p-3 ">
           <a href="/src/pages/exchange/exchangeDetail.html#${value.id}" 

@@ -94,7 +94,7 @@ async function change(value) {
 
   try {
     await pb.collection('selling').update(hash, dataList);
-    window.location.href = '/src/pages/exchange/exchangeDetail.html';
+    window.location.href = `/src/pages/exchange/exchangeDetail.html?=${hash}`;
   } catch (error) {
     console.log('Update failed', error);
   }

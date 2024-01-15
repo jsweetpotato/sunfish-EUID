@@ -26,32 +26,46 @@ async function changeColor({ target }) {
 
 const handleFiles = () => {
   const selectedFile = [...fileInput.files];
+  const formData = new FormData();
+
+  if (selectedFile.length > 0) {
+    formData.append('file', selectedFile[0]);
+    fileValue = formData; // FormData 객체를 fileValue에 저장
+  }
+
   const fileReader = new FileReader();
 
   fileReader.readAsDataURL(selectedFile[0]);
 
   fileReader.onload = function () {
     document.getElementById('previewImg').src = fileReader.result;
-    fileValue = fileReader.result;
   };
 };
 
 let titleValue = '';
 let infoValue = '';
 let contentValue = '';
-let fileValue = '';
 
+  // const data = {
+  //   title: titleValue,
+  //   description: infoValue,
+  //   productImages: '',
+  //   price: Number(contentValue),
+  //   tradingType: tradeType,
+  //   user: pb.authStore.model.id,
+  // };
 
 async function submit(){
   const data = {
-    title: titleValue,
-    description: infoValue,
-    productImages: fileValue,
-    price: Number(contentValue),
-    tradingType: tradeType,
+    title: 'test',
+    description: 'test',
+    tradingType: 'nanum',
+    price: 123,
+    isPriceOffer: true,
     user: pb.authStore.model.id,
   };
 
+  console.log(data)
   const record = await pb.collection('selling').create(data);
   console.log(record)
 }
