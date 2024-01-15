@@ -104,12 +104,12 @@
 
       <div
         id="modalDimmed"
-        class="absolute top-0 left-0 w-full h-[calc(100dvh-69px)] bg-[rgba(0,0,0,0.3)] hidden opacity-0"
+        class="absolute top-0 left-0 w-full h-[calc(100dvh-69px)] h-full bg-[rgba(0,0,0,0.3)] hidden opacity-0 z-10"
       >
         <ul
           id="modal"
           tabindex="0"
-          class="absolute bottom-[-300px] w-full bg-white flex flex-col text-paragraph-md font-normal rounded-t-lg z-10"
+          class="absolute bottom-[-300px] w-full bg-white flex flex-col text-paragraph-md font-normal rounded-t-lg"
         >
           <li class="py-4 px-3 flex justify-between items-center">
             <h2 id="modalTitle" class="text-label-lg">관심분야</h2>
@@ -246,6 +246,7 @@
               팔로우
             </label>
           </li>
+          <li role="presentation" class="space h-16 w-f"></li>
         </ul>
       </div>
 
