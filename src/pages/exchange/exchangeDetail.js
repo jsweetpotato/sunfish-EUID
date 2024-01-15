@@ -39,15 +39,18 @@ export default async function getData() {
     <div class="swiper-wrapper">
       <div class="swiper-slide "><img src="${getPbImageURL(
         avatarList,
-        'productImages'
+        'productImages',
+        { thumb: '0x300' }
       )}" alt="상품 이미지" class='w-full h-[305px] object-cover'></div>
       <div class="swiper-slide "><img src="${getPbImageURL(
         avatarList,
-        'productImages'
+        'productImages',
+        { thumb: '0x300' }
       )}" alt="상품 이미지" class='w-full h-[305px] object-cover'></div>
       <div class="swiper-slide "><img src="${getPbImageURL(
         avatarList,
-        'productImages'
+        'productImages',
+        { thumb: '0x300' }
       )}" alt="상품 이미지" class='w-full h-[305px] object-cover'></div>
     </div>
     <div class="swiper-pagination"></div>
@@ -62,7 +65,7 @@ export default async function getData() {
       <div class="flex justify-center items-center gap-2">
         <figure>
           <img src="${getPbImageURL(users, 'avatar', {
-            thumb: '100x250',
+            thumb: '0x300',
           })}" alt="" class="shadow-[0_4px_4px_0_rgba(0,0,0,0.1)] w-10 h-10 border rounded-full bg-contents-content-secondary">
         </figure>
         <div class="flex flex-col justify-center items-start">
@@ -150,7 +153,7 @@ async function watch() {
       <article class=" relative aspect-[1/1.38] rounded-lg shadow-[4px_4px_16px_0px_rgba(0,0,0,0.08),0px_1px_4px_0px_rgba(0,0,0,0.15)] hover:shadow-gray-300 transition-all duration-200">
         <figure class="h-1/2">
           <img class="w-full h-full object-cover rounded-t-lg bg-contents-content-secondary"
-          src="${getPbImageURL(item, 'productImages', {'thumb': '100x250'})}" alt="${item}">
+          src="${getPbImageURL(item, 'productImages', {'thumb': '0x300'})}" alt="${item}">
         </figure>
         <a class="absolute top-0 left-0 w-full h-full" href="/src/pages/exchange/exchangeDetail.html?id=#${
           item.id

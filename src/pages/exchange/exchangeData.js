@@ -45,7 +45,7 @@ export default async function imageList() {
       }">
         <figure>
           <img src="${getPbImageURL(value, 'productImages', {
-            thumb: '0x100',
+            thumb: '0x300',
           })}" alt="${value}" class=" w-[95px] h-[95px] object-cover grow rounded-lg ">
         </figure>
         <div class="flex flex-col grow p-3">
