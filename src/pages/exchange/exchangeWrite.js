@@ -10,7 +10,6 @@ const checkBox = getNode('#checkBox')
 
 const data = await pb.collection('selling').getOne(hash);
 
-
 async function methodInfo() {
   const previewImg = getNode('#previewImg');
   const productTitle = getNode('#productTitle');
@@ -82,25 +81,40 @@ if (contentName.value.length > 12) {
   }
 }
 
-function change(){
-  const dataList = {
-    title: data.title,
-    description: data.description,
-    tradingType: data.tradingType,
-    price: Number(contentName.value),
-    user:pb.authStore.model.id,
+async function change(value) {
+  if (!pb || !pb.authStore || !pb.authStore.model) {
+    console.log('pb.authStore.model is undefined');
+    return;
   }
 
-  pb.collection('selling')
-    .update(hash, dataList)
-    .then(() => {
-      window.location.href = '/src/pages/exchange/exchangeDetail.html';
-    });
+  const dataList = {
+    price: Number(value),
+    user: pb.authStore.model.id,
+  };
+
+  try {
+    await pb.collection('selling').update(hash, dataList);
+    window.location.href = '/src/pages/exchange/exchangeDetail.html';
+  } catch (error) {
+    console.log('Update failed', error);
+  }
 }
+
 
 contentName.addEventListener('input', validation);
 prev.addEventListener('click', () => history.back());
-finish.addEventListener('click', change);
+finish.addEventListener('click', () => {
+  if (
+    parseInt(contentName.value.length) > 12 ||
+    contentName.value[0] === '0' ||
+    isNaN(contentName.value) ||
+    contentName.value === ''
+  ) {
+    return;
+  }
+  change(contentName.value);
+});
+
 methodInfo();
 
 
