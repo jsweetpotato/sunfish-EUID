@@ -1,17 +1,32 @@
-import { createModal2Btn } from '../../components/Modal/Modal';
-import { getNode, pb } from '../../lib';
+/* eslint-disable no-param-reassign */
+import { createModal1Btn, createModal2Btn } from '../../components/Modal/Modal';
+import { getNode, getNodes, pb } from '../../lib';
 
 const logoutButton = getNode('#logoutButton');
 const withdrawButton = getNode('#withdrawButton');
 const storage = window.localStorage;
+
+// 모달
+
+const serviceModal = getNodes('.serviceModal');
+const [$modal, $modalButton] = createModal1Btn({
+  title: '😭서비스 준비중입니다.',
+  desc: '열심히 준비중이예요💦<br> 조금만 기다려주세요',
+  buttonText: '알겠어요',
+});
+
+serviceModal.forEach((modal) => {
+  modal.onclick = () => $modal.showing();
+});
+$modalButton.onclick = () => $modal.closing();
 
 /* -------------------------------------------------------------------------- */
 /*                                   Logout                                   */
 /* -------------------------------------------------------------------------- */
 
 const [logoutModal, logoutCancelButton, logoutSubmitButton] = createModal2Btn({
-  title: '❗️ 로그아웃할까요?',
-  desc: '언제든지 다시 <br/> 로그인하실 수 있어요.',
+  title: '🏠 로그아웃할까요?',
+  desc: '언제든지 다시 <br/> 로그인하실 수 있어요!',
   cancelText: '취소',
   submitText: '확인',
 });
@@ -37,7 +52,7 @@ const pocketData = JSON.parse(pocketAuth);
 
 const [withdrawModal, withdrawCancelButton, withdrawSubmitButton] =
   createModal2Btn({
-    title: '❗️ 탈퇴할까요?',
+    title: '🗑️ 탈퇴할까요?',
     desc: '계정은 삭제되며, <br/> 복구되지 않습니다.',
     cancelText: '취소',
     submitText: '확인',
@@ -73,15 +88,27 @@ function getPbImageURL(item, fileName = 'photo') {
   }/${item[fileName]}`;
 }
 
-profile.insertAdjacentHTML(
-  'afterbegin' /* html */,
-  `<img
+if (pocketData.model.avatar === '') {
+  profile.insertAdjacentHTML(
+    'afterbegin' /* html */,
+    `<img
+    src="/src/assets/profile-img.svg"
+      alt="내 프로필 사진"
+      class="size-[68px] rounded-full shadow-[0_4px_4px_0_rgba(0,0,0,0.1)]"
+      />
+    `
+  );
+} else {
+  profile.insertAdjacentHTML(
+    'afterbegin' /* html */,
+    `<img
     src="${getPbImageURL(userProfile, 'avatar')}"
     alt="내 프로필 사진"
     class="size-[68px] rounded-full shadow-[0_4px_4px_0_rgba(0,0,0,0.1)]"
     />
-  `
-);
+    `
+  );
+}
 
 profile.insertAdjacentHTML(
   'afterend' /* html */,
