@@ -125,6 +125,7 @@ const getSearchSuggestionList = () => {
     const li = item.closest('li');
     if (searchedKeywords[idx]) {
       li.classList.remove('hidden');
+      // eslint-disable-next-line no-param-reassign
       item.innerText = searchedKeywords[idx];
     } else li.classList.add('hidden');
   });
