@@ -1,7 +1,14 @@
 /* eslint-disable no-alert, no-shadow, import/no-unresolved, import/extensions, import/no-absolute-path */
 
 import gsap from 'gsap';
-import { pb, getNode, getNodes, insertLast, clearContents } from '/src/lib/';
+import {
+  pb,
+  getNode,
+  getNodes,
+  insertFirst,
+  insertLast,
+  clearContents,
+} from '/src/lib/';
 
 console.log('start');
 
@@ -274,3 +281,73 @@ $checkButtons.forEach((button) => {
 /*
   TODO : 모달창 focus trap 기능 구현해야함
 */
+
+// 글쓰기 팝업
+const writeButton = getNode('#write');
+function toggle(node) {
+  node.classList.toggle('bg-plus-icon');
+  node.classList.toggle('bg-exchange-close-icon');
+  node.classList.toggle('bg-white');
+  node.classList.toggle('bg-secondary');
+}
+const subMenuObj = {
+  'board/writeTogether': '🎎 같이해요',
+  'board/writeQna': '❓ 질의응답',
+};
+const subMenu = Object.entries(subMenuObj)
+  .map(
+    ([key, value]) => /* html */ `
+<a
+  href="/src/pages/${key}.html"
+  class="block px-5 py-2.5 text-label-md rounded-full bg-white hover:bg-secondary"
+  >${value}</a
+>
+`
+  )
+  .join('');
+const writeMenuTemplate = /* html */ ` <nav id="write-menu" class="w-full flex flex-col gap-2">${subMenu}</nav>`;
+
+function toggleSubMenu(isClicked) {
+  if (!isClicked) {
+    const tl = gsap.timeline();
+    insertFirst('#write-container', writeMenuTemplate);
+    tl.to('#dimmed', {
+      display: 'block',
+      opacity: 1,
+      duration: 0.5,
+    }).from(
+      '#write-menu > *',
+      {
+        opacity: 0,
+        y: 100,
+        stagger: 0.05,
+        reversed: true,
+      },
+      '<'
+    );
+  } else {
+    getNode('#write-menu').remove();
+    gsap.to('#dimmed', {
+      display: 'none',
+      opacity: 0,
+      duration: 0.5,
+    });
+  }
+}
+function handleClickWriteButton() {
+  let isClicked = false;
+  return (e) => {
+    toggle(e.target);
+    toggleSubMenu(isClicked);
+    isClicked = !isClicked;
+  };
+}
+writeButton.addEventListener('click', handleClickWriteButton());
+getNode('#dimmed').addEventListener('click', (e) => {
+  gsap.to('#dimmed', {
+    display: 'none',
+    opacity: 0,
+    duration: 0.5,
+  });
+  writeButton.click();
+});

@@ -17,7 +17,7 @@ const options = {
 let sortState = '-created';
 
 function createQnaTemplate(item) {
-  const { id, category, title, imgField, views, created } = item;
+  const { id, category, title, imgField, views, created, comments } = item;
   let { description } = item;
   description = description.replace(/</g, '&lt;').replace(/>/g, '&gt;');
   const imgUrl = pb.files.getUrl(item, imgField[0], { thumb: '0x60' });
@@ -57,7 +57,7 @@ function createQnaTemplate(item) {
       <span class="text-paragraph-sm font-normal text-gray-600"
       >연희동 · ${new Date(
         created
-      ).toLocaleDateString()} · 조회 ${views} · 댓글 0</span>
+      ).toLocaleDateString()} · 조회 ${views} · 댓글 ${comments.length}</span>
     </div>
       <div
       class="w-[70px] min-w-[70px] flex justify-center items-center">

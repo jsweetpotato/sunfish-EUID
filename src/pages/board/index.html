@@ -33,6 +33,10 @@
     </style>
   </head>
   <body class="min-h-screen overflow-y-hidden">
+    <div
+      id="dimmed"
+      class="hidden opacity-0 fixed top-0 left-0 w-full h-full bg-[rgba(0,0,0,0.3)] z-[2]"
+    ></div>
     <div class="relative min-w-screen max-w-screen w-full mx-auto">
       <header class="w-full">
         <div class="flex justify-between h-full">
@@ -78,14 +82,6 @@
               </button>
             </li>
             <li>
-              <button
-                id="popular"
-                class="px-2.5 py-1.5 text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 transition-all duration-300"
-              >
-                인기글
-              </button>
-            </li>
-            <li>
               <a
                 href="/src/pages/board/together.html"
                 id="together"
@@ -107,18 +103,37 @@
         </nav>
       </header>
 
-      <main class="relative h-[calc(100dvh-156px)] overflow-auto">
+      <main class="relative h-[calc(100dvh-154.8px)] overflow-auto">
         <section>
           <h1 class="sr-only">게시판 메인</h1>
           <ul id="board-list"></ul>
-          <div class="absolute right-[60px]">
-            <div class="fixed bottom-20">
-              <a
+          <div class="absolute right-[145px] z-[2]">
+            <div
+              id="write-container"
+              class="fixed bottom-20 w-[133px] flex flex-col gap-2 items-end"
+            >
+              <!-- <nav id="write-menu" class="w-full hidden flex-col gap-2">
+                <a
+                  href="/src/pages/board/writeTogether.html"
+                  class="block px-5 py-2.5 text-label-md rounded-full bg-white"
+                  >🎎 같이해요</a
+                >
+                <a
+                  href="/src/pages/board/writeQna.html"
+                  class="block px-5 py-2.5 text-label-md rounded-full bg-white"
+                  >❓ 질의응답</a
+                ><a
+                  href="/src/pages/exchange/index.html"
+                  class="block px-5 py-2.5 text-label-md rounded-full bg-white"
+                  >💻 기기거래</a
+                >
+              </nav> -->
+              <button
+                id="write"
                 class="block w-12 h-12 rounded-full bg-plus-icon bg-center bg-no-repeat bg-secondary shadow-lg hover:brightness-90 transition-all duration-300"
-                href=""
               >
                 <span class="sr-only">글쓰기</span>
-              </a>
+              </button>
             </div>
           </div>
         </section>

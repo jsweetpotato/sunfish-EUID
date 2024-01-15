@@ -64,6 +64,10 @@ export default {
         'people_full-icon': "url('/src/assets/boardIcon/people_full.svg')",
         'people-icon': "url('/src/assets/boardIcon/people.svg')",
         'calender-icon': "url('/src/assets/boardIcon/calender.svg')",
+        // Search
+        'search-sm-icon': "url('/src/assets/searchIcon/search.svg')",
+        'time-icon': "url('/src/assets/searchIcon/time.svg')",
+        'close-blue-icon': "url('/src/assets/searchIcon/close-blue.svg')",
       },
       colors: {
         primary: '#373F67',
@@ -140,7 +144,7 @@ export default {
             lineHeight: 1.5,
           },
         ],
-        'heading-sm': '0.625rem',
+        'heading-sm': '0.6875rem',
         'label-2xl': '2.0625rem',
         'label-xl': '1.5rem',
         'label-lg': [
@@ -160,7 +164,7 @@ export default {
           },
         ],
         'label-sm': [
-          '0.625rem',
+          '0.6875rem',
           {
             fontWeight: 600,
             letterSpacing: '0px',
@@ -178,7 +182,7 @@ export default {
           },
         ],
         'paragraph-sm': [
-          '0.625rem',
+          '0.6875rem',
           {
             fontWeight: 400,
             letterSpacing: '0px',
