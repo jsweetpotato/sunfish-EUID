@@ -1,0 +1,1 @@
+import{g as r}from"./getNode-pa7syr6m.js";function e(t,i){typeof t=="string"&&(t=r(t)),t.insertAdjacentHTML("afterbegin",i)}function f(t,i){typeof t=="string"&&(t=r(t)),t.insertAdjacentHTML("beforeend",i)}export{e as a,f as i};

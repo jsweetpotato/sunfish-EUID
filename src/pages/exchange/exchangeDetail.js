@@ -19,7 +19,8 @@ import { createModal1Btn } from '../../components/Modal/Modal';
 // import Swiper and modules styles
 
 const share = getNode('#share');
-const profileInfo = getNode('#profileInfo');
+const profileInfo = getNode('#profile');
+const mannerTemp = getNode('#manner-temp');
 const swiperContainer = getNode('#swiper');
 const productInfo = getNode('#productInfo');
 const footer = getNode('#footer');
@@ -65,20 +66,19 @@ export default async function getData() {
 `
   );
 
+  clearContents(profileInfo);
   profileInfo.insertAdjacentHTML(
     'afterbegin',
     /* html */ `
-      <div class="flex justify-center items-center gap-2">
-        <figure>
-          <img src="${getPbImageURL(users, 'avatar', {
-            thumb: '0x300',
-          })}" alt="" class="shadow-[0_4px_4px_0_rgba(0,0,0,0.1)] w-10 h-10 border rounded-full bg-contents-content-secondary">
-        </figure>
-        <div class="flex flex-col justify-center items-start">
-          <span class="text-label-md" aria-label="프로필 이름">${name}</span>
-          <span class="text-paragraph-sm" aria-label="거주 위치">용암동</span>
-        </div>
-      </div>
+    <figure>
+      <img src="${getPbImageURL(users, 'avatar', {
+        thumb: '0x300',
+      })}" alt="" class="shadow-[0_2px_4px_0_rgba(0,0,0,0.1)] w-10 h-10 rounded-full bg-contents-content-secondary">
+    </figure>
+    <div class="flex flex-col justify-center items-start">
+      <span class="text-label-md" aria-label="프로필 이름">${name}</span>
+      <span class="text-paragraph-sm" aria-label="거주 위치">용암동</span>
+    </div>
   `
   );
 
@@ -94,6 +94,28 @@ export default async function getData() {
   `
   );
 
+  clearContents(mannerTemp);
+  mannerTemp.insertAdjacentHTML(
+    'afterbegin',
+    /* html */ `
+<div class="flex items-center justify-center gap-1">
+      <span
+        class="text-label-md text-secondary"
+        aria-label="매너 온도 41.2도"
+        >41.2℃</span
+      >
+      <span
+        class="text-xl items-center justify-center"
+        role="img"
+        aria-label="매너 온도 표시 아이콘"
+        >☺️</span
+      >
+    </div>
+    <span aria-label="매너온도" class="text-paragraph-sm text-gray-600"
+      >매너온도</span
+    >
+  `
+  );
   const url =
     isPriceOffer === true
       ? `/src/pages/exchange/exchangeWrite.html?=${id}`
