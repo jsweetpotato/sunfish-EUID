@@ -5,7 +5,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import PocketBase from 'pocketbase';
 import { Navigation, Pagination } from 'swiper/modules';
-import { getNode, getPbImageURL, comma } from '../../lib';
+import { getNode, getPbImageURL, comma, checkAuth } from '../../lib';
 
 import { createModal1Btn } from '../../components/Modal/Modal';
 // import Swiper and modules styles
@@ -22,6 +22,8 @@ const back = getNode('#back');
 const pb = new PocketBase(import.meta.env.VITE_PB_URL);
 
 export default async function getData() {
+  if (!checkAuth()) return;
+
   const hash = window.location.hash.slice(1);
 
   const avatarList = await pb
@@ -39,15 +41,18 @@ export default async function getData() {
     <div class="swiper-wrapper">
       <div class="swiper-slide "><img src="${getPbImageURL(
         avatarList,
-        'productImages'
+        'productImages',
+        { thumb: '0x300' }
       )}" alt="상품 이미지" class='w-full h-[305px] object-cover'></div>
       <div class="swiper-slide "><img src="${getPbImageURL(
         avatarList,
-        'productImages'
+        'productImages',
+        { thumb: '0x300' }
       )}" alt="상품 이미지" class='w-full h-[305px] object-cover'></div>
       <div class="swiper-slide "><img src="${getPbImageURL(
         avatarList,
-        'productImages'
+        'productImages',
+        { thumb: '0x300' }
       )}" alt="상품 이미지" class='w-full h-[305px] object-cover'></div>
     </div>
     <div class="swiper-pagination"></div>
@@ -61,10 +66,9 @@ export default async function getData() {
     /* html */ `
       <div class="flex justify-center items-center gap-2">
         <figure>
-          <img src="${getPbImageURL(
-            users,
-            'avatar'
-          )}" alt="" class="shadow-[0_4px_4px_0_rgba(0,0,0,0.1)] w-10 h-10 border rounded-full bg-contents-content-secondary">
+          <img src="${getPbImageURL(users, 'avatar', {
+            thumb: '0x300',
+          })}" alt="" class="shadow-[0_4px_4px_0_rgba(0,0,0,0.1)] w-10 h-10 border rounded-full bg-contents-content-secondary">
         </figure>
         <div class="flex flex-col justify-center items-start">
           <span class="text-label-md" aria-label="프로필 이름">${name}</span>
@@ -103,11 +107,12 @@ export default async function getData() {
     <p class="text-label-md">${comma(price)}원</p>
     <a href="${url}" class="text-label-sm text-secondary">가격 제안하기</a>
   </div>
-  <button
+  <a
+    href='/src/pages/chatting/lobby.html'
     class="px-[14px] py-2 bg-secondary rounded text-label-md text-white"
   >
     채팅하기
-  </button>
+  </a>
   `
   );
 
@@ -150,7 +155,7 @@ async function watch() {
       <article class=" relative aspect-[1/1.38] rounded-lg shadow-[4px_4px_16px_0px_rgba(0,0,0,0.08),0px_1px_4px_0px_rgba(0,0,0,0.15)] hover:shadow-gray-300 transition-all duration-200">
         <figure class="h-1/2">
           <img class="w-full h-full object-cover rounded-t-lg bg-contents-content-secondary"
-          src="${getPbImageURL(item, 'productImages')}" alt="${item}">
+          src="${getPbImageURL(item, 'productImages', {'thumb': '0x300'})}" alt="${item}">
         </figure>
         <a class="absolute top-0 left-0 w-full h-full" href="/src/pages/exchange/exchangeDetail.html?id=#${
           item.id
@@ -173,6 +178,7 @@ async function watch() {
 /* -------------------------------------------------------------------------- */
 /*                                     모달                                    */
 /* -------------------------------------------------------------------------- */
+
 
 const [modal, button] = createModal1Btn({
   title: '서비스 준비중입니다',
