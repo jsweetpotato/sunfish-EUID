@@ -49,7 +49,7 @@ const handleSubmit = async (e) => {
       .collection('users')
       .authWithPassword($inputEmail.value, $inputPW.value);
     window.history.replaceState(null, null, '/src/pages/login/');
-    window.location.href = '/src/pages/myeuid/';
+    window.location.href = '/src/pages/main/';
   } catch (err) {
     toggleValid($submitButton, false);
     $emailBox.classList.add(INVALID_CLASS);

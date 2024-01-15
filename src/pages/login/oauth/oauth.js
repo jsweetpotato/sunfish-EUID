@@ -112,8 +112,7 @@ const handleSubmitButton = async (e) => {
     storage.setItem('users-oauth', JSON.stringify(data));
     window.history.replaceState(null, null, '/src/pages/login/');
     window.location.href = '/src/pages/myeuid/editProfile.html';
-  }
-  $rejectOauth.showing();
+  } else $rejectOauth.showing();
 };
 
 const handleSendButton = () => {

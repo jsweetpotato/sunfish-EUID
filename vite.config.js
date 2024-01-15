@@ -13,7 +13,6 @@ export default defineConfig({
         myProfile: resolve(__dirname, 'src/pages/myeuid/myProfile.html'),
         editProfile: resolve(__dirname, 'src/pages/myeuid/editProfile.html'),
         // 로그인
-        login: resolve(__dirname, 'src/pages/login/index.html'),
         category: resolve(__dirname, 'src/pages/login/category/index.html'),
         oauth: resolve(__dirname, 'src/pages/login/oauth/index.html'),
         signin: resolve(__dirname, 'src/pages/login/signin/index.html'),

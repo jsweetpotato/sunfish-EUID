@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" sizes="48x48" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" sizes="192x192" href="/android-icon.png" />
+    <title>엔터 이듬</title>
+    <script type="module" crossorigin src="/assets/qnaView-UFNe2mr2.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/tailwind-hLRvZ190.js">
+    <link rel="modulepreload" crossorigin href="/assets/getNode-pa7syr6m.js">
+    <link rel="modulepreload" crossorigin href="/assets/delay-L14dHocY.js">
+    <link rel="modulepreload" crossorigin href="/assets/Modal-LwrVZ11o.js">
+    <link rel="modulepreload" crossorigin href="/assets/index-dUkrqALE.js">
+    <link rel="modulepreload" crossorigin href="/assets/insert-c9FKGVoP.js">
+    <link rel="modulepreload" crossorigin href="/assets/clear-vWyKvuJ4.js">
+    <link rel="modulepreload" crossorigin href="/assets/convertTime-ltT1zPuc.js">
+    <link rel="stylesheet" crossorigin href="/assets/tailwind-HhNkKmOH.css">
+  </head>
+  <body class="min-h-screen overflow-hidden">
+    <div class="relative min-w-screen max-w-screen w-full mx-auto">
+      <header class="w-full border-b border-b-gray-200">
+        <h1 class="sr-only">질의응답 게시글 조회</h1>
+        <div class="flex justify-between items-center">
+          <a
+            href="/src/pages/board/qna.html"
+            role="button"
+            aria-label="돌아가기"
+            class="bg-close-icon block w-10 h-10 bg-no-repeat bg-center rotate-90 hover:bg-gray-100 hover:rounded transition-all duration-300"
+          ></a>
+          <div class="flex items-center">
+            <button
+              id="share"
+              type="button"
+              aria-label="공유하기"
+              class="bg-share-icon w-10 h-10 bg-no-repeat bg-center hover:bg-gray-100 hover:rounded transition-all duration-300"
+            ></button>
+
+            <button
+              id="more"
+              type="button"
+              aria-label="더보기"
+              class="bg-more-icon w-10 h-10 bg-no-repeat bg-center hover:bg-gray-100 hover:rounded transition-all duration-300"
+            ></button>
+          </div>
+        </div>
+      </header>
+
+      <main class="relative h-[calc(100dvh-118px)] overflow-auto">
+        <section>
+          <h2 class="sr-only">질의응답 게시글 내용</h2>
+
+          <div id="article"></div>
+        </section>
+
+        <section id="comments-container" class="mt-5 opacity-0">
+          <div class="w-full h-1 bg-gray-200"></div>
+          <h2 class="px-3 py-2 text-label-lg font-medium">댓글</h2>
+          <div id="comments"></div>
+        </section>
+      </main>
+
+      <footer class="w-full h-[78px] px-3 pt-2 pb-8">
+        <form class="w-full h-full flex gap-1">
+          <label class="sr-only" for="comment">댓글</label>
+          <input
+            id="commentInput"
+            class="px-3 py-2 w-full bg-bluegray-100 text-paragraph-md rounded-full border-2 border-transparent"
+            type="text"
+            placeholder="댓글을 입력해주세요."
+            spellcheck="false"
+          />
+          <button
+            id="send"
+            type="submit"
+            class="block w-10 h-full bg-send-icon bg-no-repeat bg-center rounded-lg hover:bg-gray-100"
+          ></button>
+        </form>
+      </footer>
+    </div>
+  </body>
+</html>

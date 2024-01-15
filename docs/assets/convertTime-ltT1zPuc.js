@@ -1,0 +1,1 @@
+function a(c){const r=(new Date-new Date(c))/1e3;if(r<60)return"방금 전";const t=r/60;if(t<60)return`${Math.floor(t)}분 전`;const n=t/60;if(n<24)return`${Math.floor(n)}시간 전`;const o=n/24;if(o<7)return`${Math.floor(o)}일 전`;const e=o/7;if(e<5)return`${Math.floor(e)}주 전`;const s=o/30;if(s<12)return`${Math.floor(s)}개월 전`;const f=o/365;return`${Math.floor(f)}년 전`}export{a as c};

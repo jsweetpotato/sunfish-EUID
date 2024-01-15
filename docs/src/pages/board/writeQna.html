@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" sizes="48x48" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" sizes="192x192" href="/android-icon.png" />
+    <title>엔터 이듬 - 질의응답 글쓰기</title>
+    <script type="module" crossorigin src="/assets/writeQna-1JIlor7V.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/tailwind-hLRvZ190.js">
+    <link rel="modulepreload" crossorigin href="/assets/getNode-pa7syr6m.js">
+    <link rel="modulepreload" crossorigin href="/assets/delay-L14dHocY.js">
+    <link rel="modulepreload" crossorigin href="/assets/Modal-LwrVZ11o.js">
+    <link rel="modulepreload" crossorigin href="/assets/index-dUkrqALE.js">
+    <link rel="stylesheet" crossorigin href="/assets/tailwind-HhNkKmOH.css">
+  </head>
+  <body class="min-h-screen">
+    <div class="relative min-w-screen max-w-screen w-full mx-auto">
+      <header class="w-full border-b border-b-contents-content-secondary">
+        <div class="flex justify-between items-center">
+          <button
+            role="button"
+            aria-label="창 닫기"
+            class="cancel bg-close-icon block w-10 h-10 bg-no-repeat bg-center hover:bg-gray-100 hover:rounded transition-all duration-300"
+          ></button>
+          <h1 class="absolute top-2.5 left-1/2 -translate-x-1/2 text-label-md">
+            질의응답 글쓰기
+          </h1>
+        </div>
+      </header>
+
+      <main class="relative h-[calc(100dvh-193px)] overflow-auto">
+        <section class="h-full">
+          <h1 class="sr-only">질의응답 글쓰기</h1>
+          <button
+            id="category-select"
+            aria-label="카테고리 선택"
+            class="w-full h-[45px] p-3 uppercase text-left text-label-md border-b border-contents-content-secondary bg-right-icon bg-no-repeat bg-[calc(100%-12px)] bg-[length:16px_16px]"
+          >
+            frontend
+          </button>
+          <div class="px-[13px] py-2">
+            <p
+              class="px-3 py-3 text-paragraph-sm font-normal text-white bg-secondary rounded-[10px]"
+            >
+              <b class="text-label-sm">안내</b> 중고거래 관련, 명예훼손,
+              광고/홍복 목적의 글은 올리실 수 없어요.
+              <a class="inline-block text-right underline" href=""
+                >질의응답 글쓰기 운영정책 바로가기</a
+              >
+            </p>
+          </div>
+          <form id="form">
+            <div class="px-[14px] py-[9px]">
+              <label for="title" class="sr-only">질문 제목</label>
+              <input
+                type="text"
+                id="title"
+                class="input w-full p-1 text-label-lg font-medium pl-2 rounded"
+                placeholder="제목"
+                spellcheck="false"
+              />
+            </div>
+            <div class="px-[14px] py-[9px]">
+              <label for="description" class="sr-only">질문 내용</label>
+              <textarea
+                id="description"
+                class="input w-full p-1 text-paragraph-md font-normal rounded resize-none"
+                cols="30"
+                rows="8"
+                spellcheck="false"
+                placeholder="관심있는 분야에 대한 질문을 올려주세요. 장소 정보와 사진을 함께 올리면 친구들에게 더 도움이 돼요."
+              ></textarea>
+            </div>
+          </form>
+
+          <div
+            class="absolute p-3 left-0 bottom-0 w-full h-24 border-x border-t border-gray-200 shadow-inner rounded hidden"
+          >
+            <div
+              id="image-wrapper"
+              class="flex items-center gap-2 bg-white overflow-x-auto overflow-y-hidden"
+            ></div>
+            <button
+              id="file-clear"
+              class="absolute top-1 left-1 p-1 text-label-sm font-normal text-white rounded bg-red-400 hover:brightness-95 transition-all duration-300"
+            >
+              모두 삭제
+            </button>
+          </div>
+        </section>
+      </main>
+
+      <footer class="w-full h-[152px]">
+        <div class="w-full px-3 pt-6 pb-[34px] flex gap-1.5">
+          <button
+            class="cancel flex justify-center items-center w-[28%] h-[45px] text-label-md text-black bg-gray-100 rounded hover:brightness-90 transition-all duration-300"
+          >
+            취소
+          </button>
+          <button
+            id="complete"
+            class="w-[72%] h-[45px] text-label-md text-white bg-secondary rounded disabled:bg-contents-content-secondary disabled:text-white disabled:cursor-not-allowed hover:brightness-90 transition-all duration-300"
+            disabled
+          >
+            작성 완료
+          </button>
+        </div>
+
+        <div
+          class="px-3 py-3 flex gap-3 border-t border-contents-content-tertiary"
+        >
+          <div class="flex items-center">
+            <input
+              type="file"
+              name="file"
+              id="file"
+              multiple
+              accept=".jpg, .png, .gif, .webp"
+              class="peer/file w-0 h-0"
+            />
+            <label
+              for="file"
+              class="peer-focus/file:outline peer-focus/file:outline-black peer-focus/file:outline-2 flex items-center h-full pl-[21px] bg-file-icon bg-no-repeat bg-left cursor-pointer rounded-sm hover:bg-gray-100 hover:rounded transition-all duration-300"
+              >사진</label
+            >
+          </div>
+          <button
+            class="pl-[21px] bg-near bg-no-repeat bg-left hover:bg-gray-100 hover:rounded transition-all duration-300"
+          >
+            장소
+          </button>
+        </div>
+      </footer>
+
+      <div
+        id="modalDimmed"
+        class="absolute top-0 left-0 w-full h-[calc(100dvh-50px)] bg-[rgba(0,0,0,0.3)] overflow-hidden hidden opacity-0"
+      >
+        <ul
+          id="modal"
+          tabindex="0"
+          class="absolute bottom-[-400px] w-full bg-white flex flex-col text-paragraph-md font-normal rounded-t-lg"
+        >
+          <li class="py-4 px-3 flex justify-between items-center">
+            <h2 id="modalTitle" class="text-label-lg">관심분야</h2>
+            <button id="closeModal" class="bg-close-icon w-5 h-5">
+              <span class="sr-only">질의응답 선택창 닫기</span>
+            </button>
+          </li>
+          <li class="py-2 px-3 flex justify-between items-center">
+            <p tabindex="0">Programming</p>
+            <button
+              id="프로그래밍"
+              data-name="programming"
+              class="select px-3 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
+            >
+              선택
+            </button>
+          </li>
+          <li class="py-2 px-3 flex justify-between items-center">
+            <p tabindex="0">Design</p>
+            <button
+              id="인터렉션디자인"
+              data-name="design"
+              class="select px-3 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
+            >
+              선택
+            </button>
+          </li>
+          <li class="py-2 px-3 flex justify-between items-center">
+            <p>
+              <span class="sr-only" tabindex="0"
+                >User Interface and User Experience</span
+              >
+              <abbr title="User Interface" class="no-underline">UI</abbr> ·
+              <abbr title="User Experience" class="no-underline">UX</abbr>
+            </p>
+            <button
+              id="UI/UX"
+              data-name="UI/UX"
+              class="select px-3 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
+            >
+              선택
+            </button>
+          </li>
+          <li class="py-2 px-3 flex justify-between items-center">
+            <p tabindex="0">Frontend</p>
+            <button
+              id="프론트엔드"
+              data-name="frontend"
+              class="select px-3 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
+            >
+              선택
+            </button>
+          </li>
+          <li class="py-2 px-3 flex justify-between items-center">
+            <p tabindex="0">Backend</p>
+            <button
+              id="백엔드"
+              data-name="backend"
+              class="select px-3 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
+            >
+              선택
+            </button>
+          </li>
+          <li class="py-2 px-3 flex justify-between items-center">
+            <p tabindex="0">Publishing</p>
+            <button
+              id="퍼블리싱"
+              data-name="publishing"
+              class="select px-3 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
+            >
+              선택
+            </button>
+          </li>
+          <li class="py-2 px-3 flex justify-between items-center">
+            <p>
+              <span class="sr-only" tabindex="0">인공지능</span>
+              <abbr title="Artificial Intelligence" class="no-underline"
+                >AI</abbr
+              >
+            </p>
+            <button
+              id="AI"
+              data-name="AI"
+              class="select px-3 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
+            >
+              선택
+            </button>
+          </li>
+          <li class="py-2 px-3 flex justify-between items-center">
+            <p tabindex="0">Blockchain</p>
+            <button
+              id="블록체인"
+              data-name="blockchain"
+              class="select px-3 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
+            >
+              선택
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </body>
+</html>
