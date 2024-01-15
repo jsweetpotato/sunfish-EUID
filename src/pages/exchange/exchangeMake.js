@@ -11,7 +11,6 @@ const Information = getNode('#Information');
 const contentName = getNode('#contentName');
 
 let tradeType = ''; 
-
 async function changeColor({ target }) {
   tradeButton.forEach((item) => {
     item.style.backgroundColor = '';
@@ -24,50 +23,42 @@ async function changeColor({ target }) {
   tradeType = target.dataset.trade; 
 }
 
+let fileValue = '';
 const handleFiles = () => {
   const selectedFile = [...fileInput.files];
-  const formData = new FormData();
+  fileValue = selectedFile[0]
 
-  if (selectedFile.length > 0) {
-    formData.append('file', selectedFile[0]);
-    fileValue = formData; // FormData 객체를 fileValue에 저장
-  }
+  selectedFile.forEach((file) => {
+    const fileReader = new FileReader();
 
-  const fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
 
-  fileReader.readAsDataURL(selectedFile[0]);
-
-  fileReader.onload = function () {
-    document.getElementById('previewImg').src = fileReader.result;
-  };
+    fileReader.onload = function () {
+      document.getElementById('previewImg').src = fileReader.result;
+    };
+  });
 };
+
 
 let titleValue = '';
 let infoValue = '';
 let contentValue = '';
 
-  // const data = {
-  //   title: titleValue,
-  //   description: infoValue,
-  //   productImages: '',
-  //   price: Number(contentValue),
-  //   tradingType: tradeType,
-  //   user: pb.authStore.model.id,
-  // };
-
-async function submit(){
+async function submit() {
   const data = {
-    title: 'test',
-    description: 'test',
-    tradingType: 'nanum',
-    price: 123,
+    title: titleValue,
+    description: infoValue,
+    tradingType: String(tradeType),
+    price: contentValue,
     isPriceOffer: true,
+    productImages: fileValue,
     user: pb.authStore.model.id,
   };
 
-  console.log(data)
   const record = await pb.collection('selling').create(data);
-  console.log(record)
+
+  // 페이지 이동 코드 추가
+  window.location.href = '/src/pages/exchange/index.html';
 }
 
 
