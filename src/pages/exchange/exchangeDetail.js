@@ -5,7 +5,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import PocketBase from 'pocketbase';
 import { Navigation, Pagination } from 'swiper/modules';
-import { getNode, getPbImageURL, comma } from '../../lib';
+import { getNode, getPbImageURL, comma, checkAuth } from '../../lib';
 
 import { createModal1Btn } from '../../components/Modal/Modal';
 // import Swiper and modules styles
@@ -22,6 +22,8 @@ const back = getNode('#back');
 const pb = new PocketBase(import.meta.env.VITE_PB_URL);
 
 export default async function getData() {
+  if (!checkAuth()) return;
+
   const hash = window.location.hash.slice(1);
 
   const avatarList = await pb
