@@ -7,6 +7,10 @@
     <title>엔터 이듬 - 기기거래 메인</title>
   </head>
   <body class="min-h-screen min-w-screen max-w-screen m-auto" id="body">
+    <div
+      id="dimmed"
+      class="hidden opacity-0 fixed top-0 left-0 w-full h-full bg-[rgba(0,0,0,0.3)] z-[2]"
+    ></div>
     <header class="w-full">
       <div class="flex justify-between">
         <div class="flex items-center">
@@ -31,7 +35,7 @@
           </li>
           <li>
             <a
-              href="/"
+              id ="alarm"
               role="button"
               aria-label="알림"
               class="bg-alram-icon block w-10 h-10 bg-no-repeat bg-center hover:bg-gray-100 hover:rounded transition-all duration-300"
@@ -53,99 +57,101 @@
             >
           </li>
           <li class="grow text-gray-600">
-            <a href="#" aria-label="프로젝트 구인 페이지로 이동" tabindex="0"
+            <a href="#" aria-label="프로젝트 구인 페이지로 이동" tabindex="0" class="modal"
               >프로젝트 구인</a
             >
           </li>
           <li class="grow text-gray-600">
-            <a href="#" aria-label="과외 클래스로 페이지로 이동" tabindex="0"
+            <a href="#" aria-label="과외 클래스로 페이지로 이동" tabindex="0" class="modal"
               >과외/클래스</a
             >
           </li>
         </ul>
       </nav>
       <section class="content flex flex-col sticky top-0"></section>
-      <div class="absolute right-14">
-        <div class="fixed bottom-20" id="plusButton-container">
+      <div class="absolute right-[145px] z-[2]">
+          <div
+            id="write-container"
+            class="fixed bottom-[91px] w-[130px] flex flex-col gap-2 items-end"
+          >
           <button
-            id="plusButton"
-            type="button"
-            class="bg-plus-icon block w-12 h-12 rounded-full bg-center bg-no-repeat bg-secondary shadow-lg hover:brightness-90 transition-all duration-300"
-          ></button>
+            id="write"
+            class=" w-12 h-12 rounded-full bg-plus-icon bg-center bg-no-repeat bg-secondary shadow-lg hover:brightness-90 transition-all duration-300"
+          >
         </div>
       </div>
     </main>
-    <footer class="h-[69px] w-full sticky bottom-0">
-      <nav class="h-[69px] pr-3 pt-2 pb-5 border-t-[1px] border-gray-200">
-        <ul class="w-full h-full flex justify-between items-center">
-          <li
-            class="is-select h-full w-12 pt-0.5 hover:bg-gray-100 hover:rounded transition-all duration-300"
-          >
-            <a
-              class="bg-home-icon hover:bg-home_full-icon block relative h-full text-paragraph-sm bg-no-repeat bg-top"
-              href="/"
-              aria-label="메인 페이지로 이동"
+    <footer
+        class="relative min-w-screen max-w-screen w-full h-[69px]"
+      >
+        <nav
+          class="w-full h-[69px] pl-2 pr-3 pt-2 pb-5 border-t-[1px] border-gray-200"
+        >
+          <ul class="w-full h-full flex justify-between items-center">
+            <li
+              class="is-select h-full w-12 pt-0.5 hover:bg-gray-100 hover:rounded transition-all duration-300"
             >
-              <span
-                class="absolute w-full text-center -tracking-[1px] bottom-0 left-1/2 -translate-x-1/2"
-                >홈</span
+              <a
+                class="home block relative h-full text-paragraph-sm font-normal bg-home-icon bg-no-repeat bg-top"
+                href="/src/pages/main/"
               >
-            </a>
-          </li>
-          <li
-            class="h-full w-12 pt-0.5 hover:bg-gray-100 hover:rounded transition-all duration-300"
-          >
-            <a
-              class="bg-board-icon block hover:bg-board_full-icon relative h-full text-paragraph-sm bg-no-repeat bg-top"
-              href="/src/pages/board/index.html"
-              aria-label="게시판 페이지로 이동"
-              ><span
-                class="absolute w-full text-center -tracking-[1px] bottom-0 left-1/2 -translate-x-1/2"
-                >게시판</span
-              ></a
+                <span
+                  class="absolute w-full text-center bottom-0 left-1/2 -translate-x-1/2"
+                  >홈</span
+                >
+              </a>
+            </li>
+            <li
+              class="h-full w-12 pt-0.5 hover:bg-gray-100 hover:rounded transition-all duration-300"
             >
-          </li>
-          <li
-            class="h-full w-12 pt-0.5 hover:bg-gray-100 hover:rounded transition-all duration-300"
-          >
-            <a
-              class="modal bg-near hover:bg-near_full block relative h-full text-paragraph-sm bg-no-repeat bg-top"
-              aria-label="내 근처 페이지로 이동"
-              ><span
-                class="absolute w-full text-center -tracking-[1px] bottom-0 left-1/2 -translate-x-1/2"
-                >내 근처</span
-              ></a
+              <a
+                class="board block relative h-full text-paragraph-sm font-normal bg-board_full-icon bg-no-repeat bg-top"
+                href="/src/pages/board/"
+                ><span
+                  class="absolute w-full text-center bottom-0 left-1/2 -translate-x-1/2"
+                  >게시판</span
+                ></a
+              >
+            </li>
+            <li
+              class="h-full w-12 pt-0.5 hover:bg-gray-100 hover:rounded transition-all duration-300"
             >
-          </li>
-          <li
-            class="h-full w-12 pt-0.5 hover:bg-gray-100 hover:rounded transition-all duration-300"
-          >
-            <a
-              class="modal bg-chat-icon block hover:bg-chat_full-icon relative h-full text-paragraph-sm bg-no-repeat bg-top"
-              aria-label="채팅 페이지로 이동"
-              ><span
-                class="absolute w-full text-center -tracking-[1px] bottom-0 left-1/2 -translate-x-1/2"
-                >채팅</span
-              ></a
+              <a
+                class="near modal block relative h-full text-paragraph-sm font-normal bg-near bg-no-repeat bg-top"
+                href="/src/pages/exchange/index.html"
+                ><span
+                  class=" absolute w-full text-center bottom-0 left-1/2 -translate-x-1/2"
+                  >내 근처</span
+                ></a
+              >
+            </li>
+            <li
+              class="h-full w-12 pt-0.5 hover:bg-gray-100 hover:rounded transition-all duration-300"
             >
-          </li>
-          <li
-            class="h-full w-12 pt-0.5 hover:bg-gray-100 hover:rounded transition-all duration-300"
-          >
-            <a
-              class="bg-my-icon hover:bg-my_full-icon block relative h-full text-paragraph-sm bg-no-repeat bg-top"
-              href="/src/pages/myeuid/index.html"
-              aria-label="채팅 페이지로 이동"
-              ><span
-                class="absolute w-full text-center text-paragraph-sm -tracking-[1px] bottom-0 left-1/2 -translate-x-1/2"
-                >나의 이듬</span
-              ></a
+              <a
+                class="modal block relative h-full text-paragraph-sm font-normal bg-chat-icon bg-no-repeat bg-top"
+                href=""
+                ><span
+                  class="absolute w-full text-center bottom-0 left-1/2 -translate-x-1/2"
+                  >채팅</span
+                ></a
+              >
+            </li>
+            <li
+              class="h-full w-12 pt-0.5 hover:bg-gray-100 hover:rounded transition-all duration-300"
             >
-          </li>
-        </ul>
-      </nav>
+              <a
+                class="my block relative h-full text-paragraph-sm font-normal bg-my-icon bg-no-repeat bg-top"
+                href="/src/pages/myEuid/index.html"
+                ><span
+                  class="absolute w-full text-center bottom-0 left-1/2 -translate-x-1/2"
+                  >나의 이듬</span
+                ></a
+              >
+            </li>
+          </ul>
+        </nav>
     </footer>
-
     <script type="module" src="/src/pages/exchange/exchange.js"></script>
   </body>
 </html>

@@ -1,16 +1,20 @@
 import PocketBase from 'pocketbase';
 import { getNode, getPbImageURL, comma } from '/src/lib';
 import Swiper from 'swiper';
+import gsap from 'gsap';
 import { Navigation, Pagination } from 'swiper/modules';
+import { createModal1Btn } from '../../components/Modal/Modal';
 // import Swiper and modules styles
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
+const share= getNode('#share');
 const profileInfo = getNode('#profileInfo');
 const main = getNode('#main');
 const productInfo = getNode('#productInfo');
 const footer = getNode('#footer');
+const addButton = getNode('#addButton');
 const watchTogether = getNode('#watchTogether');
 const back = getNode('#back');
 
@@ -31,7 +35,7 @@ export default async function getData() {
   main.insertAdjacentHTML(
     'afterbegin' /* html */,
     `
-  <div class="swiper w-full flex grow flex-shrink" >
+  <div class="list swiper w-full flex grow flex-shrink bg-gray-100" >
     <div class="swiper-wrapper">
       <div class="swiper-slide "><img src="${getPbImageURL(
         avatarList,
@@ -60,7 +64,7 @@ export default async function getData() {
           <img src="${getPbImageURL(
             users,
             'avatar'
-          )}" alt="" class="w-10 h-10 border rounded-full bg-contents-content-secondary">
+          )}" alt="" class="shadow-[0_4px_4px_0_rgba(0,0,0,0.1)] w-10 h-10 border rounded-full bg-contents-content-secondary">
         </figure>
         <div class="flex flex-col justify-center items-start">
           <span class="text-label-md" aria-label="프로필 이름">${name}</span>
@@ -71,14 +75,13 @@ export default async function getData() {
   );
 
   productInfo.insertAdjacentHTML(
-
     'afterbegin' /* html */,
     `
       <div class="flex flex-col items-start gap-3">
         <h1 class="text-label-lg">${title}</h1>
-        <span class="text-paragraph-sm" aria-label="제품종류와 작성시간">컴퓨터 • 17분전</span>
+        <span class="text-paragraph-sm text-gray-600" aria-label="제품종류와 작성시간">컴퓨터 • 17분전</span>
         <span class="text-paragraph-md h-24" aria-label="제품 상태 설명">${description}</span>
-        <span aria-label="조회수" class="paragraph-small">조회 19</span>
+        <span aria-label="조회수" class="paragraph-small text-gray-600">조회 19</span>
       </div>
   `
   );
@@ -120,6 +123,12 @@ export default async function getData() {
       freeMode: true,
     },
   });
+
+  gsap.from('.list', {
+      x: -500,
+      duration: 0.3,
+      stagger: 0.1,
+    });
 }
 
 function changeHeart(e) {
@@ -138,7 +147,7 @@ async function watch() {
     watchTogether.insertAdjacentHTML(
       'afterbegin',
       /* html */ `
-      <article class="relative aspect-[1/1.38] rounded-lg shadow-[4px_4px_16px_0px_rgba(0,0,0,0.08),0px_1px_4px_0px_rgba(0,0,0,0.15)] hover:shadow-gray-300 transition-all duration-200">
+      <article class=" relative aspect-[1/1.38] rounded-lg shadow-[4px_4px_16px_0px_rgba(0,0,0,0.08),0px_1px_4px_0px_rgba(0,0,0,0.15)] hover:shadow-gray-300 transition-all duration-200">
         <figure class="h-1/2">
           <img class="w-full h-full object-cover rounded-t-lg bg-contents-content-secondary"
           src="${getPbImageURL(item, 'productImages')}" alt="${item}">
@@ -161,6 +170,24 @@ async function watch() {
   });
 }
 
+share.addEventListener('click', () => {
+const [modal, button] = createModal1Btn({
+  title: '서비스 준비중입니다',
+    desc: '빠른시일 내에 업데이트 할게요~이용에 불편을 드려 죄송합니다!',
+    buttonText: '확인',
+  });
+    modal.showing()
+    button.addEventListener('click', modal.closing);
+})
+addButton.addEventListener('click', () => {
+  const [modal, button] = createModal1Btn({
+    title: '서비스 준비중입니다',
+    desc: '빠른시일 내에 업데이트 할게요~이용에 불편을 드려 죄송합니다!',
+    buttonText: '확인',
+  });
+  modal.showing();
+  button.addEventListener('click', modal.closing);
+});
 getData();
 watch();
 footer.addEventListener('click', changeHeart);
