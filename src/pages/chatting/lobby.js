@@ -46,7 +46,10 @@ function createTemplate(data) {
           ></span
         >
         <span class="block text-paragraph-md text-contents-content-secondary"
-          >${lastMessage || '채팅방에 메세지가 없습니다.'}</span
+          >${
+            lastMessage?.slice(0, 25).concat('...') ||
+            '채팅방에 메세지가 없습니다.'
+          }</span
         >
       </div>
     </a>
