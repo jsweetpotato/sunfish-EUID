@@ -162,6 +162,9 @@ const saveData = async () => {
       avatar: `profile_img_${hash}.svg`,
     };
     pb.collection('users').update(pocketData.model.id, defaultImg);
+    console.log(defaultImg);
+    console.log(hash);
+    return;
   }
 
   /* --------------------------------- 회원가입 유저 -------------------------------- */
