@@ -25,16 +25,15 @@ const $summitButton = createPrimaryBtn({
 });
 
 // 모달
-const [$alertModal, $modalBtn] = createModal1Btn({
-  title: '😁인증번호가 발송되었습니다.',
-  desc: '콘솔창에서 인증번호를 확인해주세요!',
-  buttonText: '확인',
-});
 const [$backModal, $cancelBack, $SubmitBack] = createModal2Btn({
   title: '정말 취소하시겠어요?',
   desc: '시작하기 페이지로 이동하면 작성하신 데이터가 소멸됩니다.',
 });
-
+const [$numModal, $numModalBtn] = createModal1Btn({
+  title: '😁인증번호를 확인해주세요!',
+  desc: '',
+  buttonText: '확인',
+});
 // localStorage
 const storage = window.localStorage;
 
@@ -44,6 +43,7 @@ const state = {
   oauthNum: null,
 };
 
+$numModalBtn.addEventListener('click', $numModal.closing);
 // 버튼 draw
 $btnWrapper.insertAdjacentElement('beforeend', $sendButton);
 
@@ -115,14 +115,12 @@ const handleSendButton = () => {
   const sendOauthNum = () => {
     const array = new Uint16Array(1);
     state.oauthNum = null;
-    $alertModal.showing();
     setTimeout(() => {
       const oauthNum = crypto.getRandomValues(array).join('');
       state.oauthNum = oauthNum;
-      console.log(oauthNum);
-      // eslint-disable-next-line no-alert
-      // alert('인증번호가 발송되었습니다. 콘솔창을 확인해주세요.');
-    }, 2000);
+      $numModal.querySelector('span').innerText = oauthNum;
+      $numModal.showing();
+    }, 1000);
   };
 
   const classChange = (target) => {
@@ -188,7 +186,6 @@ const handlePhoneInput = () => {
   };
 };
 
-$modalBtn.onclick = () => $alertModal.closing();
 $sendButton.onclick = handleSendButton();
 $summitButton.onclick = handleSubmitButton;
 $phoneInput.onkeypress = checkNumber;
