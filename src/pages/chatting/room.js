@@ -8,6 +8,7 @@ import {
   clearContents,
   endScroll,
   checkAuth,
+  comma,
 } from '/src/lib/';
 import { createModal1Btn } from '/src/components/Modal/Modal';
 
@@ -15,22 +16,24 @@ import { createModal1Btn } from '/src/components/Modal/Modal';
   if (!checkAuth()) return;
   const idParam = new URL(window.location.href).searchParams.get('id');
   const response = await pb.collection('chatroom').getOne(idParam, {
-    fields: 'members',
+    fields: 'members, originType',
   });
   if (!idParam || response.members.indexOf(pb.authStore.model.id) < 0) {
     alert('잘못된 접근입니다.');
     window.location.href = '/src/pages/main/';
   }
 
-  await getData();
+  await getData(response.originType);
   endScroll(getNode('main'));
   pb.collection('chatroom').subscribe(idParam, ({ action, record }) => {
-    const { members } = record;
+    const { members, originType } = record;
     const lastMessageBox = record.messageBox.pop();
-    const memberCount = getNode('#member-count');
-    memberCount.textContent = members.length;
+    let memberCount;
+    if (originType === 'together') {
+      memberCount = getNode('#member-count');
+      memberCount.textContent = members.length;
+    }
     if (lastMessageBox.senderId !== pb.authStore.model.id) {
-      console.log('new message receive');
       const template = createMessageBox([lastMessageBox]);
       insertLast('#message-box', template);
       endScroll(getNode('main'));
@@ -99,19 +102,27 @@ function createMessageBox(box) {
 }
 
 async function createTemplate(item) {
-  const { originType, originId, owner, members, messageBox } = item;
-  const { title } = item.expand.originId;
+  const { originType, owner, members, messageBox } = item;
+  const { members: expandMembers } = item.expand;
+  const type =
+    originType === 'together' ? 'togetherOriginId' : 'sellingOriginId';
+  const ownerName = expandMembers.find((member) => member.id === owner).name;
+  const productImageUrl = pb.files.getUrl(
+    item.expand[type],
+    item.expand[type].productImages,
+    { thumb: '0x300' }
+  );
   const sellingHeaderTemplate = /* html */ `
   <div class="flex justify-between items-center">
   <div class="flex gap-3 items-center">
     <a
-      href="/src/pages/board/qna.html"
+      href="/src/pages/chatting/lobby.html"
       role="button"
       aria-label="돌아가기"
       class="bg-direction-icon block w-10 h-10 bg-no-repeat bg-center rotate-90 hover:bg-gray-100 hover:rounded transition-all duration-300"
     ></a>
     <p class="text-label-md">
-      유저네임
+      ${ownerName}
       <span
         class="px-1 py-[2px] text-label-sm font-normal align-middle text-secondary bg-blue-100 rounded-full"
         >37.8℃</span
@@ -123,32 +134,36 @@ async function createTemplate(item) {
       id="more"
       type="button"
       aria-label="더보기"
-      class="bg-more-icon w-10 h-10 bg-no-repeat bg-center hover:bg-gray-100 hover:rounded transition-all duration-300"
+      class="bg-hamburger-icon w-10 h-10 bg-no-repeat bg-center hover:bg-gray-100 hover:rounded transition-all duration-300"
     ></button>
   </div>
 </div>
-<div class="px-3 py-3 flex gap-2">
-  <figure class="w-[34px] h-[34px] rounded bg-gray-300 overflow-hidden">
-    <img
-      class="w-full object-cover"
-      src="/src/assets/image.jpeg"
-      alt=""
-    />
-  </figure>
+<a  href="/src/pages/exchange/exchangeDetail.html?id=${
+    item.expand[type].id
+  }" class="px-3 pt-2 pb-1 flex gap-2 hover:bg-gray-100">
+    <figure class="w-[34px] h-[34px] rounded bg-gray-300 overflow-hidden">
+      <img
+        class="w-full object-cover"
+        src="${productImageUrl}"
+        alt=""
+      />
+    </figure>
   <div>
     <p class="text-label-sm">
-      판매중 <span class="font-normal">제품명</span>
+      판매중 <span class="font-normal">${item.expand[type].title}</span>
     </p>
-    <span class="text-label-sm">800,000원</span>
+    <span class="text-label-sm">${comma(+item.expand[type].price)}</span>
   </div>
-</div>
-<div class="px-3 py-2 border-b border-b-contents-content-tertiary">
+</a>
+<div class="px-3 py-1 border-b border-b-contents-content-tertiary">
   <button
+  id="reservation"
     class="pl-[27px] pr-3 py-1.5 text-paragraph-sm bg-calender_black-icon border border-contents-content-secondary rounded-md bg-white bg-no-repeat bg-[7px] bg-[length:14px_14px] hover:brightness-95 transition-all duration-300"
   >
     약속 잡기
   </button>
   <button
+    id="pay"
     class="pl-[27px] pr-3 py-1.5 text-paragraph-sm bg-won-icon border border-contents-content-secondary rounded-md bg-white bg-no-repeat bg-[7px] bg-[length:14px_14px] hover:brightness-95 transition-all duration-300"
   >
     송금 하기
@@ -168,7 +183,7 @@ async function createTemplate(item) {
             ></a>
           </div>
           <h1 class="text-label-md max-[340px]:text-label-sm">
-          ${title} 대화방
+          ${item.expand[type].title} 대화방
           <span id="member-count" class="text-contents-content-secondary">${members.length}</span>
         </h1>
           <div class="flex items-center">
@@ -182,7 +197,13 @@ async function createTemplate(item) {
         </div>
   `;
   const messageBoxTemplate = createMessageBox(messageBox);
-  return { header: togetherHeaderTemplate, messageBox: messageBoxTemplate };
+  return {
+    header:
+      originType === 'together'
+        ? togetherHeaderTemplate
+        : sellingHeaderTemplate,
+    messageBox: messageBoxTemplate,
+  };
 }
 
 function render(template) {
@@ -192,7 +213,7 @@ function render(template) {
   insertLast('#header-inner', header);
   insertLast('#message-box', messageBox);
   const tl = gsap.timeline();
-  tl.from('#header-inner>div', {
+  tl.from('#header-inner', {
     y: 50,
     opacity: 0,
     duration: 0.2,
@@ -204,25 +225,23 @@ function render(template) {
   });
 }
 
-async function getData() {
+async function getData(type) {
+  const originType = type;
   const idParam = new URL(window.location.href).searchParams.get('id');
   const response = await pb.collection('chatroom').getOne(idParam, {
-    expand: 'members, originId',
+    expand: `members, ${originType}OriginId`,
   });
-  console.log(response);
   render(await createTemplate(response));
   sendButton.addEventListener('click', throttle(handleSendComment));
-  const moreButton = getNode('#more');
-  moreButton.addEventListener('click', (e) => {
-    const [modal, button] = createModal1Btn({
-      title: '😭서비스 준비중입니다.',
-      desc: '열심히 준비중이예요💦<br> 조금만 기다려주세요',
-      buttonText: '알겠어요',
-    });
-    button.addEventListener('click', () => modal.closing());
-    console.log('클릭');
-    modal.showing();
+  const [modal, button] = createModal1Btn({
+    title: '😭서비스 준비중입니다.',
+    desc: '열심히 준비중이예요💦<br> 조금만 기다려주세요',
+    buttonText: '알겠어요',
   });
+  button.addEventListener('click', () => modal.closing());
+  getNode('#more').addEventListener('click', () => modal.showing());
+  getNode('#reservation')?.addEventListener('click', () => modal.showing());
+  getNode('#pay')?.addEventListener('click', () => modal.showing());
 }
 
 const sendButton = getNode('#send');
@@ -249,7 +268,7 @@ async function handleSendComment(e) {
     const messageBoxField = await pb.collection('chatroom').getOne(idParam, {
       fields: 'messageBox',
     });
-    console.log(messageBoxField.messageBox);
+
     await pb.collection('chatroom').update(idParam, {
       messageBox: [...messageBoxField.messageBox, messageObj],
     });
