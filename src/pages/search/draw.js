@@ -64,7 +64,7 @@ export const drawSuggestionList = (list, target) => {
 const category = ['함께해요', '기기거래', 'story', 'freeboard', '질의응답'];
 const pages = [
   '/src/pages/board/togetherView.html?id=',
-  '/src/pages/exchange/exchangeDetail.html#',
+  '/src/pages/exchange/exchangeDetail.html?id=',
   '',
   '',
   '/src/pages/board/qnaView.html?id=',
