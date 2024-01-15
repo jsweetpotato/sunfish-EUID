@@ -15,7 +15,7 @@ export const createModal1Btn = ({ title, desc, buttonText = '확인' }) => {
       <p class="text-label-md" aria-label="모달 제목">${title}</p>
       <span
         class="text-paragraph-md text-center text-gray-600"
-        aira-label="모달 본문"
+        aria-label="모달 본문"
         >${desc}</span>
       <button class="w-full h-9 bg-secondary text-white text-label-md rounded hover:brightness-90">
         ${buttonText}
@@ -69,7 +69,7 @@ export const createModal2Btn = ({
       <p class="text-label-md" aria-label="모달 제목">${title}</p>
       <span
         class="text-paragraph-md text-center text-gray-600"
-        aira-label="모달 본문"
+        aria-label="모달 본문"
         >${desc}</span>      
       <div class="flex gap-2 w-full">
         <button class="grow w-full  h-9 bg-gray-100 text-contents-content-primary text-label-md rounded hover:brightness-90">
