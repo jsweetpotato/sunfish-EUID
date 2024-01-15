@@ -1,4 +1,4 @@
-import { getNode } from '../../lib/dom/getNode';
+import { getNode } from './src/lib/dom/getNode';
 
 const loginButton = getNode('#login');
 const startButton = getNode('#join');
