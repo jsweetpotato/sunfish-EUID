@@ -3,8 +3,6 @@ import { getNode, getNodes, pb, checkAuth } from '../../lib';
 import initInput from '../../components/ValidationInput/ValidationInput';
 import { createModal1Btn, createModal2Btn } from '../../components/Modal/Modal';
 
-checkAuth();
-
 const login = localStorage.getItem('login');
 const usersOauth = localStorage.getItem('users-oauth');
 const userData = JSON.parse(usersOauth);
@@ -12,6 +10,10 @@ const pocketAuth = localStorage.getItem('pocketbase_auth');
 const pocketData = JSON.parse(pocketAuth);
 const saveButton = getNode('#saveButton');
 const cancelButton = getNodes('.cancelButton');
+
+if (JSON.parse(login)) {
+  checkAuth();
+}
 
 /* -------------------------------------------------------------------------- */
 /*                              Validation Input                              */

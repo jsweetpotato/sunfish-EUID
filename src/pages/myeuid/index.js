@@ -2,11 +2,14 @@
 import { createModal1Btn, createModal2Btn } from '../../components/Modal/Modal';
 import { getNode, getNodes, pb, checkAuth } from '../../lib';
 
-checkAuth();
-
+const login = localStorage.getItem('login');
 const logoutButton = getNode('#logoutButton');
 const withdrawButton = getNode('#withdrawButton');
 const storage = window.localStorage;
+
+if (JSON.parse(login)) {
+  checkAuth();
+}
 
 // 모달
 const serviceModal = getNodes('.serviceModal');
