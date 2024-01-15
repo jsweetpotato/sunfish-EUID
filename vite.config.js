@@ -39,6 +39,6 @@ export default defineConfig({
   },
   // esbuild로 빌드 시 console과 debugger 구문 제거
   esbuild: {
-    drop: ['debugger'],
+    drop: ['debugger', 'console'],
   },
 });

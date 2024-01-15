@@ -13,33 +13,15 @@
     />
     <link rel="stylesheet" href="/src/styles/tailwind.css" />
     <title>엔터 이듬 - 메인</title>
-    <style>
-      /* custom scrollbar style */
-      /* for webkit */
-      main::-webkit-scrollbar {
-        width: 7px;
-      }
-      main::-webkit-scrollbar-track {
-        background: #f1f1f1;
-      }
-      main::-webkit-scrollbar-thumb {
-        background: #c5c5c5;
-        border-radius: 5px;
-      }
-      main::-webkit-scrollbar-thumb:hover {
-        background: #aaa;
-      }
-      /* for mozilla */
-      main {
-        scrollbar-width: thin;
-        scrollbar-color: #c5c5c5 #f1f1f1;
-      }
-    </style>
   </head>
   <body class="min-h-screen overflow-hidden">
     <div
       class="relative min-w-screen max-w-screen w-full mx-auto h-[100dvh] flex flex-col"
     >
+      <div
+        id="dimmed"
+        class="hidden opacity-0 absolute top-0 left-0 w-full h-full bg-[rgba(0,0,0,0.3)] z-[20]"
+      ></div>
       <h1 class="sr-only">엔터이듬 메인</h1>
       <header class="w-full">
         <div class="flex justify-between">
@@ -65,7 +47,8 @@
             </li>
             <li>
               <a
-                href="/"
+                id="notification"
+                href=""
                 role="button"
                 aria-label="알림"
                 class="bg-alram-icon block w-10 h-10 bg-no-repeat bg-center hover:bg-gray-100 hover:rounded transition-all duration-300"
@@ -80,10 +63,6 @@
         class="relative overflow-x-hidden overflow-y-auto flex-1 z-[2]"
       >
         <section class="relative w-full">
-          <div
-            id="dimmed"
-            class="hidden opacity-0 absolute top-0 left-0 w-full h-full bg-[rgba(0,0,0,0.3)] z-[2]"
-          ></div>
           <div
             id="swiper-container"
             class="swiper w-full aspect-[1.5/1] bg-gray-100 transition-all duration-300"
@@ -110,27 +89,20 @@
             class="mt-4 [&>*:nth-child(even)]:ml-auto p-3 flex flex-wrap gap-y-6"
           >
             <article
-              class="relative w-[48%] aspect-[1/1.38] rounded-lg bg-gray-100"
+              class="skeleton-loading relative w-[48%] aspect-[1/1.38] rounded-lg"
             ></article>
             <article
-              class="relative w-[48%] aspect-[1/1.38] rounded-lg bg-gray-100"
+              class="skeleton-loading relative w-[48%] aspect-[1/1.38] rounded-lg bg-gray-100"
+            ></article>
+            <article
+              class="skeleton-loading relative w-[48%] aspect-[1/1.38] rounded-lg"
+            ></article>
+            <article
+              class="skeleton-loading relative w-[48%] aspect-[1/1.38] rounded-lg bg-gray-100"
             ></article>
           </div>
         </section>
       </main>
-      <div class="absolute right-[145px] z-[2] backdrop:bg-black">
-        <div
-          id="write-container"
-          class="fixed bottom-20 w-[133px] flex flex-col gap-2 items-end"
-        >
-          <button
-            id="write"
-            class="block w-12 h-12 rounded-full bg-plus-icon bg-center bg-no-repeat bg-secondary shadow-lg hover:brightness-90 transition-all duration-300"
-          >
-            <span class="sr-only">글쓰기</span>
-          </button>
-        </div>
-      </div>
       <footer
         class="relative min-w-screen max-w-screen w-full h-[69px] bg-white"
       >
@@ -180,7 +152,7 @@
             >
               <a
                 class="chat block relative h-full text-paragraph-sm font-normal bg-chat-icon bg-no-repeat bg-top"
-                href=""
+                href="/src/pages/chatting/lobby.html"
                 ><span
                   class="absolute w-full text-center bottom-0 left-1/2 -translate-x-1/2"
                   >채팅</span
@@ -202,6 +174,19 @@
           </ul>
         </nav>
       </footer>
+      <div class="absolute right-[145px] z-[20] backdrop:bg-black">
+        <div
+          id="write-container"
+          class="fixed bottom-20 w-[132px] flex flex-col gap-2 items-end z-[20]"
+        >
+          <button
+            id="write"
+            class="block w-12 h-12 rounded-full bg-plus-icon bg-center bg-no-repeat bg-secondary shadow-lg hover:brightness-90 transition-all duration-300"
+          >
+            <span class="sr-only">글쓰기</span>
+          </button>
+        </div>
+      </div>
     </div>
 
     <script type="module" src="/src/pages/main/main.js"></script>

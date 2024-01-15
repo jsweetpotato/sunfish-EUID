@@ -3,7 +3,15 @@
 import Swiper from 'swiper';
 import gsap from 'gsap';
 import { Navigation, Pagination, Autoplay, Keyboard } from 'swiper/modules';
-import { getNode, insertFirst, insertLast, clearContents, pb } from '/src/lib/';
+import {
+  getNode,
+  insertFirst,
+  insertLast,
+  clearContents,
+  pb,
+  checkAuth,
+} from '/src/lib/';
+import { createModal1Btn } from '/src/components/Modal/Modal.js';
 
 const swiper = new Swiper('.swiper', {
   modules: [Navigation, Pagination, Autoplay, Keyboard],
@@ -54,7 +62,6 @@ function getImageUrl(record, array, options = {}) {
 function createSlideTemplate(data) {
   const { id, images, description } = data;
   const imgUrlArray = getImageUrl(data, images, { thumb: '0x350' });
-  console.log(imgUrlArray);
   const templateArray = [];
   description.forEach((item, idx) => {
     const { id, title, link } = item;
@@ -138,20 +145,16 @@ function render(obj) {
   insertLast(getNode('#story-container'), articleResult);
   insertLast(getNode('#main-swiper-wrapper'), slidesResult);
   swiper.update();
-  gsap.from('main', {
-    opacity: 0,
-    y: 100,
-  });
 }
 
 (async function getStoryData() {
+  if (!checkAuth()) return;
   const storyResponse = await pb.collection('story').getFullList({
     expand: 'user',
   });
   const bannerResponse = await pb
     .collection('banner')
     .getOne('3vnixokxjub7pu6');
-  console.log(storyResponse, bannerResponse);
   const articleResult = createArticleTemplate(storyResponse);
   const slidesResult = createSlideTemplate(bannerResponse);
   render({ articleResult, slidesResult });
@@ -185,13 +188,13 @@ const subMenu = Object.entries(subMenuObj)
     ([key, value]) => /* html */ `
 <a
   href="/src/pages/${key}.html"
-  class="block px-5 py-2.5 text-label-md rounded-full  bg-white hover:bg-secondary"
+  class="block px-5 py-2.5 text-label-md rounded-full  bg-white hover:bg-secondary hover:text-white"
   >${value}</a
 >
 `
   )
   .join('');
-const writeMenuTemplate = /* html */ ` <nav id="write-menu" class="w-full flex flex-col gap-2">${subMenu}</nav>`;
+const writeMenuTemplate = /* html */ ` <nav id="write-menu" class="w-full flex flex-col gap-1">${subMenu}</nav>`;
 
 function toggleSubMenu(isClicked) {
   if (!isClicked) {
@@ -200,13 +203,13 @@ function toggleSubMenu(isClicked) {
     tl.to('#dimmed', {
       display: 'block',
       opacity: 1,
-      duration: 0.5,
+      duration: 0.1,
     }).from(
       '#write-menu > *',
       {
         opacity: 0,
-        y: 100,
-        stagger: 0.05,
+        y: 80,
+        stagger: 0.08,
         reversed: true,
       },
       '<'
@@ -236,4 +239,17 @@ getNode('#dimmed').addEventListener('click', (e) => {
     duration: 0.5,
   });
   writeButton.click();
+});
+
+const notificationButton = getNode('#notification');
+console.log(notificationButton);
+notificationButton.addEventListener('click', (e) => {
+  e.preventDefault();
+  const [modal, button] = createModal1Btn({
+    title: '😭서비스 준비중입니다.',
+    desc: '열심히 준비중이예요💦<br> 조금만 기다려주세요',
+    buttonText: '알겠어요',
+  });
+  button.addEventListener('click', () => modal.closing());
+  modal.showing();
 });

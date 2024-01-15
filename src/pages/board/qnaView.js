@@ -1,7 +1,15 @@
 /* eslint-disable no-alert, no-shadow, import/no-unresolved, import/extensions, import/no-absolute-path, no-use-before-define */
 
 import gsap from 'gsap';
-import { pb, getNode, insertLast, clearContents, endScroll } from '/src/lib/';
+import {
+  pb,
+  getNode,
+  insertLast,
+  clearContents,
+  convertTime,
+  checkAuth,
+} from '/src/lib/';
+import { createAlertModal } from '/src/components/Modal/Modal.js';
 
 let firstVisit = true;
 
@@ -15,10 +23,9 @@ function getImageUrl(recordId, array, options = {}) {
 }
 
 function createTemplate(item) {
-  const { category, comments, title, description, imgField, type, created } =
+  const { category, comments, title, description, imgField, views, created } =
     item;
   const { avatar, name, id: ownerId } = item.expand.user;
-  const url = pb.files.getUrl().user;
   const imageUrlArray = getImageUrl(item, imgField);
   const imageTemplates = imageUrlArray
     .map(
@@ -40,7 +47,7 @@ function createTemplate(item) {
   <div id="article">
   <article class="px-3 py-6 flex flex-col items-start gap-2">
     <span
-      class="inline-block pl-[7px] pr-2 py-0.5 bg-bluegray-500 text-label-sm text-white rounded"
+      class="inline-block p-1 leading-none bg-bluegray-500 text-label-sm text-white rounded"
       >${category}</span
     >
 
@@ -59,7 +66,7 @@ function createTemplate(item) {
       >
         <p class="h-1/2 flex items-center">${name}</p>
         <span class="h-1/2 flex items-center text-gray-600"
-          >연남동 인증 4회 · ${new Date(created).toLocaleDateString()}</span
+          >연남동 인증 4회 · ${convertTime(created)} · 조회수 ${views}</span
         >
       </div>
     </div>
@@ -80,11 +87,9 @@ function createTemplate(item) {
   const commentsTemplate = comments
     .map(
       ({ id, name, comment, avatar, created }) => /* html */ `
-    <div class="p-2">
+    <div class="p-2 flex flex-col gap-1 ">
     <div
-      class="p-2 flex items-center gap-2 rounded-lg ${
-        ownerId === id ? 'bg-blue-300' : 'bg-gray-100'
-      } shadow-[3px_3px_8px_0px_rgba(0,0,0,0.08),0px_0px_4px_0px_rgba(0,0,0,0.05)]"
+      class="px-1 pt-1 flex items-center gap-2 rounded-lg "
     >
     <div
     class="w-[30px] h-[30px] rounded-full ${
@@ -98,22 +103,24 @@ function createTemplate(item) {
       <div
         class="w-24 h-full text-paragraph-sm font-normal flex flex-col justify-center"
       >
-        <p class="h-1/2 flex items-center">
-          ${ownerId === id ? '나' : name}
+        <p class="h-1/2 flex items-center ${
+          ownerId === id ? 'text-secondary font-bold' : ''
+        }">
+          ${name}
           <span
             class="h-1/2 ml-2 flex items-center text-gray-600"
           ></span>
         </p>
         <span class="h-1/2 flex items-center text-gray-600"
-          >연남동 · ${new Date(created).toLocaleDateString()}</span
+          >연남동 · ${convertTime(created)}</span
         >
       </div>
+      </div>
       <div class="flex-1">
-        <p class="text-paragraph-md">
+        <p class="px-[40px] text-paragraph-md">
           ${comment}
         </p>
       </div>
-    </div>
   </div>
     `
     )
@@ -129,21 +136,21 @@ function render(template) {
   insertLast('#article', article);
   insertLast('#comments', comments);
   const tl = gsap.timeline();
-  tl.from('#article>*', {
+  tl.from('main>*', {
     y: 50,
     opacity: 0,
     stagger: 0.1,
-  }).from(
-    '#comments-container > *',
+  }).to(
+    '#comments-container',
     {
-      y: 50,
-      opacity: 0,
+      opacity: 1,
     },
     '-=0.2'
   );
 }
 
 async function getData() {
+  if (!checkAuth()) return;
   const idParam = new URL(window.location.href).searchParams.get('id');
   if (idParam === null) {
     alert('잘못된 접근입니다.');
@@ -152,6 +159,7 @@ async function getData() {
   const response = await pb.collection('qAndA').getOne(idParam, {
     expand: 'user',
   });
+  document.title = `엔터 이듬 - 질의응답::${response.title}`;
   if (firstVisit) {
     setTimeout(async () => {
       await pb.collection('qAndA').update(idParam, {
@@ -165,6 +173,15 @@ async function getData() {
 }
 getData();
 
+const input = getNode('#commentInput');
+input.addEventListener('input', (e) => {
+  const button = e.target.nextElementSibling;
+  if (e.target.value.replace(/\s/g, '') === '') {
+    button.classList.replace('bg-send_full-icon', 'bg-send-icon');
+  } else {
+    button.classList.replace('bg-send-icon', 'bg-send_full-icon');
+  }
+});
 const commentButton = getNode('#send');
 async function handleSendComment(e) {
   const input = e.target.previousElementSibling;
@@ -181,7 +198,6 @@ async function handleSendComment(e) {
     const commentsField = await pb.collection('qAndA').getOne(idParam, {
       fields: 'comments',
     });
-    console.log(commentsField.comments);
     const commentObj = {
       id,
       created: new Date().getTime(),
@@ -193,7 +209,7 @@ async function handleSendComment(e) {
       comments: [commentObj, ...commentsField.comments],
     });
     input.value = '';
-    getData();
+    await getData();
   }
 }
 function throttle(callback, limit = 1000) {
@@ -209,3 +225,22 @@ function throttle(callback, limit = 1000) {
     } else alert('성격이 급하신 것 같아요. 천천히 눌러주세요~');
   };
 }
+
+const shareButton = getNode('#share');
+function handleClipBoard() {
+  const [successMoodal] = createAlertModal('📃 주소가 복사되었습니다.', 1000);
+  const [failedMoodal] = createAlertModal(
+    '📃 복사 도중 오류가 발생했습니다.',
+    1000
+  );
+  return async (e) => {
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      successMoodal.showing();
+    } catch (error) {
+      failedMoodal.showing();
+    }
+  };
+}
+
+shareButton.addEventListener('click', handleClipBoard());

@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" sizes="48x48" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" sizes="192x192" href="/android-icon.png" />
+    <link rel="stylesheet" href="/src/styles/tailwind.css" />
+    <title>엔터 이듬 - 채팅 로비</title>
+  </head>
+  <body class="min-h-screen overflow-y-hidden">
+    <div class="relative min-w-screen max-w-screen w-full mx-auto">
+      <header class="w-full h-[36px] border-b border-b-gray-200">
+        <div class="flex justify-between h-full">
+          <div class="flex h-full items-center">
+            <h1 class="items-center pl-3 text-label-lg font-semibold">채팅</h1>
+          </div>
+        </div>
+      </header>
+
+      <main class="relative h-[calc(100dvh-105px)] overflow-auto">
+        <section>
+          <h1 class="sr-only">게시판 메인</h1>
+          <ul id="chatroom-list">
+            <li class="w-full p-3 border-b border-b-gray-100">
+              <div class="flex gap-3">
+                <div class="w-[45px] h-[45px] rounded-full overflow-hidden">
+                  <div class="w-full aspect-square skeleton-loading"></div>
+                </div>
+                <div class="flex flex-col flex-1 gap-2">
+                  <span class="skeleton-loading w-[30%] h-4"> </span>
+                  <span class="skeleton-loading w-[70%] h-4"> </span>
+                </div>
+              </div>
+            </li>
+            <li class="w-full p-3 border-b border-b-gray-100">
+              <div class="flex gap-3">
+                <div class="w-[45px] h-[45px] rounded-full overflow-hidden">
+                  <div class="w-full aspect-square skeleton-loading"></div>
+                </div>
+                <div class="flex flex-col flex-1 gap-2">
+                  <span class="skeleton-loading w-[30%] h-4"> </span>
+                  <span class="skeleton-loading w-[70%] h-4"> </span>
+                </div>
+              </div>
+            </li>
+            <li class="w-full p-3 border-b border-b-gray-100">
+              <div class="flex gap-3">
+                <div class="w-[45px] h-[45px] rounded-full overflow-hidden">
+                  <div class="w-full aspect-square skeleton-loading"></div>
+                </div>
+                <div class="flex flex-col flex-1 gap-2">
+                  <span class="skeleton-loading w-[30%] h-4"> </span>
+                  <span class="skeleton-loading w-[70%] h-4"> </span>
+                </div>
+              </div>
+            </li>
+            <li class="w-full p-3 border-b border-b-gray-100">
+              <div class="flex gap-3">
+                <div class="w-[45px] h-[45px] rounded-full overflow-hidden">
+                  <div class="w-full aspect-square skeleton-loading"></div>
+                </div>
+                <div class="flex flex-col flex-1 gap-2">
+                  <span class="skeleton-loading w-[30%] h-4"> </span>
+                  <span class="skeleton-loading w-[70%] h-4"> </span>
+                </div>
+              </div>
+            </li>
+            <li class="w-full p-3 border-b border-b-gray-100">
+              <div class="flex gap-3">
+                <div class="w-[45px] h-[45px] rounded-full overflow-hidden">
+                  <div class="w-full aspect-square skeleton-loading"></div>
+                </div>
+                <div class="flex flex-col flex-1 gap-2">
+                  <span class="skeleton-loading w-[30%] h-4"> </span>
+                  <span class="skeleton-loading w-[70%] h-4"> </span>
+                </div>
+              </div>
+            </li>
+            <li class="w-full p-3 border-b border-b-gray-100">
+              <div class="flex gap-3">
+                <div class="w-[45px] h-[45px] rounded-full overflow-hidden">
+                  <div class="w-full aspect-square skeleton-loading"></div>
+                </div>
+                <div class="flex flex-col flex-1 gap-2">
+                  <span class="skeleton-loading w-[30%] h-4"> </span>
+                  <span class="skeleton-loading w-[70%] h-4"> </span>
+                </div>
+              </div>
+            </li>
+            <li class="w-full p-3 border-b border-b-gray-100">
+              <div class="flex gap-3">
+                <div class="w-[45px] h-[45px] rounded-full overflow-hidden">
+                  <div class="w-full aspect-square skeleton-loading"></div>
+                </div>
+                <div class="flex flex-col flex-1 gap-2">
+                  <span class="skeleton-loading w-[30%] h-4"> </span>
+                  <span class="skeleton-loading w-[70%] h-4"> </span>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </section>
+      </main>
+
+      <footer
+        class="relative min-w-screen max-w-screen w-full h-[69px] bg-white"
+      >
+        <nav
+          class="w-full h-[69px] pl-2 pr-3 pt-2 pb-5 border-t-[1px] border-gray-200"
+        >
+          <ul class="w-full h-full flex justify-between items-center">
+            <li
+              class="is-select h-full w-12 pt-0.5 hover:bg-gray-100 hover:rounded transition-all duration-300"
+            >
+              <a
+                class="home block relative h-full text-paragraph-sm font-normal bg-home-icon bg-no-repeat bg-top"
+                href="/src/pages/main/"
+              >
+                <span
+                  class="absolute w-full text-center bottom-0 left-1/2 -translate-x-1/2"
+                  >홈</span
+                >
+              </a>
+            </li>
+            <li
+              class="h-full w-12 pt-0.5 hover:bg-gray-100 hover:rounded transition-all duration-300"
+            >
+              <a
+                class="board block relative h-full text-paragraph-sm font-normal bg-board_full-icon bg-no-repeat bg-top"
+                href="/src/pages/board/"
+                ><span
+                  class="absolute w-full text-center bottom-0 left-1/2 -translate-x-1/2"
+                  >게시판</span
+                ></a
+              >
+            </li>
+            <li
+              class="h-full w-12 pt-0.5 hover:bg-gray-100 hover:rounded transition-all duration-300"
+            >
+              <a
+                class="near block relative h-full text-paragraph-sm font-normal bg-near bg-no-repeat bg-top"
+                href="/src/pages/exchange/index.html"
+                ><span
+                  class="absolute w-full text-center bottom-0 left-1/2 -translate-x-1/2"
+                  >내 근처</span
+                ></a
+              >
+            </li>
+            <li
+              class="h-full w-12 pt-0.5 hover:bg-gray-100 hover:rounded transition-all duration-300"
+            >
+              <a
+                class="chat block relative h-full text-paragraph-sm font-normal bg-chat-icon bg-no-repeat bg-top"
+                href=""
+                ><span
+                  class="absolute w-full text-center bottom-0 left-1/2 -translate-x-1/2"
+                  >채팅</span
+                ></a
+              >
+            </li>
+            <li
+              class="h-full w-12 pt-0.5 hover:bg-gray-100 hover:rounded transition-all duration-300"
+            >
+              <a
+                class="my block relative h-full text-paragraph-sm font-normal bg-my-icon bg-no-repeat bg-top"
+                href="/src/pages/myEuid/index.html"
+                ><span
+                  class="absolute w-full text-center bottom-0 left-1/2 -translate-x-1/2"
+                  >나의 이듬</span
+                ></a
+              >
+            </li>
+          </ul>
+        </nav>
+      </footer>
+    </div>
+    <script type="module" src="/src/pages/chatting/lobby.js"></script>
+  </body>
+</html>
+
+<!-- <div class="relative min-w-screen max-w-screen w-full mx-auto">
+  <header class="w-full h-[36px] border-b border-b-gray-200">
+    <div class="flex justify-between h-full">
+      <div class="flex h-full items-center">
+        <h1 class="items-center pl-3 text-label-lg font-semibold">채팅</h1>
+      </div>
+    </div>
+  </header>
+
+  <main class="relative h-[calc(100dvh-154.8px)] overflow-auto">
+    <section>
+      <h1 class="sr-only">게시판 메인</h1>
+      <ul id="chatroom-list">
+        <li class="w-full p-3 border-b border-b-gray-100 hover:bg-gray-100">
+          <a class="flex gap-3" href="">
+            <div class="w-[45px] h-[45px] rounded-full overflow-hidden">
+              <img src="/src/assets/profile-img.svg" alt="프로필 이미지" />
+            </div>
+
+            <div class="flex flex-col flex-1">
+              <span class="w-[50%] text-label-md flex gap-2 items-start">채팅방 이름채팅방<span class="text-contents-content-secondary font-normal">1</span> <span class="text-label-sm text-contents-content-secondary">1일전</span></span>
+              <span class="block text-paragraph-md  ">마지막 채팅 이름마지막 채팅 이름마지막 채팅</span>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+
+  <footer
+    class="relative min-w-screen max-w-screen w-full h-[69px] bg-white"
+  >
+    <nav
+      class="w-full h-[69px] pl-2 pr-3 pt-2 pb-5 border-t-[1px] border-gray-200"
+    >
+      <ul class="w-full h-full flex justify-between items-center">
+        <li
+          class="is-select h-full w-12 pt-0.5 hover:bg-gray-100 hover:rounded transition-all duration-300"
+        >
+          <a
+            class="home block relative h-full text-paragraph-sm font-normal bg-home-icon bg-no-repeat bg-top"
+            href="/src/pages/main/"
+          >
+            <span
+              class="absolute w-full text-center bottom-0 left-1/2 -translate-x-1/2"
+              >홈</span
+            >
+          </a>
+        </li>
+        <li
+          class="h-full w-12 pt-0.5 hover:bg-gray-100 hover:rounded transition-all duration-300"
+        >
+          <a
+            class="board block relative h-full text-paragraph-sm font-normal bg-board_full-icon bg-no-repeat bg-top"
+            href="/src/pages/board/"
+            ><span
+              class="absolute w-full text-center bottom-0 left-1/2 -translate-x-1/2"
+              >게시판</span
+            ></a
+          >
+        </li>
+        <li
+          class="h-full w-12 pt-0.5 hover:bg-gray-100 hover:rounded transition-all duration-300"
+        >
+          <a
+            class="near block relative h-full text-paragraph-sm font-normal bg-near bg-no-repeat bg-top"
+            href="/src/pages/exchange/index.html"
+            ><span
+              class="absolute w-full text-center bottom-0 left-1/2 -translate-x-1/2"
+              >내 근처</span
+            ></a
+          >
+        </li>
+        <li
+          class="h-full w-12 pt-0.5 hover:bg-gray-100 hover:rounded transition-all duration-300"
+        >
+          <a
+            class="chat block relative h-full text-paragraph-sm font-normal bg-chat-icon bg-no-repeat bg-top"
+            href=""
+            ><span
+              class="absolute w-full text-center bottom-0 left-1/2 -translate-x-1/2"
+              >채팅</span
+            ></a
+          >
+        </li>
+        <li
+          class="h-full w-12 pt-0.5 hover:bg-gray-100 hover:rounded transition-all duration-300"
+        >
+          <a
+            class="my block relative h-full text-paragraph-sm font-normal bg-my-icon bg-no-repeat bg-top"
+            href="/src/pages/myEuid/index.html"
+            ><span
+              class="absolute w-full text-center bottom-0 left-1/2 -translate-x-1/2"
+              >나의 이듬</span
+            ></a
+          >
+        </li>
+      </ul>
+    </nav>
+  </footer>
+</div> -->

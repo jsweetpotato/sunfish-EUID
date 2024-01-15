@@ -2,7 +2,14 @@
 
 import Swiper from 'swiper';
 import gsap from 'gsap';
-import { pb, getNode, getNodes, insertLast, clearContents } from '/src/lib/';
+import {
+  pb,
+  getNode,
+  getNodes,
+  insertLast,
+  clearContents,
+  checkAuth,
+} from '/src/lib/';
 
 const swiper = new Swiper('.swiper', {
   slidesPerView: 'auto',
@@ -16,6 +23,31 @@ const options = {
 
 let sortState = '-created';
 
+function createSkeletonTemplate() {
+  return `<li>
+  <div
+    class="relative p-3 border-b flex flex-row justify-between gap-1 border-contents-content-secondary"
+  >
+    <div
+      class="w-[calc(100%-70px)] flex flex-col flex-shrink-1 justify-center items-start gap-1"
+    >
+      <div class="flex items-center gap-1">
+        <span class="skeleton-loading w-7 h-3"></span>
+        <span class="skeleton-loading w-7 h-3"></span>
+      </div>
+      <span class="skeleton-loading w-[70%] h-3"> </span>
+      <span class="skeleton-loading w-[90%] h-3"></span>
+      <span class="skeleton-loading w-[30%] h-3"></span>
+    </div>
+
+    <div
+      class="w-[70px] min-w-[70px] flex justify-center items-center"
+    >
+      <div class="w-full aspect-square skeleton-loading"></div>
+    </div>
+  </div>
+</li>`.repeat(7);
+}
 function createQnaTemplate(item) {
   const { id, category, title, imgField, views, created, comments } = item;
   let { description } = item;
@@ -33,13 +65,13 @@ function createQnaTemplate(item) {
     >
       <div class="flex items-center gap-1 mb-7">
         <span
-          class="text-label-sm px-1 bg-bluegray-600 text-white rounded"
+          class="text-label-sm p-1 leading-none bg-bluegray-600 text-white rounded"
           >${category}</span
         >
       ${
         views > 100
           ? `<span
-      class="text-label-sm px-1 bg-tertiary text-white rounded"
+      class="text-label-sm p-1 leading-none bg-tertiary text-white rounded"
       >인기</span
     >`
           : ''
@@ -48,33 +80,36 @@ function createQnaTemplate(item) {
       <a href="/src/pages/board/qnaView.html?id=${id}"
         class="absolute top-0 left-0 w-full h-full flex-auto text-paragraph-md font-normal text-contents-content-primary "
       >
-        <span class="absolute top-8 left-3 w-[70%] overflow-hidden whitespace-nowrap text-ellipsis">${title}</span>
+      <span class="absolute top-[38px] left-3 ${
+        !imgUrl ? 'w-[90%]' : 'w-[65%]'
+      } overflow-hidden whitespace-nowrap text-ellipsis">${title}</span>
       </a>
       <span
         class="w-full text-paragraph-sm font-normal text-gray-600 overflow-hidden whitespace-nowrap text-ellipsis"
-        >${description.slice(0, 50)}...</span
+        >${description.slice(0, 50)}</span
       >
       <span class="text-paragraph-sm font-normal text-gray-600"
       >연희동 · ${new Date(
         created
       ).toLocaleDateString()} · 조회 ${views} · 댓글 ${comments.length}</span>
     </div>
-      <div
-      class="w-[70px] min-w-[70px] flex justify-center items-center">
     ${
-      imgUrl === ''
+      !imgUrl
         ? ''
-        : /* html */ `<div
-    class="w-[60px] h-[60px] overflow-hidden border border-gray-300 rounded">
+        : /* html */ `
+        <div
+      class="w-[70px] min-w-[70px] flex justify-center items-center">
+        <div
+    class="w-full aspect-square overflow-hidden border border-gray-300 rounded">
     <img
     class="w-full h-full object-cover"
       src="${imgUrl}"
       alt="썸네일"
       loading="lazy"
       />
+  </div>
   </div>`
     }
-    </div>
   </div>
   </li>
   `;
@@ -88,6 +123,7 @@ function createData(array) {
   return result;
 }
 function renderNothing() {
+  clearContents('#board-list');
   insertLast(
     '#board-list',
     `
@@ -108,12 +144,8 @@ function render(array) {
     renderNothing();
     return;
   }
+  clearContents('#board-list');
   insertLast('#board-list', array.join(''));
-  gsap.from('#board-list>li', {
-    x: -500,
-    duration: 0.3,
-    stagger: 0.1,
-  });
 }
 
 function getFilterString(options) {
@@ -124,7 +156,9 @@ function getFilterString(options) {
 }
 
 async function getData() {
+  if (!checkAuth()) return;
   clearContents('#board-list');
+  insertLast('#board-list', createSkeletonTemplate());
   const filterString = getFilterString(options);
   console.log(filterString);
   try {

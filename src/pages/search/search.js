@@ -155,7 +155,7 @@ const handleSuggestion = () => {
   getSearchSuggestionList();
 };
 
-$searchInput.addEventListener('input', debounce(handleSuggestion, 300));
+$searchInput.addEventListener('input', handleSuggestion);
 
 /* -------------------------------------------------------------------------- */
 /*                            검색 제안 클릭 이벤트                              */

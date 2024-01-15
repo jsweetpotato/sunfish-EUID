@@ -2,7 +2,14 @@
 
 import Swiper from 'swiper';
 import gsap from 'gsap';
-import { pb, getNode, getNodes, insertLast, clearContents } from '/src/lib/';
+import {
+  pb,
+  getNode,
+  getNodes,
+  insertLast,
+  clearContents,
+  checkAuth,
+} from '/src/lib/';
 
 const swiper = new Swiper('.swiper', {
   slidesPerView: 'auto',
@@ -14,9 +21,32 @@ const options = {
   interestsState: 'all',
   filter: 'filterAll',
 };
-
 let sortState = '-created';
+function createSkeletonTemplate() {
+  return `<li>
+  <div
+    class="relative p-3 border-b flex flex-row justify-between gap-1 border-contents-content-secondary"
+  >
+    <div
+      class="w-[calc(100%-70px)] flex flex-col flex-shrink-1 justify-center items-start gap-1"
+    >
+      <div class="flex items-center gap-1">
+        <span class="skeleton-loading w-7 h-3"></span>
+        <span class="skeleton-loading w-7 h-3"></span>
+      </div>
+      <span class="skeleton-loading w-[70%] h-3"> </span>
+      <span class="skeleton-loading w-[90%] h-3"></span>
+      <span class="skeleton-loading w-[30%] h-3"></span>
+    </div>
 
+    <div
+      class="w-[70px] min-w-[70px] flex justify-center items-center"
+    >
+      <div class="w-full aspect-square skeleton-loading"></div>
+    </div>
+  </div>
+</li>`.repeat(7);
+}
 function createTogetherTemplate(item) {
   const { category, date, id, members, isOpen, title, owner, created } = item;
   let { maxMember, gender, age } = item;
@@ -39,15 +69,15 @@ function createTogetherTemplate(item) {
       class="relative p-3 flex flex-col justify-center items-start gap-1 border-b border-contents-content-secondary">
     <div class="flex items-center gap-1 mb-7">
       <span
-        class="text-label-sm px-1 ${openStateClass} text-white rounded"
+        class="text-label-sm p-1 leading-none ${openStateClass} text-white rounded"
         >${openState}</span>
       <span
-        class="text-label-sm px-1 bg-bluegray-600 text-white rounded"
+        class="text-label-sm p-1 leading-none bg-bluegray-600 text-white rounded"
         >${category}</span>
     </div>
       <a href="/src/pages/board/togetherView.html?id=${id}"
         class="absolute top-0 left-0 w-full h-full flex-auto text-paragraph-md font-normal text-contents-content-primary ">
-        <span class="absolute top-8 left-3 w-[90%] overflow-hidden whitespace-nowrap text-ellipsis">${title}</span>
+        <span class="absolute top-[38px] left-3 w-[90%] overflow-hidden whitespace-nowrap text-ellipsis">${title}</span>
       </a>
       <span
         class="pl-4 text-paragraph-sm font-normal text-gray-600 bg-people_full-icon bg-no-repeat bg-left"
@@ -76,6 +106,7 @@ function createData(array) {
   return result;
 }
 function renderNothing() {
+  clearContents('#board-list');
   insertLast(
     '#board-list',
     `
@@ -97,12 +128,8 @@ function render(array) {
     renderNothing();
     return;
   }
+  clearContents('#board-list');
   insertLast('#board-list', array.join(''));
-  gsap.from('#board-list>li', {
-    x: -500,
-    duration: 0.3,
-    stagger: 0.1,
-  });
 }
 function getFilterString(options) {
   const filterArray = [];
@@ -128,7 +155,9 @@ function getFilterString(options) {
 }
 
 async function getData() {
+  if (!checkAuth()) return;
   clearContents('#board-list');
+  insertLast('#board-list', createSkeletonTemplate());
   const filterString = getFilterString(options);
   console.log(filterString);
   try {

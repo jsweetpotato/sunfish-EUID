@@ -1,9 +1,14 @@
 /* eslint-disable no-alert, no-shadow, import/no-unresolved, import/extensions, import/no-absolute-path, no-restricted-syntax */
 
 import gsap from 'gsap';
-import { pb, getNode, getNodes } from '/src/lib/';
+import { pb, getNode, getNodes, checkAuth } from '/src/lib/';
+import {
+  createModal2Btn,
+  createAlertModal,
+} from '/src/components/Modal/Modal.js';
 
 (function init() {
+  if (!checkAuth()) return;
   const form = getNode('#form');
   form.addEventListener('submit', (e) => e.preventDefault());
 })();
@@ -123,26 +128,55 @@ function handleClear({ target }) {
   formObj.imgField = [];
   imageWrapper.innerHTML = '';
   imageWrapper.parentElement.classList.add('hidden');
-  console.log(formObj.imgField);
 }
 fileClearButton.addEventListener('click', handleClear);
 
 const submitButton = getNode('#complete');
-async function handleSubmit(e) {
-  if (!Object.values(validState).every((value) => value)) return;
-  const formData = new FormData();
-  for (const [key, value] of Object.entries(formObj)) {
-    if (key === 'imgField') {
-      formObj[key].forEach((file) => formData.append('imgField', file));
-    } else formData.append(key, value);
-  }
-  try {
-    await pb.collection('qAndA').create(formData);
-    alert('작성이 완료되었습니다.');
+function handleSubmit() {
+  const [modal] = createAlertModal('작성이 완료되었습니다.');
+  return async (e) => {
+    modal.showing();
+    if (!Object.values(validState).every((value) => value)) return;
+    const formData = new FormData();
+    for (const [key, value] of Object.entries(formObj)) {
+      if (key === 'imgField') {
+        formObj[key].forEach((file) => formData.append('imgField', file));
+      } else formData.append(key, value);
+    }
+    try {
+      await pb.collection('qAndA').create(formData);
+      window.location.replace('/src/pages/board/qna.html');
+    } catch (error) {
+      alert('알 수 없는 오류가 발생했습니다. 다시 시도해주세요.');
+    }
+  };
+}
+submitButton.addEventListener('click', handleSubmit());
+
+function handleCancel() {
+  const title = '❗ 정말 취소하시겠어요?';
+  const desc = '입력한 내용은 모두 사라집니다.<br />계속하시겠습니까?';
+  const cancelText = '아니오';
+  const goBackText = '예';
+  const [modal, cancel, submit] = createModal2Btn({
+    title,
+    desc,
+    cancelText,
+    goBackText,
+  });
+
+  cancel.addEventListener('click', () => {
+    modal.closing();
+  });
+  submit.addEventListener('click', () => {
     window.location.replace('/src/pages/board/qna.html');
-  } catch (error) {
-    alert('알 수 없는 오류가 발생했습니다. 다시 시도해주세요.');
-  }
+  });
+  return () => {
+    modal.showing();
+  };
 }
 
-submitButton.addEventListener('click', handleSubmit);
+const cancelButtons = getNodes('.cancel');
+cancelButtons.forEach((button) =>
+  button.addEventListener('click', handleCancel())
+);
