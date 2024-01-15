@@ -6,8 +6,8 @@
   <link rel="stylesheet" href="/src/styles/tailwind.css">
   <title>엔터 이듬 - 기기거래 가격제안</title>
 </head>
-<body class="min-w-screen max-w-screen m-auto">
-  <header class="w-full h-10 sticky top-0 bg-white">
+<body class=" m-auto min-w-screen max-w-screen">
+  <header class=" w-full h-10 sticky top-0 bg-white">
     <div class="flex items-center relative">
       <a
         href="/src/pages/exchange/index.html"
@@ -33,9 +33,9 @@
         <input  name="file" id="file" class="hidden" accept=".jpg, .png, .gif, .webp" readonly>
     </section>
     <section id="title" class="flex flex-col items-start w-full">
-    <div class="relative min-w-screen max-w-screen w-full mx-auto p-3">
+    <div class="relative  w-full mx-auto p-3">
       <h1 class="text-label-sm">제목</h1>
-      <form action="/" class="w-full min-w-screen max-w-screen grow">
+      <form action="/" class="w-full  grow">
         <input placeholder="제목을 입력 해주세요" id="productTitle" class="flex textCount flex-col text-paragraph-sm w-full pt-2 p-2 border border-contents-content-tertiary rounded-[4px] gap-2 self-stretch" readonly/> 
       <span
       aria-label="입력한 문자 수"
@@ -50,13 +50,13 @@
       <div class="flex p-3 flex-col justify-center items-start gap-2 w-full grow">
         <h1 class="text-label-sm">거래 방식</h1>
         <div class="flex gap-1" role="button" id="tradeMethod">
-          <button type="button" class="px-[10px] justify-center items-center rounded-[20px] py-[6px] border">판매하기</button>
-          <button type="button" class="px-[10px] justify-center items-center rounded-[20px] py-[6px] border">나눔하기</button>
+          <button type="button" class="px-[10px] text-paragraph-sm justify-center items-center rounded-[20px] py-[6px] border">판매하기</button>
+          <button type="button" class="px-[10px] text-paragraph-sm justify-center items-center rounded-[20px] py-[6px] border">나눔하기</button>
         </div>
       </div>
     </section>
     <section id="priceOffer" class="p-3 ">
-      <form action="/" class="w-full min-w-screen max-w-screen grow">
+      <form action="/" class="w-full  grow">
         <label for="contentName" class="sr-only">컨텐츠 이름</label>
         <div class="flex flex-col gap-2">
           <input
@@ -76,7 +76,7 @@
     </section>
     <section id="detailExplanation" class="flex p-3 flex-col justify-center items-start gap-2">
       <h1 class="text-label-sm pt-8">자세한 설명</h1>
-      <form action="/" class="w-full min-w-screen max-w-screen grow">
+      <form action="/" class="w-full  grow">
         <label for="contentName" class="sr-only">컨텐츠 이름</label>
         <textarea id="description" readonly class="flex textCount flex-col text-paragraph-sm w-full pt-2 pb-20 p-2 border border-contents-content-tertiary rounded-[4px] gap-2 self-stretch">응암동에 올릴 게시글 내용을 작성해 주세요. (판매 금지 물품은 게시가 제한될 수 있어요.)</textarea>
         </div>
@@ -91,7 +91,7 @@
     </form>
     </section>
     <section id="meeting" class="flex flex-col items-start w-full">
-    <div class="relative min-w-screen max-w-screen w-full mx-auto">
+    <div class="relative  w-full mx-auto">
       <div id="label1" class="valid-input-box p-3">
     </div>
     </section>
