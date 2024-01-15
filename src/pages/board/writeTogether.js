@@ -1,7 +1,11 @@
 /* eslint-disable no-alert, no-shadow, import/no-unresolved, import/extensions, import/no-absolute-path, no-param-reassign */
 
 import gsap from 'gsap';
-import { pb, getNode, getNodes } from '/src/lib/';
+import { pb, getNode, getNodes, checkAuth } from '/src/lib/';
+import {
+  createModal2Btn,
+  createAlertModal,
+} from '/src/components/Modal/Modal.js';
 
 const inputRadioNameArray = [
   ['category'],
@@ -38,6 +42,7 @@ const validConfig = {
 };
 
 (function inputInit() {
+  if (!checkAuth()) return;
   const inputs = getNodes('.input');
   const form = getNode('.form');
   form.addEventListener('submit', (e) => e.preventDefault());
@@ -46,6 +51,7 @@ const validConfig = {
       const isoTime = new Date().toISOString();
       const localeTime = new Date(isoTime).getTime() + 32400000;
       input.value = new Date(localeTime).toISOString().slice(0, 10);
+      input.min = new Date().toISOString().slice(0, 10);
     } else {
       const { min, max } = validConfig[input.id];
       const letterCount =
@@ -160,17 +166,6 @@ function setInputValue() {
   });
 }
 
-function progressToggle(step, direction) {
-  const progressBar = getNode('#progress-bar > div');
-  const progressBarText = getNode('#progress-bar > span');
-  if (direction === 'next') {
-    progressBar.classList.replace(`w-${step - 1}/3`, `w-${step}/3`);
-  } else {
-    progressBar.classList.replace(`w-${step + 1}/3`, `w-${step}/3`);
-  }
-  progressBarText.textContent = `${step} / 3`;
-}
-
 function stepAnimation(currentStep, direction) {
   const nextStep = direction === 'next' ? currentStep + 1 : currentStep - 1;
   const currentEl = getNode(`#step${currentStep}`);
@@ -194,7 +189,6 @@ function stepAnimation(currentStep, direction) {
     clearProps: 'all',
     onStart() {
       step = direction === 'next' ? step + 1 : step - 1;
-      progressToggle(step, direction);
     },
   });
 }
@@ -215,32 +209,65 @@ stepButton.forEach((button) => {
 });
 
 const doneButton = getNode('#done');
-async function handleDone(e) {
-  if (step !== 3) return;
-  findCheckedValue(step);
-  formObj.age = formObj.age.slice(3);
-  formObj.maxMember = formObj.maxMember.slice(9);
-  try {
-    const togetherResponse = await pb.collection('together').create(formObj);
-    const chatroomObj = {
-      originType: 'together',
-      originId: togetherResponse.id,
-      owner: pb.authStore.model.id,
-      members: [pb.authStore.model.id],
-      messageBox: JSON.stringify([]),
-    };
-    const chatroomResponse = await pb
-      .collection('chatroom')
-      .create(chatroomObj);
-    await pb.collection('together').update(togetherResponse.id, {
-      chatroomId: chatroomResponse.id,
-    });
-    alert('게시글이 작성되었습니다.');
-    window.location.replace(
-      `/src/pages/board/togetherView.html?id=${togetherResponse.id}`
-    );
-  } catch (error) {
-    console.error(error);
-  }
+function handleDone(e) {
+  let responseId;
+  const [modal] = createAlertModal('작성이 완료되었습니다.');
+  return async (e) => {
+    modal.showing();
+    if (step !== 3) return;
+    findCheckedValue(step);
+    formObj.age = formObj.age.slice(3);
+    formObj.maxMember = formObj.maxMember.slice(9);
+    try {
+      const togetherResponse = await pb.collection('together').create(formObj);
+      responseId = togetherResponse.id;
+      const chatroomObj = {
+        originType: 'together',
+        originId: togetherResponse.id,
+        owner: pb.authStore.model.id,
+        members: [pb.authStore.model.id],
+        messageBox: JSON.stringify([]),
+      };
+      const chatroomResponse = await pb
+        .collection('chatroom')
+        .create(chatroomObj);
+      await pb.collection('together').update(togetherResponse.id, {
+        chatroomId: chatroomResponse.id,
+      });
+      window.location.replace(
+        `/src/pages/board/togetherView.html?id=${responseId}`
+      );
+    } catch (error) {
+      console.error(error);
+    }
+  };
 }
-doneButton.addEventListener('click', handleDone);
+doneButton.addEventListener('click', handleDone());
+
+const cancelButton = getNode('.cancel');
+
+function handleCancel() {
+  const title = '❗ 정말 취소하시겠어요?';
+  const desc = '입력한 내용은 모두 사라집니다.<br />계속하시겠습니까?';
+  const cancelText = '아니오';
+  const goBackText = '예';
+  console.log(title, desc, cancelText, goBackText);
+  const [modal, cancel, submit] = createModal2Btn({
+    title,
+    desc,
+    cancelText,
+    goBackText,
+  });
+
+  cancel.addEventListener('click', () => {
+    modal.closing();
+  });
+  submit.addEventListener('click', () => {
+    window.location.replace('/src/pages/board/together.html');
+  });
+  return () => {
+    modal.showing();
+  };
+}
+
+cancelButton.addEventListener('click', handleCancel());

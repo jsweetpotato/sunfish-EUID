@@ -106,3 +106,48 @@ export const createModal2Btn = ({
 
   return [modal, cancelButton, submitButton];
 };
+
+/**
+ * 버튼x 자동제거 모달 생성하기
+ * @param {Object} obj
+ * @param {String} obj.title 모달 제목
+ * @param {Function} obj.callback 콜백함수
+ * @returns {HTMLDialogElement & HTMLButtonElement}
+ */
+export const createAlertModal = (title, limit = 1500) => {
+  const array = new Uint8Array(1);
+  const id = `modal${crypto.getRandomValues(array).join('')}`;
+  const template = /* html */ `
+  <dialog id=${id} class="bg-white shadow-lg backdrop:bg-black backdrop:bg-opacity-40 rounded-2xl">
+    <div class="w-[233px] p-[18px] flex flex-col items-center gap-5">
+      <p class="text-label-md" aria-label="모달 제목">${title}</p>
+      </div>
+    </div>
+  </dialog>
+  `;
+
+  document.querySelector('body').insertAdjacentHTML('beforeend', template);
+  const modal = document.querySelector(`#${id}`);
+
+  modal.closing = () => {
+    modal.setAttribute('closing', '');
+    modal.addEventListener(
+      'animationend',
+      () => {
+        modal.removeAttribute('closing', '');
+        modal.close();
+      },
+      { once: true }
+    );
+  };
+
+  modal.showing = () => {
+    modal.showModal();
+    const timer = setTimeout(() => {
+      modal.closing();
+      clearTimeout(timer);
+    }, limit);
+  };
+
+  return [modal];
+};

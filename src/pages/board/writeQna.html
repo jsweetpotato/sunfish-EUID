@@ -8,29 +8,17 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" sizes="192x192" href="/android-icon.png" />
     <link rel="stylesheet" href="/src/styles/tailwind.css" />
-    <title>엔터 이듬 - 게시글 조회</title>
-    <style>
-      .bg-organizer-icon {
-        background-image: url('/src/assets/boardIcon/organizer.svg');
-      }
-      .bg-calender_black-icon {
-        background-image: url('/src/assets/boardIcon/calender_black.svg');
-      }
-      .bg-file-icon {
-        background-image: url('/src/assets/boardIcon/file.svg');
-      }
-    </style>
+    <title>엔터 이듬 - 질의응답 글쓰기</title>
   </head>
   <body class="min-h-screen">
     <div class="relative min-w-screen max-w-screen w-full mx-auto">
       <header class="w-full border-b border-b-contents-content-secondary">
         <div class="flex justify-between items-center">
-          <a
-            href="/src/pages/board/qna.html"
+          <button
             role="button"
             aria-label="창 닫기"
-            class="bg-close-icon block w-10 h-10 bg-no-repeat bg-center hover:bg-gray-100 hover:rounded transition-all duration-300"
-          ></a>
+            class="cancel bg-close-icon block w-10 h-10 bg-no-repeat bg-center hover:bg-gray-100 hover:rounded transition-all duration-300"
+          ></button>
           <h1 class="absolute top-2.5 left-1/2 -translate-x-1/2 text-label-md">
             질의응답 글쓰기
           </h1>
@@ -102,8 +90,7 @@
       <footer class="w-full h-[152px]">
         <div class="w-full px-3 pt-6 pb-[34px] flex gap-1.5">
           <button
-            id="cancel"
-            class="flex justify-center items-center w-[28%] h-[45px] text-label-md text-black bg-gray-100 rounded hover:brightness-90 transition-all duration-300"
+            class="cancel flex justify-center items-center w-[28%] h-[45px] text-label-md text-black bg-gray-100 rounded hover:brightness-90 transition-all duration-300"
           >
             취소
           </button>

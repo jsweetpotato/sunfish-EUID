@@ -9,3 +9,5 @@ export * from './typeOf';
 export * from './storage';
 export * from './getPbImageUrl';
 export * from './comma';
+export * from './convertTime';
+export * from './checkAuth';

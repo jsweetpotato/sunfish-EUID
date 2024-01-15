@@ -8,29 +8,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" sizes="192x192" href="/android-icon.png" />
     <link rel="stylesheet" href="/src/styles/tailwind.css" />
-    <title>엔터 이듬 - 게시판 메인</title>
-    <style>
-      /* custom scrollbar style */
-      /* for webkit */
-      main::-webkit-scrollbar {
-        width: 7px;
-      }
-      main::-webkit-scrollbar-track {
-        background: #f1f1f1;
-      }
-      main::-webkit-scrollbar-thumb {
-        background: #c5c5c5;
-        border-radius: 5px;
-      }
-      main::-webkit-scrollbar-thumb:hover {
-        background: #aaa;
-      }
-      /* for mozilla */
-      main {
-        scrollbar-width: thin;
-        scrollbar-color: #c5c5c5 #f1f1f1;
-      }
-    </style>
+    <title>엔터 이듬 - 게시판</title>
   </head>
   <body class="min-h-screen overflow-y-hidden">
     <div
@@ -41,7 +19,7 @@
       <header class="w-full">
         <div class="flex justify-between h-full">
           <div class="flex h-full items-center">
-            <h1 class="items-center pl-3 text-label-large font-semibold">
+            <h1 class="items-center pl-3 text-label-lg font-semibold">
               남가좌제2동
             </h1>
             <button
@@ -53,7 +31,7 @@
           <ul class="flex">
             <li>
               <a
-                href="/"
+                href="/src/pages/search/"
                 role="button"
                 aria-label="검색하기"
                 class="search block w-10 h-10 bg-[url('/src/assets/headerIcon/search.svg')] bg-no-repeat bg-center hover:bg-gray-100 hover:rounded transition-all duration-300"
@@ -61,6 +39,7 @@
             </li>
             <li>
               <a
+                id="notification"
                 href="/"
                 role="button"
                 aria-label="알림"
@@ -76,7 +55,7 @@
             <li>
               <button
                 id="openModal"
-                class="pl-8 pr-[10px] py-1.5 text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary bg-[url('/src/assets/boardIcon/hamburger.svg')] bg-[10px_center] bg-no-repeat hover:brightness-95 transition-all duration-300"
+                class="pl-7 pr-1.5 py-1.5 leading-none text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary bg-[url('/src/assets/boardIcon/hamburger.svg')] bg-[6px_center] bg-no-repeat hover:brightness-95 transition-all duration-300"
               >
                 관심분야
               </button>
@@ -85,7 +64,7 @@
               <a
                 href="/src/pages/board/together.html"
                 id="together"
-                class="inline-block px-2.5 py-1.5 h-full text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 transition-all duration-300"
+                class="inline-block p-1.5 leading-none h-full text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 transition-all duration-300"
               >
                 같이해요
               </a>
@@ -94,7 +73,7 @@
               <a
                 href="/src/pages/board/qna.html"
                 id="qna"
-                class="inline-block px-2.5 py-1.5 h-full text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 transition-all duration-300"
+                class="inline-block p-1.5 leading-none h-full text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 transition-all duration-300"
               >
                 질의응답
               </a>
@@ -110,24 +89,8 @@
           <div class="absolute right-[145px] z-[2]">
             <div
               id="write-container"
-              class="fixed bottom-20 w-[133px] flex flex-col gap-2 items-end"
+              class="fixed bottom-20 w-[132px] flex flex-col gap-2 items-end"
             >
-              <!-- <nav id="write-menu" class="w-full hidden flex-col gap-2">
-                <a
-                  href="/src/pages/board/writeTogether.html"
-                  class="block px-5 py-2.5 text-label-md rounded-full bg-white"
-                  >🎎 같이해요</a
-                >
-                <a
-                  href="/src/pages/board/writeQna.html"
-                  class="block px-5 py-2.5 text-label-md rounded-full bg-white"
-                  >❓ 질의응답</a
-                ><a
-                  href="/src/pages/exchange/index.html"
-                  class="block px-5 py-2.5 text-label-md rounded-full bg-white"
-                  >💻 기기거래</a
-                >
-              </nav> -->
               <button
                 id="write"
                 class="block w-12 h-12 rounded-full bg-plus-icon bg-center bg-no-repeat bg-secondary shadow-lg hover:brightness-90 transition-all duration-300"
@@ -146,7 +109,7 @@
         <ul
           id="modal"
           tabindex="0"
-          class="absolute bottom-[-300px] w-full bg-white flex flex-col text-paragraph-md font-normal rounded-t-lg"
+          class="absolute bottom-[-300px] w-full bg-white flex flex-col text-paragraph-md font-normal rounded-t-lg z-10"
         >
           <li class="py-4 px-3 flex justify-between items-center">
             <h2 id="modalTitle" class="text-label-lg">관심분야</h2>
@@ -160,6 +123,7 @@
               class="[&:checked+label]:bg-white [&:checked+label]:text-contents-content-primary [&:focus+label]:outline [&:focus+label]:outline-primary w-0 h-0"
               type="checkbox"
               id="programming"
+              autocomplete="off"
             />
             <label
               for="programming"
@@ -174,6 +138,7 @@
               class="[&:checked+label]:bg-white [&:checked+label]:text-contents-content-primary [&:focus+label]:outline [&:focus+label]:outline-primary w-0 h-0"
               type="checkbox"
               id="design"
+              autocomplete="off"
             />
             <label
               for="design"
@@ -192,6 +157,7 @@
               class="[&:checked+label]:bg-white [&:checked+label]:text-contents-content-primary [&:focus+label]:outline [&:focus+label]:outline-primary w-0 h-0"
               type="checkbox"
               id="uiux"
+              autocomplete="off"
             />
             <label
               for="uiux"
@@ -206,6 +172,7 @@
               class="[&:checked+label]:bg-white [&:checked+label]:text-contents-content-primary [&:focus+label]:outline [&:focus+label]:outline-primary w-0 h-0"
               type="checkbox"
               id="frontend"
+              autocomplete="off"
             />
             <label
               for="frontend"
@@ -220,6 +187,7 @@
               class="[&:checked+label]:bg-white [&:checked+label]:text-contents-content-primary [&:focus+label]:outline [&:focus+label]:outline-primary w-0 h-0"
               type="checkbox"
               id="backend"
+              autocomplete="off"
             />
             <label
               for="backend"
@@ -234,6 +202,7 @@
               class="[&:checked+label]:bg-white [&:checked+label]:text-contents-content-primary [&:focus+label]:outline [&:focus+label]:outline-primary w-0 h-0"
               type="checkbox"
               id="publishing"
+              autocomplete="off"
             />
             <label
               for="publishing"
@@ -253,6 +222,7 @@
               class="[&:checked+label]:bg-white [&:checked+label]:text-contents-content-primary [&:focus+label]:outline [&:focus+label]:outline-primary w-0 h-0"
               type="checkbox"
               id="ai"
+              autocomplete="off"
             />
             <label
               for="ai"
@@ -267,6 +237,7 @@
               class="[&:checked+label]:bg-white [&:checked+label]:text-contents-content-primary [&:focus+label]:outline [&:focus+label]:outline-primary w-0 h-0"
               type="checkbox"
               id="blockchain"
+              autocomplete="off"
             />
             <label
               for="blockchain"
