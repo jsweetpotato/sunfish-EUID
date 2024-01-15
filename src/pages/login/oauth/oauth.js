@@ -34,6 +34,11 @@ const [$numModal, $numModalBtn] = createModal1Btn({
   desc: '',
   buttonText: '확인',
 });
+const [$rejectOauth, $rejectOauthButton] = createModal1Btn({
+  title: '😥인증번호가 일치하지 않아요!',
+  desc: '인증번호를 확인해주세요!<br>(기억안나면 재발송 누르셈)',
+  buttonText: '확인',
+});
 // localStorage
 const storage = window.localStorage;
 
@@ -44,6 +49,7 @@ const state = {
 };
 
 $numModalBtn.addEventListener('click', $numModal.closing);
+$rejectOauthButton.addEventListener('click', $rejectOauth.closing);
 // 버튼 draw
 $btnWrapper.insertAdjacentElement('beforeend', $sendButton);
 
@@ -107,6 +113,7 @@ const handleSubmitButton = async (e) => {
     window.history.replaceState(null, null, '/src/pages/login/');
     window.location.href = '/src/pages/myeuid/editProfile.html';
   }
+  $rejectOauth.showing();
 };
 
 const handleSendButton = () => {
