@@ -1,30 +1,15 @@
 import { hangulIncludes } from '@toss/hangul';
 import { pb } from '../../lib';
 import { keywords, resultDataList } from './data';
-import { drawRecentSearchList } from './draw';
+import { drawRecentSearchList, drawSearchResultList } from './draw';
 // import { drawSuggestionList } from './suggestion';
 
 const recentSearchList = [
   {
-    name: '감자',
+    name: '프론트엔드',
   },
   {
     name: 'preview',
-  },
-  {
-    name: 'Programming',
-  },
-  {
-    name: '컴퓨터',
-  },
-  {
-    name: '노트북',
-  },
-  {
-    name: '고라니',
-  },
-  {
-    name: '지능',
   },
 ];
 
@@ -51,17 +36,42 @@ const $searchForm = document.querySelector('#searchForm');
 const $searchInput = document.querySelector('#searchInput');
 
 const $defaultSearchView = document.querySelector('#default-search-view');
-const $recentSearchUl = document.querySelector('#recent-search-ul');
-
-const $suggestionView = document.querySelector('#suggestion-view');
-const $suggetionList = document.querySelectorAll('.suggestion-item');
-
 const $popularSearchItems = document.querySelectorAll(
   '#popular-search-ul button'
 );
+const $recentSearchUl = document.querySelector('#recent-search-ul');
+
+const $suggestionView = document.querySelector('#suggestion-view');
+const $suggestionCombobox = document.querySelector('#suggestion-combobox');
+const $suggetionList = document.querySelectorAll('.suggestion-item');
+
+const $searchResultView = document.querySelector('#search-result-view');
+const $searchResultUl = document.querySelector('#search-result-ul');
+
 const $skipList = document.querySelectorAll('.skip');
 
+let searchedResult;
+
 drawRecentSearchList(recentSearchList, $recentSearchUl);
+
+function getSearchList() {
+  return resultDataList.filter((item) => {
+    const { title, description } = item;
+    return (
+      hangulIncludes(title, $searchInput.value) ||
+      hangulIncludes(description, $searchInput.value)
+    );
+  });
+}
+
+$searchForm.submit = () => {
+  searchedResult = getSearchList();
+  $searchResultUl.innerHTML = '';
+  $suggestionView.hidden = true;
+  $searchResultView.hidden = false;
+  $defaultSearchView.hidden = true;
+  drawSearchResultList(searchedResult, $searchResultUl);
+};
 
 /* -------------------------------------------------------------------------- */
 /*                                 스킵하기                                    */
@@ -77,10 +87,10 @@ $popularSearchItems.forEach((item) => {
   item.onclick = () => {
     $searchInput.value = item.innerText;
     toSearchInput();
+    $searchForm.submit();
   };
 });
 
-// the standard way to create multipart/form-data body
 /* -------------------------------------------------------------------------- */
 /*                              최근 검색 목록                                  */
 /* -------------------------------------------------------------------------- */
@@ -102,7 +112,7 @@ $recentSearchUl.addEventListener('focusin', (e) => {
   target.addEventListener('click', () => {
     $searchInput.value = target.innerText.trim();
     toSearchInput();
-    // renderSearchList();
+    $searchForm.submit();
   });
 });
 
@@ -133,56 +143,39 @@ const getSearchSuggestionList = () => {
 
 const handleSuggestion = () => {
   if ($searchInput.value === '') {
-    $suggestionView.classList.add('hidden');
-    $defaultSearchView.classList.remove('hidden');
+    $suggestionView.hidden = true;
+    $searchResultView.hidden = true;
+    $defaultSearchView.hidden = false;
     return;
   }
-  $defaultSearchView.classList.add('hidden');
-  $suggestionView.classList.remove('hidden');
+  $suggestionView.hidden = false;
+  $searchResultView.hidden = true;
+  $defaultSearchView.hidden = true;
 
   getSearchSuggestionList();
 };
 
-$searchInput.addEventListener('input', debounce(handleSuggestion, 120));
+$searchInput.addEventListener('input', debounce(handleSuggestion, 300));
+
+/* -------------------------------------------------------------------------- */
+/*                            검색 제안 클릭 이벤트                              */
+/* -------------------------------------------------------------------------- */
+
+$suggestionCombobox.addEventListener('click', ({ target }) => {
+  const li = target.closest('li');
+  if (!li) return;
+  const index = li.dataset.comboboxIndex;
+  const input = $suggetionList[index].textContent.trim();
+  $searchInput.value = input;
+  $searchForm.submit();
+});
 
 /* -------------------------------------------------------------------------- */
 /*                                 검색 결과                                   */
 /* -------------------------------------------------------------------------- */
 
-let searchedResult;
-
-// const getSearchKeywords = (input) =>
-//   resultDataList.filter((item) => {
-//     const { title, description } = item;
-//     return hangulIncludes(title, input) || hangulIncludes(description, input);
-//   });
-
-$searchForm.onsubmit = () => {
-  const searchQuery = $searchInput.value;
-  // 여기에 검색 처리 로직을 추가합니다.
-
-  // 폼의 기본 제출 동작을 방지합니다.
-  return false;
-};
-
-const imgField = document.querySelector('#image-file');
-const testBtn = document.querySelector('#test-btn');
-
-async function handleNewPost() {
-  const data = {
-    field: imgField.files[0],
-    desc: 'sdasdasdd',
-    name: 'test',
-  };
-
-  try {
-    await pb.collection('test').create(data);
-  } catch (e) {
-    console.log(e);
-    alert('상품 정보를 올바르게 입력해 주세요.');
-  }
-}
-testBtn.addEventListener('click', (e) => {
+$searchForm.addEventListener('submit', (e) => {
   e.preventDefault();
-  handleNewPost();
+  $searchForm.submit();
+  return false;
 });

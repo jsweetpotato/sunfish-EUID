@@ -10,7 +10,7 @@ const title = getNode('#productTitle');
 const Information = getNode('#Information');
 const contentName = getNode('#contentName');
 
-let tradeType = ''; 
+let tradeType = '';
 async function changeColor({ target }) {
   tradeButton.forEach((item) => {
     item.style.backgroundColor = '';
@@ -20,13 +20,13 @@ async function changeColor({ target }) {
   target.style.color = 'white';
   target.style.backgroundColor = '#373F67';
 
-  tradeType = target.dataset.trade; 
+  tradeType = target.dataset.trade;
 }
 
 let fileValue = '';
 const handleFiles = () => {
   const selectedFile = [...fileInput.files];
-  fileValue = selectedFile[0]
+  fileValue = selectedFile[0];
 
   selectedFile.forEach((file) => {
     const fileReader = new FileReader();
@@ -38,7 +38,6 @@ const handleFiles = () => {
     };
   });
 };
-
 
 let titleValue = '';
 let infoValue = '';
@@ -61,12 +60,11 @@ async function submit() {
   window.location.href = '/src/pages/exchange/index.html';
 }
 
-
 fileInput.addEventListener('change', handleFiles);
 prev.addEventListener('click', () => history.back());
 tradeButton.forEach((item) => {
   item.addEventListener('click', changeColor);
-})
+});
 finish.addEventListener('click', submit);
 
 // 제목 input 이벤트
@@ -96,4 +94,3 @@ contentName.addEventListener('input', (e) => {
     contentValue = inputValue;
   }
 });
-

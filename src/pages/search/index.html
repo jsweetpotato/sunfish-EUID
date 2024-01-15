@@ -26,13 +26,13 @@
       }
     </style>
   </head>
-  <body class="bg-gray-500">
+  <body>
     <div
-      class="bg-white flex flex-col min-w-screen max-w-screen min-h-screen mx-auto"
+      class="bg-white flex flex-col min-w-screen max-w-screen h-svh mx-auto relative"
     >
       <h1 class="sr-only">검색</h1>
       <header
-        class="pr-3 flex items-center justify-between sticky top-0 bg-white w-full h-10"
+        class="pr-3 flex items-center justify-between sticky top-0 bg-white w-full h-10 z-30"
       >
         <a
           id="back"
@@ -45,6 +45,7 @@
           <input
             id="searchInput"
             type="text"
+            autocomplete="off"
             aria-label="검색어 입력 창"
             class="bg-gray-100 rounded-md text-paragraph-md px-2 box-border min-h-7 w-full"
           />
@@ -70,15 +71,7 @@
                   class="focus:bg-primary focus:text-white hover:bg-primary hover:text-white"
                   data-popular-suggestion="노트북"
                 >
-                  노트북
-                </button>
-              </li>
-              <li class="shrink-0">
-                <button
-                  class="focus:bg-primary focus:text-white hover:bg-primary hover:text-white"
-                  data-popular-suggestion="태블릿"
-                >
-                  태블릿
+                  프론트엔드
                 </button>
               </li>
               <li class="shrink-0">
@@ -86,7 +79,7 @@
                   class="focus:bg-primary focus:text-white hover:bg-primary hover:text-white"
                   data-popular-suggestion="키보드"
                 >
-                  키보드
+                  공부
                 </button>
               </li>
               <li class="shrink-0">
@@ -94,7 +87,7 @@
                   class="focus:bg-primary focus:text-white hover:bg-primary hover:text-white"
                   data-popular-suggestion="마우스"
                 >
-                  마우스
+                  나눔
                 </button>
               </li>
               <li class="shrink-0">
@@ -102,7 +95,7 @@
                   class="focus:bg-primary focus:text-white hover:bg-primary hover:text-white"
                   data-popular-suggestion="해드셋"
                 >
-                  해드셋
+                  운동
                 </button>
               </li>
               <li class="shrink-0">
@@ -110,15 +103,7 @@
                   class="focus:bg-primary focus:text-white hover:bg-primary hover:text-white"
                   data-popular-suggestion="고구마"
                 >
-                  고구마
-                </button>
-              </li>
-              <li class="shrink-0">
-                <button
-                  class="focus:bg-primary focus:text-white hover:bg-primary hover:text-white"
-                  data-popular-suggestion="감자"
-                >
-                  감자
+                  프로젝트
                 </button>
               </li>
             </ul>
@@ -140,17 +125,16 @@
             ></ul>
           </div>
         </div>
-        <div id="suggestion-view" class="pt-2 hidden">
+        <div id="suggestion-view" class="pt-2" hidden>
           <ul
-            id="search-combobox"
+            id="suggestion-combobox"
             role="listbox"
             aria-label="최근 검색 목록"
             class="text-label-sm leading-none *:*:py-[10px] *:*:px-3 *:*:gap-2 *:*:flex *:*:items-center"
           >
-            <li role="presentation">
+            <li role="presentation" data-combobox-index="0">
               <div
                 role="button"
-                data-combobox-index="0"
                 tabindex="0"
                 class="group peer focus-within:bg-gray-100 hover:bg-gray-100"
               >
@@ -164,10 +148,9 @@
                 </div>
               </div>
             </li>
-            <li role="presentation">
+            <li role="presentation" data-combobox-index="1">
               <div
                 role="button"
-                data-combobox-index="1"
                 tabindex="0"
                 class="group peer focus-within:bg-gray-100 hover:bg-gray-100"
               >
@@ -181,10 +164,9 @@
                 </div>
               </div>
             </li>
-            <li role="presentation">
+            <li role="presentation" data-combobox-index="2">
               <div
                 role="button"
-                data-combobox-index="2"
                 tabindex="0"
                 class="group peer focus-within:bg-gray-100 hover:bg-gray-100"
               >
@@ -198,10 +180,9 @@
                 </div>
               </div>
             </li>
-            <li role="presentation">
+            <li role="presentation" data-combobox-index="3">
               <div
                 role="button"
-                data-combobox-index="3"
                 tabindex="0"
                 class="group peer focus-within:bg-gray-100 hover:bg-gray-100"
               >
@@ -215,10 +196,9 @@
                 </div>
               </div>
             </li>
-            <li role="presentation">
+            <li role="presentation" data-combobox-index="4">
               <div
                 role="button"
-                data-combobox-index="4"
                 tabindex="0"
                 class="group peer focus-within:bg-gray-100 hover:bg-gray-100"
               >
@@ -232,10 +212,9 @@
                 </div>
               </div>
             </li>
-            <li role="presentation">
+            <li role="presentation" data-combobox-index="5">
               <div
                 role="button"
-                data-combobox-index="5"
                 tabindex="0"
                 class="group peer focus-within:bg-gray-100 hover:bg-gray-100"
               >
@@ -249,10 +228,9 @@
                 </div>
               </div>
             </li>
-            <li role="presentation">
+            <li role="presentation" data-combobox-index="6">
               <div
                 role="button"
-                data-combobox-index="6"
                 tabindex="0"
                 class="group peer focus-within:bg-gray-100 hover:bg-gray-100"
               >
@@ -266,10 +244,9 @@
                 </div>
               </div>
             </li>
-            <li role="presentation">
+            <li role="presentation" data-combobox-index="7">
               <div
                 role="button"
-                data-combobox-index="7"
                 tabindex="0"
                 class="group peer focus-within:bg-gray-100 hover:bg-gray-100"
               >
@@ -285,39 +262,8 @@
             </li>
           </ul>
         </div>
-        <div id="search-result-view" class="pt-2 hidden">
-          <ul>
-            <li
-              class="search-result-list border-b border-contents-content-secondary"
-            >
-              <article class="flex flex-col py-3 items-start px-3">
-                <span
-                  class="p-1 mb-[6px] bg-bluegray-600 text-white rounded text-label-sm leading-none"
-                  >같이해요</span
-                >
-                <div
-                  class="w-full *:text-nowrap *:overflow-hidden *:leading-none"
-                >
-                  <a class="title text-paragraph-md" href=""
-                    >아니 디버깅 돌려봤는데도 왜 이러냐?</a
-                  >
-                  <p
-                    role="presentation"
-                    class="text-ellipsis w-full text-paragraph-sm text-gray-700"
-                  >
-                    내가 혼자 게임 만들려고 코드 짰는데 왜 작동 안되는거냐
-                    일수가 없다ㄴㅇㅁㄴㅇㄴㅁㅇㅁㄴㅇ
-                  </p>
-                </div>
-                <span
-                  role="presentation"
-                  class="mt-2 text-label-sm text-gray-600"
-                >
-                  연희동 • 49분 전 • 조회 4
-                </span>
-              </article>
-            </li>
-          </ul>
+        <div id="search-result-view" class="pt-2">
+          <ul id="search-result-ul"></ul>
         </div>
       </main>
     </div>
