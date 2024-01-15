@@ -188,10 +188,23 @@ async function handleDone(e) {
   formObj.age = formObj.age.slice(3);
   formObj.maxMember = formObj.maxMember.slice(9);
   try {
-    const response = await pb.collection('together').create(formObj);
+    const togetherResponse = await pb.collection('together').create(formObj);
+    const chatroomObj = {
+      originType: 'together',
+      originId: togetherResponse.id,
+      owner: pb.authStore.model.id,
+      members: [pb.authStore.model.id],
+      messageBox: JSON.stringify([]),
+    };
+    const chatroomResponse = await pb
+      .collection('chatroom')
+      .create(chatroomObj);
+    await pb.collection('together').update(togetherResponse.id, {
+      chatroomId: chatroomResponse.id,
+    });
     alert('게시글이 작성되었습니다.');
     window.location.replace(
-      `/src/pages/board/togetherView.html?id=${response.id}`
+      `/src/pages/board/togetherView.html?id=${togetherResponse.id}`
     );
   } catch (error) {
     console.error(error);
