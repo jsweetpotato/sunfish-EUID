@@ -1,5 +1,5 @@
 /**
- * 최근 검색 목록 그리는
+ * 최근 검색 목록
  * @param {Array<{name: String,label ?: String }>} list - 최근 검색 목록
  * @param {HTMLElement} target - 안에 템플릿 넣을 엘리먼트
  */
@@ -33,11 +33,9 @@ export const drawRecentSearchList = (list, target) => {
     target.insertAdjacentHTML('beforeend', template);
   });
 };
-
-export const test = (item) => console.log(item);
 /**
- * 최근 검색 목록 그리는
- * @param {Array<{name: String,label ?: String }>} list - 최근 검색 목록
+ * 추천 검색 목록
+ * @param {Array<{name: String,label ?: String }>} list - 추천 검색 목록
  * @param {HTMLElement} target - 안에 템플릿 넣을 엘리먼트
  */
 export const drawSuggestionList = (list, target) => {
@@ -59,6 +57,60 @@ export const drawSuggestionList = (list, target) => {
   </div>
 </li>
 `;
+    target.insertAdjacentHTML('beforeend', template);
+  });
+};
+
+const category = ['함께해요', '기기거래', 'story', 'freeboard', '질의응답'];
+const pages = [
+  '/src/pages/board/togetherView.html?id=',
+  '/src/pages/exchange/exchangeDetail.html#',
+  '',
+  '',
+  '/src/pages/board/qnaView.html?id=',
+];
+/**
+ * 검색 결과 목록
+ * @param {Array<{name: String,label ?: String }>} list - 검색 결과 목록
+ * @param {HTMLElement} target - 안에 템플릿 넣을 엘리먼트
+ */
+export const drawSearchResultList = (list, target) => {
+  list.forEach((listItem) => {
+    const { type, title, description: desc, id } = listItem;
+
+    const template = /* html */ `
+  <li
+  class="search-result-list border-b border-contents-content-secondary"
+>
+  <article
+    class="flex w-full relative flex-col p-3 items-start hover:bg-gray-100 "
+  >
+    <span
+      class="p-1 mb-[6px] bg-bluegray-600 text-white rounded text-label-sm leading-none"
+      >${category[type]}</span
+    >
+    <div class="w-full *:overflow-hidden *:leading-none *:text-nowrap *:text-ellipsis">
+      <a
+        class="absolute left-0 top-0 px-3 block pt-11 title text-paragraph-md w-full h-full"
+        href="${pages[type] + id}"
+        >${title}</a
+      >
+      <p
+        role="presentation"
+        class="w-full text-paragraph-sm text-gray-700 pt-[26px]"
+      >
+      ${desc.replace(/</g, '&lt;').replace(/>/g, '&gt;')}
+      </p>
+    </div>
+    <span
+      role="presentation"
+      class="mt-2 text-label-sm text-gray-600"
+    >
+      연희동 • 49분 전 • 조회 4
+    </span>
+  </article>
+</li>
+  `;
     target.insertAdjacentHTML('beforeend', template);
   });
 };
