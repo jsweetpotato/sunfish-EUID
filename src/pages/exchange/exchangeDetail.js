@@ -7,14 +7,20 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import PocketBase from 'pocketbase';
 import { Navigation, Pagination } from 'swiper/modules';
-import { getNode, getPbImageURL, comma, checkAuth } from '../../lib';
+import {
+  getNode,
+  getPbImageURL,
+  comma,
+  checkAuth,
+  clearContents,
+} from '../../lib';
 
 import { createModal1Btn } from '../../components/Modal/Modal';
 // import Swiper and modules styles
 
 const share = getNode('#share');
 const profileInfo = getNode('#profileInfo');
-const main = getNode('#main');
+const swiperContainer = getNode('#swiper');
 const productInfo = getNode('#productInfo');
 const footer = getNode('#footer');
 const addButton = getNode('#addButton');
@@ -35,10 +41,9 @@ export default async function getData() {
   const { title, description, price, id, isPriceOffer } = avatarList;
   const users = await avatarList.expand.user;
   const { name } = users;
-  main.insertAdjacentHTML(
+  swiperContainer.insertAdjacentHTML(
     'afterbegin' /* html */,
     `
-  <div class="list swiper w-full flex grow flex-shrink bg-gray-100" >
     <div class="swiper-wrapper">
       <div class="swiper-slide "><img src="${getPbImageURL(
         avatarList,
@@ -57,8 +62,6 @@ export default async function getData() {
       )}" alt="상품 이미지" class='w-full h-[305px] object-cover'></div>
     </div>
     <div class="swiper-pagination"></div>
-  
-  </div>
 `
   );
 
@@ -146,12 +149,6 @@ export default async function getData() {
       freeMode: true,
     },
   });
-
-  gsap.from('.list', {
-    x: -500,
-    duration: 0.3,
-    stagger: 0.1,
-  });
 }
 
 function changeHeart(e) {
@@ -166,6 +163,7 @@ function changeHeart(e) {
 
 async function watch() {
   const watchList = await pb.collection('selling').getList(1, 6);
+  clearContents(watchTogether);
   watchList.items.forEach((item) => {
     watchTogether.insertAdjacentHTML(
       'afterbegin',
