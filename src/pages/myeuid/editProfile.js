@@ -4,7 +4,11 @@ import initInput from '../../components/ValidationInput/ValidationInput';
 import { createModal1Btn, createModal2Btn } from '../../components/Modal/Modal';
 
 const authData = await pb.collection('users').authRefresh();
-
+const login = localStorage.getItem('login');
+const usersOauth = localStorage.getItem('users-oauth');
+const userData = JSON.parse(usersOauth);
+const pocketAuth = localStorage.getItem('pocketbase_auth');
+const pocketData = JSON.parse(pocketAuth);
 const saveButton = getNode('#saveButton');
 const cancelButton = getNodes('.cancelButton');
 
@@ -143,15 +147,10 @@ const [warningModal, modalCancelButton, modalSubmitButton] = createModal2Btn({
 });
 
 /* ----------------------------- 프로필수정 저장완료 모달 ----------------------------- */
-const login = localStorage.getItem('login');
 const nameInput = getNode('#nameInput');
 const jobInput = getNode('#jobInput');
 const companyInput = getNode('#companyInput');
 const aboutMeInput = getNode('#aboutMeInput');
-const usersOauth = localStorage.getItem('users-oauth');
-const userData = JSON.parse(usersOauth);
-const pocketAuth = localStorage.getItem('pocketbase_auth');
-const pocketData = JSON.parse(pocketAuth);
 const fileField = getNode('#file');
 const imageWrapper = getNode('#image-wrapper');
 
