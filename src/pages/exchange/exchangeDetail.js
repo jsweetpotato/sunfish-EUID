@@ -2,11 +2,13 @@ import PocketBase from 'pocketbase';
 import { getNode, getPbImageURL, comma } from '/src/lib';
 import Swiper from 'swiper';
 import { Navigation, Pagination } from 'swiper/modules';
+import { createModal1Btn } from '../../components/Modal/Modal';
 // import Swiper and modules styles
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
+const share= getNode('#share');
 const profileInfo = getNode('#profileInfo');
 const main = getNode('#main');
 const productInfo = getNode('#productInfo');
@@ -159,6 +161,16 @@ async function watch() {
     );
   });
 }
+
+share.addEventListener('click', () => {
+const [modal, button] = createModal1Btn({
+  title: '서비스 준비중입니다',
+    desc: '빠른시일 내에 업데이트 할게요~이용에 불편을 드려 죄송합니다!',
+    buttonText: '확인',
+  });
+    modal.showing()
+    button.addEventListener('click', modal.closing());
+})
 
 getData();
 watch();
