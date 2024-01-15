@@ -22,12 +22,6 @@ function getPbImageURL(item, fileName = 'photo') {
   }/${item[fileName]}`;
 }
 
-// if(등록된 이미지가 없으면){
-//   기본 프로필 사진
-// }else {
-//   등록한 프로필 사진
-// }
-
 profile.insertAdjacentHTML(
   'afterbegin' /* html */,
   `
@@ -45,22 +39,41 @@ profile.insertAdjacentHTML(
 `
 );
 
-aboutMe.insertAdjacentHTML(
-  'afterend' /* html */,
-  `
-  <div class="py-2">
-  <span
-    aria-label="기수"
-    class="text-[#396CEF] text-label-sm px-1 rounded border-[1px] border-[#396CEF]"
-    >프론트엔드 스쿨 ${period}기</span
-  >
-  <span class="block mt-3 text-label-md">${company} ∙ ${job}</span>
-  </div>
-  <div class="mt-[10px] mb-4 bg-bluegray-100 rounded-lg">
-    <span class="block p-[10px] text-paragraph-sm font-normal">${introduce}</span>
-  </div>
-  `
-);
+if (pocketData.model.introduce === '') {
+  aboutMe.insertAdjacentHTML(
+    'afterend' /* html */,
+    `
+    <div class="py-2">
+    <span
+      aria-label="기수"
+      class="text-[#396CEF] text-label-sm px-1 rounded border-[1px] border-[#396CEF]"
+      >프론트엔드 스쿨 ${period}기</span
+    >
+    <span class="block mt-3 text-label-md">${company} ∙ ${job}</span>
+    </div>
+    <div class="mt-[10px] mb-4 bg-bluegray-100 rounded-lg">
+      <span class="block p-[10px] text-paragraph-sm font-normal">작성한 자기소개가 없습니다.</span>
+    </div>
+    `
+  );
+} else {
+  aboutMe.insertAdjacentHTML(
+    'afterend' /* html */,
+    `
+    <div class="py-2">
+    <span
+      aria-label="기수"
+      class="text-[#396CEF] text-label-sm px-1 rounded border-[1px] border-[#396CEF]"
+      >프론트엔드 스쿨 ${period}기</span
+    >
+    <span class="block mt-3 text-label-md">${company} ∙ ${job}</span>
+    </div>
+    <div class="mt-[10px] mb-4 bg-bluegray-100 rounded-lg">
+      <span class="block p-[10px] text-paragraph-sm font-normal">${introduce}</span>
+    </div>
+    `
+  );
+}
 
 sellingProduct.insertAdjacentHTML(
   'afterbegin' /* html */,
