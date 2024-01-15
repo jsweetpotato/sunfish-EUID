@@ -17,5 +17,8 @@ const handleLogin = (e) => {
   window.location.href = '/src/pages/login/signin/';
 };
 
+if (storage.getItem('pocketbase_auth'))
+  window.location.href = '/src/pages/main/';
+
 loginButton.onclick = handleLogin;
 startButton.onclick = handleStart;
