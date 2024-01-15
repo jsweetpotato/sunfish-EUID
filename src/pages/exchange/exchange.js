@@ -1,57 +1,102 @@
 /* eslint-disable no-param-reassign */
-import { getNode, getNodes } from '/src/lib';
+import { getNode, getNodes, insertFirst } from '/src/lib';
 import list from './exchangeData';
 import { createModal1Btn } from '../../components/Modal/Modal';
+import gsap from 'gsap';
 
+const alarm = getNode('#alarm');
 const modals = getNodes('.modal');
-const plusButton = getNode('#plusButton');
-const body = getNode('#body');
-const section = getNode('.content');
-let plusClickCount = 0;
-let isClick = false;
+const writeButton = getNode('#write');
 
-let createCategory;
 
-function show(){
-  plusClickCount+=1;
+const subMenuObj = {
+  'exchange/exchangeMake': '🎧 기기거래',
+  '': '⌨️ 프로젝트 구인',
+  '#': '💻 과외/클래스',
+};
 
-  if(plusClickCount % 2 !== 0 ){
-    body.style.background = 'rgba(0, 0, 0, 0.30)';
-    section.style.filter = 'brightness(50%)';
-    plusButton.insertAdjacentHTML('beforebegin', /* html */
-    `
-    <div id='span-tag' class="flex flex-col absolute left-[-78px] w-full min-w-screen max-w-screen">
-      <div class="fixed bottom-36 flex flex-col w-[133px] items-center gap-1">
-        <a href="/src/pages/exchange/index.html" class="bg-exchange-icon h-10 px-[20px] py-[10px] self-stretch rounded-[60px]"></a>
-        <span class="bg-project-icon h-10 px-[20px] py-[10px] self-stretch rounded-[60px]"></span>
-        <span class="bg-study-icon h-10 px-[20px] py-[10px] self-stretch rounded-[60px]"></span>
-      </div>
-    </div>
-    `);
-
-    createCategory = document.querySelector('#span-tag');
-  }else {
-    body.style.background='';
-    section.style.filter='';
-    if(createCategory) {
-      createCategory.remove();
+const subMenu = Object.entries(subMenuObj)
+  .map(([key, value]) => {
+    if (key === '' || key === '#') {
+      return /* html */ `
+        <a
+        class="submenu-item block px-4 py-2.5 text-label-md rounded-full bg-white hover:bg-secondary"
+        onclick="event.preventDefaulㅠ t();"
+        >${value}</a
+      >
+        `;
+    } else {
+      return /* html */ `
+        <a
+        href="/src/pages/${key}.html"
+        class="submenu-item block px-4 py-2.5 text-label-md rounded-full bg-white hover:bg-secondary"
+        >${value}</a
+      >
+        `;
     }
+  })
+  .join('');
+
+const writeMenuTemplate = /* html */ ` <nav id="write-menu" class="w-full flex flex-col gap-2">${subMenu}</nav>`;
+
+function toggleSubMenu(isClicked) {
+  if (!isClicked) {
+    const tl = gsap.timeline();
+    insertFirst('#write-container', writeMenuTemplate);
+    tl.to('#dimmed', {
+      display: 'block',
+      opacity: 1,
+      duration: 0.5,
+    }).from(
+      '#write-menu > *',
+      {
+        opacity: 0,
+        y: 100,
+        stagger: 0.05,
+        reversed: true,
+      },
+      '<'
+    );
+  } else {
+    getNode('#write-menu').remove();
+    gsap.to('#dimmed', {
+      display: 'none',
+      opacity: 0,
+      duration: 0.5,
+    });
   }
 }
 
-function toggle(){
-  isClick = !isClick
-  this.classList.toggle('bg-plus-icon');
-  this.classList.toggle('bg-exchange-close-icon');
-  this.classList.toggle('bg-white');
-  this.classList.toggle('bg-secondary');
+function toggle(node) {
+  node.classList.toggle('bg-plus-icon');
+  node.classList.toggle('bg-exchange-close-icon');
+  node.classList.toggle('bg-white');
+  node.classList.toggle('bg-secondary');
 }
 
 function showingModal(e) {
   e.preventDefault();
 }
 
-list();
+function handleClickWriteButton() {
+  let isClicked = false;
+  return (e) => {
+    toggle(e.target);
+    toggleSubMenu(isClicked);
+    isClicked = !isClicked;
+  };
+}
+
+
+writeButton.addEventListener('click', handleClickWriteButton());
+getNode('#dimmed').addEventListener('click', () => {
+  gsap.to('#dimmed', {
+    display: 'none',
+    opacity: 0,
+    duration: 0.5,
+  });
+  writeButton.click();
+});
 
 modals.forEach((item) => {
   item.addEventListener('click', showingModal);
@@ -60,10 +105,19 @@ modals.forEach((item) => {
     desc: '빠른시일 내에 업데이트 할게요~이용에 불편을 드려 죄송합니다!',
     buttonText: '확인',
   });
-  item.addEventListener('click', modal.showing)
+
+  item.addEventListener('click', modal.showing);
   button.addEventListener('click', modal.closing);
-})
-plusButton.addEventListener('click', show);
-plusButton.addEventListener('click', toggle);
+});
 
+alarm.addEventListener('click', () => {
+  const [modal, button] = createModal1Btn({
+    title: '서비스 준비중입니다',
+    desc: '빠른시일 내에 업데이트 할게요~이용에 불편을 드려 죄송합니다!',
+    buttonText: '확인',
+  });
+  modal.showing();
+  button.addEventListener('click', modal.closing);
+});
 
+list();

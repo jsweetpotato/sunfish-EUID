@@ -1,23 +1,53 @@
 <!doctype html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" sizes="48x48" href="favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
-    <link rel="icon" sizes="192x192" href="android-icon.png" />
     <link rel="stylesheet" href="/src/styles/tailwind.css" />
-    <title>엔터 이듬</title>
+    <script type="module" src="/index.js"></script>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+    </style>
+    <title>이듬 인트로</title>
   </head>
   <body>
-    <div
-      id="app"
-      class="max-w-screen mx-auto flex flex-col justify-around min-h-screen"
-    >
-      <h1 class="text-blue-800 text-heading-2xl">이듬 데모페이지 바로가기</h1>
-      <div id="container" class="gap-6 flex flex-col"></div>
+    <div class="px-3 min-w-screen max-w-screen h-full mx-auto">
+      <main
+        class="min-h-screen h-full flex justify-center flex-col text-center"
+      >
+        <div class="my-auto">
+          <h1 class="flex justify-center mb-12">
+            <img src="/src/assets/logo.svg" alt="이듬" />
+          </h1>
+          <p class="text-primary heading-large mb-3">당신 곁에 엔터이듬</p>
+
+          <p class="text-primary text-paragraph-md">
+            With EUID’s 함께 성장하기<br />
+            함께 배우고 적용하며 성장해보세요!
+          </p>
+        </div>
+        <div class="mt-6 mb-14 flex flex-col gap-3">
+          <a
+            href="./category"
+            id="join"
+            role="button"
+            class="block py-3 text-heading-md rounded text-white bg-secondary"
+          >
+            시작하기
+          </a>
+          <div class="flex justify-center gap-2">
+            <p class="text-paragraph-sm text-contents-content-secondary">
+              이미 계정이 있으신가요?
+            </p>
+            <a id="login" href="./email" class="text-primary text-label-sm"
+              >로그인</a
+            >
+          </div>
+        </div>
+      </main>
     </div>
-    <script type="module" src="src/main.js"></script>
+    <!-- <script type="module" src="/src/pages/login/index.js"></script> -->
   </body>
 </html>
