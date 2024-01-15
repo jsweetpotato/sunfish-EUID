@@ -18,6 +18,10 @@
     <div
       class="relative min-w-screen max-w-screen w-full mx-auto h-[100dvh] flex flex-col"
     >
+      <div
+        id="dimmed"
+        class="hidden opacity-0 absolute top-0 left-0 w-full h-full bg-[rgba(0,0,0,0.3)] z-[20]"
+      ></div>
       <h1 class="sr-only">엔터이듬 메인</h1>
       <header class="w-full">
         <div class="flex justify-between">
@@ -60,10 +64,6 @@
       >
         <section class="relative w-full">
           <div
-            id="dimmed"
-            class="hidden opacity-0 absolute top-0 left-0 w-full h-full bg-[rgba(0,0,0,0.3)] z-[2]"
-          ></div>
-          <div
             id="swiper-container"
             class="swiper w-full aspect-[1.5/1] bg-gray-100 transition-all duration-300"
             role="banner"
@@ -103,19 +103,6 @@
           </div>
         </section>
       </main>
-      <div class="absolute right-[145px] z-[2] backdrop:bg-black">
-        <div
-          id="write-container"
-          class="fixed bottom-20 w-[132px] flex flex-col gap-2 items-end"
-        >
-          <button
-            id="write"
-            class="block w-12 h-12 rounded-full bg-plus-icon bg-center bg-no-repeat bg-secondary shadow-lg hover:brightness-90 transition-all duration-300"
-          >
-            <span class="sr-only">글쓰기</span>
-          </button>
-        </div>
-      </div>
       <footer
         class="relative min-w-screen max-w-screen w-full h-[69px] bg-white"
       >
@@ -187,6 +174,19 @@
           </ul>
         </nav>
       </footer>
+      <div class="absolute right-[145px] z-[20] backdrop:bg-black">
+        <div
+          id="write-container"
+          class="fixed bottom-20 w-[132px] flex flex-col gap-2 items-end z-[20]"
+        >
+          <button
+            id="write"
+            class="block w-12 h-12 rounded-full bg-plus-icon bg-center bg-no-repeat bg-secondary shadow-lg hover:brightness-90 transition-all duration-300"
+          >
+            <span class="sr-only">글쓰기</span>
+          </button>
+        </div>
+      </div>
     </div>
 
     <script type="module" src="/src/pages/main/main.js"></script>
