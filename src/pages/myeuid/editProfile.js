@@ -32,7 +32,7 @@ const inputArray = [
     label: '직장',
   },
 ];
-initInput(inputArray);
+const [, needUpdate] = initInput(inputArray);
 
 const textarea = getNode('#aboutMeInput');
 const characterCount = getNode('#characterCount');
@@ -285,6 +285,7 @@ fileClearButton.addEventListener('click', handleClear);
 const userProfile = await pb.collection('users').getOne(pocketData.model.id, {
   fields: 'avatar',
 });
+
 function getPbImageURL(item, fileName = 'photo') {
   return `${import.meta.env.VITE_PB_URL}/api/files/users/${
     pocketData.model.id
@@ -307,6 +308,8 @@ if (login === 'true') {
   jobInput.value = pocketData.model.job;
   companyInput.value = pocketData.model.company;
   aboutMeInput.value = pocketData.model.introduce;
+
+  needUpdate.state = true;
 
   const prevGender = pocketData.model.gender;
   const prevElement = getNode(`#${prevGender}`);
