@@ -1,192 +1,164 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>엔터 이듬</title>
-  <script type="module" crossorigin src="/assets/exchange-39NV6bLa.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-9p4a8sJU.js">
-  <link rel="stylesheet" crossorigin href="/assets/tailwind-zd2sDhNp.css">
-</head>
-<body class="min-h-screen min-w-screen max-w-screen m-auto">
-  <header class="w-full ">
-    <div class="flex justify-between ">
-      <div class="flex items-center">
-        <h1 class="items-center pl-3 text-label-lg font-semibold">
-          남가좌제2동
-        </h1>
-        <button
-          type="button"
-          aria-label="내 동네 설정하기"
-          class="bg-direction-icon w-10 h-10 bg-no-repeat bg-center hover:bg-gray-100 hover:rounded transition-all duration-300"
-        ></button>
-      </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>엔터 이듬 - 기기거래 메인</title>
+    <script type="module" crossorigin src="/assets/exchange-EBztrLz6.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/tailwind-hLRvZ190.js">
+    <link rel="modulepreload" crossorigin href="/assets/getNode-pa7syr6m.js">
+    <link rel="modulepreload" crossorigin href="/assets/delay-L14dHocY.js">
+    <link rel="modulepreload" crossorigin href="/assets/Modal-LwrVZ11o.js">
+    <link rel="modulepreload" crossorigin href="/assets/index-zhyd10cS.js">
+    <link rel="modulepreload" crossorigin href="/assets/insert-c9FKGVoP.js">
+    <link rel="stylesheet" crossorigin href="/assets/tailwind-HhNkKmOH.css">
+  </head>
+  <body class="min-h-screen min-w-screen max-w-screen m-auto" id="body">
+    <div
+      id="dimmed"
+      class="hidden opacity-0 fixed top-0 left-0 w-full h-full bg-[rgba(0,0,0,0.3)] z-[2]"
+    ></div>
+    <header class="w-full">
+      <div class="flex justify-between">
+        <div class="flex items-center">
+          <h1 class="items-center pl-3 text-label-lg font-semibold">
+            남가좌제2동
+          </h1>
+          <button
+            type="button"
+            aria-label="내 동네 설정하기"
+            class="bg-direction-icon w-10 h-10 bg-no-repeat bg-center hover:bg-gray-100 hover:rounded transition-all duration-300"
+          ></button>
+        </div>
 
-      <ul class="flex">
-        <li>
-          <a
-            href="/"
-            role="button"
-            aria-label="검색하기"
-            class="bg-search-icon block w-10 h-10 bg-no-repeat bg-center hover:bg-gray-100 hover:rounded transition-all duration-300"
-          ></a>
-        </li>
-        <li>
-          <a
-            href="/"
-            role="button"
-            aria-label="알림"
-            class="bg-alram-icon block w-10 h-10 bg-no-repeat bg-center hover:bg-gray-100 hover:rounded transition-all duration-300"
-          ></a>
-        </li>
-      </ul>
-    </div>
-  </header>
-  <main class="overflow-auto  h-[calc(100vh-40px-69px)] relative">
-    <nav class="w-full flex flex-col justify-center items-center gap-2 self-stretch">
-      <ul class="flex text-center gap-2 items-center w-full p-2">
-        <li class="grow hover:border-b-2 border-primary"><a href="/" aria-label="기기거래 페이지로 이동" tabindex="0">기기거래</a></li>
-        <li class="grow hover:border-b-2 border-primary"><a href="#" aria-label="프로젝트 구인 페이지로 이동" tabindex="0">프로젝트 구인</a></li>
-        <li class="grow hover:border-b-2 border-primary"><a href="#" aria-label="과외 클래스로 페이지로 이동" tabindex="0"  >과외/클래스</a></li>
-      </ul>
-    </nav>
-    <section class="flex flex-col sticky top-0">
-      <div class="flex p-3 gap-3 justify-center items-center border-b boder-[0.3px]" id="exchangeList">
-        <figure>
-          <img src="/assets/image-0KqUkSCM.jpeg" alt="2017 Mac Pro의 이미지" class="w-full grow rounded-lg">
-        </figure>
-        <div class="flex flex-col grow p-3 relative">
-          <h2 class="text-paragraph-md">2017 mac pro</h2>
-          <span class="text-paragraph-sm" aria-label="판매위치 • 작성시간">마포구 신수동 • 44분전</span>
-          <div class="flex items-end gap-2">
-            <span class="flex gap-2 bg-reservation-icon bg-no-repeat py-[2px] px-1 h-5 w-9"></span>
-            <span class="text-label-sm" aria-label="판매가격">800,000원</span>
-          </div>
-          <div class="flex gap-[2px] absolute right-1  bottom-[-1rem] pb-1 ">
-            <button type="button" class="heartContainer bg-heart-icon p-2 bg-no-repeat" aria-label="좋아요 표시하기"></button>
-            <span class="text-paragraph-sm">4</span>
-          </div>
-        </div>
+        <ul class="flex">
+          <li>
+            <a
+              href="/src/pages/search/index.html"
+              role="button"
+              aria-label="검색하기"
+              class="bg-search-icon block w-10 h-10 bg-no-repeat bg-center hover:bg-gray-100 hover:rounded transition-all duration-300"
+            ></a>
+          </li>
+          <li>
+            <a
+              id ="alarm"
+              role="button"
+              aria-label="알림"
+              class="bg-alram-icon block w-10 h-10 bg-no-repeat bg-center hover:bg-gray-100 hover:rounded transition-all duration-300"
+            ></a>
+          </li>
+        </ul>
       </div>
-      <div class="flex p-3 gap-3 justify-center items-center border-b boder-[0.3px]">
-        <figure>
-          <img src="/assets/image-0KqUkSCM.jpeg" alt="2017 Mac Pro의 이미지" class="w-full grow rounded-lg">
-        </figure>
-        <div class="flex flex-col grow p-3 relative">
-          <h2 class="text-paragraph-md">2017 mac pro</h2>
-          <span class="text-paragraph-sm" aria-label="판매위치 • 작성시간">마포구 신수동 • 44분전</span>
-          <div class="flex items-end gap-2">
-            <span class="flex gap-2 bg-reservation-icon bg-no-repeat py-[2px] px-1 h-5 w-9"></span>
-            <span class="text-label-sm" aria-label="판매가격">800,000원</span>
-          </div>
-          <div class="flex gap-[2px] absolute right-1  bottom-[-1rem] pb-1">
-            <button type="button" class="heartContainer bg-heart-icon p-2 bg-no-repeat" aria-label="좋아요 표시하기"></button>
-            <span class="text-paragraph-sm">4</span>
-          </div>
-        </div>
-      </div>
-      <div class="flex p-3 gap-3 justify-center items-center border-b boder-[0.3px]">
-        <figure>
-          <img src="/assets/image-0KqUkSCM.jpeg" alt="2017 Mac Pro의 이미지" class="w-full grow rounded-lg">
-        </figure>
-        <div class="flex flex-col grow p-3 relative">
-          <h2 class="text-paragraph-md">2017 mac pro</h2>
-          <span class="text-paragraph-sm" aria-label="판매위치 • 작성시간">마포구 신수동 • 44분전</span>
-          <div class="flex items-end gap-2">
-            <span class="flex gap-2 bg-reservation-icon bg-no-repeat py-[2px] px-1 h-5 w-9"></span>
-            <span class="text-label-sm" aria-label="판매가격">800,000원</span>
-          </div>
-          <div class="flex gap-[2px] absolute right-1  bottom-[-1rem] pb-1">
-            <button type="button" class="heartContainer bg-heart-icon p-2 bg-no-repeat" aria-label="좋아요 표시하기"></button>
-            <span class="text-paragraph-sm">4</span>
-          </div>
-        </div>
-      </div>
-      
-    </section>
-    <div class="absolute right-14">
-      <div class="fixed bottom-20" id="plusButton-container">
-        <button
-          id="plusButton" type="button" class="bg-plus-icon block w-12 h-12 rounded-full bg-center bg-no-repeat bg-secondary shadow-lg hover:brightness-90 transition-all duration-300" 
-        >
-        </button>
-      </div>
-    </div>
-  </main>
-  <footer class=" h-[69px] w-full sticky bottom-0">
-    <nav
-        class="h-[69px] pr-3 pt-2 pb-5 border-t-[1px] border-gray-200"
+    </header>
+    <main class="overflow-auto h-[calc(100vh-40px-69px)] relative">
+      <nav
+        class="w-full flex flex-col justify-center items-center gap-2 self-stretch"
       >
-        <ul class="w-full h-full flex justify-between items-center">
-          <li
-            class="is-select h-full w-12 pt-0.5 hover:bg-gray-100 hover:rounded transition-all duration-300"
-          >
-            <a
-              class="bg-home-icon hover:bg-home_full-icon block relative h-full text-paragraph-sm bg-no-repeat bg-top"
-              href=""
-              aria-label="메인 페이지로 이동"
-            >
-              <span
-                class="absolute w-full text-center -tracking-[1px] bottom-0 left-1/2 -translate-x-1/2"
-                >홈</span
-              >
-            </a>
-          </li>
-          <li
-            class="h-full w-12 pt-0.5 hover:bg-gray-100 hover:rounded transition-all duration-300"
-          >
-            <a
-              class="bg-board-icon block hover:bg-board_full-icon relative h-full text-paragraph-sm bg-no-repeat bg-top"
-              href=""
-              aria-label="게시판 페이지로 이동"
-              ><span
-                class="absolute w-full text-center -tracking-[1px] bottom-0 left-1/2 -translate-x-1/2"
-                >게시판</span
-              ></a
-            >
-          </li>
-          <li
-            class="h-full w-12 pt-0.5 hover:bg-gray-100 hover:rounded transition-all duration-300"
-          >
-            <a
-              class="bg-near hover:bg-near_full block relative h-full text-paragraph-sm bg-no-repeat bg-top"
-              href=""
-              aria-label="내 근처 페이지로 이동"
-              ><span
-                class="absolute w-full text-center -tracking-[1px] bottom-0 left-1/2 -translate-x-1/2"
-                >내 근처</span
-              ></a
-            >
-          </li>
-          <li
-            class="h-full w-12 pt-0.5 hover:bg-gray-100 hover:rounded transition-all duration-300"
-          >
-            <a
-              class="bg-chat-icon block hover:bg-chat_full-icon relative h-full text-paragraph-sm bg-no-repeat bg-top"
-              href=""
-              aria-label="채팅 페이지로 이동"
-              ><span
-                class="absolute w-full text-center -tracking-[1px] bottom-0 left-1/2 -translate-x-1/2"
-                >채팅</span
-              ></a
-            >
-          </li>
-          <li
-          class="h-full w-12 pt-0.5 hover:bg-gray-100 hover:rounded transition-all duration-300"
+        <ul
+          class="flex text-primary text-label-md text-center gap-2 items-center w-full p-2"
         >
-          <a
-            class="bg-my-icon hover:bg-my_full-icon block relative h-full text-paragraph-sm bg-no-repeat bg-top"
-            href=""
-            aria-label="채팅 페이지로 이동"
-            ><span
-              class="absolute w-full text-center text-paragraph-sm -tracking-[1px] bottom-0 left-1/2 -translate-x-1/2"
-              >나의 이듬</span
-            ></a
-          >
-        </li>
+          <li class="grow border-b-2 border-primary">
+            <a href="/" aria-label="기기거래 페이지로 이동" tabindex="0"
+              >기기거래</a
+            >
+          </li>
+          <li class="grow text-gray-600">
+            <a href="#" aria-label="프로젝트 구인 페이지로 이동" tabindex="0" class="modal"
+              >프로젝트 구인</a
+            >
+          </li>
+          <li class="grow text-gray-600">
+            <a href="#" aria-label="과외 클래스로 페이지로 이동" tabindex="0" class="modal"
+              >과외/클래스</a
+            >
+          </li>
         </ul>
       </nav>
-  </footer>
-
-</body>
+      <section class="content flex flex-col top-0"></section>
+      <div class="space h-16 w-full"></div>
+      <div class="absolute right-[145px] z-[2]">
+        <div
+          id="write-container"
+          class="fixed bottom-20 w-[132px] flex flex-col gap-2 items-end"
+        >
+          <button
+            id="write"
+            class=" w-12 h-12 rounded-full bg-plus-icon bg-center bg-no-repeat bg-secondary shadow-lg hover:brightness-90 transition-all duration-300"
+          >
+        </div>
+      </div>
+    </main>
+    <footer
+        class="relative min-w-screen max-w-screen w-full h-[69px]"
+      >
+        <nav
+          class="w-full h-[69px] pl-2 pr-3 pt-2 pb-5 border-t-[1px] border-gray-200"
+        >
+          <ul class="w-full h-full flex justify-between items-center">
+            <li
+              class="is-select h-full w-12 pt-0.5 hover:bg-gray-100 hover:rounded transition-all duration-300"
+            >
+              <a
+                class="home block relative h-full text-paragraph-sm bg-home-icon bg-no-repeat bg-top"
+                href="/src/pages/main/"
+              >
+                <span
+                  class="absolute w-full text-center bottom-0 left-1/2 -translate-x-1/2"
+                  >홈</span
+                >
+              </a>
+            </li>
+            <li
+              class="h-full w-12 pt-0.5 hover:bg-gray-100 hover:rounded transition-all duration-300"
+            >
+              <a
+                class="board block relative h-full text-paragraph-sm bg-board-icon bg-no-repeat bg-top"
+                href="/src/pages/board/"
+                ><span
+                  class="absolute w-full text-center bottom-0 left-1/2 -translate-x-1/2"
+                  >게시판</span
+                ></a
+              >
+            </li>
+            <li
+              class="h-full w-12 pt-0.5 hover:bg-gray-100 hover:rounded transition-all duration-300"
+            >
+              <a
+                class="near block relative h-full text-paragraph-sm bg-near_full bg-no-repeat bg-top"
+                href="/src/pages/exchange/index.html"
+                ><span
+                  class="absolute w-full text-center bottom-0 left-1/2 -translate-x-1/2"
+                  >내 근처</span
+                ></a
+              >
+            </li>
+            <li
+              class="h-full w-12 pt-0.5 hover:bg-gray-100 hover:rounded transition-all duration-300"
+            >
+              <a
+                class="block relative h-full text-paragraph-sm bg-chat-icon bg-no-repeat bg-top"
+                href="/src/pages/chatting/lobby.html"
+                ><span
+                  class="absolute w-full text-center bottom-0 left-1/2 -translate-x-1/2"
+                  >채팅</span
+                ></a
+              >
+            </li>
+            <li
+              class="h-full w-12 pt-0.5 hover:bg-gray-100 hover:rounded transition-all duration-300"
+            >
+              <a
+                class="my block relative h-full text-paragraph-sm bg-my-icon bg-no-repeat bg-top"
+                href="/src/pages/myEuid/index.html"
+                ><span
+                  class="absolute w-full text-center bottom-0 left-1/2 -translate-x-1/2"
+                  >나의 이듬</span
+                ></a
+              >
+            </li>
+          </ul>
+        </nav>
+    </footer>
+  </body>
 </html>

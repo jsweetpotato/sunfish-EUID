@@ -1,0 +1,1 @@
+import"./tailwind-hLRvZ190.js";import{g as t}from"./getNode-pa7syr6m.js";const e=t("#login"),i=t("#join"),n=window.localStorage,l=o=>{o.preventDefault(),n.setItem("login",!1),window.location.href="/src/pages/login/category/"},a=o=>{o.preventDefault(),n.setItem("login",!0),window.location.href="/src/pages/login/signin/"};e.onclick=a;i.onclick=l;
