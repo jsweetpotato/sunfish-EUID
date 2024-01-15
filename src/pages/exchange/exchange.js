@@ -18,16 +18,18 @@ function show(){
   if(plusClickCount % 2 !== 0 ){
     body.style.background = 'rgba(0, 0, 0, 0.30)';
     section.style.filter = 'brightness(50%)';
-    plusButton.insertAdjacentHTML('beforebegin', /* html */
-    `
-    <div id='span-tag' class="flex flex-col absolute left-[-78px] w-full min-w-screen max-w-screen">
-      <div class="fixed bottom-36 flex flex-col w-[133px] items-center gap-1">
-        <a href="/src/pages/exchange/index.html" class="bg-exchange-icon h-10 px-[20px] py-[10px] self-stretch rounded-[60px]"></a>
-        <span class="bg-project-icon h-10 px-[20px] py-[10px] self-stretch rounded-[60px]"></span>
-        <span class="bg-study-icon h-10 px-[20px] py-[10px] self-stretch rounded-[60px]"></span>
+    plusButton.insertAdjacentHTML(
+      'beforebegin' /* html */,
+      `
+    <div id='span-tag' class="flex flex-col absolute left-[-82px] w-full min-w-screen max-w-screen">
+      <div class="fixed bottom-36 flex flex-col items-center gap-1">
+        <a href="/src/pages/exchange/index.html" class="px-[20px] py-[10px] bg-white w-full grow text-label-md self-stretch rounded-[60px]">🎧 기기거래</a>
+        <a href="#" class="px-[20px] py-[10px] bg-white text-label-md  w-full grow rounded-[60px]">⌨️ 프로젝트 구인</a>
+        <a href="#" class="px-[20px] py-[10px] bg-white text-label-md  w-full grow self-stretch rounded-[60px]">💻 과외/클래스</a>
       </div>
     </div>
-    `);
+    `
+    );
 
     createCategory = document.querySelector('#span-tag');
   }else {

@@ -13,6 +13,7 @@ import { getNode, getNodes } from '../../lib';
 // ];
 
 // 클로져를 사용해서 이벤트 바인딩?
+
 const initInput = (validConfig) => {
   const inputboxList = getNodes('.valid-input-box');
 
@@ -45,9 +46,21 @@ const initInput = (validConfig) => {
     letterCount(target);
   }
 
-  return inputboxList.forEach((inputbox, idx) => {
-    const { id, min = 0, max = 24, placeholder = '', label } = validConfig[idx];
-    const template = /* html */ `
+  const needUpdate = {
+    state: false,
+  };
+
+  const inputList = [];
+  return [
+    inputboxList.forEach((inputbox, idx) => {
+      const {
+        id,
+        min = 0,
+        max = 24,
+        placeholder = '',
+        label,
+      } = validConfig[idx];
+      const template = /* html */ `
       <label for="${id}" class="text-label-sm pb-2">${label}</label>
       <div class="input-wrapper group flex flex-col w-full">
         <input
@@ -72,10 +85,29 @@ const initInput = (validConfig) => {
       </div>
       `;
 
-    inputbox.insertAdjacentHTML('beforeend', template);
+      inputbox.insertAdjacentHTML('beforeend', template);
 
-    getNode(`input#${id}`).addEventListener('input', handleInput);
-  });
+      const input = getNode(`input#${id}`);
+      input.addEventListener('input', handleInput);
+
+      inputList.push(input);
+
+      Object.defineProperty(needUpdate, 'state', {
+        get() {
+          // eslint-disable-next-line no-underscore-dangle
+          return this._state;
+        },
+        set(value) {
+          // eslint-disable-next-line no-underscore-dangle
+          this._state = value;
+          console.log('object: ', input);
+          // 값이 변경될 때 원하는 이벤트를 트리거합니다.
+          inputList.forEach((input) => letterCount(input));
+        },
+      });
+    }),
+    needUpdate,
+  ];
 };
 
 export default initInput;

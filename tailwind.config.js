@@ -17,6 +17,7 @@ export default {
         // Header Icons
         'alram-icon': "url('/src/assets/headerIcon/alram.svg')",
         'close-icon': "url('/src/assets/headerIcon/close.svg')",
+        'close_white-icon': "url('/src/assets/headerIcon/close_white.svg')",
         'direction-icon': "url('/src/assets/headerIcon/direction.svg')",
         'more-icon': "url('/src/assets/headerIcon/more.svg')",
         'setting-icon': "url('/src/assets/headerIcon/setting.svg')",
