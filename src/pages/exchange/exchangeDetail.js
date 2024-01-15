@@ -1,15 +1,16 @@
-import PocketBase from 'pocketbase';
-import { getNode, getPbImageURL, comma } from '/src/lib';
-import Swiper from 'swiper';
 import gsap from 'gsap';
-import { Navigation, Pagination } from 'swiper/modules';
-import { createModal1Btn } from '../../components/Modal/Modal';
-// import Swiper and modules styles
+import Swiper from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import PocketBase from 'pocketbase';
+import { Navigation, Pagination } from 'swiper/modules';
+import { getNode, getPbImageURL, comma } from '../../lib';
 
-const share= getNode('#share');
+import { createModal1Btn } from '../../components/Modal/Modal';
+// import Swiper and modules styles
+
+const share = getNode('#share');
 const profileInfo = getNode('#profileInfo');
 const main = getNode('#main');
 const productInfo = getNode('#productInfo');
@@ -21,7 +22,6 @@ const back = getNode('#back');
 const pb = new PocketBase(import.meta.env.VITE_PB_URL);
 
 export default async function getData() {
-  
   const hash = window.location.hash.slice(1);
 
   const avatarList = await pb
@@ -57,8 +57,8 @@ export default async function getData() {
   );
 
   profileInfo.insertAdjacentHTML(
-    'afterbegin' /* html */,
-    `
+    'afterbegin',
+    /* html */ `
       <div class="flex justify-center items-center gap-2">
         <figure>
           <img src="${getPbImageURL(
@@ -75,8 +75,8 @@ export default async function getData() {
   );
 
   productInfo.insertAdjacentHTML(
-    'afterbegin' /* html */,
-    `
+    'afterbegin',
+    /* html */ `
       <div class="flex flex-col items-start gap-3">
         <h1 class="text-label-lg">${title}</h1>
         <span class="text-paragraph-sm text-gray-600" aria-label="제품종류와 작성시간">컴퓨터 • 17분전</span>
@@ -89,11 +89,11 @@ export default async function getData() {
   const url =
     isPriceOffer === true
       ? `/src/pages/exchange/exchangeWrite.html?=${id}`
-      : '#'; ;
+      : '#';
 
   footer.insertAdjacentHTML(
-    'afterbegin' /* html */,
-    `
+    'afterbegin',
+    /* html */ `
   <button
     type="button"
     class="bg-heart-icon w-5 h-5 bg-no-repeat bg-cover heartContainer heart"
@@ -125,10 +125,10 @@ export default async function getData() {
   });
 
   gsap.from('.list', {
-      x: -500,
-      duration: 0.3,
-      stagger: 0.1,
-    });
+    x: -500,
+    duration: 0.3,
+    stagger: 0.1,
+  });
 }
 
 function changeHeart(e) {
@@ -170,25 +170,25 @@ async function watch() {
   });
 }
 
-share.addEventListener('click', () => {
+/* -------------------------------------------------------------------------- */
+/*                                     모달                                    */
+/* -------------------------------------------------------------------------- */
+
 const [modal, button] = createModal1Btn({
   title: '서비스 준비중입니다',
-    desc: '빠른시일 내에 업데이트 할게요~이용에 불편을 드려 죄송합니다!',
-    buttonText: '확인',
-  });
-    modal.showing()
-    button.addEventListener('click', modal.closing);
-})
-addButton.addEventListener('click', () => {
-  const [modal, button] = createModal1Btn({
-    title: '서비스 준비중입니다',
-    desc: '빠른시일 내에 업데이트 할게요~이용에 불편을 드려 죄송합니다!',
-    buttonText: '확인',
-  });
-  modal.showing();
-  button.addEventListener('click', modal.closing);
+  desc: '빠른시일 내에 업데이트 할게요~<br>이용에 불편을 드려 죄송합니다!',
+  buttonText: '확인',
 });
+
+// 모달 열기
+share.addEventListener('click', modal.showing);
+addButton.addEventListener('click', modal.showing);
+
+// 모달 닫기
+button.addEventListener('click', modal.closing);
+
 getData();
 watch();
+
 footer.addEventListener('click', changeHeart);
-back.addEventListener('click', () => history.back());
+back.addEventListener('click', () => window.history.back());

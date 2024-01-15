@@ -7,7 +7,7 @@
     <title>엔터 이듬 - 기기러거래 디테일</title>
   </head>
   <body class="m-auto min-w-screen max-w-screen">
-    <header class="w-full sticky top-0 bg-white">
+    <header class="w-full sticky top-0 bg-white z-20">
       <div class="flex justify-between items-center">
         <a
           id="back"
@@ -33,7 +33,7 @@
         </div>
       </div>
     </header>
-    <main id="main" class="w-full overflow-auto h-[calc(100vh-40px)]">
+    <main id="main" class="w-full overflow-auto">
       <!-- Profile Information -->
       <section
         id="profileInfo"
@@ -53,7 +53,9 @@
               >☺️</span
             >
           </div>
-          <span aria-label="매너온도" class="text-paragraph-sm">매너온도</span>
+          <span aria-label="매너온도" class="text-paragraph-sm text-gray-600"
+            >매너온도</span
+          >
         </div>
       </section>
 
@@ -79,6 +81,7 @@
           <h1 class="text-label-md grow">이 글을 함께 봤어요</h1>
         </div>
       </section>
+
       <!-- Other Posts Items -->
       <section
         class="px-3 grid grid-cols-2 w-full flex-col gap-4 pb-2"
@@ -86,6 +89,7 @@
       >
         <!-- First Item -->
       </section>
+      <div class="space h-16 w-f"></div>
     </main>
     <footer
       class="flex items-center gap-3 w-full px-3 pt-3 pb-8 bg-white sticky bottom-0"

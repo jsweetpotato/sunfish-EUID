@@ -1,13 +1,13 @@
-import PocketBase from 'pocketbase';
-import { getNode, getPbImageURL, comma } from '/src/lib';
 import gsap from 'gsap';
+import PocketBase from 'pocketbase';
+import { getNode, getPbImageURL, comma } from '../../lib';
 
 const pb = new PocketBase(import.meta.env.VITE_PB_URL);
 const section = getNode('.content');
 
 function handleHeartClick(e) {
   const heartContainer = e.target.closest('.heartContainer');
-  
+
   if (heartContainer) {
     const heartBG = heartContainer.querySelector('.heart-bg');
     const countElement = heartBG.nextElementSibling;
@@ -31,15 +31,15 @@ export default async function imageList() {
   const result = await pb
     .collection('selling')
     .getFullList('pb/collections/selling');
-      result.forEach((value) => {
-        const sharing =
-          value.tradingType === 'nanum'
-            ? `<span class="text-label-sm text-white rounded-[4px] gap-2 grow bg-no-repeat py-[2px] px-1 bg-secondary">나눔</span>`
-            : '';
-        section.insertAdjacentHTML(
-          'afterbegin',
-          /* html */
-          `
+  result.forEach((value) => {
+    const sharing =
+      value.tradingType === 'nanum'
+        ? `<span class="text-label-sm text-white rounded-[4px] gap-2 grow bg-no-repeat py-[2px] px-1 bg-secondary">나눔</span>`
+        : '';
+    section.insertAdjacentHTML(
+      'afterbegin',
+      /* html */
+      `
       <div class="exchange-list flex p-3 gap-3 justify-center items-center border-b cursor-pointer relative" id="${
         value.id
       }">
@@ -52,7 +52,7 @@ export default async function imageList() {
         <div class="flex flex-col grow p-3">
           <a href="/src/pages/exchange/exchangeDetail.html#${value.id}" 
           class="text-paragraph-md absolute w-full h-full top-0 left-0">
-          <span class='absolute top-5 left-[129.5px]'>${value.title}</span>
+          <span class='absolute top-5 left-[130px]'>${value.title}</span>
           </a>
           <span class="text-paragraph-sm" aria-label="판매위치 • 작성시간">마포구 신수동 • 44분전</span>
           <div class="gap-1 grow w-full items-center">
@@ -68,14 +68,14 @@ export default async function imageList() {
         </div>
       </div>
       `
-        );
-      });
-    
-    gsap.from('.exchange-list', {
-      x: -500,
-      duration: 0.3,
-      stagger: 0.1,
-    });
-};
+    );
+  });
+
+  gsap.from('.exchange-list', {
+    x: -500,
+    duration: 0.3,
+    stagger: 0.1,
+  });
+}
 
 section.addEventListener('click', handleHeartClick);
