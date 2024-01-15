@@ -5,7 +5,8 @@
  */
 export const drawRecentSearchList = (list, target) => {
   list.forEach((item, idx) => {
-    const { name } = item;
+    if (idx > 6) return;
+    const name = item;
     const template = /* html */ `
     <li role="presentation">
     <div
@@ -23,7 +24,7 @@ export const drawRecentSearchList = (list, target) => {
       <button
         aria-label="기록에서 삭제"        
         data-type="delete"
-        data-idx="${idx}"
+        data-name="${name}"
         class="bg-close-icon size-7 bg-[length:14px_14px] bg-right bg-no-repeat cursor-pointer hover:bg-close-blue-icon focus:bg-close-blue-icon"
       >
       </button>

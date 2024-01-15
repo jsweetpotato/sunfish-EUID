@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>엔터 이듬 - 기기러거래 디테일</title>
-    <script type="module" crossorigin src="/assets/exchangeDetail-sFSIcdNH.js"></script>
-    <link rel="modulepreload" crossorigin href="/assets/tailwind-2pOqmYJK.js">
+    <script type="module" crossorigin src="/assets/exchangeDetail-UcnbHOOp.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/tailwind-FG0q2sUH.js">
     <link rel="modulepreload" crossorigin href="/assets/swiper-core-xIVJDqhu.js">
     <link rel="modulepreload" crossorigin href="/assets/getNode-pa7syr6m.js">
     <link rel="modulepreload" crossorigin href="/assets/delay-L14dHocY.js">
@@ -15,7 +15,7 @@
     <link rel="modulepreload" crossorigin href="/assets/comma-f4do0chS.js">
     <link rel="modulepreload" crossorigin href="/assets/Modal-LwrVZ11o.js">
     <link rel="modulepreload" crossorigin href="/assets/checkAuth-CTdHH8Oq.js">
-    <link rel="stylesheet" crossorigin href="/assets/tailwind-l7CzEsqV.css">
+    <link rel="stylesheet" crossorigin href="/assets/tailwind-qXjtL9Ir.css">
     <link rel="stylesheet" crossorigin href="/assets/exchangeDetail-mnVxPep1.css">
   </head>
   <body class="m-auto min-w-screen max-w-screen">
@@ -53,23 +53,38 @@
       <!-- Profile Information -->
       <section
         id="profileInfo"
-        class="grow w-full flex px-3 justify-between items-center rounded py-2"
+        class="grow w-full flex px-3 justify-between items-center rounded py-2 h-[60px]"
       >
-        <div role="group" class="flex grow gap-[-8px] items-end flex-col pr-2">
-          <div class="flex items-center justify-center gap-1">
+        <div id="profile" class="flex justify-center items-center gap-2">
+          <figure class="w-10 h-10 skeleton-loading circle"></figure>
+          <div class="flex flex-col justify-center items-start">
             <span
-              class="text-label-md text-secondary"
-              aria-label="매너 온도 41.2도"
+              class="text-label-md skeleton-loading text-transparent leading-tight mb-2"
+              >${name}</span
+            >
+            <span
+              class="text-paragraph-sm skeleton-loading text-transparent leading-tight"
+              >${용암}</span
+            >
+          </div>
+        </div>
+        <div
+          id="manner-temp"
+          role="group"
+          class="flex grow gap-[-8px] items-end flex-col pr-2"
+        >
+          <div class="flex items-center justify-center gap-2">
+            <span
+              class="text-label-md skeleton-loading text-transparent leading-tight mb-[6px]"
               >41.2℃</span
             >
             <span
-              class="text-xl items-center justify-center"
-              role="img"
-              aria-label="매너 온도 표시 아이콘"
+              class="text-xl items-center justify-center skeleton-loading size-5 text-transparent circle mb-[6px] mr-1"
               >☺️</span
             >
           </div>
-          <span aria-label="매너온도" class="text-paragraph-sm text-gray-600"
+          <span
+            class="text-paragraph-sm skeleton-loading text-transparent leading-tight"
             >매너온도</span
           >
         </div>
@@ -77,7 +92,7 @@
 
       <!-- Product Information -->
       <section
-        class="flex pl-3 pb-5 pt-3 min-h-[223px]"
+        class="flex pl-3 pb-5 pt-3 min-h-[224px]"
         id="productInfo"
       ></section>
 
@@ -107,16 +122,10 @@
         id="watchTogether"
       >
         <article
-          class="skeleton-loading relative w-full aspect-[1/1.38] rounded-lg"
+          class="skeleton-loading relative w-full aspect-[1/1.38] roundmd"
         ></article>
         <article
-          class="skeleton-loading relative w-full aspect-[1/1.38] rounded-lg bg-gray-100"
-        ></article>
-        <article
-          class="skeleton-loading relative w-full aspect-[1/1.38] rounded-lg"
-        ></article>
-        <article
-          class="skeleton-loading relative w-full aspect-[1/1.38] rounded-lg bg-gray-100"
+          class="skeleton-loading relative w-full aspect-[1/1.38] roundmd bg-gray-100"
         ></article>
         <!-- First Item -->
       </section>

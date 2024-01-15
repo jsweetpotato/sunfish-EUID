@@ -1,29 +1,19 @@
+import gsap from 'gsap';
 import { hangulIncludes } from '@toss/hangul';
-import { pb } from '../../lib';
 import { keywords, resultDataList } from './data';
 import { drawRecentSearchList, drawSearchResultList } from './draw';
-// import { drawSuggestionList } from './suggestion';
 
-const recentSearchList = [
-  {
-    name: '프론트엔드',
-  },
-  {
-    name: 'preview',
-  },
-];
-
-function debounce(callback, limit = 200) {
-  let timeout;
-
-  return function (...args) {
-    clearTimeout(timeout);
-
-    timeout = setTimeout(() => {
-      callback.apply(this, args);
-    }, limit);
-  };
-}
+const recentSearchList = (() => {
+  let searchlist;
+  if (localStorage.getItem('search-list')) {
+    const savedSearchList = localStorage.getItem('search-list');
+    // 문자열을 Array로 변환
+    const setArray = JSON.parse(savedSearchList);
+    // Array를 Set으로 변환
+    searchlist = new Set(setArray);
+  } else searchlist = new Set();
+  return searchlist;
+})();
 
 const $back = document.querySelector('#back');
 
@@ -54,6 +44,25 @@ let searchedResult;
 
 drawRecentSearchList(recentSearchList, $recentSearchUl);
 
+function renderNothing() {
+  $searchResultUl.insertAdjacentHTML(
+    'beforeend',
+    /* html */ `
+  <li>
+    <div class="sorry p-3 flex flex-col text-center">
+      <span class="text-heading-2xl">😅</span>
+      <p class="p-1 text-paragraph-lg">게시물이 없습니다.</p>
+    </div>
+  </li>
+   `
+  );
+  gsap.from('.sorry', {
+    y: 30,
+    opacity: 0,
+    duration: 0.2,
+  });
+}
+
 function getSearchList() {
   return resultDataList.filter((item) => {
     const { title, description } = item;
@@ -70,6 +79,12 @@ $searchForm.submit = () => {
   $suggestionView.hidden = true;
   $searchResultView.hidden = false;
   $defaultSearchView.hidden = true;
+  recentSearchList.add($searchInput.value);
+
+  if (searchedResult.length === 0) {
+    renderNothing();
+    return;
+  }
   drawSearchResultList(searchedResult, $searchResultUl);
 };
 
@@ -97,13 +112,16 @@ $popularSearchItems.forEach((item) => {
 
 $recentSearchUl.addEventListener('focusin', (e) => {
   const { target } = e;
-  console.log(target);
 
   if (target.dataset.type === 'delete') {
     target.addEventListener('click', () => {
-      const { idx } = target.dataset;
-      recentSearchList.splice(idx, 1);
+      const { name } = target.dataset;
+      recentSearchList.delete(name);
       $recentSearchUl.innerHTML = '';
+      localStorage.setItem(
+        'search-list',
+        JSON.stringify(Array.from(recentSearchList))
+      );
       drawRecentSearchList(recentSearchList, $recentSearchUl);
     });
     return;
@@ -146,12 +164,18 @@ const handleSuggestion = () => {
     $suggestionView.hidden = true;
     $searchResultView.hidden = true;
     $defaultSearchView.hidden = false;
+    $recentSearchUl.innerHTML = '';
+    drawRecentSearchList(recentSearchList, $recentSearchUl);
     return;
   }
   $suggestionView.hidden = false;
   $searchResultView.hidden = true;
   $defaultSearchView.hidden = true;
 
+  window.localStorage.setItem(
+    'search-list',
+    JSON.stringify(Array.from(recentSearchList))
+  );
   getSearchSuggestionList();
 };
 
