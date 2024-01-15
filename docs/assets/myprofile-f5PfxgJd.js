@@ -1,4 +1,4 @@
-import"./tailwind-hLRvZ190.js";import{g as a}from"./getNode-pa7syr6m.js";import{p as m}from"./delay-L14dHocY.js";const b=localStorage.getItem("pocketbase_auth"),e=JSON.parse(b),s=a("#profile"),t=a("#aboutMe"),g=a("#sellingProduct"),d=await m.collection("users").getOne(e.model.id,{fields:"avatar, name, period, job, company, introduce, userCord, sellingProductCount"}),{name:n,period:l,job:o,company:r,introduce:u,userCord:p,sellingProductCount:x}=d;function f(c,i="photo"){return`https://suppose-weather.pockethost.io//api/files/users/${e.model.id}/${c[i]}`}e.model.avatar===""?s.insertAdjacentHTML("afterbegin",`
+import"./tailwind-hLRvZ190.js";import{g as a}from"./getNode-pa7syr6m.js";import{p as m}from"./delay-L14dHocY.js";import{c as b}from"./checkAuth-CTdHH8Oq.js";import"./Modal-LwrVZ11o.js";b();const g=localStorage.getItem("pocketbase_auth"),e=JSON.parse(g),s=a("#profile"),t=a("#aboutMe"),u=a("#sellingProduct"),c=await m.collection("users").getOne(e.model.id,{fields:"avatar, name, period, job, company, introduce, userCord, sellingProductCount"}),{name:n,period:l,job:o,company:r,introduce:x,userCord:p,sellingProductCount:f}=c;function $(d,i="photo"){return`https://suppose-weather.pockethost.io//api/files/users/${e.model.id}/${d[i]}`}e.model.avatar===""?s.insertAdjacentHTML("afterbegin",`
     <img
     src="/src/assets/profile-img.svg"
     alt="내 프로필 사진"
@@ -12,7 +12,7 @@ import"./tailwind-hLRvZ190.js";import{g as a}from"./getNode-pa7syr6m.js";import{
     >#${p}</span>
     `):s.insertAdjacentHTML("afterbegin",`
     <img
-    src="${f(d,"avatar")}"
+    src="${$(c,"avatar")}"
     alt="내 프로필 사진"
     id="userImg"
     class="size-20 rounded-full shadow-[0_4px_4px_0_rgba(0,0,0,0.1)]"
@@ -44,8 +44,8 @@ import"./tailwind-hLRvZ190.js";import{g as a}from"./getNode-pa7syr6m.js";import{
     <span class="block mt-3 text-label-md">${r} ∙ ${o}</span>
     </div>
     <div class="mt-[10px] mb-4 mx-3 bg-bluegray-100 rounded-lg">
-      <span class="block p-[10px] text-paragraph-sm font-normal">${u}</span>
+      <span class="block p-[10px] text-paragraph-sm font-normal">${x}</span>
     </div>
-    `);g.insertAdjacentHTML("afterbegin",`
-  <span class="text-paragraph-md ml-3">판매상품 ${x}개</span>
+    `);u.insertAdjacentHTML("afterbegin",`
+  <span class="text-paragraph-md ml-3">판매상품 ${f}개</span>
   `);

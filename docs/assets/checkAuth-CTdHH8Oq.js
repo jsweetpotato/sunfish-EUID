@@ -1,0 +1,1 @@
+import"./delay-L14dHocY.js";import{c}from"./Modal-LwrVZ11o.js";function i(){const[o,e]=c({title:"🚫 로그인이 필요한 페이지입니다.",desc:"로그인 페이지로 이동합니다."});e.addEventListener("click",()=>{window.location.href="/"});const t=localStorage.getItem("pocketbase_auth");return t||o.showing(),t}export{i as c};

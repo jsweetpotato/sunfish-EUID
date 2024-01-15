@@ -9,9 +9,9 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, 'index.html'),
         // 마이페이지
-        myEuid: resolve(__dirname, 'src/pages/myeuid/index.html'),
-        myProfile: resolve(__dirname, 'src/pages/myeuid/myProfile.html'),
-        editProfile: resolve(__dirname, 'src/pages/myeuid/editProfile.html'),
+        myeuid: resolve(__dirname, 'src/pages/myeuid/index.html'),
+        myprofile: resolve(__dirname, 'src/pages/myeuid/myProfile.html'),
+        editprofile: resolve(__dirname, 'src/pages/myeuid/editProfile.html'),
         // 로그인
         category: resolve(__dirname, 'src/pages/login/category/index.html'),
         oauth: resolve(__dirname, 'src/pages/login/oauth/index.html'),
@@ -34,6 +34,7 @@ export default defineConfig({
         search: resolve(__dirname, 'src/pages/search/index.html'),
         // 채팅
         chatting: resolve(__dirname, 'src/pages/chatting/room.html'),
+        lobby: resolve(__dirname, 'src/pages/chatting/lobby.html'),
       },
     },
   },
