@@ -12,36 +12,7 @@
       href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
     />
     <link rel="stylesheet" href="/src/styles/tailwind.css" />
-    <title>엔터 이듬 - 게시판</title>
-    <style>
-      /* custom scrollbar style */
-      /* for webkit */
-      main::-webkit-scrollbar {
-        width: 7px;
-      }
-      main::-webkit-scrollbar-track {
-        background: #f1f1f1;
-      }
-      main::-webkit-scrollbar-thumb {
-        background: #c5c5c5;
-        border-radius: 5px;
-      }
-      main::-webkit-scrollbar-thumb:hover {
-        background: #aaa;
-      }
-      /* for mozilla */
-      main {
-        scrollbar-width: thin;
-        scrollbar-color: #c5c5c5 #f1f1f1;
-      }
-      /* icon */
-      .bg-direction_rotate-icon {
-        background-image: url('/src/assets/boardIcon/direction_rotate.svg');
-      }
-      .bg-plus-icon {
-        background-image: url('/src/assets/boardIcon/plus.svg');
-      }
-    </style>
+    <title>엔터 이듬 - 질의응답</title>
   </head>
   <body class="min-h-screen">
     <div class="relative min-w-screen max-w-screen w-full mx-auto">
@@ -271,14 +242,14 @@
             <li>
               <button
                 id="sort"
-                class="pl-8 pr-[10px] py-1.5 text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary bg-direction-icon bg-[10px_center] bg-no-repeat hover:brightness-95 transition-all duration-300"
+                class="pl-6 pr-1.5 py-1.5 leading-none text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary bg-direction-icon bg-[4px_center] bg-no-repeat hover:brightness-95 transition-all duration-300"
               >
                 최근 작성 순
               </button>
             </li>
             <li>
               <button
-                class="px-2.5 py-1.5 text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 transition-all duration-300"
+                class="p-1.5 leading-none text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 transition-all duration-300"
               >
                 전체
               </button>

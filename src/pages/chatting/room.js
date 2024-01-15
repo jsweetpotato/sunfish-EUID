@@ -1,9 +1,17 @@
 /* eslint-disable no-alert, no-shadow, import/no-unresolved, import/extensions, import/no-absolute-path, no-use-before-define */
 
 import gsap from 'gsap';
-import { pb, getNode, insertLast, clearContents, endScroll } from '/src/lib/';
+import {
+  pb,
+  getNode,
+  insertLast,
+  clearContents,
+  endScroll,
+  checkAuth,
+} from '/src/lib/';
 
 (async function init() {
+  if (!checkAuth()) return;
   const idParam = new URL(window.location.href).searchParams.get('id');
   const response = await pb.collection('chatroom').getOne(idParam, {
     fields: 'members',
@@ -91,10 +99,7 @@ function createMessageBox(box) {
 
 async function createTemplate(item) {
   const { originType, originId, owner, members, messageBox } = item;
-  const { id: myId } = pb.authStore.model;
-  const originResponse = await pb.collection(originType).getOne(originId, {
-    fields: 'title',
-  });
+  const { title } = item.expand.originId;
   const sellingHeaderTemplate = /* html */ `
   <div class="flex justify-between items-center">
   <div class="flex gap-3 items-center">
@@ -161,7 +166,7 @@ async function createTemplate(item) {
               class="bg-direction-icon block w-10 h-10 bg-no-repeat bg-center rotate-90 hover:bg-gray-100 hover:rounded transition-all duration-300"
             ></a>
             <p class="text-label-md">
-              ${originResponse.title} 전체방
+              ${title} 대화방
               <span id="member-count" class="text-contents-content-secondary">${members.length}</span>
             </p>
           </div>
@@ -201,7 +206,7 @@ function render(template) {
 async function getData() {
   const idParam = new URL(window.location.href).searchParams.get('id');
   const response = await pb.collection('chatroom').getOne(idParam, {
-    expand: 'members',
+    expand: 'members, originId',
   });
   console.log(response);
   render(await createTemplate(response));

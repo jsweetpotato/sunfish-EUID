@@ -1,7 +1,12 @@
 /* eslint-disable no-alert, no-shadow, import/no-unresolved, import/extensions, import/no-absolute-path, no-use-before-define */
 
 import gsap from 'gsap';
-import { pb, getNode, getNodes, insertLast, clearContents } from '/src/lib/';
+import { pb, getNode, insertLast, clearContents, checkAuth } from '/src/lib/';
+import {
+  createModal1Btn,
+  createModal2Btn,
+  createAlertModal,
+} from '/src/components/Modal/Modal.js';
 
 const categoryEmojiObject = {
   프로젝트: '💻',
@@ -122,20 +127,31 @@ function render(template) {
   );
 }
 
+const [joinCompleteModal] = createAlertModal('가입이 완료되었습니다.');
+
 const handlerObject = {
   handleJoin(pbData) {
-    console.log('handlejoin');
     const { members: prevMembers } = pbData;
     const myId = pb.authStore.model.id;
+    const [modal, cancel, button] = createModal2Btn({
+      title: '❓ 모임에 가입하시겠습니까?',
+      desc: '',
+      cancelText: '아니오',
+      submitText: '예',
+    });
+    button.addEventListener('click', async () => {
+      await pb.collection('together').update(pbData.id, {
+        members: [...prevMembers, myId],
+      });
+      getData();
+      modal.closing();
+      joinCompleteModal.showing();
+    });
+    cancel.addEventListener('click', () => modal.closing());
     // 가입 로직
     return async (e) => {
       try {
-        const response = await pb.collection('together').update(pbData.id, {
-          members: [...prevMembers, myId],
-        });
-        alert('가입이 완료되었습니다.');
-        console.log(response);
-        getData();
+        modal.showing();
       } catch (error) {
         alert(
           '가입 도중 알 수 없는 오류가 발생했습니다. 잠시 후 다시 시도해주세요.'
@@ -146,19 +162,31 @@ const handlerObject = {
   },
   handleGoChat(pbData) {
     // 채팅방 이동 로직
+    const [modal, button] = createModal1Btn({
+      title: '🚨 운영원칙에 의해서<br />삭제된 채팅방입니다.',
+      desc: '삭제된 채팅방에는<br />입장하실 수 없습니다.',
+    });
+    button.addEventListener('click', () => {
+      modal.closing();
+      window.history.back();
+    });
     return async (e) => {
       const { chatroomId } = pbData;
       const myId = pb.authStore.model.id;
-      const response = await pb.collection('chatroom').getOne(chatroomId, {
-        fields: 'members',
-      });
-      const currentMembers = response.members;
-      if (currentMembers.indexOf(myId) < 0) {
-        await pb.collection('chatroom').update(chatroomId, {
-          members: [...currentMembers, myId],
+      try {
+        const response = await pb.collection('chatroom').getOne(chatroomId, {
+          fields: 'members',
         });
+        const currentMembers = response.members;
+        if (currentMembers.indexOf(myId) < 0) {
+          await pb.collection('chatroom').update(chatroomId, {
+            members: [...currentMembers, myId],
+          });
+        }
+        window.location.href = `/src/pages/chatting/room.html?id=${chatroomId}`;
+      } catch (error) {
+        modal.showing();
       }
-      window.location.href = `/src/pages/chatting/room.html?id=${chatroomId}`;
     };
   },
 };
@@ -171,6 +199,7 @@ function attachButtonHandler(handlerObj, pbData) {
 }
 
 async function getData() {
+  if (!checkAuth()) return;
   const idParam = new URL(window.location.href).searchParams.get('id');
   if (idParam === null) {
     alert('잘못된 접근입니다.');
@@ -179,7 +208,27 @@ async function getData() {
   const response = await pb.collection('together').getOne(idParam, {
     expand: 'user',
   });
+  document.title = `엔터 이듬 - 같이해요::${response.title}`;
   render(createTemplate(response));
   attachButtonHandler(handlerObject, response);
 }
 getData();
+
+const shareButton = getNode('#share');
+function handleClipBoard() {
+  const [successMoodal] = createAlertModal('📃 주소가 복사되었습니다.', 1000);
+  const [failedMoodal] = createAlertModal(
+    '📃 복사 도중 오류가 발생했습니다.',
+    1000
+  );
+  return async (e) => {
+    try {
+      await window.navigator.clipboard.writeText(window.location.href);
+      successMoodal.showing();
+    } catch (error) {
+      failedMoodal.showing();
+    }
+  };
+}
+
+shareButton.addEventListener('click', handleClipBoard());
