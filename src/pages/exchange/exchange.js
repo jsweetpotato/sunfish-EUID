@@ -1,18 +1,24 @@
-const plusButton = document.querySelector('#plusButton-container');
-const plusButtonIcon = document.querySelector('#plusButton');
-const body = document.querySelector('body');
-const exchangeList = document.querySelector('#exchangeList');
-const heartContainer = document.querySelectorAll('.heartContainer');
-let clickCount = 0;
+/* eslint-disable no-param-reassign */
+import { getNode, getNodes } from '/src/lib';
+import list from './exchangeData';
+import { createModal1Btn } from '../../components/Modal/Modal';
+
+const modals = getNodes('.modal');
+const plusButton = getNode('#plusButton');
+const body = getNode('#body');
+const section = getNode('.content');
+let plusClickCount = 0;
 let isClick = false;
+
 let createCategory;
 
-function onClick(){
-  clickCount++;
+function show(){
+  plusClickCount+=1;
 
-  if(clickCount % 2 !== 0 ){
-    body.style.background='rgba(0, 0, 0, 0.5)';
-    plusButton.insertAdjacentHTML('beforebegin', /*html */
+  if(plusClickCount % 2 !== 0 ){
+    body.style.background = 'rgba(0, 0, 0, 0.30)';
+    section.style.filter = 'brightness(50%)';
+    plusButton.insertAdjacentHTML('beforebegin', /* html */
     `
     <div id='span-tag' class="flex flex-col absolute left-[-78px] w-full min-w-screen max-w-screen">
       <div class="fixed bottom-36 flex flex-col w-[133px] items-center gap-1">
@@ -26,6 +32,7 @@ function onClick(){
     createCategory = document.querySelector('#span-tag');
   }else {
     body.style.background='';
+    section.style.filter='';
     if(createCategory) {
       createCategory.remove();
     }
@@ -33,31 +40,30 @@ function onClick(){
 }
 
 function toggle(){
-  isClick != isClick
+  isClick = !isClick
   this.classList.toggle('bg-plus-icon');
   this.classList.toggle('bg-exchange-close-icon');
   this.classList.toggle('bg-white');
   this.classList.toggle('bg-secondary');
 }
 
-function move(){
-  window.location.href='/src/pages/exchange/exchangeDetail.html';
+function showingModal(e) {
+  e.preventDefault();
 }
 
-function stop(e){
-  e.stopPropagation();
-  isClick = !isClick; 
-  if(!isClick){
-    e.currentTarget.style.backgroundColor=''; 
-  } else {
-    e.currentTarget.style.backgroundColor='pink';
-  }
-}
+list();
 
-
-heartContainer.forEach((item) => {
-  item.addEventListener('click', stop);
+modals.forEach((item) => {
+  item.addEventListener('click', showingModal);
+  const [modal, button] = createModal1Btn({
+    title: '서비스 준비중입니다',
+    desc: '빠른시일 내에 업데이트 할게요~이용에 불편을 드려 죄송합니다!',
+    buttonText: '확인',
+  });
+  item.addEventListener('click', modal.showing)
+  button.addEventListener('click', modal.closing);
 })
-plusButton.addEventListener('click', onClick);
-plusButtonIcon.addEventListener('click', toggle);
-exchangeList.addEventListener('click', move)
+plusButton.addEventListener('click', show);
+plusButton.addEventListener('click', toggle);
+
+

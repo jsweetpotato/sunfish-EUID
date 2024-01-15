@@ -1,6 +1,7 @@
-/* eslint-disable no-alert, no-shadow */
+/* eslint-disable no-alert, no-shadow, import/no-unresolved, import/extensions, import/no-absolute-path */
 
 import gsap from 'gsap';
+import { pb } from '/src/lib/';
 
 const inputRadioNameArray = [
   ['category'],
@@ -9,14 +10,18 @@ const inputRadioNameArray = [
 ];
 
 const formObj = {
-  category: 'project',
+  type: 'together',
+  isOpen: true,
+  category: '프로젝트',
   title: '',
   description: '',
-  date: '오늘',
-  time: '오후 8:00',
-  gender: 'anyone',
-  age: 'anyone',
-  maxMember: 'noLimited',
+  date: new Date().toISOString(),
+  gender: '누구나',
+  isApproval: false,
+  maxMember: '제한없음',
+  age: '모든 연령',
+  members: [pb.authStore.model.id],
+  user: pb.authStore.model.id,
 };
 
 const validConfig = {
@@ -56,12 +61,14 @@ function handleToggleCheckBox({ currentTarget }) {
       marginLeft: 'auto',
       duration: 0.2,
     });
+    formObj.isApproval = true;
   } else {
     label.classList.replace('bg-secondary', 'bg-contents-content-tertiary');
     gsap.to('#approveHandle', {
       marginLeft: 0,
       duration: 0.2,
     });
+    formObj.isApproval = false;
   }
 }
 approveCheckBox.addEventListener('change', handleToggleCheckBox);
@@ -113,7 +120,6 @@ function letterCount(target) {
   letterCount.textContent = `${countArray[0]}/${countArray[1]}`;
 }
 function handleInput(e) {
-  console.log('handleInput');
   const step2NextButton = document.querySelector('#step2Next');
   inputValidation(e.target);
   toggleValidStyle(e.target);
@@ -176,23 +182,19 @@ stepButton.forEach((button) => {
 });
 
 const doneButton = document.querySelector('#done');
-function handleDone(e) {
-  if (step === 3) {
-    findCheckedValue(step);
-    const { category, title, description, date, time, age, gender, maxMember } =
-      formObj;
-    alert(
-      `카테고리: ${category}
-      제목 : ${title}
-      소개 : ${description}
-      날짜 : ${date}
-      시간 : ${time}
-      연령대 : ${age.replace(/\D/g, '')}
-      성별 : ${gender}
-      최대 인원 : ${maxMember.replace(/\D/g, '')}`
+async function handleDone(e) {
+  if (step !== 3) return;
+  findCheckedValue(step);
+  formObj.age = formObj.age.slice(3);
+  formObj.maxMember = formObj.maxMember.slice(9);
+  try {
+    const response = await pb.collection('together').create(formObj);
+    alert('게시글이 작성되었습니다.');
+    window.location.replace(
+      `/src/pages/board/togetherView.html?id=${response.id}`
     );
-    alert('게시글 등록이 완료되었습니다.');
-    window.location.href = '/src/pages/board/together.html';
+  } catch (error) {
+    console.error(error);
   }
 }
 doneButton.addEventListener('click', handleDone);

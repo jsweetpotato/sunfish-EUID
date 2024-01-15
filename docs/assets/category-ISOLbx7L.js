@@ -1,0 +1,7 @@
+import"./modulepreload-polyfill-9p4a8sJU.js";/* empty css                 */import{a as g,t as o}from"./main_button-S1akn1o1.js";const c=document.querySelector("#category-list"),u=document.querySelector("#button-wrapper"),d=document.querySelector("#back"),n=g({id:"submit",value:"이대로 저장할래요",type:"submit"}),p=window.localStorage;u.appendChild(n);const l=["Programming","Design","UI/UX","Frontend","Backend","AI","Blockchain","React","DataAnalysis","Publishing"],s={Programming:!1,Design:!1,"UI/UX":!1,Frontend:!1,Backend:!1,AI:!1,Blockchain:!1,React:!1,dataAnalysis:!1,Publishing:!1},b=()=>{l.map(e=>c.insertAdjacentHTML("beforeend",`
+    <button id=${e} type="button" class="group">
+      <span class="group-[.selected]:bg-secondary flex justify-between items-center bg-bluegray-200 max-w-50 px-3 py-6 rounded-lg text-start hover:brightness-95">
+        <p class="group-[.selected]:text-white text-label-md leading-tight">${e}</p>
+        <span aria-hidden="true" class="group-[.selected]:bg-check-icon row-span-2 w-5 h-5 bg-no-repeat bg-center bg-contain bg-plus-icon-full"></span>
+      </span>
+    </button>`))},f=()=>{let e=0;return({target:a})=>{const t=a.closest("button");t&&(t.classList.toggle("selected"),s[t.id]=!s[t.id],s[t.id]?e++:e--,e>2?o(n,!0):o(n,!1))}},m=e=>{e.preventDefault();const a=Object.values(s),t=l.filter((r,i)=>a[i]??r);p.setItem("categorys",JSON.stringify(t)),window.location.href="/src/pages/login/signup/"};b();n.onclick=m;c.addEventListener("click",f());d.onclick=()=>{window.location.href="/src/pages/login/"};

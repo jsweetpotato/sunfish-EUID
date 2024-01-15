@@ -24,7 +24,7 @@
     </header>
 
     <main
-      class="min-w-screen max-w-screen overflow-auto h-[calc(100vh-40px-116px)]"
+      class="min-w-screen max-w-screen overflow-auto h-[calc(100vh-40px-124px)]"
     >
       <section class="border-b-[5px] border-gray-200">
         <div class="p-3 border-t-[1px] border-gray-200">
@@ -35,7 +35,6 @@
               type="file"
               name="file"
               id="file"
-              multiple
               accept=".jpg, .png, .gif, .webp"
               class="peer/file w-0 h-0"
             />
@@ -43,11 +42,11 @@
               for="file"
               class="bg-camera-icon block bg-no-repeat cursor-pointer w-[50px] h-[50px] mr-2"
             ></label>
-            <div id="image-preview" class="hidden">
+            <div id="image-preview" class="hidden absolute">
               <div id="image-wrapper"></div>
               <button
                 id="file-clear"
-                class="absolute bottom-[35px] left-[95px] py-1 px-2 text-label-sm font-normal text-white rounded-full bg-red-400 hover:brightness-95 transition-all duration-300"
+                class="absolute w-5 h-5 bottom-[35px] left-10 text-label-sm font-normal text-white rounded-full bg-red-400 hover:brightness-95 transition-all duration-300"
               >
                 X
               </button>
@@ -56,7 +55,7 @@
         </div>
 
         <!-- 이름 Input Box -->
-        <div class="required-input valid-input-box p-3"></div>
+        <div class="required valid-input-box p-3"></div>
 
         <!-- 성별 radio button -->
         <div class="p-3">
@@ -77,7 +76,7 @@
 
             <label
               for="private"
-              class="peer-focus/private:border-primary peer-checked/private:bg-primary peer-checked/private:text-white px-2.5 py-1.5 text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 cursor-pointer"
+              class="reading-none peer-focus/private:border-primary peer-checked/private:bg-primary peer-checked/private:text-white px-2.5 py-1.5 text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 cursor-pointer"
             >
               비공개
             </label>
@@ -91,7 +90,7 @@
 
             <label
               for="male"
-              class="peer-focus/male:border-primary peer-checked/male:bg-primary peer-checked/male:text-white px-2.5 py-1.5 text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 cursor-pointer"
+              class="reading-none peer-focus/male:border-primary peer-checked/male:bg-primary peer-checked/male:text-white px-2.5 py-1.5 text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 cursor-pointer"
             >
               남자
             </label>
@@ -105,7 +104,7 @@
 
             <label
               for="female"
-              class="peer-focus/female:border-primary peer-checked/female:bg-primary peer-checked/female:text-white px-2.5 py-1.5 text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 cursor-pointer"
+              class="reading-none peer-focus/female:border-primary peer-checked/female:bg-primary peer-checked/female:text-white px-2.5 py-1.5 text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 cursor-pointer"
             >
               여자
             </label>
@@ -113,10 +112,10 @@
         </div>
 
         <!-- 직업 Input Box -->
-        <div class="required-input valid-input-box p-3"></div>
+        <div class="required valid-input-box p-3"></div>
 
         <!-- 직장 Input box -->
-        <div class="required-input valid-input-box p-3"></div>
+        <div class="required valid-input-box p-3"></div>
 
         <!-- 자기소개 Input Box -->
         <div class="px-3 pt-3 pb-14">

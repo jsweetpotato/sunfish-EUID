@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>이듬</title>
+    <script type="module" crossorigin src="/assets/signup-n4I5st0u.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-9p4a8sJU.js">
+    <link rel="modulepreload" crossorigin href="/assets/Modal-1FvcQ_11.js">
+    <link rel="modulepreload" crossorigin href="/assets/main_button-S1akn1o1.js">
+    <link rel="modulepreload" crossorigin href="/assets/getNode-pa7syr6m.js">
+    <link rel="modulepreload" crossorigin href="/assets/pb-KemexN1N.js">
+    <link rel="stylesheet" crossorigin href="/assets/tailwind-zd2sDhNp.css">
+  </head>
+  <body>
+    <div
+      class="flex flex-col px-3 min-w-screen max-w-screen min-h-screen mx-auto"
+    >
+      <header class="sticky top-0 bg-white w-full h-10 pe-3">
+        <a
+          href="#"
+          id="back"
+          role="button"
+          aria-label="돌아가기"
+          class="bg-direction-icon block w-10 h-10 bg-no-repeat bg-bottom rotate-90 hover:bg-gray-100"
+        ></a>
+      </header>
+      <main>
+        <p class="text-label-lg text-prima my-[1.125rem]">
+          안녕하세요!<br />
+          이메일로 가입해주세요!
+        </p>
+
+        <form
+          id="oauth-form"
+          action="/"
+          class="w-full h-full flex flex-col gap-8"
+        >
+          <div id="email-box" class="relative group flex flex-col gap-2">
+            <label for="contentName" class="text-label-md">이메일</label>
+            <input
+              id="email"
+              type="email"
+              required
+              class="group-[.invalid]:border-red-500 group-[.hasemail]:border-red-500 p-2 rounded border w-full border-contents-content-tertiary"
+              placeholder="이메일 주소 입력"
+            />
+            <span
+              class="group-[.invalid]:block absolute bottom-[-18px] left-0 hidden text-label-sm text-red-500"
+              >올바른 이메일을 입력해주세요.</span
+            >
+            <span
+              class="group-[.hasemail]:block absolute bottom-[-18px] left-0 hidden text-label-sm text-red-500"
+              >이미 존재하는 이메일 입니다.</span
+            >
+          </div>
+          <div id="pw-box" class="relative group flex flex-col gap-2">
+            <label for="contentName" class="text-label-md">비밀번호</label>
+            <input
+              id="pw"
+              type="password"
+              minlength="8"
+              required
+              class="group-[.invalid]:border-red-500 p-2 rounded border w-full border-contents-content-tertiary"
+              placeholder="대소문자, 특수문자, 숫자 포함 8자리 이상"
+            />
+            <span
+              class="group-[.invalid]:block absolute bottom-[-18px] left-0 hidden text-label-sm text-red-500"
+              >대소문자,특수문자 포함 6자리 이상 입력해주세요</span
+            >
+          </div>
+          <div
+            id="pw-confirm-box"
+            class="relative group/confirm flex flex-col gap-2"
+          >
+            <label for="contentName" class="text-label-md">비밀번호 확인</label>
+            <input
+              id="pw-confirm"
+              type="password"
+              minlength="6"
+              required
+              class="group-[.invalid]/confirm:border-red-500 p-2 rounded border w-full border-contents-content-tertiary"
+              placeholder="비밀번호 재입력"
+            />
+            <span
+              class="group-[.invalid]/confirm:block absolute bottom-[-18px] left-0 hidden text-label-sm text-red-500"
+              >비밀번호가 일치하지 않습니다.</span
+            >
+          </div>
+        </form>
+      </main>
+    </div>
+  </body>
+</html>

@@ -63,97 +63,202 @@
         <div class="w-full h-[90px] pl-5 py-2">
           <div class="swiper w-full h-full">
             <div class="swiper-wrapper">
-              <div class="swiper-slide w-[54px] flex flex-col justify-between">
-                <button
+              <div
+                class="[&:has(>input:focus)]:shadow-[0px_0px_0px_1px_#373F67_inset] swiper-slide w-[54px]"
+              >
+                <input
+                  class="category-button [&:checked+label>span:nth-child(1)]:border-secondary [&:checked+label>span:nth-child(2)]:text-secondary w-0 h-0 block"
+                  type="radio"
                   id="all"
-                  data-category="all"
-                  class="category-button w-[54px] h-[54px] text-label-xl border-2 rounded-full bg-gray-100 border-secondary"
-                >
-                  🌎
-                </button>
-                <span class="text-label-sm text-center text-secondary"
-                  >전체</span
-                >
+                  name="category"
+                  value="all"
+                  checked
+                  autocomplete="off"
+                />
+                <label class="cursor-pointer" for="all">
+                  <span
+                    class="block w-[54px] h-[54px] text-label-xl border-2 text-center leading-[50px] rounded-full bg-gray-100"
+                  >
+                    🌎
+                  </span>
+                  <span class="block mt-1.5 text-label-sm text-center"
+                    >전체</span
+                  >
+                </label>
               </div>
-              <div class="swiper-slide w-[54px] flex flex-col justify-between">
-                <button
-                  id="programming"
-                  data-category="programming"
-                  class="category-button w-[54px] h-[54px] text-label-xl border-2 rounded-full bg-gray-100"
-                >
-                  💻
-                </button>
-                <span class="text-label-sm text-center">프로그래밍</span>
+              <div
+                class="[&:has(>input:focus)]:shadow-[0px_0px_0px_1px_#373F67_inset] swiper-slide w-[54px] flex flex-col justify-between"
+              >
+                <input
+                  class="category-button [&:checked+label>span:nth-child(1)]:border-secondary [&:checked+label>span:nth-child(2)]:text-secondary w-0 h-0 block"
+                  type="radio"
+                  id="프로그래밍"
+                  name="category"
+                  value="프로그래밍"
+                  autocomplete="off"
+                />
+                <label class="cursor-pointer" for="프로그래밍">
+                  <span
+                    class="block w-[54px] h-[54px] text-label-xl border-2 text-center leading-[50px] rounded-full bg-gray-100"
+                  >
+                    💻
+                  </span>
+                  <span class="block mt-1.5 text-label-sm text-center"
+                    >프로그래밍</span
+                  >
+                </label>
               </div>
-              <div class="swiper-slide w-[54px] flex flex-col justify-between">
-                <button
-                  id="design"
-                  data-category="design"
-                  class="category-button w-[54px] h-[54px] text-label-xl border-2 rounded-full bg-gray-100"
-                >
-                  🖼
-                </button>
-                <span class="text-label-sm text-center">디자인</span>
+              <div
+                class="[&:has(>input:focus)]:shadow-[0px_0px_0px_1px_#373F67_inset] swiper-slide w-[54px] flex flex-col justify-between"
+              >
+                <input
+                  class="category-button [&:checked+label>span:nth-child(1)]:border-secondary [&:checked+label>span:nth-child(2)]:text-secondary w-0 h-0 block"
+                  type="radio"
+                  id="인터렉션디자인"
+                  name="category"
+                  value="인터렉션디자인"
+                  autocomplete="off"
+                />
+                <label class="cursor-pointer" for="인터렉션디자인">
+                  <span
+                    class="block w-[54px] h-[54px] text-label-xl border-2 text-center leading-[50px] rounded-full bg-gray-100"
+                  >
+                    🖼
+                  </span>
+                  <span class="block mt-1.5 text-label-sm text-center"
+                    >디자인</span
+                  >
+                </label>
               </div>
-              <div class="swiper-slide w-[54px] flex flex-col justify-between">
-                <button
-                  id="uiux"
-                  data-category="uiux"
-                  class="category-button w-[54px] h-[54px] text-label-xl border-2 rounded-full bg-gray-100"
-                >
-                  🎎
-                </button>
-                <span class="text-label-sm text-center">UI·UX</span>
+              <div
+                class="[&:has(>input:focus)]:shadow-[0px_0px_0px_1px_#373F67_inset] swiper-slide w-[54px] flex flex-col justify-between"
+              >
+                <input
+                  class="category-button [&:checked+label>span:nth-child(1)]:border-secondary [&:checked+label>span:nth-child(2)]:text-secondary w-0 h-0 block"
+                  type="radio"
+                  id="UI/UX"
+                  name="category"
+                  value="UI/UX"
+                  autocomplete="off"
+                />
+                <label class="cursor-pointer" for="UI/UX">
+                  <span
+                    class="block w-[54px] h-[54px] text-label-xl border-2 text-center leading-[50px] rounded-full bg-gray-100"
+                  >
+                    🎎
+                  </span>
+                  <span class="block mt-1.5 text-label-sm text-center"
+                    >UI · UX</span
+                  >
+                </label>
               </div>
-              <div class="swiper-slide w-[54px] flex flex-col justify-between">
-                <button
-                  id="frontend"
-                  data-category="frontend"
-                  class="category-button w-[54px] h-[54px] text-label-xl border-2 rounded-full bg-gray-100"
-                >
-                  🏕
-                </button>
-                <span class="text-label-sm text-center">프론트엔드</span>
+              <div
+                class="[&:has(>input:focus)]:shadow-[0px_0px_0px_1px_#373F67_inset] swiper-slide w-[54px] flex flex-col justify-between"
+              >
+                <input
+                  class="category-button [&:checked+label>span:nth-child(1)]:border-secondary [&:checked+label>span:nth-child(2)]:text-secondary w-0 h-0 block"
+                  type="radio"
+                  id="프론트엔드"
+                  name="category"
+                  value="프론트엔드"
+                  autocomplete="off"
+                />
+                <label class="cursor-pointer" for="프론트엔드">
+                  <span
+                    class="block w-[54px] h-[54px] text-label-xl border-2 text-center leading-[50px] rounded-full bg-gray-100"
+                  >
+                    🏞
+                  </span>
+                  <span class="block mt-1.5 text-label-sm text-center"
+                    >프론트엔드</span
+                  >
+                </label>
               </div>
-              <div class="swiper-slide w-[54px] flex flex-col justify-between">
-                <button
-                  id="backend"
-                  data-category="backend"
-                  class="category-button w-[54px] h-[54px] text-label-xl border-2 rounded-full bg-gray-100"
-                >
-                  📈
-                </button>
-                <span class="text-label-sm text-center">백엔드</span>
+              <div
+                class="[&:has(>input:focus)]:shadow-[0px_0px_0px_1px_#373F67_inset] swiper-slide w-[54px] flex flex-col justify-between"
+              >
+                <input
+                  class="category-button [&:checked+label>span:nth-child(1)]:border-secondary [&:checked+label>span:nth-child(2)]:text-secondary w-0 h-0 block"
+                  type="radio"
+                  id="백엔드"
+                  name="category"
+                  value="백엔드"
+                  autocomplete="off"
+                />
+                <label class="cursor-pointer" for="백엔드">
+                  <span
+                    class="block w-[54px] h-[54px] text-label-xl border-2 text-center leading-[50px] rounded-full bg-gray-100"
+                  >
+                    📈
+                  </span>
+                  <span class="block mt-1.5 text-label-sm text-center"
+                    >백엔드</span
+                  >
+                </label>
               </div>
-              <div class="swiper-slide w-[54px] flex flex-col justify-between">
-                <button
-                  id="publishing"
-                  data-category="publishing"
-                  class="category-button w-[54px] h-[54px] text-label-xl border-2 rounded-full bg-gray-100"
-                >
-                  📚
-                </button>
-                <span class="text-label-sm text-center">퍼블리싱</span>
+              <div
+                class="[&:has(>input:focus)]:shadow-[0px_0px_0px_1px_#373F67_inset] swiper-slide w-[54px] flex flex-col justify-between"
+              >
+                <input
+                  class="category-button [&:checked+label>span:nth-child(1)]:border-secondary [&:checked+label>span:nth-child(2)]:text-secondary w-0 h-0 block"
+                  type="radio"
+                  id="퍼블리싱"
+                  name="category"
+                  value="퍼블리싱"
+                  autocomplete="off"
+                />
+                <label class="cursor-pointer" for="퍼블리싱">
+                  <span
+                    class="block w-[54px] h-[54px] text-label-xl border-2 text-center leading-[50px] rounded-full bg-gray-100"
+                  >
+                    📚
+                  </span>
+                  <span class="block mt-1.5 text-label-sm text-center"
+                    >퍼블리싱</span
+                  >
+                </label>
               </div>
-              <div class="swiper-slide w-[54px] flex flex-col justify-between">
-                <button
-                  id="ai"
-                  data-category="ai"
-                  class="category-button w-[54px] h-[54px] text-label-xl border-2 rounded-full bg-gray-100"
-                >
-                  👤
-                </button>
-                <span class="text-label-sm text-center">AI</span>
+              <div
+                class="[&:has(>input:focus)]:shadow-[0px_0px_0px_1px_#373F67_inset] swiper-slide w-[54px] flex flex-col justify-between"
+              >
+                <input
+                  class="category-button [&:checked+label>span:nth-child(1)]:border-secondary [&:checked+label>span:nth-child(2)]:text-secondary w-0 h-0 block"
+                  type="radio"
+                  id="AI"
+                  name="category"
+                  value="AI"
+                  autocomplete="off"
+                />
+                <label class="cursor-pointer" for="AI">
+                  <span
+                    class="block w-[54px] h-[54px] text-label-xl border-2 text-center leading-[50px] rounded-full bg-gray-100"
+                  >
+                    👤
+                  </span>
+                  <span class="block mt-1.5 text-label-sm text-center">AI</span>
+                </label>
               </div>
-              <div class="swiper-slide w-[54px] flex flex-col justify-between">
-                <button
-                  id="blockchain"
-                  data-category="blockchain"
-                  class="category-button w-[54px] h-[54px] text-label-xl border-2 rounded-full bg-gray-100"
-                >
-                  🖇
-                </button>
-                <span class="text-label-sm text-center">블록체인</span>
+              <div
+                class="[&:has(>input:focus)]:shadow-[0px_0px_0px_1px_#373F67_inset] swiper-slide w-[54px] flex flex-col justify-between"
+              >
+                <input
+                  class="category-button [&:checked+label>span:nth-child(1)]:border-secondary [&:checked+label>span:nth-child(2)]:text-secondary w-0 h-0 block"
+                  type="radio"
+                  id="블록체인"
+                  name="category"
+                  value="블록체인"
+                  autocomplete="off"
+                />
+                <label class="cursor-pointer" for="블록체인">
+                  <span
+                    class="block w-[54px] h-[54px] text-label-xl border-2 text-center leading-[50px] rounded-full bg-gray-100"
+                  >
+                    🖇
+                  </span>
+                  <span class="block mt-1.5 text-label-sm text-center"
+                    >블록체인</span
+                  >
+                </label>
               </div>
             </div>
           </div>
@@ -211,7 +316,7 @@
             >
               <a
                 class="home block relative h-full text-paragraph-sm font-normal bg-home-icon bg-no-repeat bg-top"
-                href="/"
+                href="/src/pages/main/"
               >
                 <span
                   class="absolute w-full text-center bottom-0 left-1/2 -translate-x-1/2"

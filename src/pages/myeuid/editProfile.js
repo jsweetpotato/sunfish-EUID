@@ -3,6 +3,12 @@ import { getNode, getNodes, pb } from '../../lib';
 import initInput from '../../components/ValidationInput/ValidationInput';
 import { createModal1Btn, createModal2Btn } from '../../components/Modal/Modal';
 
+const saveButton = getNode('#saveButton');
+const cancelButton = getNodes('.cancelButton');
+
+/* -------------------------------------------------------------------------- */
+/*                              Validation Input                              */
+/* -------------------------------------------------------------------------- */
 const inputArray = [
   {
     id: 'nameInput',
@@ -30,7 +36,6 @@ initInput(inputArray);
 
 const textarea = getNode('#aboutMeInput');
 const characterCount = getNode('#characterCount');
-const saveButton = getNode('#saveButton');
 
 function countCharacters() {
   const count = textarea.value.length;
@@ -40,50 +45,85 @@ function countCharacters() {
     characterCount.textContent = '500/500';
   }
 }
-
 textarea.addEventListener('input', countCharacters);
 
+/* -------------------------------------------------------------------------- */
+/*                                Radio Button                                */
+/* -------------------------------------------------------------------------- */
+
+const privateRadio = getNode('#private');
+const maleRadio = getNode('#male');
+const femaleRadio = getNode('#female');
+
+function moveCheck(e) {
+  const prevChecked = document.querySelector('[checked]');
+  if (prevChecked) {
+    prevChecked.removeAttribute('checked');
+  }
+  e.target.setAttribute('checked', 'checked');
+}
+privateRadio.addEventListener('click', moveCheck);
+maleRadio.addEventListener('click', moveCheck);
+femaleRadio.addEventListener('click', moveCheck);
+
+/* -------------------------------------------------------------------------- */
+/*                                agreeCheckbox                               */
+/* -------------------------------------------------------------------------- */
 const allAgreeCheckbox = getNode('#all-agree-checkbox');
 const agreeCheckboxes = getNodes('.agree-checkbox');
+const isDisabled = [true, true]; // 모두 false가 되면 저장 버튼 활성화
 
-// 하위 체크박스가 모두 체크되면 전체동의도 체크되는 함수
 const handleCheckboxChange = () => {
-  // 하위 체크박스가 모두 체크되어 있으면 isAllChecked에 true가 담김
   const isAllChecked = [...agreeCheckboxes].every(
     (checkbox) => checkbox.checked
   );
 
-  // savebutton disabled 속성 설정
-  saveButton.disabled = !isAllChecked;
-
-  // isAllChecked = true일 때 전체동의 체크박스도 체크됨
+  if (!isAllChecked) {
+    saveButton.disabled = true;
+    isDisabled[0] = true;
+  } else {
+    isDisabled[0] = false;
+  }
   allAgreeCheckbox.checked = isAllChecked;
 };
 
-// 전체동의가 변경되면 하위 체크박스도 변경됨
 allAgreeCheckbox.addEventListener('change', () => {
-  // 전체동의 체크박스의 값(true, false)이 담김
   const isChecked = allAgreeCheckbox.checked;
-
-  // 전체동의 체크박스가 true/false면 하위 체크박스도 true/false
   agreeCheckboxes.forEach((checkbox) => {
-    checkbox.checked = isChecked; // 개별 체크박스의 상태를 "전체 동의" 체크박스의 상태로 업데이트
+    checkbox.checked = isChecked;
   });
-
   saveButton.disabled = !isChecked;
 });
 
-// 하위 체크박스 중 하나라도 해제되면 전체동의도 해제
-// 각 개별 체크박스에 이벤트 리스너 추가
 agreeCheckboxes.forEach((checkbox) => {
-  checkbox.addEventListener(
-    'change',
-    // 다른 체크박스가 변경되면 "전체 동의" 체크박스의 상태 업데이트
-    handleCheckboxChange
-  );
+  checkbox.addEventListener('change', handleCheckboxChange);
 });
 
-// 저장 완료 모달
+/* ---------------------------------- 필수 입력 --------------------------------- */
+
+// 필수 입력 필드에 공통 클래스 required-input 추가
+const required = getNodes('.required input');
+required.forEach((element) => {
+  element.classList.add('required-input');
+});
+
+// 필수 입력 필드가 비어있으면 isDisabled[0] = true
+const requiredInputs = getNodes('.required-input');
+requiredInputs.forEach((element) => {
+  element.addEventListener('input', () => {
+    if (element.value === '') {
+      isDisabled[1] = true;
+      saveButton.disabled = true;
+    } else {
+      isDisabled[1] = false;
+      saveButton.disabled = false;
+    }
+  });
+});
+
+/* -------------------------------------------------------------------------- */
+/*                                    Modal                                   */
+/* -------------------------------------------------------------------------- */
 
 const [saveModal, modalSaveButton] = createModal1Btn({
   title: '🥳 저장 완료!',
@@ -98,74 +138,95 @@ const [warningModal, modalCancelButton, modalSubmitButton] = createModal2Btn({
   submitText: '확인',
 });
 
-// 저장 모달
+/* -------------------------------- saveModal ------------------------------- */
+
 const login = localStorage.getItem('login');
+const userImg = getNode('#userImg');
 const nameInput = getNode('#nameInput');
 const jobInput = getNode('#jobInput');
 const companyInput = getNode('#companyInput');
 const aboutMeInput = getNode('#aboutMeInput');
-const genderInput = document.querySelector('input[name="gender"]:checked');
+const usersOauth = localStorage.getItem('users-oauth');
+const userData = JSON.parse(usersOauth);
+const pocketAuth = localStorage.getItem('pocketbase_auth');
+const pocketData = JSON.parse(pocketAuth);
+const fileField = getNode('#file');
+const imageWrapper = getNode('#image-wrapper');
 
 const saveData = async () => {
-  if (login === 'false') {
-    // 회원가입 유저
+  const genderInput = document.querySelector('input[name="gender"]:checked');
 
-    const localData = localStorage.getItem('users-oauth');
-    const parseData = JSON.parse(localData);
-
-    const data = {
-      username: `${nameInput.value}`,
-      email: parseData.email,
-      emailVisibility: true,
-      password: parseData.password,
-      passwordConfirm: parseData.passwordConfirm,
-      name: 'qwe',
-      phone: parseData.phone,
-      categorys: parseData.categorys,
-      gender: `${genderInput.value}`,
-      company: `${companyInput.value}`,
-      job: `${jobInput.value}`,
-      period: Math.ceil(Math.random() * 10),
-      introduce: `${aboutMeInput.value}`,
-      passionTemp: 12,
-      sellingProductCount: 12,
+  if (imageWrapper.innerHTML === '') {
+    const hash = window.location.hash.slice(1);
+    const defaultImg = {
+      avatar: `profile_img_${hash}.svg`,
     };
-
-    const data2 = {
-      username: 'test_username',
-      email: 'test@example.com',
-      emailVisibility: true,
-      password: parseData.password,
-      passwordConfirm: parseData.passwordConfirm,
-      name: 'test',
-      phone: 'test',
-      categorys: ['programming'],
-      gender: 'none',
-      company: 'test',
-      job: 'test',
-      period: 123,
-      introduce: 'test',
-      passionTemp: 123,
-      sellingProductCount: 123,
-    };
-
-    const record = await pb.collection('users').create(data2);
-    console.log(record);
-
-    await pb.collection('users').create(data);
-
-    localStorage.setItem('login', 'true');
+    pb.collection('users').update(pocketData.model.id, defaultImg);
+    console.log(defaultImg);
+    console.log(hash);
+    return;
   }
 
-  window.location.href = '/src/pages/myeuid/myProfile.html';
-  saveModal.closing();
+  /* --------------------------------- 회원가입 유저 -------------------------------- */
+  if (login === 'false') {
+    const array = new Uint16Array(1);
+    const userCord = crypto.getRandomValues(array).join('');
+
+    const createUser = {
+      username: `${userData.email.split('@')[0]}`,
+      email: `${userData.email}`,
+      emailVisibility: true,
+      password: `${userData.password}`,
+      passwordConfirm: `${userData.passwordConfirm}`,
+      categorys: userData.categorys.map((data) => data.toLowerCase()),
+      phone: `${userData.phone}`,
+      avatar: fileField.files[0],
+      name: `${nameInput.value}`,
+      gender: `${genderInput.id}`,
+      job: `${jobInput.value}`,
+      company: `${companyInput.value}`,
+      introduce: `${aboutMeInput.value}`,
+      period: Math.ceil(Math.random() * 10),
+      userCord,
+      sellingProductCount: 123,
+    };
+    saveModal.closing();
+
+    await pb.collection('users').create(createUser);
+
+    await pb
+      .collection('users')
+      .authWithPassword(userData.email, userData.password)
+      .then(() => {
+        window.location.href = '/src/pages/main/';
+      });
+    localStorage.removeItem('users-oauth');
+    localStorage.setItem('login', 'true');
+
+    /* --------------------------------- 로그인 유저 --------------------------------- */
+  } else {
+    const updateUser = {
+      avatar: fileField.files[0],
+      name: `${nameInput.value}`,
+      gender: `${genderInput.id}`,
+      job: `${jobInput.value}`,
+      company: `${companyInput.value}`,
+      introduce: `${aboutMeInput.value}`,
+    };
+
+    pb.collection('users')
+      .update(pocketData.model.id, updateUser)
+      .then(() => {
+        window.location.href = '/src/pages/myeuid/myProfile.html';
+      });
+  }
 };
 
 modalSaveButton.onclick = saveData;
 saveButton.onclick = () => saveModal.showing();
 
-// 경고 모달
-const cancelButton = getNodes('.cancelButton');
+/* ------------------------------ warningModal ------------------------------ */
+
 const storage = window.localStorage;
 
 const cancelProfileEdit = () => {
@@ -186,29 +247,11 @@ cancelButton.forEach((button) => {
   button.onclick = () => warningModal.showing();
 });
 
-// 시작하기
-// -> 데이터 입력해서 user 컬렉션에 저장
-// -> user.datalocalStorage에 저장
-// -> 프로필 수정 페이지로 이동
-// -> 프로필 수정 페이지에서 user 데이타 받아와서 뿌리기
+/* -------------------------------------------------------------------------- */
+/*                                  userImage                                 */
+/* -------------------------------------------------------------------------- */
 
-// 로그아웃
-// -> localStorage에 유저정보 삭제
-
-// 회원탈퇴
-// -> localStorage에 유저정보 삭제
-// -> pb에 있는 user데이터 삭제
-// 단, 게시글이 작성된 미리 생성된 기본 유저는 삭제 X
-// 갓 생성한 user만 삭제
-
-// 수정
-// -> localStorage에 저장된 유저 데이터 가져오기
-// -> editProfile에 뿌리기
-// -> 수정 후 pb에 데이터 전달하기
-
-const fileField = getNode('#file');
 const imagePreview = getNode('#image-preview');
-const imageWrapper = getNode('#image-wrapper');
 const fileClearButton = getNode('#file-clear');
 
 function handleFileChange({ target }) {
@@ -220,6 +263,7 @@ function handleFileChange({ target }) {
     const imgUrl = URL.createObjectURL(file);
     const img = document.createElement('img');
     img.classList.add('w-[50px]', 'h-[50px]');
+    img.id = 'userImg';
     img.src = imgUrl;
     imageWrapper.appendChild(img);
   });
@@ -234,3 +278,43 @@ function handleClear({ target }) {
   imagePreview.classList.add('hidden');
 }
 fileClearButton.addEventListener('click', handleClear);
+
+/* -------------------------------------------------------------------------- */
+/*                 로그인 유저 : 프로필 수정 페이지 -> 기존 데이터 렌더링                 */
+/* -------------------------------------------------------------------------- */
+const userProfile = await pb.collection('users').getOne(pocketData.model.id, {
+  fields: 'avatar',
+});
+function getPbImageURL(item, fileName = 'photo') {
+  return `${import.meta.env.VITE_PB_URL}/api/files/users/${
+    pocketData.model.id
+  }/${item[fileName]}`;
+}
+
+if (login === 'true') {
+  imagePreview.classList.remove('hidden');
+  imageWrapper.insertAdjacentHTML(
+    'afterbegin' /* html */,
+    `
+    <img class="w-[50px] h-[50px]" id="userImg" src="${getPbImageURL(
+      userProfile,
+      'avatar'
+    )}">
+    `
+  );
+
+  nameInput.value = pocketData.model.name;
+  jobInput.value = pocketData.model.job;
+  companyInput.value = pocketData.model.company;
+  aboutMeInput.value = pocketData.model.introduce;
+
+  const prevGender = pocketData.model.gender;
+  const prevElement = getNode(`#${prevGender}`);
+  if (prevElement) {
+    prevElement.setAttribute('checked', 'checked');
+  } else {
+    privateRadio.removeAttribute('checked');
+    maleRadio.removeAttribute('checked');
+    femaleRadio.removeAttribute('checked');
+  }
+}

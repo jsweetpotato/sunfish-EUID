@@ -61,81 +61,149 @@
         </div>
 
         <div class="w-full h-[90px] pl-5 py-2">
+          <h2 class="sr-only">카테고리 선택</h2>
           <div class="swiper w-full h-full">
             <div class="swiper-wrapper">
-              <div class="swiper-slide w-[54px] flex flex-col justify-between">
-                <button
+              <div
+                class="[&:has(>input:focus)]:shadow-[0px_0px_0px_1px_#373F67_inset] swiper-slide w-[54px]"
+              >
+                <input
+                  class="category-button [&:checked+label>span:nth-child(1)]:border-secondary [&:checked+label>span:nth-child(2)]:text-secondary w-0 h-0 block"
+                  type="radio"
                   id="all"
-                  data-category="all"
-                  class="category-button w-[54px] h-[54px] text-label-xl border-2 rounded-full bg-gray-100 border-secondary"
-                >
-                  🌎
-                </button>
-                <span class="text-label-sm text-center text-secondary"
-                  >전체</span
-                >
-              </div>
-              <div class="swiper-slide w-[54px] flex flex-col justify-between">
-                <button
-                  id="project"
-                  data-category="project"
-                  class="category-button w-[54px] h-[54px] text-label-xl border-2 rounded-full bg-gray-100"
-                >
-                  💻
-                </button>
-                <span class="text-label-sm text-center">프로젝트</span>
-              </div>
-              <div class="swiper-slide w-[54px] flex flex-col justify-between">
-                <button
-                  id="study"
-                  data-category="study"
-                  class="category-button w-[54px] h-[54px] text-label-xl border-2 rounded-full bg-gray-100"
-                >
-                  📑
-                </button>
-                <span class="text-label-sm text-center">스터디</span>
-              </div>
-              <div class="swiper-slide w-[54px] flex flex-col justify-between">
-                <button
-                  id="food"
-                  data-category="food"
-                  class="category-button w-[54px] h-[54px] text-label-xl border-2 rounded-full bg-gray-100"
-                >
-                  🍝
-                </button>
-                <span class="text-label-sm text-center">음식</span>
-              </div>
-              <div class="swiper-slide w-[54px] flex flex-col justify-between">
-                <button
-                  id="hobby"
-                  data-category="hobby"
-                  class="category-button w-[54px] h-[54px] text-label-xl border-2 rounded-full bg-gray-100"
-                >
-                  🎧
-                </button>
-                <span class="text-label-sm text-center">취미/여가</span>
-              </div>
-              <div class="swiper-slide w-[54px] flex flex-col justify-between">
-                <button
-                  id="sports"
-                  data-category="sports"
-                  class="category-button w-[54px] h-[54px] text-label-xl border-2 rounded-full bg-gray-100"
-                >
-                  ⚽
-                </button>
-                <span class="text-label-sm text-center">운동</span>
+                  name="category"
+                  checked
+                />
+                <label class="cursor-pointer" for="all">
+                  <span
+                    class="block w-[54px] h-[54px] text-label-xl border-2 text-center leading-[50px] rounded-full bg-gray-100"
+                  >
+                    🌎
+                  </span>
+                  <span class="block mt-1.5 text-label-sm text-center"
+                    >전체</span
+                  >
+                </label>
               </div>
               <div
-                class="category-button swiper-slide mr-5 w-[54px] flex flex-col justify-between"
+                class="[&:has(>input:focus)]:shadow-[0px_0px_0px_1px_#373F67_inset] swiper-slide w-[54px] flex flex-col justify-between"
               >
-                <button
+                <input
+                  class="category-button [&:checked+label>span:nth-child(1)]:border-secondary [&:checked+label>span:nth-child(2)]:text-secondary w-0 h-0 block"
+                  type="radio"
+                  id="project"
+                  name="category"
+                />
+                <label class="cursor-pointer" for="project">
+                  <span
+                    class="block w-[54px] h-[54px] text-label-xl border-2 text-center leading-[50px] rounded-full bg-gray-100"
+                  >
+                    💻
+                  </span>
+                  <span class="block mt-1.5 text-label-sm text-center"
+                    >프로젝트</span
+                  >
+                </label>
+              </div>
+              <div
+                class="[&:has(>input:focus)]:shadow-[0px_0px_0px_1px_#373F67_inset] swiper-slide w-[54px] flex flex-col justify-between"
+              >
+                <input
+                  class="category-button [&:checked+label>span:nth-child(1)]:border-secondary [&:checked+label>span:nth-child(2)]:text-secondary w-0 h-0 block"
+                  type="radio"
+                  id="study"
+                  name="category"
+                />
+                <label class="cursor-pointer" for="study">
+                  <span
+                    class="block w-[54px] h-[54px] text-label-xl border-2 text-center leading-[50px] rounded-full bg-gray-100"
+                  >
+                    📑
+                  </span>
+                  <span class="block mt-1.5 text-label-sm text-center"
+                    >스터디</span
+                  >
+                </label>
+              </div>
+              <div
+                class="[&:has(>input:focus)]:shadow-[0px_0px_0px_1px_#373F67_inset] swiper-slide w-[54px] flex flex-col justify-between"
+              >
+                <input
+                  class="category-button [&:checked+label>span:nth-child(1)]:border-secondary [&:checked+label>span:nth-child(2)]:text-secondary w-0 h-0 block"
+                  type="radio"
+                  id="food"
+                  name="category"
+                />
+                <label class="cursor-pointer" for="food">
+                  <span
+                    class="block w-[54px] h-[54px] text-label-xl border-2 text-center leading-[50px] rounded-full bg-gray-100"
+                  >
+                    🍝
+                  </span>
+                  <span class="block mt-1.5 text-label-sm text-center"
+                    >음식</span
+                  >
+                </label>
+              </div>
+              <div
+                class="[&:has(>input:focus)]:shadow-[0px_0px_0px_1px_#373F67_inset] swiper-slide w-[54px] flex flex-col justify-between"
+              >
+                <input
+                  class="category-button [&:checked+label>span:nth-child(1)]:border-secondary [&:checked+label>span:nth-child(2)]:text-secondary w-0 h-0 block"
+                  type="radio"
+                  id="hobby"
+                  name="category"
+                />
+                <label class="cursor-pointer" for="hobby">
+                  <span
+                    class="block w-[54px] h-[54px] text-label-xl border-2 text-center leading-[50px] rounded-full bg-gray-100"
+                  >
+                    🎧
+                  </span>
+                  <span class="block mt-1.5 text-label-sm text-center"
+                    >취미/여가</span
+                  >
+                </label>
+              </div>
+              <div
+                class="[&:has(>input:focus)]:shadow-[0px_0px_0px_1px_#373F67_inset] swiper-slide w-[54px] flex flex-col justify-between"
+              >
+                <input
+                  class="category-button [&:checked+label>span:nth-child(1)]:border-secondary [&:checked+label>span:nth-child(2)]:text-secondary w-0 h-0 block"
+                  type="radio"
+                  id="sports"
+                  name="category"
+                />
+                <label class="cursor-pointer" for="sports">
+                  <span
+                    class="block w-[54px] h-[54px] text-label-xl border-2 text-center leading-[50px] rounded-full bg-gray-100"
+                  >
+                    ⚽
+                  </span>
+                  <span class="block mt-1.5 text-label-sm text-center"
+                    >운동</span
+                  >
+                </label>
+              </div>
+              <div
+                class="swiper-slide mr-5 w-[54px] flex flex-col justify-between"
+              >
+                <input
+                  class="category-button [&:checked+label>span:nth-child(1)]:border-secondary [&:checked+label>span:nth-child(2)]:text-secondary w-0 h-0 block"
+                  type="radio"
                   id="reading"
-                  data-category="reading"
-                  class="category-button w-[54px] h-[54px] text-label-xl border-2 rounded-full bg-gray-100"
-                >
-                  📚
-                </button>
-                <span class="text-label-sm text-center">독서</span>
+                  name="category"
+                />
+                <label class="cursor-pointer" for="reading">
+                  <span
+                    class="block w-[54px] h-[54px] text-label-xl border-2 text-center leading-[50px] rounded-full bg-gray-100"
+                  >
+                    📚
+                  </span>
+                  <span class="block mt-1.5 text-label-sm text-center"
+                    >독서</span
+                  >
+                </label>
               </div>
             </div>
           </div>
@@ -144,28 +212,64 @@
         <nav
           class="w-full px-3 py-2 border-b border-b-contents-content-secondary"
         >
+          <h2 class="sr-only">같이해요 게시글 필터 버튼 목록</h2>
           <ul class="flex items-center gap-1">
             <li>
               <button
-                id="sort"
+                id="sortCreated"
                 class="pl-8 pr-[10px] py-1.5 text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary bg-direction-icon bg-[10px_center] bg-no-repeat hover:brightness-95 transition-all duration-300"
               >
                 최근 작성 순
               </button>
             </li>
             <li>
-              <button
-                class="px-2.5 py-1.5 text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 transition-all duration-300"
+              <input
+                class="[&:checked+label]:bg-primary [&:checked+label]:text-white [&:focus+label]:outline [&:focus+label]:outline-secondary block w-0 h-0"
+                type="radio"
+                name="filter"
+                id="filterAll"
+                value="filterAll"
+                autocomplete="off"
+                checked
+              />
+              <label
+                for="filterAll"
+                class="block px-2.5 py-1.5 text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 transition-all duration-300 cursor-pointer"
               >
                 전체
-              </button>
+              </label>
             </li>
             <li>
-              <button
-                class="px-2.5 py-1.5 text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 transition-all duration-300"
+              <input
+                class="[&:checked+label]:bg-primary [&:checked+label]:text-white [&:focus+label]:outline [&:focus+label]:outline-secondary block w-0 h-0"
+                type="radio"
+                name="filter"
+                id="filterOpen"
+                value="filterOpen"
+                autocomplete="off"
+              />
+              <label
+                for="filterOpen"
+                class="block px-2.5 py-1.5 text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 transition-all duration-300 cursor-pointer"
               >
                 모집 중인 글만
-              </button>
+              </label>
+            </li>
+            <li>
+              <input
+                class="[&:checked+label]:bg-primary [&:checked+label]:text-white [&:focus+label]:outline [&:focus+label]:outline-secondary block w-0 h-0"
+                type="radio"
+                name="filter"
+                id="filterJoin"
+                value="filterJoin"
+                autocomplete="off"
+              />
+              <label
+                for="filterJoin"
+                class="block px-2.5 py-1.5 text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 transition-all duration-300 cursor-pointer"
+              >
+                가입한 모임만
+              </label>
             </li>
           </ul>
         </nav>
@@ -173,9 +277,9 @@
 
       <main class="relative h-[calc(100dvh-246px)] overflow-auto">
         <section>
-          <h1 class="sr-only">같이해요 게시판</h1>
+          <h2 class="sr-only">같이해요 게시글 목록</h2>
           <ul id="board-list"></ul>
-          <div class="absolute right-[60px]">
+          <div class="absolute right-[60px] bg-con">
             <div class="fixed bottom-20">
               <a
                 class="block w-12 h-12 rounded-full bg-plus-icon bg-center bg-no-repeat bg-secondary shadow-lg hover:brightness-90 transition-all duration-300"
@@ -200,7 +304,7 @@
             >
               <a
                 class="home block relative h-full text-paragraph-sm font-normal bg-home-icon bg-no-repeat bg-top"
-                href="/"
+                href="/src/pages/main/"
               >
                 <span
                   class="absolute w-full text-center bottom-0 left-1/2 -translate-x-1/2"

@@ -8,7 +8,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" sizes="192x192" href="/android-icon.png" />
     <link rel="stylesheet" href="/src/styles/tailwind.css" />
-    <title>엔터 이듬 - 게시판</title>
+    <title>엔터 이듬 - 게시판 메인</title>
     <style>
       /* custom scrollbar style */
       /* for webkit */
@@ -141,94 +141,124 @@
           </li>
           <li class="py-2 px-3 flex justify-between items-center">
             <p tabindex="0">Programming</p>
-            <button
+            <input
+              class="[&:checked+label]:bg-white [&:checked+label]:text-contents-content-primary [&:focus+label]:outline [&:focus+label]:outline-primary w-0 h-0"
+              type="checkbox"
               id="programming"
-              data-name="programming"
-              class="px-3 py-1.5 text-paragraph-sm font-normal bg-white rounded-full border border-contents-content-tertiary hover:brightness-95 transition-all duration-300"
+            />
+            <label
+              for="programming"
+              class="px-3 py-1.5 text-paragraph-sm text-white font-normal bg-secondary rounded-full border border-contents-content-tertiary hover:brightness-95 transition-colors duration-300 cursor-pointer"
             >
-              팔로우 취소
-            </button>
+              팔로우
+            </label>
           </li>
           <li class="py-2 px-3 flex justify-between items-center">
             <p tabindex="0">Design</p>
-            <button
+            <input
+              class="[&:checked+label]:bg-white [&:checked+label]:text-contents-content-primary [&:focus+label]:outline [&:focus+label]:outline-primary w-0 h-0"
+              type="checkbox"
               id="design"
-              data-name="design"
-              class="px-3 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
+            />
+            <label
+              for="design"
+              class="px-3 py-1.5 text-paragraph-sm text-white font-normal bg-secondary rounded-full border border-contents-content-tertiary hover:brightness-95 transition-colors duration-300 cursor-pointer"
             >
               팔로우
-            </button>
+            </label>
           </li>
           <li class="py-2 px-3 flex justify-between items-center">
-            <p>
-              <span class="sr-only" tabindex="0"
-                >User Interface and User Experience</span
-              >
+            <p tabindex="0">
+              <span class="sr-only">User Interface and User Experience</span>
               <abbr title="User Interface" class="no-underline">UI</abbr> ·
               <abbr title="User Experience" class="no-underline">UX</abbr>
             </p>
-            <button
+            <input
+              class="[&:checked+label]:bg-white [&:checked+label]:text-contents-content-primary [&:focus+label]:outline [&:focus+label]:outline-primary w-0 h-0"
+              type="checkbox"
               id="uiux"
-              data-name="uiux"
-              class="px-3 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
+            />
+            <label
+              for="uiux"
+              class="px-3 py-1.5 text-paragraph-sm text-white font-normal bg-secondary rounded-full border border-contents-content-tertiary hover:brightness-95 transition-colors duration-300 cursor-pointer"
             >
               팔로우
-            </button>
+            </label>
           </li>
           <li class="py-2 px-3 flex justify-between items-center">
             <p tabindex="0">Frontend</p>
-            <button
+            <input
+              class="[&:checked+label]:bg-white [&:checked+label]:text-contents-content-primary [&:focus+label]:outline [&:focus+label]:outline-primary w-0 h-0"
+              type="checkbox"
               id="frontend"
-              data-name="frontend"
-              class="px-3 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
+            />
+            <label
+              for="frontend"
+              class="px-3 py-1.5 text-paragraph-sm text-white font-normal bg-secondary rounded-full border border-contents-content-tertiary hover:brightness-95 transition-colors duration-300 cursor-pointer"
             >
               팔로우
-            </button>
+            </label>
           </li>
           <li class="py-2 px-3 flex justify-between items-center">
             <p tabindex="0">Backend</p>
-            <button
+            <input
+              class="[&:checked+label]:bg-white [&:checked+label]:text-contents-content-primary [&:focus+label]:outline [&:focus+label]:outline-primary w-0 h-0"
+              type="checkbox"
               id="backend"
-              data-name="backend"
-              class="px-3 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
+            />
+            <label
+              for="backend"
+              class="px-3 py-1.5 text-paragraph-sm text-white font-normal bg-secondary rounded-full border border-contents-content-tertiary hover:brightness-95 transition-colors duration-300 cursor-pointer"
             >
               팔로우
-            </button>
+            </label>
           </li>
           <li class="py-2 px-3 flex justify-between items-center">
             <p tabindex="0">Publishing</p>
-            <button
+            <input
+              class="[&:checked+label]:bg-white [&:checked+label]:text-contents-content-primary [&:focus+label]:outline [&:focus+label]:outline-primary w-0 h-0"
+              type="checkbox"
               id="publishing"
-              data-name="publishing"
-              class="px-3 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
+            />
+            <label
+              for="publishing"
+              class="px-3 py-1.5 text-paragraph-sm text-white font-normal bg-secondary rounded-full border border-contents-content-tertiary hover:brightness-95 transition-colors duration-300 cursor-pointer"
             >
               팔로우
-            </button>
+            </label>
           </li>
           <li class="py-2 px-3 flex justify-between items-center">
-            <p>
-              <span class="sr-only" tabindex="0">인공지능</span>
+            <p tabindex="0">
+              <span class="sr-only">인공지능</span>
               <abbr title="Artificial Intelligence" class="no-underline"
                 >AI</abbr
               >
             </p>
-            <button
+            <input
+              class="[&:checked+label]:bg-white [&:checked+label]:text-contents-content-primary [&:focus+label]:outline [&:focus+label]:outline-primary w-0 h-0"
+              type="checkbox"
               id="ai"
-              data-name="ai"
-              class="px-3 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
+            />
+            <label
+              for="ai"
+              class="px-3 py-1.5 text-paragraph-sm text-white font-normal bg-secondary rounded-full border border-contents-content-tertiary hover:brightness-95 transition-colors duration-300 cursor-pointer"
             >
               팔로우
-            </button>
+            </label>
           </li>
           <li class="py-2 px-3 flex justify-between items-center">
             <p tabindex="0">Blockchain</p>
-            <button
+            <input
+              class="[&:checked+label]:bg-white [&:checked+label]:text-contents-content-primary [&:focus+label]:outline [&:focus+label]:outline-primary w-0 h-0"
+              type="checkbox"
               id="blockchain"
-              data-name="blockhain"
-              class="px-3 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
+            />
+            <label
+              for="blockchain"
+              class="px-3 py-1.5 text-paragraph-sm text-white font-normal bg-secondary rounded-full border border-contents-content-tertiary hover:brightness-95 transition-colors duration-300 cursor-pointer"
             >
               팔로우
-            </button>
+            </label>
           </li>
         </ul>
       </div>
@@ -245,7 +275,7 @@
             >
               <a
                 class="home block relative h-full text-paragraph-sm font-normal bg-home-icon bg-no-repeat bg-top"
-                href="/"
+                href="/src/pages/main/"
               >
                 <span
                   class="absolute w-full text-center bottom-0 left-1/2 -translate-x-1/2"
