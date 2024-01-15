@@ -2,8 +2,8 @@
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>my-profile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>엔터 이듬 - 나의 프로필</title>
     <style>
       .is-hover {
         transition-property: all;
@@ -16,7 +16,13 @@
         border-radius: 0.25rem;
       }
     </style>
-    <link rel="stylesheet" crossorigin href="/assets/tailwind-zd2sDhNp.css">
+    <script type="module" crossorigin src="/assets/myprofile-f5PfxgJd.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/tailwind-hLRvZ190.js">
+    <link rel="modulepreload" crossorigin href="/assets/getNode-pa7syr6m.js">
+    <link rel="modulepreload" crossorigin href="/assets/delay-L14dHocY.js">
+    <link rel="modulepreload" crossorigin href="/assets/Modal-LwrVZ11o.js">
+    <link rel="modulepreload" crossorigin href="/assets/checkAuth-CTdHH8Oq.js">
+    <link rel="stylesheet" crossorigin href="/assets/tailwind-HhNkKmOH.css">
   </head>
   <body class="min-w-screen max-w-screen w-full m-auto">
     <header class="bg-white min-w-screen max-w-screen w-full h-10">
@@ -25,7 +31,7 @@
           href="/src/pages/myeuid/index.html"
           role="button"
           aria-label="돌아가기"
-          class="bg-direction-icon block w-10 h-10 bg-no-repeat bg-center rotate-90 is-hover"
+          class="bg-direction-icon block w-10 h-10 bg-no-repeat bg-center shrink-0 rotate-90 is-hover"
         ></a>
         <h1 class="text-label-md">나의 프로필</h1>
         <button
@@ -40,21 +46,10 @@
     >
       <section class="pt-[1.125rem] px-3">
         <h2
+          id="profile"
           aria-label="내 프로필"
           class="flex justify-start items-center gap-[9px] mb-[18px]"
-        >
-          <img
-            src="/assets/profile-OHcBABLT.png"
-            alt="내 프로필 사진"
-            class="w-20 rounded-full shadow-[0_4px_4px_0_rgba(0,0,0,0.1)]"
-          />
-          <span class="text-label-lg">EUID123</span>
-          <span
-            aria-label="내 검색 코드"
-            class="text-label-sm text-contents-content-secondary"
-            >#235156</span
-          >
-        </h2>
+        ></h2>
         <a
           href="/src/pages/myeuid/editProfile.html"
           role="button"
@@ -72,8 +67,8 @@
           <img src="/assets/temperature-V1VEFYJ_.jpeg" alt="나의 열정 온도" />
         </div>
 
-        <div class="px-2 py-4 flex justify-between gap-7">
-          <div aria-label="내가 받은 좋아요" class="min-w-[105px]">
+        <div class="py-4 flex justify-between gap-3">
+          <div aria-label="내가 받은 좋아요" class="basis-1/2">
             <div class="flex gap-[5px]">
               <div
                 class="bg-heart-icon block bg-no-repeat w-5 h-5 bg-center"
@@ -88,7 +83,7 @@
               >11개 중 11명이 만족</span
             >
           </div>
-          <div aria-label="내 응답률">
+          <div aria-label="내 응답률" class="basis-1/2">
             <div class="flex gap-[5px]">
               <div
                 class="bg-speech-icon block bg-no-repeat w-5 h-5 bg-center"
@@ -106,76 +101,58 @@
         </div>
       </section>
 
-      <section class="px-3 pt-2 pb-4 border-t-[5px] border-gray-200">
+      <section id="aboutMe" class="border-t-[5px] border-gray-200">
         <h2 class="sr-only">자기소개</h2>
-        <div class="py-2">
-          <span
-            aria-label="기수"
-            class="text-[#396CEF] text-label-sm px-1 rounded border-[1px] border-[#396CEF]"
-            >프론트엔드 스쿨 1기</span
-          >
-          <span class="block mt-3 text-label-md"
-            >당근슈퍼 ∙ 프론트엔드 개발자</span
-          >
-        </div>
-        <div class="mt-[10px] bg-bluegray-100 rounded-lg">
-          <span class="block p-[10px] text-paragraph-sm font-normal"
-            >안녕하세요 프론트엔드 스쿨 8기를 졸업한 귀요미 김종연이라고 합니다!
-            저에 대해 궁금하시다면 윙크를 두 번 날려주세요오오 😜</span
-          >
-        </div>
       </section>
 
       <section class="border-t-[5px] border-gray-200">
         <h2 class="sr-only">나의 활동 목록</h2>
         <ul class="relative">
           <li class="w-full h-12 is-hover border-b-[1px] border-gray-200">
-            <a
-              href=""
-              role="button"
+            <button
+              type="button"
               aria-label="활동배지 보기"
-              class="h-full flex justify-between items-center"
+              class="h-full w-full flex justify-between items-center"
             >
               <span class="text-paragraph-md ml-3">활동배지 10개</span>
               <span
                 class="bg-right-icon block bg-no-repeat bg-right w-4 h-4 mr-4"
               ></span>
-            </a>
+            </button>
           </li>
           <li class="w-full h-12 is-hover border-b-[1px] border-gray-200">
-            <a
-              href=""
-              role="button"
+            <button
+              type="button"
               aria-label="판매상품 보기"
-              class="h-full flex justify-between items-center"
+              id="sellingProduct"
+              class="h-full w-full flex justify-between items-center"
             >
-              <span class="text-paragraph-md ml-3">판매상품 3개</span>
               <span
                 class="bg-right-icon block bg-no-repeat bg-right w-4 h-4 mr-4"
               ></span>
-            </a>
+            </button>
           </li>
           <li class="w-full h-12 is-hover">
-            <a
-              href=""
-              role="button"
+            <button
+              type="button"
               aria-label="내가 받은 매너 평가 보기"
-              class="h-full flex justify-between items-center"
+              class="h-full w-full flex justify-between items-center"
             >
               <span class="text-paragraph-md ml-3">받은 매너 평가</span>
               <span
                 class="bg-right-icon block bg-no-repeat bg-right w-4 h-4 mr-4"
               ></span>
-            </a>
+            </button>
             <div
               aria-label="내가 받은 매너 평가 목록"
-              class="py-[14px] px-[10px] absolute top-full left-0"
+              class="py-[14px] px-3 absolute top-full left-0"
             >
               <div
                 class="bg-people_black-icon bg-no-repeat flex gap-[9px] mb-3"
               >
                 <span class="text-label-md ml-6">10</span>
-                <span class="bg-blue-100 p-2 rounded-[0_8px_8px_8px]"
+                <span
+                  class="text-paragraph-md bg-blue-100 p-2 rounded-[0_8px_8px_8px]"
                   >시간 약속을 잘 지켜요.</span
                 >
               </div>
@@ -183,13 +160,15 @@
                 class="bg-people_black-icon bg-no-repeat flex gap-[16px] mb-3"
               >
                 <span class="text-label-md ml-6">9</span>
-                <span class="bg-blue-100 p-2 rounded-[0_8px_8px_8px]"
+                <span
+                  class="text-paragraph-md bg-blue-100 p-2 rounded-[0_8px_8px_8px]"
                   >친절하고 매너가 좋아요</span
                 >
               </div>
               <div class="bg-people_black-icon bg-no-repeat flex gap-[16px]">
                 <span class="text-label-md ml-6">8</span>
-                <span class="bg-blue-100 p-2 rounded-[0_8px_8px_8px]"
+                <span
+                  class="text-paragraph-md bg-blue-100 p-2 rounded-[0_8px_8px_8px]"
                   >제가 있는 곳까지 와서 거래했어요.</span
                 >
               </div>
@@ -198,17 +177,16 @@
           <li
             class="absolute w-full top-[315px] h-12 is-hover border-t-[1px] border-gray-200"
           >
-            <a
-              href=""
-              role="button"
+            <button
+              type="button"
               aria-label="내가 받은 거래 후기 보기"
-              class="h-full flex justify-between items-center"
+              class="h-full w-full flex justify-between items-center"
             >
               <span class="text-paragraph-md ml-3">받은 거래 후기</span>
               <span
                 class="bg-right-icon block bg-no-repeat bg-right w-4 h-4 mr-4"
               ></span>
-            </a>
+            </button>
             <div class="px-[10px] py-[14px]">
               <div class="flex items-start gap-[9px]">
                 <img
@@ -245,7 +223,7 @@
           <li class="is-select h-full w-12 pt-0.5 is-hover">
             <a
               class="bg-home-icon block relative h-full text-paragraph-sm font-normal bg-no-repeat bg-top"
-              href=""
+              href="/src/pages/main/"
             >
               <span
                 class="absolute w-full text-center bottom-0 left-1/2 -translate-x-1/2"
@@ -276,7 +254,7 @@
           <li class="h-full w-12 pt-0.5 is-hover">
             <a
               class="bg-chat-icon block relative h-full text-paragraph-sm font-normal bg-no-repeat bg-top"
-              href=""
+              href="/src/pages/chatting/lobby.html"
               ><span
                 class="absolute w-full text-center bottom-0 left-1/2 -translate-x-1/2"
                 >채팅</span

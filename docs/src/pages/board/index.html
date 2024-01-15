@@ -8,39 +8,28 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" sizes="192x192" href="/android-icon.png" />
     <title>엔터 이듬 - 게시판</title>
-    <style>
-      /* custom scrollbar style */
-      /* for webkit */
-      main::-webkit-scrollbar {
-        width: 7px;
-      }
-      main::-webkit-scrollbar-track {
-        background: #f1f1f1;
-      }
-      main::-webkit-scrollbar-thumb {
-        background: #c5c5c5;
-        border-radius: 5px;
-      }
-      main::-webkit-scrollbar-thumb:hover {
-        background: #aaa;
-      }
-      /* for mozilla */
-      main {
-        scrollbar-width: thin;
-        scrollbar-color: #c5c5c5 #f1f1f1;
-      }
-    </style>
-    <script type="module" crossorigin src="/assets/board-oZyOBRGp.js"></script>
-    <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-9p4a8sJU.js">
-    <link rel="modulepreload" crossorigin href="/assets/index-35H_NU9g.js">
-    <link rel="stylesheet" crossorigin href="/assets/tailwind-zd2sDhNp.css">
+    <script type="module" crossorigin src="/assets/board-EBJGgeh6.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/tailwind-hLRvZ190.js">
+    <link rel="modulepreload" crossorigin href="/assets/index-LZz_RBWS.js">
+    <link rel="modulepreload" crossorigin href="/assets/getNode-pa7syr6m.js">
+    <link rel="modulepreload" crossorigin href="/assets/insert-c9FKGVoP.js">
+    <link rel="modulepreload" crossorigin href="/assets/clear-vWyKvuJ4.js">
+    <link rel="modulepreload" crossorigin href="/assets/delay-L14dHocY.js">
+    <link rel="modulepreload" crossorigin href="/assets/convertTime-ltT1zPuc.js">
+    <link rel="modulepreload" crossorigin href="/assets/Modal-LwrVZ11o.js">
+    <link rel="modulepreload" crossorigin href="/assets/checkAuth-CTdHH8Oq.js">
+    <link rel="stylesheet" crossorigin href="/assets/tailwind-HhNkKmOH.css">
   </head>
   <body class="min-h-screen overflow-y-hidden">
+    <div
+      id="dimmed"
+      class="hidden opacity-0 fixed top-0 left-0 w-full h-full bg-[rgba(0,0,0,0.3)] z-[2]"
+    ></div>
     <div class="relative min-w-screen max-w-screen w-full mx-auto">
       <header class="w-full">
         <div class="flex justify-between h-full">
           <div class="flex h-full items-center">
-            <h1 class="items-center pl-3 text-label-large font-semibold">
+            <h1 class="items-center pl-3 text-label-lg font-semibold">
               남가좌제2동
             </h1>
             <button
@@ -52,7 +41,7 @@
           <ul class="flex">
             <li>
               <a
-                href="/"
+                href="/src/pages/search/"
                 role="button"
                 aria-label="검색하기"
                 class="search block w-10 h-10 bg-[url('/src/assets/headerIcon/search.svg')] bg-no-repeat bg-center hover:bg-gray-100 hover:rounded transition-all duration-300"
@@ -60,6 +49,7 @@
             </li>
             <li>
               <a
+                id="notification"
                 href="/"
                 role="button"
                 aria-label="알림"
@@ -75,24 +65,16 @@
             <li>
               <button
                 id="openModal"
-                class="pl-8 pr-[10px] py-1.5 text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary bg-[url('/src/assets/boardIcon/hamburger.svg')] bg-[10px_center] bg-no-repeat hover:brightness-95 transition-all duration-300"
+                class="pl-7 pr-1.5 py-1.5 leading-none text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary bg-[url('/src/assets/boardIcon/hamburger.svg')] bg-[6px_center] bg-no-repeat hover:brightness-95 transition-all duration-300"
               >
                 관심분야
-              </button>
-            </li>
-            <li>
-              <button
-                id="popular"
-                class="px-2.5 py-1.5 text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 transition-all duration-300"
-              >
-                인기글
               </button>
             </li>
             <li>
               <a
                 href="/src/pages/board/together.html"
                 id="together"
-                class="inline-block px-2.5 py-1.5 h-full text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 transition-all duration-300"
+                class="inline-block p-1.5 leading-none h-full text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 transition-all duration-300"
               >
                 같이해요
               </a>
@@ -101,7 +83,7 @@
               <a
                 href="/src/pages/board/qna.html"
                 id="qna"
-                class="inline-block px-2.5 py-1.5 h-full text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 transition-all duration-300"
+                class="inline-block p-1.5 leading-none h-full text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 transition-all duration-300"
               >
                 질의응답
               </a>
@@ -110,18 +92,21 @@
         </nav>
       </header>
 
-      <main class="relative h-[calc(100dvh-156px)] overflow-auto">
+      <main class="relative h-[calc(100dvh-154.8px)] overflow-auto">
         <section>
           <h1 class="sr-only">게시판 메인</h1>
           <ul id="board-list"></ul>
-          <div class="absolute right-[60px]">
-            <div class="fixed bottom-20">
-              <a
+          <div class="absolute right-[145px] z-[2]">
+            <div
+              id="write-container"
+              class="fixed bottom-20 w-[132px] flex flex-col gap-2 items-end"
+            >
+              <button
+                id="write"
                 class="block w-12 h-12 rounded-full bg-plus-icon bg-center bg-no-repeat bg-secondary shadow-lg hover:brightness-90 transition-all duration-300"
-                href=""
               >
                 <span class="sr-only">글쓰기</span>
-              </a>
+              </button>
             </div>
           </div>
         </section>
@@ -129,7 +114,7 @@
 
       <div
         id="modalDimmed"
-        class="absolute top-0 left-0 w-full h-[calc(100dvh-69px)] bg-[rgba(0,0,0,0.3)] hidden opacity-0"
+        class="absolute top-0 left-0 w-full h-[calc(100dvh-69px)] h-full bg-[rgba(0,0,0,0.3)] hidden opacity-0 z-10"
       >
         <ul
           id="modal"
@@ -144,95 +129,134 @@
           </li>
           <li class="py-2 px-3 flex justify-between items-center">
             <p tabindex="0">Programming</p>
-            <button
+            <input
+              class="[&:checked+label]:bg-white [&:checked+label]:text-contents-content-primary [&:focus+label]:outline [&:focus+label]:outline-primary w-0 h-0"
+              type="checkbox"
               id="programming"
-              data-name="programming"
-              class="px-3 py-1.5 text-paragraph-sm font-normal bg-white rounded-full border border-contents-content-tertiary hover:brightness-95 transition-all duration-300"
+              autocomplete="off"
+            />
+            <label
+              for="programming"
+              class="px-3 py-1.5 text-paragraph-sm text-white font-normal bg-secondary rounded-full border border-contents-content-tertiary hover:brightness-95 transition-colors duration-300 cursor-pointer"
             >
-              팔로우 취소
-            </button>
+              팔로우
+            </label>
           </li>
           <li class="py-2 px-3 flex justify-between items-center">
             <p tabindex="0">Design</p>
-            <button
+            <input
+              class="[&:checked+label]:bg-white [&:checked+label]:text-contents-content-primary [&:focus+label]:outline [&:focus+label]:outline-primary w-0 h-0"
+              type="checkbox"
               id="design"
-              data-name="design"
-              class="px-3 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
+              autocomplete="off"
+            />
+            <label
+              for="design"
+              class="px-3 py-1.5 text-paragraph-sm text-white font-normal bg-secondary rounded-full border border-contents-content-tertiary hover:brightness-95 transition-colors duration-300 cursor-pointer"
             >
               팔로우
-            </button>
+            </label>
           </li>
           <li class="py-2 px-3 flex justify-between items-center">
-            <p>
-              <span class="sr-only" tabindex="0"
-                >User Interface and User Experience</span
-              >
+            <p tabindex="0">
+              <span class="sr-only">User Interface and User Experience</span>
               <abbr title="User Interface" class="no-underline">UI</abbr> ·
               <abbr title="User Experience" class="no-underline">UX</abbr>
             </p>
-            <button
+            <input
+              class="[&:checked+label]:bg-white [&:checked+label]:text-contents-content-primary [&:focus+label]:outline [&:focus+label]:outline-primary w-0 h-0"
+              type="checkbox"
               id="uiux"
-              data-name="uiux"
-              class="px-3 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
+              autocomplete="off"
+            />
+            <label
+              for="uiux"
+              class="px-3 py-1.5 text-paragraph-sm text-white font-normal bg-secondary rounded-full border border-contents-content-tertiary hover:brightness-95 transition-colors duration-300 cursor-pointer"
             >
               팔로우
-            </button>
+            </label>
           </li>
           <li class="py-2 px-3 flex justify-between items-center">
             <p tabindex="0">Frontend</p>
-            <button
+            <input
+              class="[&:checked+label]:bg-white [&:checked+label]:text-contents-content-primary [&:focus+label]:outline [&:focus+label]:outline-primary w-0 h-0"
+              type="checkbox"
               id="frontend"
-              data-name="frontend"
-              class="px-3 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
+              autocomplete="off"
+            />
+            <label
+              for="frontend"
+              class="px-3 py-1.5 text-paragraph-sm text-white font-normal bg-secondary rounded-full border border-contents-content-tertiary hover:brightness-95 transition-colors duration-300 cursor-pointer"
             >
               팔로우
-            </button>
+            </label>
           </li>
           <li class="py-2 px-3 flex justify-between items-center">
             <p tabindex="0">Backend</p>
-            <button
+            <input
+              class="[&:checked+label]:bg-white [&:checked+label]:text-contents-content-primary [&:focus+label]:outline [&:focus+label]:outline-primary w-0 h-0"
+              type="checkbox"
               id="backend"
-              data-name="backend"
-              class="px-3 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
+              autocomplete="off"
+            />
+            <label
+              for="backend"
+              class="px-3 py-1.5 text-paragraph-sm text-white font-normal bg-secondary rounded-full border border-contents-content-tertiary hover:brightness-95 transition-colors duration-300 cursor-pointer"
             >
               팔로우
-            </button>
+            </label>
           </li>
           <li class="py-2 px-3 flex justify-between items-center">
             <p tabindex="0">Publishing</p>
-            <button
+            <input
+              class="[&:checked+label]:bg-white [&:checked+label]:text-contents-content-primary [&:focus+label]:outline [&:focus+label]:outline-primary w-0 h-0"
+              type="checkbox"
               id="publishing"
-              data-name="publishing"
-              class="px-3 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
+              autocomplete="off"
+            />
+            <label
+              for="publishing"
+              class="px-3 py-1.5 text-paragraph-sm text-white font-normal bg-secondary rounded-full border border-contents-content-tertiary hover:brightness-95 transition-colors duration-300 cursor-pointer"
             >
               팔로우
-            </button>
+            </label>
           </li>
           <li class="py-2 px-3 flex justify-between items-center">
-            <p>
-              <span class="sr-only" tabindex="0">인공지능</span>
+            <p tabindex="0">
+              <span class="sr-only">인공지능</span>
               <abbr title="Artificial Intelligence" class="no-underline"
                 >AI</abbr
               >
             </p>
-            <button
+            <input
+              class="[&:checked+label]:bg-white [&:checked+label]:text-contents-content-primary [&:focus+label]:outline [&:focus+label]:outline-primary w-0 h-0"
+              type="checkbox"
               id="ai"
-              data-name="ai"
-              class="px-3 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
+              autocomplete="off"
+            />
+            <label
+              for="ai"
+              class="px-3 py-1.5 text-paragraph-sm text-white font-normal bg-secondary rounded-full border border-contents-content-tertiary hover:brightness-95 transition-colors duration-300 cursor-pointer"
             >
               팔로우
-            </button>
+            </label>
           </li>
           <li class="py-2 px-3 flex justify-between items-center">
             <p tabindex="0">Blockchain</p>
-            <button
+            <input
+              class="[&:checked+label]:bg-white [&:checked+label]:text-contents-content-primary [&:focus+label]:outline [&:focus+label]:outline-primary w-0 h-0"
+              type="checkbox"
               id="blockchain"
-              data-name="blockhain"
-              class="px-3 py-1.5 text-paragraph-sm text-white font-normal rounded-full bg-secondary hover:brightness-95 transition-all duration-300"
+              autocomplete="off"
+            />
+            <label
+              for="blockchain"
+              class="px-3 py-1.5 text-paragraph-sm text-white font-normal bg-secondary rounded-full border border-contents-content-tertiary hover:brightness-95 transition-colors duration-300 cursor-pointer"
             >
               팔로우
-            </button>
+            </label>
           </li>
+          <li role="presentation" class="space h-16 w-f"></li>
         </ul>
       </div>
 
@@ -248,7 +272,7 @@
             >
               <a
                 class="home block relative h-full text-paragraph-sm font-normal bg-home-icon bg-no-repeat bg-top"
-                href="/"
+                href="/src/pages/main/"
               >
                 <span
                   class="absolute w-full text-center bottom-0 left-1/2 -translate-x-1/2"
@@ -285,7 +309,7 @@
             >
               <a
                 class="chat block relative h-full text-paragraph-sm font-normal bg-chat-icon bg-no-repeat bg-top"
-                href=""
+                href="/src/pages/chatting/lobby.html"
                 ><span
                   class="absolute w-full text-center bottom-0 left-1/2 -translate-x-1/2"
                   >채팅</span

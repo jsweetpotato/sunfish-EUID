@@ -11,8 +11,8 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
     />
-    <title>엔터 이듬 - 같이해요</title>
-    <script type="module" crossorigin src="/assets/together-LrTn1qYx.js"></script>
+    <title>엔터 이듬 - 질의응답</title>
+    <script type="module" crossorigin src="/assets/qna-Qn8oRFXr.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/tailwind-hLRvZ190.js">
     <link rel="modulepreload" crossorigin href="/assets/swiper-core-xIVJDqhu.js">
     <link rel="modulepreload" crossorigin href="/assets/index-LZz_RBWS.js">
@@ -37,12 +37,11 @@
           <h1
             class="text-label-md absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
           >
-            같이해요
+            질의응답
           </h1>
         </div>
 
         <div class="w-full h-[90px] pl-5 py-2">
-          <h2 class="sr-only">카테고리 선택</h2>
           <div class="swiper w-full h-full">
             <div class="swiper-wrapper">
               <div
@@ -53,7 +52,9 @@
                   type="radio"
                   id="all"
                   name="category"
+                  value="all"
                   checked
+                  autocomplete="off"
                 />
                 <label class="cursor-pointer" for="all">
                   <span
@@ -72,17 +73,19 @@
                 <input
                   class="category-button [&:checked+label>span:nth-child(1)]:border-secondary [&:checked+label>span:nth-child(2)]:text-secondary w-0 h-0 block"
                   type="radio"
-                  id="project"
+                  id="프로그래밍"
                   name="category"
+                  value="프로그래밍"
+                  autocomplete="off"
                 />
-                <label class="cursor-pointer" for="project">
+                <label class="cursor-pointer" for="프로그래밍">
                   <span
                     class="block w-[54px] h-[54px] text-label-xl border-2 text-center leading-[50px] rounded-full bg-gray-100"
                   >
                     💻
                   </span>
                   <span class="block mt-1.5 text-label-sm text-center"
-                    >프로젝트</span
+                    >프로그래밍</span
                   >
                 </label>
               </div>
@@ -92,17 +95,19 @@
                 <input
                   class="category-button [&:checked+label>span:nth-child(1)]:border-secondary [&:checked+label>span:nth-child(2)]:text-secondary w-0 h-0 block"
                   type="radio"
-                  id="study"
+                  id="인터렉션디자인"
                   name="category"
+                  value="인터렉션디자인"
+                  autocomplete="off"
                 />
-                <label class="cursor-pointer" for="study">
+                <label class="cursor-pointer" for="인터렉션디자인">
                   <span
                     class="block w-[54px] h-[54px] text-label-xl border-2 text-center leading-[50px] rounded-full bg-gray-100"
                   >
-                    📑
+                    🖼
                   </span>
                   <span class="block mt-1.5 text-label-sm text-center"
-                    >스터디</span
+                    >디자인</span
                   >
                 </label>
               </div>
@@ -112,17 +117,19 @@
                 <input
                   class="category-button [&:checked+label>span:nth-child(1)]:border-secondary [&:checked+label>span:nth-child(2)]:text-secondary w-0 h-0 block"
                   type="radio"
-                  id="food"
+                  id="UI/UX"
                   name="category"
+                  value="UI/UX"
+                  autocomplete="off"
                 />
-                <label class="cursor-pointer" for="food">
+                <label class="cursor-pointer" for="UI/UX">
                   <span
                     class="block w-[54px] h-[54px] text-label-xl border-2 text-center leading-[50px] rounded-full bg-gray-100"
                   >
-                    🍝
+                    🎎
                   </span>
                   <span class="block mt-1.5 text-label-sm text-center"
-                    >음식</span
+                    >UI · UX</span
                   >
                 </label>
               </div>
@@ -132,17 +139,19 @@
                 <input
                   class="category-button [&:checked+label>span:nth-child(1)]:border-secondary [&:checked+label>span:nth-child(2)]:text-secondary w-0 h-0 block"
                   type="radio"
-                  id="hobby"
+                  id="프론트엔드"
                   name="category"
+                  value="프론트엔드"
+                  autocomplete="off"
                 />
-                <label class="cursor-pointer" for="hobby">
+                <label class="cursor-pointer" for="프론트엔드">
                   <span
                     class="block w-[54px] h-[54px] text-label-xl border-2 text-center leading-[50px] rounded-full bg-gray-100"
                   >
-                    🎧
+                    🏞
                   </span>
                   <span class="block mt-1.5 text-label-sm text-center"
-                    >취미/여가</span
+                    >프론트엔드</span
                   >
                 </label>
               </div>
@@ -152,37 +161,83 @@
                 <input
                   class="category-button [&:checked+label>span:nth-child(1)]:border-secondary [&:checked+label>span:nth-child(2)]:text-secondary w-0 h-0 block"
                   type="radio"
-                  id="sports"
+                  id="백엔드"
                   name="category"
+                  value="백엔드"
+                  autocomplete="off"
                 />
-                <label class="cursor-pointer" for="sports">
+                <label class="cursor-pointer" for="백엔드">
                   <span
                     class="block w-[54px] h-[54px] text-label-xl border-2 text-center leading-[50px] rounded-full bg-gray-100"
                   >
-                    ⚽
+                    📈
                   </span>
                   <span class="block mt-1.5 text-label-sm text-center"
-                    >운동</span
+                    >백엔드</span
                   >
                 </label>
               </div>
               <div
-                class="swiper-slide mr-5 w-[54px] flex flex-col justify-between"
+                class="[&:has(>input:focus)]:shadow-[0px_0px_0px_1px_#373F67_inset] swiper-slide w-[54px] flex flex-col justify-between"
               >
                 <input
                   class="category-button [&:checked+label>span:nth-child(1)]:border-secondary [&:checked+label>span:nth-child(2)]:text-secondary w-0 h-0 block"
                   type="radio"
-                  id="reading"
+                  id="퍼블리싱"
                   name="category"
+                  value="퍼블리싱"
+                  autocomplete="off"
                 />
-                <label class="cursor-pointer" for="reading">
+                <label class="cursor-pointer" for="퍼블리싱">
                   <span
                     class="block w-[54px] h-[54px] text-label-xl border-2 text-center leading-[50px] rounded-full bg-gray-100"
                   >
                     📚
                   </span>
                   <span class="block mt-1.5 text-label-sm text-center"
-                    >독서</span
+                    >퍼블리싱</span
+                  >
+                </label>
+              </div>
+              <div
+                class="[&:has(>input:focus)]:shadow-[0px_0px_0px_1px_#373F67_inset] swiper-slide w-[54px] flex flex-col justify-between"
+              >
+                <input
+                  class="category-button [&:checked+label>span:nth-child(1)]:border-secondary [&:checked+label>span:nth-child(2)]:text-secondary w-0 h-0 block"
+                  type="radio"
+                  id="AI"
+                  name="category"
+                  value="AI"
+                  autocomplete="off"
+                />
+                <label class="cursor-pointer" for="AI">
+                  <span
+                    class="block w-[54px] h-[54px] text-label-xl border-2 text-center leading-[50px] rounded-full bg-gray-100"
+                  >
+                    👤
+                  </span>
+                  <span class="block mt-1.5 text-label-sm text-center">AI</span>
+                </label>
+              </div>
+              <div
+                class="[&:has(>input:focus)]:shadow-[0px_0px_0px_1px_#373F67_inset] swiper-slide w-[54px] flex flex-col justify-between"
+              >
+                <input
+                  class="category-button [&:checked+label>span:nth-child(1)]:border-secondary [&:checked+label>span:nth-child(2)]:text-secondary w-0 h-0 block"
+                  type="radio"
+                  id="블록체인"
+                  name="category"
+                  value="블록체인"
+                  autocomplete="off"
+                />
+                <label class="cursor-pointer" for="블록체인">
+                  <span
+                    class="block w-[54px] h-[54px] text-label-xl border-2 text-center leading-[50px] rounded-full bg-gray-100"
+                  >
+                    🖇
+                  </span>
+                  <span class="block mt-1.5 text-label-sm text-center"
+                    >블록체인</span
                   >
                 </label>
               </div>
@@ -193,64 +248,21 @@
         <nav
           class="w-full px-3 py-2 border-b border-b-contents-content-secondary"
         >
-          <h2 class="sr-only">같이해요 게시글 필터 버튼 목록</h2>
-          <ul class="flex items-center gap-1 *:shrink-0">
+          <ul class="flex items-center gap-1">
             <li>
               <button
-                id="sortCreated"
-                class="pl-7 pr-1.5 py-1.5 leading-none text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary bg-direction-icon bg-[6px_center] bg-no-repeat hover:brightness-95 transition-all duration-300"
+                id="sort"
+                class="pl-6 pr-1.5 py-1.5 leading-none text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary bg-direction-icon bg-[4px_center] bg-no-repeat hover:brightness-95 transition-all duration-300"
               >
                 최근 작성 순
               </button>
             </li>
             <li>
-              <input
-                class="[&:checked+label]:bg-primary [&:checked+label]:text-white [&:focus+label]:outline [&:focus+label]:outline-secondary block w-0 h-0"
-                type="radio"
-                name="filter"
-                id="filterAll"
-                value="filterAll"
-                autocomplete="off"
-                checked
-              />
-              <label
-                for="filterAll"
-                class="block p-1.5 leading-none text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 transition-all duration-300 cursor-pointer"
+              <button
+                class="p-1.5 leading-none text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 transition-all duration-300"
               >
                 전체
-              </label>
-            </li>
-            <li>
-              <input
-                class="[&:checked+label]:bg-primary [&:checked+label]:text-white [&:focus+label]:outline [&:focus+label]:outline-secondary block w-0 h-0"
-                type="radio"
-                name="filter"
-                id="filterOpen"
-                value="filterOpen"
-                autocomplete="off"
-              />
-              <label
-                for="filterOpen"
-                class="block p-1.5 leading-none text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 transition-all duration-300 cursor-pointer"
-              >
-                모집 중인 글만
-              </label>
-            </li>
-            <li>
-              <input
-                class="[&:checked+label]:bg-primary [&:checked+label]:text-white [&:focus+label]:outline [&:focus+label]:outline-secondary block w-0 h-0"
-                type="radio"
-                name="filter"
-                id="filterJoin"
-                value="filterJoin"
-                autocomplete="off"
-              />
-              <label
-                for="filterJoin"
-                class="block p-1.5 leading-none text-paragraph-sm font-normal rounded-full bg-white border border-contents-content-tertiary hover:brightness-95 transition-all duration-300 cursor-pointer"
-              >
-                가입한 모임만
-              </label>
+              </button>
             </li>
           </ul>
         </nav>
@@ -258,13 +270,13 @@
 
       <main class="relative h-[calc(100dvh-246px)] overflow-auto">
         <section>
-          <h2 class="sr-only">같이해요 게시글 목록</h2>
+          <h1 class="sr-only">같이해요 게시판</h1>
           <ul id="board-list"></ul>
-          <div class="absolute right-[60px] bg-con">
+          <div class="absolute right-[60px]">
             <div class="fixed bottom-20">
               <a
                 class="block w-12 h-12 rounded-full bg-plus-icon bg-center bg-no-repeat bg-secondary shadow-lg hover:brightness-90 transition-all duration-300"
-                href="/src/pages/board/writeTogether.html"
+                href="/src/pages/board/writeQna.html"
               >
                 <span class="sr-only">글쓰기</span>
               </a>
