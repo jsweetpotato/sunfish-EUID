@@ -21,11 +21,19 @@ export default defineConfig({
         // 게시판
         board: resolve(__dirname, 'src/pages/board/index.html'),
         together: resolve(__dirname, 'src/pages/board/together.html'),
+        togetherView: resolve(__dirname, 'src/pages/board/togetherView.html'),
         writeTogether: resolve(__dirname, 'src/pages/board/writeTogether.html'),
+        qna: resolve(__dirname, 'src/pages/board/qna.html'),
+        qnaView: resolve(__dirname, 'src/pages/board/qnaView.html'),
+        writeQna: resolve(__dirname, 'src/pages/board/writeQna.html'),
         // 기기거래
         exchange: resolve(__dirname, 'src/pages/exchange/index.html'),
         // 스토리
         story: resolve(__dirname, 'src/pages/main/index.html'),
+        // 검색
+        search: resolve(__dirname, 'src/pages/search/index.html'),
+        // 채팅
+        chatting: resolve(__dirname, 'src/pages/chatting/room.html'),
       },
     },
   },

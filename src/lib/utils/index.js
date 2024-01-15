@@ -1,4 +1,5 @@
 export * from './xhr';
+export * from './pb';
 export * from './copy';
 export * from './memo';
 export * from './color';
@@ -8,4 +9,3 @@ export * from './typeOf';
 export * from './storage';
 export * from './getPbImageUrl';
 export * from './comma';
-export * from './pb';
