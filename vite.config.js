@@ -18,6 +18,7 @@ export default defineConfig({
         oauth: resolve(__dirname, 'src/pages/login/oauth/index.html'),
         signin: resolve(__dirname, 'src/pages/login/signin/index.html'),
         signup: resolve(__dirname, 'src/pages/login/signup/index.html'),
+        test: resolve(__dirname, 'src/pages/login/test.html'),
         // 게시판
         board: resolve(__dirname, 'src/pages/board/index.html'),
         together: resolve(__dirname, 'src/pages/board/together.html'),
