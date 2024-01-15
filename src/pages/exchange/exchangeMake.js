@@ -11,7 +11,6 @@ const Information = getNode('#Information');
 const contentName = getNode('#contentName');
 
 let tradeType = ''; 
-
 async function changeColor({ target }) {
   tradeButton.forEach((item) => {
     item.style.backgroundColor = '';
@@ -24,36 +23,42 @@ async function changeColor({ target }) {
   tradeType = target.dataset.trade; 
 }
 
+let fileValue = '';
 const handleFiles = () => {
   const selectedFile = [...fileInput.files];
-  const fileReader = new FileReader();
+  fileValue = selectedFile[0]
 
-  fileReader.readAsDataURL(selectedFile[0]);
+  selectedFile.forEach((file) => {
+    const fileReader = new FileReader();
 
-  fileReader.onload = function () {
-    document.getElementById('previewImg').src = fileReader.result;
-    fileValue = fileReader.result;
-  };
+    fileReader.readAsDataURL(file);
+
+    fileReader.onload = function () {
+      document.getElementById('previewImg').src = fileReader.result;
+    };
+  });
 };
+
 
 let titleValue = '';
 let infoValue = '';
 let contentValue = '';
-let fileValue = '';
 
-
-async function submit(){
+async function submit() {
   const data = {
     title: titleValue,
     description: infoValue,
+    tradingType: String(tradeType),
+    price: contentValue,
+    isPriceOffer: true,
     productImages: fileValue,
-    price: Number(contentValue),
-    tradingType: tradeType,
     user: pb.authStore.model.id,
   };
 
   const record = await pb.collection('selling').create(data);
-  console.log(record)
+
+  // 페이지 이동 코드 추가
+  window.location.href = '/src/pages/exchange/index.html';
 }
 
 
