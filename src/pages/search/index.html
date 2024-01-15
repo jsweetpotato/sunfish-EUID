@@ -51,7 +51,7 @@
         </form>
       </header>
       <main class="flex flex-col flex-grow">
-        <div id="default-search-view" class="pt-2 hidden">
+        <div id="default-search-view" class="pt-2">
           <div id="search-recommand" class="relative">
             <p class="text-label-md mx-3" role="presentation">인기 검색</p>
             <button
@@ -318,6 +318,17 @@
               </article>
             </li>
           </ul>
+        </div>
+        <div>
+          <form action="">
+            <input
+              class="size-7 bg-gray-50"
+              type="file"
+              name="이미지 파일 업로드"
+              id="image-file"
+            />
+            <button type="submit" id="test-btn">제출하기</button>
+          </form>
         </div>
       </main>
     </div>

@@ -3,7 +3,6 @@
  * @param {Array<{name: String,label ?: String }>} list - 최근 검색 목록
  * @param {HTMLElement} target - 안에 템플릿 넣을 엘리먼트
  */
-// eslint-disable-next-line import/prefer-default-export
 export const drawRecentSearchList = (list, target) => {
   list.forEach((item, idx) => {
     const { name } = item;
@@ -41,7 +40,6 @@ export const test = (item) => console.log(item);
  * @param {Array<{name: String,label ?: String }>} list - 최근 검색 목록
  * @param {HTMLElement} target - 안에 템플릿 넣을 엘리먼트
  */
-// eslint-disable-next-line import/prefer-default-export
 export const drawSuggestionList = (list, target) => {
   list.forEach((item, idx) => {
     const { name } = item;
@@ -64,5 +62,3 @@ export const drawSuggestionList = (list, target) => {
     target.insertAdjacentHTML('beforeend', template);
   });
 };
-
-// export createSearchBtn =
