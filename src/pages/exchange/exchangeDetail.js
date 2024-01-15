@@ -17,6 +17,7 @@ const back = getNode('#back');
 const pb = new PocketBase(import.meta.env.VITE_PB_URL);
 
 export default async function getData() {
+  
   const hash = window.location.hash.slice(1);
 
   const avatarList = await pb
@@ -24,7 +25,7 @@ export default async function getData() {
     .getOne(hash, { expand: 'user' });
 
   const { title, description, price, id, isPriceOffer } = avatarList;
-  const users = avatarList.expand.user;
+  const users = await avatarList.expand.user;
   const { name } = users;
 
   main.insertAdjacentHTML(
