@@ -1,0 +1,1 @@
+import{g as r}from"./getNode-pa7syr6m.js";function s(t,i){typeof t=="string"&&(t=r(t)),t.insertAdjacentHTML("afterbegin",i)}function a(t,i){typeof t=="string"&&(t=r(t)),t.insertAdjacentHTML("beforeend",i)}function f(t){if(typeof t=="string"&&(t=r(t)),t.nodeName==="INPUT"||t.nodeName==="TEXTAREA"){t.value="";return}t.textContent=""}export{s as a,f as c,a as i};
