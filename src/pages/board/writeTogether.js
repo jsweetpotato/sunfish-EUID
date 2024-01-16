@@ -223,7 +223,7 @@ function handleDone(e) {
       responseId = togetherResponse.id;
       const chatroomObj = {
         originType: 'together',
-        originId: togetherResponse.id,
+        togetherOriginId: togetherResponse.id,
         owner: pb.authStore.model.id,
         members: [pb.authStore.model.id],
         messageBox: JSON.stringify([]),
