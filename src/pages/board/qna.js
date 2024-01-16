@@ -24,29 +24,22 @@ const options = {
 let sortState = '-created';
 
 function createSkeletonTemplate() {
-  return `<li>
-  <div
-    class="relative p-3 border-b flex flex-row justify-between gap-1 border-contents-content-secondary"
-  >
-    <div
-      class="w-[calc(100%-70px)] flex flex-col flex-shrink-1 justify-center items-start gap-1"
-    >
-      <div class="flex items-center gap-1">
-        <span class="skeleton-loading w-7 h-3"></span>
-        <span class="skeleton-loading w-7 h-3"></span>
+  return /* html */ `
+  <li>
+  <div class="relative p-3 border-b flex flex-row justify-between gap-1">
+    <div class="w-full flex flex-col flex-shrink-1 justify-center items-start gap-3">
+      <div class="flex items-center">
+        <span class="skeleton-loading w-12 h-4"></span>
       </div>
-      <span class="skeleton-loading w-[70%] h-3"> </span>
-      <span class="skeleton-loading w-[90%] h-3"></span>
-      <span class="skeleton-loading w-[30%] h-3"></span>
+      <span class="skeleton-loading w-[70%] h-[11px]"></span>
+      <span class="skeleton-loading w-[90%] h-[11px]"></span>
+      <span class="skeleton-loading w-[30%] h-[11px]"></span>
     </div>
-
-    <div
-      class="w-[70px] min-w-[70px] flex justify-center items-center"
-    >
+    <div class="w-[70px] min-w-[70px] flex justify-center items-center" >
       <div class="w-full aspect-square skeleton-loading"></div>
     </div>
   </div>
-</li>`.repeat(7);
+</li>`.repeat(5);
 }
 function createQnaTemplate(item) {
   const { id, category, title, imgField, views, created, comments } = item;

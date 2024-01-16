@@ -15,7 +15,10 @@ import {
   clearContents,
 } from '../../lib';
 
-import { createModal1Btn } from '../../components/Modal/Modal';
+import {
+  createAlertModal,
+  createModal1Btn,
+} from '../../components/Modal/Modal';
 // import Swiper and modules styles
 
 const share = getNode('#share');
@@ -227,7 +230,24 @@ const [modal, button] = createModal1Btn({
 });
 
 // 모달 열기
-share.addEventListener('click', modal.showing);
+function handleClipBoard() {
+  const [successMoodal] = createAlertModal('📃 주소가 복사되었습니다.', 600);
+  const [failedMoodal] = createAlertModal(
+    '📃 복사 도중 오류가 발생했습니다.',
+    1000
+  );
+  return async (e) => {
+    try {
+      await window.navigator.clipboard.writeText(window.location.href);
+      successMoodal.showing();
+    } catch (error) {
+      failedMoodal.showing();
+    }
+  };
+}
+
+share.addEventListener('click', handleClipBoard());
+
 addButton.addEventListener('click', modal.showing);
 
 // 모달 닫기

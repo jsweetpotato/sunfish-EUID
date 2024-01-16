@@ -1,7 +1,7 @@
 /* eslint-disable no-alert, no-shadow, import/no-unresolved, import/extensions, import/no-absolute-path, no-param-reassign, no-restricted-syntax */
 /* eslint no-use-before-define : warn */
-
 import gsap from 'gsap';
+import { createModal1Btn } from '../../components/Modal/Modal';
 import {
   pb,
   getNode,
@@ -12,6 +12,15 @@ import {
   convertTime,
   checkAuth,
 } from '/src/lib/';
+// 모달
+const [$modal, $modalButton] = createModal1Btn({
+  title: '😭서비스 준비중입니다.',
+  desc: '열심히 준비중이예요💦<br> 조금만 기다려주세요',
+  buttonText: '알겠어요',
+});
+
+getNode('#alram').onclick = $modal.showing;
+$modalButton.onclick = $modal.closing;
 
 function createTemplate(data) {
   const result = data

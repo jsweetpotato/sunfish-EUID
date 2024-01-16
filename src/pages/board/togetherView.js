@@ -231,4 +231,14 @@ function handleClipBoard() {
   };
 }
 
+// 모달
+const [$modal, $modalButton] = createModal1Btn({
+  title: '😭서비스 준비중입니다.',
+  desc: '열심히 준비중이예요💦<br> 조금만 기다려주세요',
+  buttonText: '알겠어요',
+});
+
 shareButton.addEventListener('click', handleClipBoard());
+
+getNode('#more').addEventListener('click', $modal.showing);
+$modalButton.onclick = $modal.closing;
