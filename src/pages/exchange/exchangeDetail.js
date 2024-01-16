@@ -198,7 +198,7 @@ async function watch() {
             thumb: '0x300',
           })}" alt="${item}">
         </figure>
-        <a class="absolute top-0 left-0 w-full h-full" href="/src/pages/exchange/exchangeDetail.html?id=#${
+        <a class="absolute top-0 left-0 w-full h-full" href="/src/pages/exchange/exchangeDetail.html?id=${
           item.id
         }">
           <span class="absolute w-full top-[55%] px-2">
