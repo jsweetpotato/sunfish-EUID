@@ -7,14 +7,21 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import PocketBase from 'pocketbase';
 import { Navigation, Pagination } from 'swiper/modules';
-import { getNode, getPbImageURL, comma, checkAuth } from '../../lib';
+import {
+  getNode,
+  getPbImageURL,
+  comma,
+  checkAuth,
+  clearContents,
+} from '../../lib';
 
 import { createModal1Btn } from '../../components/Modal/Modal';
 // import Swiper and modules styles
 
 const share = getNode('#share');
-const profileInfo = getNode('#profileInfo');
-const main = getNode('#main');
+const profileInfo = getNode('#profile');
+const mannerTemp = getNode('#manner-temp');
+const swiperContainer = getNode('#swiper');
 const productInfo = getNode('#productInfo');
 const footer = getNode('#footer');
 const addButton = getNode('#addButton');
@@ -35,10 +42,9 @@ export default async function getData() {
   const { title, description, price, id, isPriceOffer } = avatarList;
   const users = await avatarList.expand.user;
   const { name } = users;
-  main.insertAdjacentHTML(
+  swiperContainer.insertAdjacentHTML(
     'afterbegin' /* html */,
     `
-  <div class="list swiper w-full flex grow flex-shrink bg-gray-100" >
     <div class="swiper-wrapper">
       <div class="swiper-slide "><img src="${getPbImageURL(
         avatarList,
@@ -57,25 +63,22 @@ export default async function getData() {
       )}" alt="상품 이미지" class='w-full h-[305px] object-cover'></div>
     </div>
     <div class="swiper-pagination"></div>
-  
-  </div>
 `
   );
 
+  clearContents(profileInfo);
   profileInfo.insertAdjacentHTML(
     'afterbegin',
     /* html */ `
-      <div class="flex justify-center items-center gap-2">
-        <figure>
-          <img src="${getPbImageURL(users, 'avatar', {
-            thumb: '0x300',
-          })}" alt="" class="shadow-[0_4px_4px_0_rgba(0,0,0,0.1)] w-10 h-10 border rounded-full bg-contents-content-secondary">
-        </figure>
-        <div class="flex flex-col justify-center items-start">
-          <span class="text-label-md" aria-label="프로필 이름">${name}</span>
-          <span class="text-paragraph-sm" aria-label="거주 위치">용암동</span>
-        </div>
-      </div>
+    <figure>
+      <img src="${getPbImageURL(users, 'avatar', {
+        thumb: '0x300',
+      })}" alt="" class="shadow-[0_2px_4px_0_rgba(0,0,0,0.1)] w-10 h-10 rounded-full bg-contents-content-secondary">
+    </figure>
+    <div class="flex flex-col justify-center items-start">
+      <span class="text-label-md" aria-label="프로필 이름">${name}</span>
+      <span class="text-paragraph-sm" aria-label="거주 위치">용암동</span>
+    </div>
   `
   );
 
@@ -91,6 +94,28 @@ export default async function getData() {
   `
   );
 
+  clearContents(mannerTemp);
+  mannerTemp.insertAdjacentHTML(
+    'afterbegin',
+    /* html */ `
+<div class="flex items-center justify-center gap-1">
+      <span
+        class="text-label-md text-secondary"
+        aria-label="매너 온도 41.2도"
+        >41.2℃</span
+      >
+      <span
+        class="text-xl items-center justify-center"
+        role="img"
+        aria-label="매너 온도 표시 아이콘"
+        >☺️</span
+      >
+    </div>
+    <span aria-label="매너온도" class="text-paragraph-sm text-gray-600"
+      >매너온도</span
+    >
+  `
+  );
   const url =
     isPriceOffer === true
       ? `/src/pages/exchange/exchangeWrite.html?=${id}`
@@ -113,26 +138,26 @@ export default async function getData() {
   `
   );
 
-  getNode('#chatting').addEventListener('click', async (e) => {
-    if (pb.authStore.model.id === users.id)
-      window.location.href = '/src/pages/chatting/lobby.html';
-    const findResponse = await pb.collection('chatroom').getFullList({
-      filter: `members ~ "${pb.authStore.model.id}" && originType = "${id}"`,
-    });
-    if (findResponse.length > 0) {
-      window.location.href = `/src/pages/chatting/room.html?id=${findResponse.id}`;
-    }
-    const formObj = {
-      originType: 'selling',
-      sellingOriginId: idParam,
-      owner: users.id,
-      members: [pb.authStore.model.id, users.id],
-      messageBox: JSON.stringify([]),
-    };
-    console.log(formObj);
-    const chatroomResponse = await pb.collection('chatroom').create(formObj);
-    window.location.href = `/src/pages/chatting/room.html?id=${chatroomResponse.id}`;
-  });
+  // getNode('#chatting').addEventListener('click', async (e) => {
+  //   if (pb.authStore.model.id === users.id)
+  //     window.location.href = '/src/pages/chatting/lobby.html';
+  //   const findResponse = await pb.collection('chatroom').getFullList({
+  //     filter: `members ~ "${pb.authStore.model.id}" && originType = "${id}"`,
+  //   });
+  //   if (findResponse.length > 0) {
+  //     window.location.href = `/src/pages/chatting/room.html?id=${findResponse.id}`;
+  //   }
+  //   const formObj = {
+  //     originType: 'selling',
+  //     sellinigOriginId: idParam,
+  //     owner: users.id,
+  //     members: [pb.authStore.model.id, users.id],
+  //     messageBox: JSON.stringify([]),
+  //   };
+  //   console.log(formObj);
+  // const chatroomResponse = await pb.collection('chatroom').create(formObj);
+  // window.location.href = `/src/pages/chatting/room.html?id=${chatroomResponse.id}`;
+  // });
 
   const swiper = new Swiper('.swiper', {
     modules: [Navigation, Pagination],
@@ -145,12 +170,6 @@ export default async function getData() {
       spaceBetween: 12,
       freeMode: true,
     },
-  });
-
-  gsap.from('.list', {
-    x: -500,
-    duration: 0.3,
-    stagger: 0.1,
   });
 }
 
@@ -166,6 +185,7 @@ function changeHeart(e) {
 
 async function watch() {
   const watchList = await pb.collection('selling').getList(1, 6);
+  clearContents(watchTogether);
   watchList.items.forEach((item) => {
     watchTogether.insertAdjacentHTML(
       'afterbegin',

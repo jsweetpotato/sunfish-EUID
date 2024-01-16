@@ -34,33 +34,55 @@
       </div>
     </header>
     <main id="main" class="w-full overflow-auto">
+      <div
+        id="swiper"
+        class="list swiper w-full flex grow h-[305px] flex-shrink skeleton-loading noround"
+      ></div>
       <!-- Profile Information -->
       <section
         id="profileInfo"
-        class="grow w-full flex px-3 justify-between items-center rounded py-2"
+        class="grow w-full flex px-3 justify-between items-center rounded py-2 h-[60px]"
       >
-        <div role="group" class="flex grow gap-[-8px] items-end flex-col pr-2">
-          <div class="flex items-center justify-center gap-1">
+        <div id="profile" class="flex justify-center items-center gap-2">
+          <figure class="w-10 h-10 skeleton-loading circle"></figure>
+          <div class="flex flex-col justify-center items-start">
             <span
-              class="text-label-md text-secondary"
-              aria-label="매너 온도 41.2도"
+              class="text-label-md skeleton-loading text-transparent leading-tight mb-2"
+              >${name}</span
+            >
+            <span
+              class="text-paragraph-sm skeleton-loading text-transparent leading-tight"
+              >${용암}</span
+            >
+          </div>
+        </div>
+        <div
+          id="manner-temp"
+          role="group"
+          class="flex grow gap-[-8px] items-end flex-col pr-2"
+        >
+          <div class="flex items-center justify-center gap-2">
+            <span
+              class="text-label-md skeleton-loading text-transparent leading-tight mb-[6px]"
               >41.2℃</span
             >
             <span
-              class="text-xl items-center justify-center"
-              role="img"
-              aria-label="매너 온도 표시 아이콘"
+              class="text-xl items-center justify-center skeleton-loading size-5 text-transparent circle mb-[6px] mr-1"
               >☺️</span
             >
           </div>
-          <span aria-label="매너온도" class="text-paragraph-sm text-gray-600"
+          <span
+            class="text-paragraph-sm skeleton-loading text-transparent leading-tight"
             >매너온도</span
           >
         </div>
       </section>
 
       <!-- Product Information -->
-      <section class="flex pl-3 pb-5 pt-3" id="productInfo"></section>
+      <section
+        class="flex pl-3 pb-5 pt-3 min-h-[224px]"
+        id="productInfo"
+      ></section>
 
       <!-- Report Button -->
       <div
@@ -87,6 +109,12 @@
         class="px-3 grid grid-cols-2 w-full flex-col gap-4 pb-2"
         id="watchTogether"
       >
+        <article
+          class="skeleton-loading relative w-full aspect-[1/1.38] roundmd"
+        ></article>
+        <article
+          class="skeleton-loading relative w-full aspect-[1/1.38] roundmd bg-gray-100"
+        ></article>
         <!-- First Item -->
       </section>
       <div class="space h-16 w-f"></div>

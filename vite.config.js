@@ -28,6 +28,18 @@ export default defineConfig({
         writeQna: resolve(__dirname, 'src/pages/board/writeQna.html'),
         // 기기거래
         exchange: resolve(__dirname, 'src/pages/exchange/index.html'),
+        exchangeDetail: resolve(
+          __dirname,
+          'src/pages/exchange/exchangeDetail.html'
+        ),
+        exchangeMake: resolve(
+          __dirname,
+          'src/pages/exchange/exchangeMake.html'
+        ),
+        exchangeWrite: resolve(
+          __dirname,
+          'src/pages/exchange/exchangeWrite.html'
+        ),
         // 스토리
         story: resolve(__dirname, 'src/pages/main/index.html'),
         // 검색
