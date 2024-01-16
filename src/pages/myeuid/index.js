@@ -41,7 +41,7 @@ const logoutCancel = () => {
 
 const logoutSubmit = () => {
   storage.clear();
-  window.location.href = '/src/pages/login/';
+  window.location.href = '/';
 };
 
 logoutCancelButton.onclick = logoutCancel;
@@ -69,12 +69,12 @@ const withdrawCancel = () => {
 const withdrawSubmit = async () => {
   await pb.collection('users').delete(pocketData.model.id);
   localStorage.clear();
-  window.location.href = '/src/pages/login/';
+  window.location.href = '/';
 };
 
-withdrawCancelButton.onclick = withdrawCancel;
-withdrawSubmitButton.onclick = withdrawSubmit;
-withdrawButton.onclick = () => withdrawModal.showing();
+// withdrawCancelButton.onclick = withdrawCancel;
+// withdrawSubmitButton.onclick = withdrawSubmit;
+withdrawButton.onclick = $modal.showing;
 
 /* -------------------------------------------------------------------------- */
 /*                                  Rendering                                 */

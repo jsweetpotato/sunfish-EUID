@@ -228,7 +228,7 @@ const cancelProfileEdit = () => {
     window.location.href = '/src/pages/myeuid/myProfile.html';
   } else {
     storage.clear();
-    window.location.href = '/src/pages/login/';
+    window.location.href = '/';
   }
 };
 
