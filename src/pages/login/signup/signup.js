@@ -46,7 +46,8 @@ const HAS_EMAIL_CLASS = 'hasemail';
 
 // 정규표현식 패턴
 const emailPattern = /^[\w-]+@([a-z]+\.)+[\w]{2,4}/g;
-const pwPattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;
+const pwPattern =
+  /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;
 // const pwPattern = /^(?=.*[0-9]).{1,15}$/;
 
 let allUser;
