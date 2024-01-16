@@ -138,26 +138,27 @@ export default async function getData() {
   `
   );
 
-  // getNode('#chatting').addEventListener('click', async (e) => {
-  //   if (pb.authStore.model.id === users.id)
-  //     window.location.href = '/src/pages/chatting/lobby.html';
-  //   const findResponse = await pb.collection('chatroom').getFullList({
-  //     filter: `members ~ "${pb.authStore.model.id}" && originType = "${id}"`,
-  //   });
-  //   if (findResponse.length > 0) {
-  //     window.location.href = `/src/pages/chatting/room.html?id=${findResponse.id}`;
-  //   }
-  //   const formObj = {
-  //     originType: 'selling',
-  //     sellinigOriginId: idParam,
-  //     owner: users.id,
-  //     members: [pb.authStore.model.id, users.id],
-  //     messageBox: JSON.stringify([]),
-  //   };
-  //   console.log(formObj);
-  // const chatroomResponse = await pb.collection('chatroom').create(formObj);
-  // window.location.href = `/src/pages/chatting/room.html?id=${chatroomResponse.id}`;
-  // });
+  getNode('#chatting').addEventListener('click', async (e) => {
+    if (pb.authStore.model.id === users.id)
+      window.location.href = '/src/pages/chatting/lobby.html';
+    const findResponse = await pb.collection('chatroom').getFullList({
+      filter: `members ~ "${pb.authStore.model.id}" && sellingOriginId = "${id}"`,
+    });
+    if (findResponse.length > 0) {
+      console.log(findResponse);
+      window.location.href = `/src/pages/chatting/room.html?id=${findResponse[0].id}`;
+    }
+    const formObj = {
+      originType: 'selling',
+      sellingOriginId: idParam,
+      owner: users.id,
+      members: [pb.authStore.model.id, users.id],
+      messageBox: JSON.stringify([]),
+    };
+    console.log(formObj);
+    const chatroomResponse = await pb.collection('chatroom').create(formObj);
+    window.location.href = `/src/pages/chatting/room.html?id=${chatroomResponse.id}`;
+  });
 
   const swiper = new Swiper('.swiper', {
     modules: [Navigation, Pagination],
@@ -197,7 +198,7 @@ async function watch() {
             thumb: '0x300',
           })}" alt="${item}">
         </figure>
-        <a class="absolute top-0 left-0 w-full h-full" href="/src/pages/exchange/exchangeDetail.html?id=#${
+        <a class="absolute top-0 left-0 w-full h-full" href="/src/pages/exchange/exchangeDetail.html?id=${
           item.id
         }">
           <span class="absolute w-full top-[55%] px-2">
