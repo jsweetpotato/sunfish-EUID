@@ -1,4 +1,4 @@
-import"./tailwind-Via4wZBX.js";import{S as x}from"./swiper-core-xIVJDqhu.js";import{g as h}from"./index-LZz_RBWS.js";import{a as w,g as b}from"./getNode-pa7syr6m.js";import{i}from"./insert-c9FKGVoP.js";import{c as o}from"./clear-vWyKvuJ4.js";import{p as d}from"./delay-L14dHocY.js";import{c as v}from"./checkAuth-CTdHH8Oq.js";import"./Modal-LwrVZ11o.js";new x(".swiper",{slidesPerView:"auto",spaceBetween:12,freeMode:!0});const f={interestsState:"all"};let l="-created";function y(){return`
+import"./tailwind-GolohDhN.js";import{S as m}from"./swiper-core-xIVJDqhu.js";import{g as h}from"./index-LZz_RBWS.js";import{a as w,g as b}from"./getNode-pa7syr6m.js";import{i}from"./insert-c9FKGVoP.js";import{c as o}from"./clear-vWyKvuJ4.js";import{p as d}from"./delay-YOOEtQ5Y.js";import{c as v}from"./checkAuth-1jN6PZSr.js";new m(".swiper",{slidesPerView:"auto",spaceBetween:12,freeMode:!0});const f={interestsState:"all"};let l="-created";function y(){return`
   <li>
   <div class="relative p-3 border-b flex flex-row justify-between gap-1">
     <div class="w-full flex flex-col flex-shrink-1 justify-center items-start gap-3">
@@ -13,7 +13,7 @@ import"./tailwind-Via4wZBX.js";import{S as x}from"./swiper-core-xIVJDqhu.js";imp
       <div class="w-full aspect-square skeleton-loading"></div>
     </div>
   </div>
-</li>`.repeat(5)}function S(e){const{id:t,category:a,title:s,imgField:g,views:p,created:u,comments:m}=e;let{description:r}=e;r=r.replace(/</g,"&lt;").replace(/>/g,"&gt;");const n=d.files.getUrl(e,g[0],{thumb:"0x60"});return`
+</li>`.repeat(5)}function S(e){const{id:t,category:a,title:s,imgField:g,views:p,created:u,comments:x}=e;let{description:r}=e;r=r.replace(/</g,"&lt;").replace(/>/g,"&gt;");const n=d.files.getUrl(e,g[0],{thumb:"0x60"});return`
   <li class="hover:bg-gray-100">
   <div
     class="relative p-3 border-b flex flex-row justify-between gap-1 border-contents-content-secondary"
@@ -42,7 +42,7 @@ import"./tailwind-Via4wZBX.js";import{S as x}from"./swiper-core-xIVJDqhu.js";imp
         >${r.slice(0,50)}</span
       >
       <span class="text-paragraph-sm font-normal text-gray-600"
-      >연희동 · ${new Date(u).toLocaleDateString()} · 조회 ${p} · 댓글 ${m.length}</span>
+      >연희동 · ${new Date(u).toLocaleDateString()} · 조회 ${p} · 댓글 ${x.length}</span>
     </div>
     ${n?`
         <div

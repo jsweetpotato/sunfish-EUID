@@ -49,21 +49,21 @@ export default async function getData() {
     'afterbegin' /* html */,
     `
     <div class="swiper-wrapper">
-      <div class="swiper-slide "><img src="${getPbImageURL(
+      <div class="swiper-slide  bg-gray-100"><img src="${getPbImageURL(
         avatarList,
         'productImages',
-        { thumb: '0x300' }
-      )}" alt="상품 이미지" class='w-full h-[305px] object-cover'></div>
-      <div class="swiper-slide "><img src="${getPbImageURL(
+        { thumb: '0x350' }
+      )}" alt="상품 이미지" class='w-full h-full object-cover'></div>
+      <div class="swiper-slide  bg-gray-100"><img src="${getPbImageURL(
         avatarList,
         'productImages',
-        { thumb: '0x300' }
-      )}" alt="상품 이미지" class='w-full h-[305px] object-cover'></div>
-      <div class="swiper-slide "><img src="${getPbImageURL(
+        { thumb: '0x350' }
+      )}" alt="상품 이미지" class='w-full h-full object-cover'></div>
+      <div class="swiper-slide  bg-gray-100"><img  src="${getPbImageURL(
         avatarList,
         'productImages',
-        { thumb: '0x300' }
-      )}" alt="상품 이미지" class='w-full h-[305px] object-cover'></div>
+        { thumb: '0x350' }
+      )}" alt="상품 이미지" class='w-full h-full object-cover'></div>
     </div>
     <div class="swiper-pagination"></div>
 `

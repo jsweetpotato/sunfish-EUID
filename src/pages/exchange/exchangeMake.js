@@ -1,5 +1,9 @@
 import PocketBase from 'pocketbase';
 import { getNode, getNodes } from '/src/lib';
+import {
+  createAlertModal,
+  createModal1Btn,
+} from '../../components/Modal/Modal';
 
 const pb = new PocketBase(import.meta.env.VITE_PB_URL);
 const prev = getNode('#prev');
@@ -52,6 +56,21 @@ let titleValue = '';
 let infoValue = '';
 let contentValue = '';
 
+const [$createModal, $createModalBtn] = createModal1Btn({
+  title: '작성 완료!',
+  desc: '기기거래 페이지에서 확인해주세요!',
+});
+
+$createModalBtn.onclick = () => {
+  window.location.href = '/src/pages/exchange/index.html';
+};
+
+const [$failModal, $failModalBtn] = createModal1Btn({
+  title: '작성 실패!',
+  desc: '기기거래 글 등록에 실패하였습니다.',
+});
+
+$failModalBtn.onclick = $failModal.closing;
 async function submit() {
   const data = {
     title: titleValue,
@@ -62,10 +81,19 @@ async function submit() {
     productImages: fileValue,
     user: pb.authStore.model.id,
   };
-  const record = await pb.collection('selling').create(data);
+  finish.classList.replace('bg-secondary', 'bg-contents-content-secondary');
+  finish.disabled = true;
+  try {
+    await pb.collection('selling').create(data);
+    $createModal.showing();
+  } catch {
+    $failModal.showing();
+    finish.classList.replace('bg-contents-content-secondary', 'bg-secondary');
+    finish.disabled = false;
+  }
 
   // 페이지 이동 코드 추가
-  // window.location.href = '/src/pages/exchange/index.html';
+  //
 }
 
 fileInput.addEventListener('change', handleFiles);
