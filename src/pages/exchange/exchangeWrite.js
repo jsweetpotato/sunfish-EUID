@@ -3,12 +3,12 @@ import { getNode, getNodes, getPbImageURL, checkAuth } from '/src/lib';
 
 const pb = new PocketBase(import.meta.env.VITE_PB_URL);
 const prev = getNode('#prev');
-const hash = window.location.search.slice(2);
+const idParam = new URL(window.location.href).searchParams.get('id');
 const contentName = getNode('#contentName');
 const finish = getNode('#finish');
-const checkBox = getNode('#checkBox')
+const checkBox = getNode('#checkBox');
 
-const data = await pb.collection('selling').getOne(hash);
+const data = await pb.collection('selling').getOne(idParam);
 
 async function methodInfo() {
   if (!checkAuth()) return;
@@ -19,10 +19,10 @@ async function methodInfo() {
   const tradeButton = getNodes('#tradeMethod > button');
   const descriptionCount = getNode('#descriptionCount');
   const desc = getNode('#description');
-  
+
   const { description, title, tradingType, isPriceOffer } = data;
 
-  letterCount.textContent = title.length + "/24";
+  letterCount.textContent = title.length + '/24';
   descriptionCount.textContent = title.length + '/500';
 
   if (tradingType === 'sell') {
@@ -33,18 +33,17 @@ async function methodInfo() {
     tradeButton[1].style.color = 'white';
   }
 
-  if(isPriceOffer === true){
+  if (isPriceOffer === true) {
     checkBox.checked = true;
   }
 
   previewImg.src = getPbImageURL(data, 'productImages');
-  productTitle.value= title;
+  productTitle.value = title;
   desc.value = description;
 }
 
 let warningMessage = null;
-  const spell = getNode('#spell');
-
+const spell = getNode('#spell');
 
 function validation({ target }) {
   if (!checkAuth()) return;
@@ -58,18 +57,18 @@ function validation({ target }) {
       warningMessage.remove();
       warningMessage = null;
     }
-if (contentName.value.length > 12) {
-    contentName.value = contentName.value.slice(0, 12);
-    warningMessage = document.createElement('span');
-    warningMessage.textContent = `숫자는 12이하로 입력해주세요`;
-    warningMessage.classList.add(
-      'text-label-sm',
-      'text-red-500',
-      'text-right',
-      'block'
-    );
-    spell.insertAdjacentElement('afterbegin', warningMessage);
-}
+    if (contentName.value.length > 12) {
+      contentName.value = contentName.value.slice(0, 12);
+      warningMessage = document.createElement('span');
+      warningMessage.textContent = `숫자는 12이하로 입력해주세요`;
+      warningMessage.classList.add(
+        'text-label-sm',
+        'text-red-500',
+        'text-right',
+        'block'
+      );
+      spell.insertAdjacentElement('afterbegin', warningMessage);
+    }
   } else if (!warningMessage) {
     warningMessage = document.createElement('span');
     warningMessage.classList.add(
@@ -84,7 +83,7 @@ if (contentName.value.length > 12) {
 }
 
 async function change(value) {
-    if (!checkAuth()) return;
+  if (!checkAuth()) return;
   if (!pb || !pb.authStore || !pb.authStore.model) {
     console.log('pb.authStore.model is undefined');
     return;
@@ -96,13 +95,12 @@ async function change(value) {
   };
 
   try {
-    await pb.collection('selling').update(hash, dataList);
-    window.location.href = `/src/pages/exchange/exchangeDetail.html#${hash}`;
+    await pb.collection('selling').update(idParam, dataList);
+    window.location.href = `/src/pages/exchange/exchangeDetail.html?id=${idParam}`;
   } catch (error) {
     console.log('Update failed', error);
   }
 }
-
 
 contentName.addEventListener('input', validation);
 prev.addEventListener('click', () => history.back());
@@ -119,6 +117,3 @@ finish.addEventListener('click', () => {
 });
 
 methodInfo();
-
-
-
