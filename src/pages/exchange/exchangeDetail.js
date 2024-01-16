@@ -138,26 +138,27 @@ export default async function getData() {
   `
   );
 
-  // getNode('#chatting').addEventListener('click', async (e) => {
-  //   if (pb.authStore.model.id === users.id)
-  //     window.location.href = '/src/pages/chatting/lobby.html';
-  //   const findResponse = await pb.collection('chatroom').getFullList({
-  //     filter: `members ~ "${pb.authStore.model.id}" && originType = "${id}"`,
-  //   });
-  //   if (findResponse.length > 0) {
-  //     window.location.href = `/src/pages/chatting/room.html?id=${findResponse.id}`;
-  //   }
-  //   const formObj = {
-  //     originType: 'selling',
-  //     sellinigOriginId: idParam,
-  //     owner: users.id,
-  //     members: [pb.authStore.model.id, users.id],
-  //     messageBox: JSON.stringify([]),
-  //   };
-  //   console.log(formObj);
-  // const chatroomResponse = await pb.collection('chatroom').create(formObj);
-  // window.location.href = `/src/pages/chatting/room.html?id=${chatroomResponse.id}`;
-  // });
+  getNode('#chatting').addEventListener('click', async (e) => {
+    if (pb.authStore.model.id === users.id)
+      window.location.href = '/src/pages/chatting/lobby.html';
+    const findResponse = await pb.collection('chatroom').getFullList({
+      filter: `members ~ "${pb.authStore.model.id}" && sellingOriginId = "${id}"`,
+    });
+    if (findResponse.length > 0) {
+      console.log(findResponse);
+      window.location.href = `/src/pages/chatting/room.html?id=${findResponse[0].id}`;
+    }
+    const formObj = {
+      originType: 'selling',
+      sellingOriginId: idParam,
+      owner: users.id,
+      members: [pb.authStore.model.id, users.id],
+      messageBox: JSON.stringify([]),
+    };
+    console.log(formObj);
+    const chatroomResponse = await pb.collection('chatroom').create(formObj);
+    window.location.href = `/src/pages/chatting/room.html?id=${chatroomResponse.id}`;
+  });
 
   const swiper = new Swiper('.swiper', {
     modules: [Navigation, Pagination],

@@ -16,8 +16,8 @@ import {
 function createTemplate(data) {
   const result = data
     .map((item) => {
-      const { messageBox, updated, id, owner } = item;
-      const { members, originId } = item.expand;
+      const { messageBox, updated, id, owner, originType } = item;
+      const { members } = item.expand;
       const lastMessage = messageBox.pop()?.message;
       const ownerRecord = members.filter((member) => member.id === owner)[0];
       const ownerAvatarImgUrl = pb.files.getUrl(
@@ -25,7 +25,6 @@ function createTemplate(data) {
         ownerRecord.avatar,
         { thumb: '50x0' }
       );
-      console.log(ownerAvatarImgUrl);
       return /* html */ `
     <li class="w-full p-3 border-b border-b-gray-100 hover:bg-gray-100">
     <a class="w-full flex items-center gap-3" href=${`/src/pages/chatting/room.html?id=${id}`}>
@@ -37,12 +36,22 @@ function createTemplate(data) {
   
       <div class="flex flex-col">
         <span class="min-w-[100px] text-label-md items-start overflow-hidden text-ellipsis"
-          >${originId.title}<span
+          >${
+            originType === 'together'
+              ? item.expand.togetherOriginId.title
+              : ownerRecord.name
+          }<span
             class="ml-2 text-contents-content-secondary font-normal"
             >${members.length}</span
           >
           <span class="ml-2 text-label-sm text-contents-content-secondary shrink-0"
-            >${convertTime(updated)}</span
+            >${convertTime(
+              updated
+            )} · <span class="p-1 leading-none text-label-sm ${
+              originType === 'together'
+                ? 'bg-blue-100 rounded text-secondary'
+                : 'bg-orange-100 rounded text-orange-500'
+            } ">${originType === 'together' ? '모임' : '거래'}</span></span
           ></span
         >
         <span class="block text-paragraph-md text-contents-content-secondary"
@@ -63,9 +72,10 @@ function createTemplate(data) {
 async function getData() {
   const myId = pb.authStore.model.id;
   const response = await pb.collection('chatroom').getFullList({
-    filter: `members ~ "${myId}"`,
-    expand: 'members, originId',
+    filter: `members ?~ "${myId}"`,
+    expand: `members, togetherOriginId, sellingOriginId`,
   });
+  console.log('response', response);
   const sortResponse = response.sort(
     (a, b) => new Date(b.updated) - new Date(a.updated)
   );
