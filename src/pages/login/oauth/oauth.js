@@ -110,7 +110,7 @@ const handleSubmitButton = async (e) => {
     storage.removeItem('categorys');
     data.phone = $phoneInput.value;
     storage.setItem('users-oauth', JSON.stringify(data));
-    window.history.replaceState(null, null, '/src/pages/login/');
+    window.history.replaceState(null, null, '/');
     window.location.href = '/src/pages/myeuid/editProfile.html';
   } else $rejectOauth.showing();
 };

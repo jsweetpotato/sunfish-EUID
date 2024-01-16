@@ -48,7 +48,7 @@ const handleSubmit = async (e) => {
     await pb
       .collection('users')
       .authWithPassword($inputEmail.value, $inputPW.value);
-    window.history.replaceState(null, null, '/src/pages/login/');
+    window.history.replaceState(null, null, '/');
     window.location.href = '/src/pages/main/';
   } catch (err) {
     toggleValid($submitButton, false);
