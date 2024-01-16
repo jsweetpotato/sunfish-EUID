@@ -1,4 +1,4 @@
-import"./tailwind-Jlr4NQan.js";import{S as j}from"./swiper-core-xIVJDqhu.js";import{C as k,c as T,b as p}from"./delay-YOOEtQ5Y.js";import{N as _,P as M}from"./pagination-hBsCm0jB.js";import{g as a}from"./getNode-pa7syr6m.js";import{c as n}from"./clear-vWyKvuJ4.js";import{g as r}from"./getPbImageUrl-DQjhCXIR.js";import{c as m}from"./comma-f4do0chS.js";import{c as I}from"./checkAuth-1jN6PZSr.js";const A=a("#share"),g=a("#profile"),h=a("#manner-temp"),C=a("#swiper"),E=a("#productInfo"),b=a("#footer"),H=a("#addButton"),f=a("#watchTogether"),O=a("#back"),s=new k("https://suppose-weather.pockethost.io/");async function P(){if(!I())return;const t=new URL(window.location.href).searchParams.get("id"),e=await s.collection("selling").getOne(t,{expand:"user"}),{title:l,description:o,price:w,id:c,isPriceOffer:x}=e,i=await e.expand.user,{name:v}=i;C.insertAdjacentHTML("afterbegin",`
+import"./tailwind-GolohDhN.js";import{S as j}from"./swiper-core-xIVJDqhu.js";import{C as k,c as T,b as p}from"./delay-YOOEtQ5Y.js";import{N as _,P as M}from"./pagination-hBsCm0jB.js";import{g as a}from"./getNode-pa7syr6m.js";import{c as n}from"./clear-vWyKvuJ4.js";import{g as r}from"./getPbImageUrl-DQjhCXIR.js";import{c as m}from"./comma-f4do0chS.js";import{c as I}from"./checkAuth-1jN6PZSr.js";const A=a("#share"),g=a("#profile"),h=a("#manner-temp"),C=a("#swiper"),E=a("#productInfo"),b=a("#footer"),H=a("#addButton"),f=a("#watchTogether"),O=a("#back"),s=new k("https://suppose-weather.pockethost.io/");async function P(){if(!I())return;const t=new URL(window.location.href).searchParams.get("id"),e=await s.collection("selling").getOne(t,{expand:"user"}),{title:l,description:o,price:w,id:c,isPriceOffer:x}=e,i=await e.expand.user,{name:v}=i;C.insertAdjacentHTML("afterbegin",`
     <div class="swiper-wrapper">
       <div class="swiper-slide  bg-gray-100"><img src="${r(e,"productImages")}" alt="상품 이미지" class='w-full h-full object-cover'></div>
       <div class="swiper-slide  bg-gray-100"><img src="${r(e,"productImages")}" alt="상품 이미지" class='w-full h-full object-cover'></div>
@@ -37,7 +37,7 @@ import"./tailwind-Jlr4NQan.js";import{S as j}from"./swiper-core-xIVJDqhu.js";imp
     <span aria-label="매너온도" class="text-paragraph-sm text-gray-600"
       >매너온도</span
     >
-  `);const y=x===!0?`/src/pages/exchange/exchangeWrite.html?=${c}`:"#";b.insertAdjacentHTML("afterbegin",`
+  `);const y=x===!0?`/src/pages/exchange/exchangeWrite.html?id=${c}`:"#";b.insertAdjacentHTML("afterbegin",`
   <button
     type="button"
     class="bg-heart-icon w-5 h-5 bg-no-repeat bg-cover heartContainer heart"
